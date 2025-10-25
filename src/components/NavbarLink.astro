@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+const props: HTMLAttributes<'a'> = Astro.props;
+---
+
+<li>
+    <a {...props}>
+        <slot />
+    </a>
+</li>
+
+<style>
+    li {
+    display: inline-block;
+    padding-left: 30px;
+  }
+
+  a {
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+</style>

@@ -1,11 +1,13 @@
+---
+import NavbarLink from "./NavbarLink.astro";
+---
+
 <nav>
   <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Site</a></li>
-    <li><a href="#">Content</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Blog</a></li>
-    <li><a href="#">Info</a></li>
+    <NavbarLink href="#">Home</NavbarLink>
+    <NavbarLink href="#">Blog</NavbarLink>
+    <NavbarLink href="#">Guestbook</NavbarLink>
+    <NavbarLink href="#">About Site</NavbarLink>
   </ul>
 </nav>
 
@@ -33,15 +35,5 @@
 
   ul {
     display: contents;
-  }
-
-  li {
-    display: inline-block;
-    padding-left: 30px;
-  }
-
-  a {
-    text-decoration: none;
-    text-transform: uppercase;
-  }
+  }  
 </style>
