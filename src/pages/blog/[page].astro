@@ -43,12 +43,13 @@ const { page }: Props = Astro.props;
 
 <Base>
     {
-        page.data.map(({ data, body }) => 
+        page.data.map(({ data, body, ...post }) => 
             <Article title={data.title}>
                 <time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>
                 <p>
                     {(body?.substring(0, 300) ?? '') + '...'}
                 </p>
+                <a href={`post/${post.id}`}>Read more...</a>
             </Article>
         )
     }
@@ -57,6 +58,7 @@ const { page }: Props = Astro.props;
         <div class="container">
         {page.url.first ? <a href={page.url.first}>⏮</a> : <a aria-disabled="true">⏮</a>}
         {page.url.prev ?  <a href={page.url.prev}>◄</a>  : <a aria-disabled="true">◄</a> }
+        <span>{page.currentPage}</span>
         {page.url.next ?  <a href={page.url.next}>►</a>  : <a aria-disabled="true">►</a> }
         {page.url.last ?  <a href={page.url.last}>⏭</a>  : <a aria-disabled="true">⏭</a> }
         </div>
