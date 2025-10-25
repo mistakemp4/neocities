@@ -1,0 +1,99 @@
+---
+import Base from "../../layouts/Base.astro";
+import top from "../../assets/akechi1.jpg";
+import bottom from "../../assets/akechi2.jpg";
+---
+
+<Base>
+    <header>
+        <div class="header-image">
+            <img {...top}>
+            <p>And so, your heart is always free.</p>
+        </div>
+        <div class="header-image">
+            <img {...bottom}>
+            <p>The exact opposite of mine.</p>
+        </div>
+    </header>
+
+    <div class="gradient"></div>
+
+<main>
+
+<section>
+    <h2>Hello stinker</h2>
+    <p>Testing something one two</p>
+    <img {...top}>
+</section>
+
+</main>
+</Base>
+
+<style>
+:global(body) {
+    color :white;
+    background: black;
+}
+
+    header {
+        height: 100lvh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-image {
+        flex: auto;
+        display: grid;
+        position: relative;
+        place-items: end;
+        padding-inline: 8px;
+        
+    p {
+        font-size: calc(32px + 2vw);
+        color: red;
+        text-transform: uppercase;
+        margin: 0;
+        font-weight: bold;
+        text-shadow: 4px 4px 8px black;
+        max-width: 50%;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        inset: 0;
+        object-fit: cover;
+        object-position: top;
+        z-index: -1;
+    }
+    
+    &:first-child p {
+        text-align: right;
+    }
+    
+        &:last-child {
+            justify-items: start;
+            background-image: linear-gradient(to bottom, transparent 80%, black);
+        }
+    }
+
+    main {
+        margin-block: 64px;
+        display: flex; flex-direction: column;
+        align-items: center;
+    }
+
+    section {
+        max-width: 600px;
+        border: 2px dotted lime;
+        background-color: gray;
+        border: 2px solid lightgray;
+        padding: 12px;
+
+        img {
+            max-width: 100%;
+            object-fit: contain;
+        }
+    }
+</style>
