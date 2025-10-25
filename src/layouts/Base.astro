@@ -1,24 +1,22 @@
 ---
 import Navbar from "../components/Navbar.astro";
+import Sidebar from "../components/Sidebar.astro";
+import SidebarSection from "../components/SidebarSection.astro";
 ---
 
 <div class="container">
   <header></header>
   <Navbar />
   <div class="flex">
-    <aside class="left-sidebar">
-      <section>
-        <div class="subtitle">Subtitle</div>
-        <div>
+    <Sidebar>
+      <SidebarSection title="Subtitle">
           <p>
             Lorem ipsum dolor sit amet, adipiscing elit. Praesent aliquam, justo
             convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam
             ante ac quam. Maecenas urna purus.
           </p>
-        </div>
-      </section>
-      <section>
-        <div class="subtitle">Subtitle</div>
+      </SidebarSection>
+      <SidebarSection title="Subtitle">
         <ul class="links">
           <li><a href="#">link</a></li>
           <li><a href="#">link</a></li>
@@ -27,9 +25,8 @@ import Navbar from "../components/Navbar.astro";
           <li><a href="#">link</a></li>
           <li><a href="#">link</a></li>
         </ul>
-      </section>
-      <section>
-        <div class="subtitle">Subtitle</div>
+      </SidebarSection>
+      <SidebarSection title="Subtitle">
         <ul class="links">
           <li><a href="#">link</a></li>
           <li><a href="#">link</a></li>
@@ -38,8 +35,8 @@ import Navbar from "../components/Navbar.astro";
           <li><a href="#">link</a></li>
           <li><a href="#">link</a></li>
         </ul>
-      </section>
-    </aside>
+      </SidebarSection>
+    </Sidebar>
     <main>
       <article>
         <div class="subtitle">Skyline</div>
@@ -106,19 +103,16 @@ import Navbar from "../components/Navbar.astro";
         </div>
       </article>
     </main>
-    <aside class="right-sidebar">
-      <section>
-        <div class="subtitle">Subtitle</div>
-        <div>
+
+    <Sidebar>
+      <SidebarSection title="Subtitle">
           <p>
             Lorem ipsum dolor sit amet, adipiscing elit. Praesent aliquam, justo
             convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam
             ante ac quam. Maecenas urna purus.
           </p>
-        </div>
-      </section>
-      <section>
-        <div class="subtitle">Subtitle</div>
+      </SidebarSection>
+      <SidebarSection title="Subtitle">
         <ul class="links">
           <li><a href="#">link</a></li>
           <li><a href="#">link</a></li>
@@ -127,9 +121,8 @@ import Navbar from "../components/Navbar.astro";
           <li><a href="#">link</a></li>
           <li><a href="#">link</a></li>
         </ul>
-      </section>
-      <section>
-        <div class="subtitle">Subtitle</div>
+      </SidebarSection>
+      <SidebarSection title="Subtitle">
         <ul class="links">
           <li><a href="#">link</a></li>
           <li><a href="#">link</a></li>
@@ -138,8 +131,8 @@ import Navbar from "../components/Navbar.astro";
           <li><a href="#">link</a></li>
           <li><a href="#">link</a></li>
         </ul>
-      </section>
-    </aside>
+      </SidebarSection>
+    </Sidebar>
   </div>
   <footer>
     This layout was lovingly re-crafted by <a href="https://sadgrl.online"
@@ -175,11 +168,6 @@ import Navbar from "../components/Navbar.astro";
   a {
     color: var(--nav-link-color);
   }
-
-  aside {
-    width: 250px;
-    margin-top: 30px;
-  }
   .flex {
     display: flex;
     max-width: 900px;
@@ -198,10 +186,6 @@ import Navbar from "../components/Navbar.astro";
     width: 100%;
     margin-right: 20px;
     margin-left: 20px;
-  }
-  section {
-    margin-bottom: 10px;
-    color: var(--sidebar-text-color);
   }
   article {
     margin-bottom: 15px;
@@ -229,23 +213,10 @@ import Navbar from "../components/Navbar.astro";
     color: inherit;
     text-decoration: none;
   }
-  .left-sidebar {
-    margin-left: 50px;
-  }
   .subtitle {
     font-weight: bold;
     color: var(--article-text-color);
     letter-spacing: 1px;
-  }
-  article .subtitle {
-    margin-top: 10px;
-    margin-right: 5px;
-    margin-bottom: 10px;
-    margin-left: 5px;
-
-    font-size: 16px;
-    color: var(--article-heading-color);
-    text-transform: uppercase;
   }
   footer {
     max-width: 800px;
@@ -259,15 +230,6 @@ import Navbar from "../components/Navbar.astro";
   @media only screen and (max-width: 800px) {
     .flex {
       flex-wrap: wrap;
-    }
-    aside {
-      display: flex;
-      width: 100%;
-      margin-right: 20px;
-      margin-left: 20px;
-    }
-    aside > section {
-      margin-right: 10px;
     }
   }
 </style>
