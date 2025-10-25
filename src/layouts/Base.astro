@@ -1,6 +1,8 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Sidebar from "../components/Sidebar.astro";
+import SidebarLink from "../components/SidebarLink.astro";
+import SidebarLinks from "../components/SidebarLinks.astro";
 import SidebarSection from "../components/SidebarSection.astro";
 ---
 
@@ -17,24 +19,24 @@ import SidebarSection from "../components/SidebarSection.astro";
           </p>
       </SidebarSection>
       <SidebarSection title="Subtitle">
-        <ul class="links">
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-        </ul>
+        <SidebarLinks>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+        </SidebarLinks>
       </SidebarSection>
       <SidebarSection title="Subtitle">
-        <ul class="links">
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-        </ul>
+        <SidebarLinks>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+        </SidebarLinks>
       </SidebarSection>
     </Sidebar>
     <main>
@@ -113,24 +115,24 @@ import SidebarSection from "../components/SidebarSection.astro";
           </p>
       </SidebarSection>
       <SidebarSection title="Subtitle">
-        <ul class="links">
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-        </ul>
+        <SidebarLinks>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+        </SidebarLinks>
       </SidebarSection>
       <SidebarSection title="Subtitle">
-        <ul class="links">
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-          <li><a href="#">link</a></li>
-        </ul>
+        <SidebarLinks>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+          <SidebarLink href="#">link</SidebarLink>
+        </SidebarLinks>
       </SidebarSection>
     </Sidebar>
   </div>
@@ -168,10 +170,12 @@ import SidebarSection from "../components/SidebarSection.astro";
   a {
     color: var(--nav-link-color);
   }
+
   .flex {
     display: flex;
     max-width: 900px;
   }
+
   header {
     height: 200px;
     max-height: 200px;
@@ -199,19 +203,6 @@ import SidebarSection from "../components/SidebarSection.astro";
   .subtitle {
     border: 1px solid var(--darker-border-color);
     background-color: var(--nav-bg);
-  }
-  .links {
-    padding-left: 0;
-    list-style-type: none;
-  }
-  .links li {
-    margin-bottom: 3px;
-    border: 1px solid var(--border-color);
-    background-color: var(--nav-bg);
-  }
-  .links li a {
-    color: inherit;
-    text-decoration: none;
   }
   .subtitle {
     font-weight: bold;
