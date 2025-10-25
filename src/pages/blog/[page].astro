@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Article from "../../components/Article.astro";
-import Base from "../../layouts/Base.astro";
 import type { GetStaticPaths, InferGetStaticPropsType, Page } from "astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
     const posts = (await getCollection('blog')).sort(
@@ -41,7 +41,7 @@ function formatDate(date: Date): string {
 const { page }: Props = Astro.props;
 ---
 
-<Base>
+<MainLayout>
     {
         page.data.map(({ data, body, ...post }) => 
             <Article title={data.title}>
@@ -63,7 +63,7 @@ const { page }: Props = Astro.props;
         {page.url.last ?  <a href={page.url.last}>⏭</a>  : <a aria-disabled="true">⏭</a> }
         </div>
     </nav>
-</Base>
+</MainLayout>
 
 <style>
     time {
