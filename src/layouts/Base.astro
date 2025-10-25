@@ -1,4 +1,6 @@
 ---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 import Navbar from "../components/Navbar.astro";
 import Sidebar from "../components/Sidebar.astro";
 import SidebarLink from "../components/SidebarLink.astro";
@@ -6,10 +8,10 @@ import SidebarLinks from "../components/SidebarLinks.astro";
 import SidebarSection from "../components/SidebarSection.astro";
 ---
 
-<div class="container">
-  <header></header>
+  <Header />
   <Navbar />
-  <div class="flex">
+
+  <div class="container">
     <Sidebar>
       <SidebarSection title="Subtitle">
           <p>
@@ -74,18 +76,10 @@ import SidebarSection from "../components/SidebarSection.astro";
       </SidebarSection>
     </Sidebar>
   </div>
-  <footer>
-    This layout was lovingly re-crafted by <a href="https://sadgrl.online"
-      >
-      sadgrl.online
-      </a
-    >
-  </footer>
-</div>
+
+  <Footer />
 
 <style is:global>
-  /* You can either copy the below and paste it between style tags on your HTML page, OR you can copy this to a file and name it .css and link it from your HTML page. */
-
   :root {
     --header-bg: #f1f1f1;
     --nav-bg: #f2f2f2;
@@ -111,36 +105,16 @@ import SidebarSection from "../components/SidebarSection.astro";
     color: var(--nav-link-color);
   }
 
-  .flex {
+  .container {
     display: flex;
     max-width: 900px;
+
+    @media only screen and (max-width: 800px) {
+        flex-wrap: wrap;
+    }
   }
 
-  header {
-    height: 200px;
-    max-height: 200px;
-
-    background-color: var(--header-bg);
-    background-image: url("https://learn.sadgrl.online/wp-content/uploads/2022/02/skyline-banner.png");
-    background-repeat: repeat-y;
-    background-position: fixed;
-    background-size: 600px;
-  }
   main {
     margin-inline: 20px;
-  }
-  footer {
-    max-width: 800px;
-    color: var(--sidebar-text-color);
-    text-align: center;
-  }
-  footer a {
-    color: var(--navbar-link-color);
-  }
-
-  @media only screen and (max-width: 800px) {
-    .flex {
-      flex-wrap: wrap;
-    }
   }
 </style>
