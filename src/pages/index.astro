@@ -1,0 +1,19 @@
+---
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1>Stinky cheese</h1>
+		<div x-data="{ thing: 'world' }">
+			<p>Hello, <span x-text="thing"></span>!</p>
+			<input type="text" x-model="thing">
+		</div>
+	</body>
+</html>
