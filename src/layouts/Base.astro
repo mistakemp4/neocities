@@ -1,15 +1,10 @@
+---
+import Navbar from "../components/Navbar.astro";
+---
+
 <div class="container">
   <header></header>
-  <nav>
-    <ul class="nav">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Site</a></li>
-      <li><a href="#">Content</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Info</a></li>
-    </ul>
-  </nav>
+  <Navbar />
   <div class="flex">
     <aside class="left-sidebar">
       <section>
@@ -167,22 +162,20 @@
     --nav-link-color: #5f758c;
     --darker-border-color: #c6c6c6;
   }
-  html,
+
   body {
     margin: 0;
     padding: 0;
   }
+
   body {
     font-size: 12px;
   }
-  body a {
+
+  a {
     color: var(--nav-link-color);
   }
 
-  header,
-  nav {
-    max-width: 100%;
-  }
   aside {
     width: 250px;
     margin-top: 30px;
@@ -190,11 +183,6 @@
   .flex {
     display: flex;
     max-width: 900px;
-  }
-  nav {
-    height: auto;
-    margin-bottom: 10px;
-    background-color: var(--nav-bg);
   }
   header {
     height: 200px;
@@ -241,19 +229,6 @@
     color: inherit;
     text-decoration: none;
   }
-  .nav {
-    margin-top: 10px;
-    margin-left: 100px;
-  }
-  .nav li {
-    display: inline-block;
-    padding-left: 30px;
-  }
-  .nav li a {
-    color: var(--nav-link-color);
-    text-decoration: none;
-    text-transform: uppercase;
-  }
   .left-sidebar {
     margin-left: 50px;
   }
@@ -271,11 +246,6 @@
     font-size: 16px;
     color: var(--article-heading-color);
     text-transform: uppercase;
-  }
-  nav {
-    border: 2px solid var(--darker-border-color);
-    border-right: none;
-    border-left: none;
   }
   footer {
     max-width: 800px;
@@ -298,13 +268,6 @@
     }
     aside > section {
       margin-right: 10px;
-    }
-    .nav {
-      margin-right: 50px;
-      margin-left: 0 !important;
-    }
-    .nav li {
-      padding-bottom: 5px;
     }
   }
 </style>

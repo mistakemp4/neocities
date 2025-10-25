@@ -1,0 +1,47 @@
+<nav>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Site</a></li>
+    <li><a href="#">Content</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Info</a></li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    height: auto;
+    margin-bottom: 10px;
+    padding-block: 10px;
+    padding-inline-start: 100px;
+    border: 2px solid var(--darker-border-color);
+    border-inline-start: none;
+    border-inline-end: none;
+
+    background-color: var(--nav-bg);
+
+    @container (width <= 800px) {
+      nav {
+        padding-inline: 0 50px;
+      }
+      li {
+        padding-block-end: 5px;
+      }
+    }
+  }
+
+  ul {
+    display: contents;
+  }
+
+  li {
+    display: inline-block;
+    padding-left: 30px;
+  }
+
+  a {
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+</style>
