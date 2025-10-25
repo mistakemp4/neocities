@@ -1,0 +1,87 @@
+---
+import { getCollection } from "astro:content";
+import Article from "../../components/Article.astro";
+import Base from "../../layouts/Base.astro";
+import type { GetStaticPaths, InferGetStaticPropsType, Page } from "astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+    const posts = (await getCollection('blog')).sort(
+        (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+    );
+    return paginate(posts, { pageSize: 3 });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+function formatDate(date: Date): string {
+    const monthNumber = date.getMonth();
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ];
+
+    const month = months[monthNumber];
+
+    return `${month} ${day}, ${year}`;
+}
+
+const { page }: Props = Astro.props;
+---
+
+<Base>
+    {
+        page.data.map(({ data, body }) => 
+            <Article title={data.title}>
+                <time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>
+                <p>
+                    {(body?.substring(0, 300) ?? '') + '...'}
+                </p>
+            </Article>
+        )
+    }
+
+    <nav>
+        <div class="container">
+        {page.url.first ? <a href={page.url.first}>⏮</a> : <a aria-disabled="true">⏮</a>}
+        {page.url.prev ?  <a href={page.url.prev}>◄</a>  : <a aria-disabled="true">◄</a> }
+        {page.url.next ?  <a href={page.url.next}>►</a>  : <a aria-disabled="true">►</a> }
+        {page.url.last ?  <a href={page.url.last}>⏭</a>  : <a aria-disabled="true">⏭</a> }
+        </div>
+    </nav>
+</Base>
+
+<style>
+    time {
+        font-weight: bold;
+    }
+
+    nav {
+        display: grid;
+        place-items: center;
+    }
+
+    .container {
+        display: flex;
+        gap: 8px;
+        font-size: 16px;
+        margin-block: 8px;
+        justify-content: center;
+        background-color: var(--article-bg);
+        border: 1px solid var(--darker-border-color);
+        color: var(--article-text-color);
+        padding: 8px;
+    }
+</style>
