@@ -1,8 +1,8 @@
 ---
 import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 import { getCollection } from "astro:content";
-import Base from "../../../layouts/Base.astro";
 import { render } from "astro:content";
+import MainLayout from "../../../layouts/MainLayout.astro";
 
 export const getStaticPaths = (async (tihg) => {
     const posts = await getCollection('blog');
@@ -18,7 +18,7 @@ const { post }: Props = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Base>
+<MainLayout>
     <h1>{post.data.title}</h1>
     <Content />
-</Base>
+</MainLayout>
