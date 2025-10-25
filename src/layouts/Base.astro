@@ -169,8 +169,8 @@
   }
   html,
   body {
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
   body {
     font-size: 12px;
@@ -197,46 +197,49 @@
     background-color: var(--nav-bg);
   }
   header {
-    max-height: 200px;
     height: 200px;
+    max-height: 200px;
+
     background-color: var(--header-bg);
     background-image: url("https://learn.sadgrl.online/wp-content/uploads/2022/02/skyline-banner.png");
     background-repeat: repeat-y;
-    background-size: 600px;
     background-position: fixed;
+    background-size: 600px;
   }
   main {
     width: 100%;
-    margin-left: 20px;
     margin-right: 20px;
+    margin-left: 20px;
   }
   section {
     margin-bottom: 10px;
     color: var(--sidebar-text-color);
   }
   article {
-    border: 1px solid var(--darker-border-color);
     margin-bottom: 15px;
-    background-color: var(--article-bg);
-    color: var(--article-text-color);
     padding: 10px;
+    border: 1px solid var(--darker-border-color);
+
+    color: var(--article-text-color);
+
+    background-color: var(--article-bg);
   }
   .subtitle {
     border: 1px solid var(--darker-border-color);
     background-color: var(--nav-bg);
   }
   .links {
-    list-style-type: none;
     padding-left: 0;
+    list-style-type: none;
   }
   .links li {
-    background-color: var(--nav-bg);
-    border: 1px solid var(--border-color);
     margin-bottom: 3px;
+    border: 1px solid var(--border-color);
+    background-color: var(--nav-bg);
   }
   .links li a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
   }
   .nav {
     margin-top: 10px;
@@ -247,40 +250,42 @@
     padding-left: 30px;
   }
   .nav li a {
+    color: var(--nav-link-color);
     text-decoration: none;
     text-transform: uppercase;
-    color: var(--nav-link-color);
   }
   .left-sidebar {
     margin-left: 50px;
   }
   .subtitle {
-    color: var(--article-text-color);
     font-weight: bold;
+    color: var(--article-text-color);
     letter-spacing: 1px;
   }
   article .subtitle {
-    text-transform: uppercase;
-    font-size: 16px;
-    color: var(--article-heading-color);
     margin-top: 10px;
-    margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 10px;
+    margin-left: 5px;
+
+    font-size: 16px;
+    color: var(--article-heading-color);
+    text-transform: uppercase;
   }
   nav {
     border: 2px solid var(--darker-border-color);
-    border-left: none;
     border-right: none;
+    border-left: none;
   }
   footer {
     max-width: 800px;
-    text-align: center;
     color: var(--sidebar-text-color);
+    text-align: center;
   }
   footer a {
     color: var(--navbar-link-color);
   }
+
   @media only screen and (max-width: 800px) {
     .flex {
       flex-wrap: wrap;
@@ -288,15 +293,15 @@
     aside {
       display: flex;
       width: 100%;
-      margin-left: 20px;
       margin-right: 20px;
+      margin-left: 20px;
     }
     aside > section {
       margin-right: 10px;
     }
     .nav {
-      margin-left: 0 !important;
       margin-right: 50px;
+      margin-left: 0 !important;
     }
     .nav li {
       padding-bottom: 5px;
