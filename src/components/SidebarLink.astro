@@ -1,24 +1,24 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLAttributes } from 'astro/types';
 
-const props: HTMLAttributes<"a"> = Astro.props;
+const props: HTMLAttributes<'a'> = Astro.props;
 ---
 
 <li>
-  <a {...props}>
-    <slot />
-  </a>
+	<a {...props}>
+		<slot />
+	</a>
 </li>
 
 <style>
-  li {
-    margin-block-end: 3px;
-    border: 1px solid var(--border-color);
-    background-color: var(--nav-bg);
-  }
+	li {
+		margin-block-end: 3px;
+		border: 1px solid var(--border-color);
+		background-color: var(--nav-bg);
+	}
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
 </style>

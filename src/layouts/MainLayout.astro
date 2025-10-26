@@ -1,114 +1,116 @@
 ---
-import Footer from "$/components/Footer.astro";
-import Header from "$/components/Header.astro";
-import Navbar from "$/components/Navbar.astro";
-import Sidebar from "$/components/Sidebar.astro";
-import SidebarLink from "$/components/SidebarLink.astro";
-import SidebarLinks from "$/components/SidebarLinks.astro";
-import SidebarSection from "$/components/SidebarSection.astro";
-import Sites from "$/components/Sites.astro";
-import Base from "./Base.astro";
+import Footer from '$/components/Footer.astro';
+import Header from '$/components/Header.astro';
+import Navbar from '$/components/Navbar.astro';
+import Sidebar from '$/components/Sidebar.astro';
+import SidebarLink from '$/components/SidebarLink.astro';
+import SidebarLinks from '$/components/SidebarLinks.astro';
+import SidebarSection from '$/components/SidebarSection.astro';
+import Sites from '$/components/Sites.astro';
+
+import Base from './Base.astro';
 ---
 
 <Base>
-  <Header />
-  <Navbar />
+	<Header />
+	<Navbar />
 
-  <div class="container">
-    <Sidebar>
-      <SidebarSection title="Subtitle">
-        <p>
-          Lorem ipsum dolor sit amet, adipiscing elit. Praesent aliquam, justo
-          convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam
-          ante ac quam. Maecenas urna purus.
-        </p>
-      </SidebarSection>
-      <SidebarSection title="Subtitle">
-        <SidebarLinks>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-        </SidebarLinks>
-      </SidebarSection>
-      <SidebarSection title="Subtitle">
-        <SidebarLinks>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-        </SidebarLinks>
-      </SidebarSection>
-    </Sidebar>
+	<div class="container">
+		<Sidebar>
+			<SidebarSection title="Subtitle">
+				<p>
+					Lorem ipsum dolor sit amet, adipiscing elit. Praesent aliquam, justo
+					convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam
+					ante ac quam. Maecenas urna purus.
+				</p>
+			</SidebarSection>
+			<SidebarSection title="Subtitle">
+				<SidebarLinks>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+				</SidebarLinks>
+			</SidebarSection>
+			<SidebarSection title="Subtitle">
+				<SidebarLinks>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+				</SidebarLinks>
+			</SidebarSection>
+		</Sidebar>
 
-    <main>
-      <slot />
-    </main>
+		<main>
+			<slot />
+		</main>
 
-    <Sidebar>
-      <SidebarSection title="Subtitle">
-        <p>
-          Lorem ipsum dolor sit amet, adipiscing elit. Praesent aliquam, justo
-          convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam
-          ante ac quam. Maecenas urna purus.
-        </p>
-      </SidebarSection>
-      <SidebarSection title="Links">
-        <Sites />
-        <script is:inline src="https://transring.neocities.org/ring.js"></script>
-      </SidebarSection>
-      <SidebarSection title="Subtitle">
-        <SidebarLinks>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-          <SidebarLink href="#">link</SidebarLink>
-        </SidebarLinks>
-      </SidebarSection>
-    </Sidebar>
-  </div>
+		<Sidebar>
+			<SidebarSection title="Subtitle">
+				<p>
+					Lorem ipsum dolor sit amet, adipiscing elit. Praesent aliquam, justo
+					convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam
+					ante ac quam. Maecenas urna purus.
+				</p>
+			</SidebarSection>
+			<SidebarSection title="Links">
+				<Sites />
+				<script is:inline src="https://transring.neocities.org/ring.js"
+				></script>
+			</SidebarSection>
+			<SidebarSection title="Subtitle">
+				<SidebarLinks>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+					<SidebarLink href="#">link</SidebarLink>
+				</SidebarLinks>
+			</SidebarSection>
+		</Sidebar>
+	</div>
 
-  <Footer />
+	<Footer />
 </Base>
 
 <style is:global>
-  :root {
-    --header-bg: #0e0e0e;
-    --nav-bg: #0d0d0d;
-    --article-bg: #121210;
-    --border-color: #1f1f1f;
-    --sidebar-text-color: #a09697;
-    --article-text-color: #adb0b0;
-    --article-heading-color: #7d7d7d;
-    --nav-link-color: #b09b83;
-    --darker-border-color: #393939;
-  }
+	:root {
+		--header-bg: #0e0e0e;
+		--nav-bg: #0d0d0d;
+		--article-bg: #121210;
+		--border-color: #1f1f1f;
+		--sidebar-text-color: #a09697;
+		--article-text-color: #adb0b0;
+		--article-heading-color: #7d7d7d;
+		--nav-link-color: #b09b83;
+		--darker-border-color: #393939;
+	}
 
-  body {
-    background-color: #000000;
-  }
+	body {
+		background-color: #000000;
+	}
 
-  a {
-    color: var(--nav-link-color);
-  }
+	a {
+		color: var(--nav-link-color);
+	}
 
-  .container {
-    display: flex;
-    max-width: 900px;
+	.container {
+		display: flex;
+		max-width: 900px;
 
-    @media only screen and (max-width: 800px) {
-      flex-wrap: wrap;
-    }
-  }
+		@media only screen and (max-width: 800px) {
+			flex-wrap: wrap;
+		}
+	}
 
-  main {
-    flex: auto;
-    margin-inline: 20px;
-  }
+	main {
+		flex: auto;
+		margin-inline: 20px;
+	}
 </style>

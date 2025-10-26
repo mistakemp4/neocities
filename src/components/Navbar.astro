@@ -1,44 +1,44 @@
 ---
-import NavbarLink from "./NavbarLink.astro";
+import NavbarLink from './NavbarLink.astro';
 ---
 
 <nav>
-  <ul>
-    <NavbarLink href="/">Home</NavbarLink>
-    <NavbarLink href="/blog/1">Blog</NavbarLink>
-    <NavbarLink
-      href="https://mistakemp4.atabook.org/"
-      rel="noreferrer"
-      target="_blank">Guestbook</NavbarLink
-    >
-    <NavbarLink href="/about">About Site</NavbarLink>
-    <NavbarLink href="/shrines">Shrines</NavbarLink>
-  </ul>
+	<ul>
+		<NavbarLink href="/">Home</NavbarLink>
+		<NavbarLink href="/blog/1">Blog</NavbarLink>
+		<NavbarLink
+			href="https://mistakemp4.atabook.org/"
+			rel="noreferrer"
+			target="_blank">Guestbook</NavbarLink
+		>
+		<NavbarLink href="/about">About Site</NavbarLink>
+		<NavbarLink href="/shrines">Shrines</NavbarLink>
+	</ul>
 </nav>
 
 <style>
-  nav {
-    height: auto;
-    margin-bottom: 10px;
-    padding-block: 10px;
-    padding-inline-start: 100px;
-    border: 2px solid var(--darker-border-color);
-    border-inline-start: none;
-    border-inline-end: none;
+	nav {
+		height: auto;
+		margin-bottom: 10px;
+		padding-block: 10px;
+		padding-inline-start: 100px;
+		border: 2px solid var(--darker-border-color);
+		border-inline-start: none;
+		border-inline-end: none;
 
-    background-color: var(--nav-bg);
+		background-color: var(--nav-bg);
 
-    @container (width <= 800px) {
-      nav {
-        padding-inline: 0 50px;
-      }
-      li {
-        padding-block-end: 5px;
-      }
-    }
-  }
+		@container (width <= 800px) {
+			nav {
+				padding-inline: 0 50px;
+			}
+			li {
+				padding-block-end: 5px;
+			}
+		}
+	}
 
-  ul {
-    display: contents;
-  }
+	ul {
+		display: contents;
+	}
 </style>

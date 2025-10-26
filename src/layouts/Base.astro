@@ -1,33 +1,23 @@
----
-import Footer from "$/components/Footer.astro";
-import Header from "$/components/Header.astro";
-import Navbar from "$/components/Navbar.astro";
-import Sidebar from "$/components/Sidebar.astro";
-import SidebarLink from "$/components/SidebarLink.astro";
-import SidebarLinks from "$/components/SidebarLinks.astro";
-import SidebarSection from "$/components/SidebarSection.astro";
----
-
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <slot />
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<slot />
+	</body>
 </html>
 
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-  }
+	body {
+		margin: 0;
+		padding: 0;
+	}
 
-  body {
-    font-size: 12px;
-  }
+	body {
+		font-size: 12px;
+	}
 </style>
