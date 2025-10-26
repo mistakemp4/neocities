@@ -21,7 +21,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 	<Header />
 	<Navbar />
 
-	<div class="container">
+	<div class="layout-container">
 		<Sidebar>
 			<SidebarSection title="Subtitle">
 				<p>
@@ -98,7 +98,17 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 	}
 
 	body {
+		color: var(--article-text-color);
 		background-color: var(--bg);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--article-heading-color);
 	}
 
 	a {
@@ -110,7 +120,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 		background-color: var(--button-bg);
 	}
 
-	.container {
+	.layout-container {
 		display: flex;
 		max-width: 900px;
 
