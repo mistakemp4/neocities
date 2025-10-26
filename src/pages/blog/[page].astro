@@ -1,43 +1,16 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
-import { getCollection } from 'astro:content';
 
 import Article from '$/components/Article.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
+import { formatDate, getSortedBlogPosts } from '$/lib/blog';
 
 export const getStaticPaths = (async ({ paginate }) => {
-	const posts = (await getCollection('blog')).sort(
-		(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-	);
+	const posts = await getSortedBlogPosts();
 	return paginate(posts, { pageSize: 3 });
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-
-function formatDate(date: Date): string {
-	const monthNumber = date.getMonth();
-	const day = date.getDate();
-	const year = date.getFullYear();
-
-	const months = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December',
-	];
-
-	const month = months[monthNumber];
-
-	return `${month} ${day}, ${year}`;
-}
 
 const { page } = Astro.props;
 ---

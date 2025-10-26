@@ -10,8 +10,11 @@ import SiteButton from '$/components/SiteButton.astro';
 import Sites from '$/components/Sites.astro';
 import StatusCafe from '$/components/StatusCafe.astro';
 import WebringTrans from '$/components/WebringTrans.astro';
+import { formatDate, getSortedBlogPosts } from '$/lib/blog';
 
 import Base from './Base.astro';
+
+const posts = (await getSortedBlogPosts()).slice(0, 3);
 ---
 
 <Base>
@@ -27,14 +30,16 @@ import Base from './Base.astro';
 					ante ac quam. Maecenas urna purus.
 				</p>
 			</SidebarSection>
-			<SidebarSection title="Subtitle">
+			<SidebarSection title="Blog">
 				<SidebarLinks>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
+					{
+						posts.map(post => (
+							<SidebarLink class="post-preview" href={`/blog/posts/${post.id}`}>
+								<h3>{post.data.title}</h3>
+								<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+							</SidebarLink>
+						))
+					}
 				</SidebarLinks>
 			</SidebarSection>
 			<SidebarSection title="Subtitle">
@@ -115,5 +120,17 @@ import Base from './Base.astro';
 	main {
 		flex: auto;
 		margin-inline: 20px;
+	}
+
+	.post-preview {
+		h3 {
+			margin: 0;
+			font-weight: normal;font-size: inherit;
+		}
+
+		time {
+			font-size: 10px;
+			filter: brightness(60%);
+		}
 	}
 </style>
