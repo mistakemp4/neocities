@@ -6,6 +6,7 @@ import Sidebar from '$/components/Sidebar.astro';
 import SidebarLink from '$/components/SidebarLink.astro';
 import SidebarLinks from '$/components/SidebarLinks.astro';
 import SidebarSection from '$/components/SidebarSection.astro';
+import SiteButton from '$/components/SiteButton.astro';
 import Sites from '$/components/Sites.astro';
 import WebringTrans from '$/components/WebringTrans.astro';
 
@@ -59,21 +60,17 @@ import Base from './Base.astro';
 					ante ac quam. Maecenas urna purus.
 				</p>
 			</SidebarSection>
+
 			<SidebarSection title="Links">
 				<Sites />
 			</SidebarSection>
+
 			<SidebarSection title="Webrings">
 				<WebringTrans />
 			</SidebarSection>
-			<SidebarSection title="Subtitle">
-				<SidebarLinks>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
-					<SidebarLink href="#">link</SidebarLink>
-				</SidebarLinks>
+
+			<SidebarSection title="My Button">
+				<SiteButton />
 			</SidebarSection>
 		</Sidebar>
 	</div>
@@ -83,9 +80,11 @@ import Base from './Base.astro';
 
 <style is:global>
 	:root {
+		--bg: black;
 		--header-bg: #0e0e0e;
 		--nav-bg: #0d0d0d;
 		--article-bg: #121210;
+		--button-bg: #534b4c;
 		--border-color: #1f1f1f;
 		--sidebar-text-color: #a09697;
 		--article-text-color: #adb0b0;
@@ -95,11 +94,16 @@ import Base from './Base.astro';
 	}
 
 	body {
-		background-color: #000000;
+		background-color: var(--bg);
 	}
 
 	a {
 		color: var(--nav-link-color);
+	}
+
+	button {
+		color: inherit;
+		background-color: var(--button-bg);
 	}
 
 	.container {

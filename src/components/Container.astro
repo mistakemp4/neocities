@@ -1,0 +1,42 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+interface OtherProps {
+	title?: string;
+}
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> | OtherProps;
+
+const { as: Tag, title, class: classList, ...rest } = Astro.props;
+---
+
+<Tag class:list={['site-container', classList]} {...rest}>
+	{title && <h2>{title}</h2>}
+	<slot />
+</Tag>
+
+<style>
+	.site-container {
+		margin-bottom: 15px;
+		padding: 10px;
+		border: 1px solid var(--darker-border-color);
+
+		color: var(--article-text-color);
+
+		background-color: var(--article-bg);
+	}
+
+	h2:first-child {
+		margin: 10px 5px;
+		border: 1px solid var(--darker-border-color);
+
+		font-size: inherit;
+		font-size: 16px;
+		font-weight: bold;
+		color: var(--article-heading-color);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+
+		background-color: var(--nav-bg);
+	}
+</style>

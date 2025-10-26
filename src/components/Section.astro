@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import Container from './Container.astro';
+
+interface Props extends HTMLAttributes<'section'> {
+	title?: string;
+}
+
+const props = Astro.props;
+---
+
+<Container as="section" {...props}>
+	<slot />
+</Container>
