@@ -1,8 +1,7 @@
 ---
-title: Clinical Trial- My deeply personal analysis;
-
-description: At its core, Clinical Trial is a narrative-driven psychological horror game that explores themes of trauma, mental illness, and human connection. The protagonist, Angel, participates in a medical study in desperate need of money...;
-date: April 4, 2025;
+title: Clinical Trial- My deeply personal analysis
+description: At its core, Clinical Trial is a narrative-driven psychological horror game that explores themes of trauma, mental illness, and human connection. The protagonist, Angel, participates in a medical study in desperate need of money...
+date: April 4, 2025
 previewImage: /assets/clinical-trial.jpg
 ---
 

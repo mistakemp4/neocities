@@ -1,8 +1,7 @@
 ---
-title: Labels;
-
-description: Labels have always felt more like a cage than a comfort to me. Sure, they can be useful for communication, for quick explanations, for connecting with others who...;
-date: April 3, 2025;
+title: Labels
+description: Labels have always felt more like a cage than a comfort to me. Sure, they can be useful for communication, for quick explanations, for connecting with others who...
+date: April 3, 2025
 previewImage: /assets/labels.png
 ---
 

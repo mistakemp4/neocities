@@ -1,8 +1,7 @@
 ---
-title: Minecraft Movie Review. A Fun Kids Movie Despite Its Flaws;
-
-description: I liked it, even with all of its flaws. If you go into it just thinking it's a fun kids movie, you'll probably enjoy it too. I've been playing Minecraft since 2015, so I’m a long-time fan. It’s...
-date: April 10, 2025
+title: Minecraft Movie Review. A Fun Kids Movie Despite Its Flaws
+description: I liked it, even with all of its flaws. If you go into it just thinking it's a fun kids movie, you'll probably enjoy it too. I've been playing Minecraft since 2015, so I’m a long-time fan. It’s..
+date: April 10, 202
 previewImage: /assets/minecraft-movie.jpg
 ---
 

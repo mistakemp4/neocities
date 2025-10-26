@@ -1,8 +1,7 @@
 ---
-title: College update—2 (hopefully) semesters left;
-
-description: Hoooo boy. Well, it’s coming to the end of my second year of college, and wow, what an experience. It has not been the transformative, liberating dreamscape that was promised to me. Not the one all the adults hyped up. Instead of the...;
-date: April 14, 2025;
+title: College update—2 (hopefully) semesters left
+description: Hoooo boy. Well, it’s coming to the end of my second year of college, and wow, what an experience. It has not been the transformative, liberating dreamscape that was promised to me. Not the one all the adults hyped up. Instead of the...
+date: April 14, 2025
 previewImage: assets\College update—2 (hopefully) semesters left.jpg
 ---
 
