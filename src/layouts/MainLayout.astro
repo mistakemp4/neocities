@@ -34,7 +34,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 				<SidebarLinks>
 					{
 						posts.map(post => (
-							<SidebarLink class="post-preview" href={`/blog/post/${post.id}`}>
+						<SidebarLink class="post-preview" href={`/blog/post/${post.id}/`}>
 								<h3>{post.data.title}</h3>
 								<time datetime={post.data.date.toISOString()}>
 									{formatDate(post.data.date)}
