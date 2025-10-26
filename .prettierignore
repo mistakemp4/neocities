@@ -1,4 +1,6 @@
 package-lock.json
+*.md
+src/assets/
 
 # build output
 dist/
