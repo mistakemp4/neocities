@@ -1,6 +1,6 @@
 ---
-import Section from "$/components/Section.astro"
-import MainLayout from "$/layouts/MainLayout.astro"
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
 
 const data = `{
 	daysSinceCreation() {
@@ -16,11 +16,11 @@ const data = `{
 ---
 
 <MainLayout>
-<Section title="Title">
-	<h3>When and Why?</h3>
-	<div x-data={data}>
-		<p>I officially started making this site on March 15, 2025.</p>
-		<p>(That was <span x-text="daysSinceCreation()"></span> days ago!)</p>
-	</div>
-</Section>
+	<Section title="Title">
+		<h3>When and Why?</h3>
+		<div x-data={data}>
+			<p>I officially started making this site on March 15, 2025.</p>
+			<p>(That was <span x-text="daysSinceCreation()"></span> days ago!)</p>
+		</div>
+	</Section>
 </MainLayout>
