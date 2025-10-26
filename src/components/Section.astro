@@ -3,13 +3,13 @@ import type { HTMLAttributes } from 'astro/types';
 
 import Container from './Container.astro';
 
-interface Props extends HTMLAttributes<'article'> {
+interface Props extends HTMLAttributes<'section'> {
 	title?: string;
 }
 
 const props = Astro.props;
 ---
 
-<Container as="article" {...props}>
+<Container as="section" {...props}>
 	<slot />
 </Container>

@@ -1,0 +1,51 @@
+---
+import button from '$/assets/button.gif';
+
+import Section from './Section.astro';
+
+const code =
+	'<a href="https://mistakemp4.neocities.org" rel="noreferrer" target="_blank"><img src="https://mistakemp4.neocities.org/button.gif" alt="MISTAKEMP4" width="88" height="31"></a>';
+const data = `{
+	code: '${code}',
+	buttonText: 'Copy',
+	timeout: null,
+	copyCode() {
+		navigator.clipboard.writeText(this.code);
+		this.buttonText = 'Copied!';
+
+		clearTimeout(this.timeout);
+		this.timeout = setTimeout(() => {
+			this.buttonText = 'Copy';
+			this.timeout = null;
+		}, 3000);
+	},
+}`;
+---
+
+<Section class="site-button">
+	<img {...button} />
+	<code>{code}</code>
+	<button x-data={data} @click="copyCode" x-text="buttonText">Copy</button>
+</Section>
+
+<style>
+	.site-button {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		align-items: center;
+
+		code {
+			overflow: auto;
+
+			max-height: 40px;
+			padding: 4px;
+			border: 1px solid var(--darker-border-color);
+
+			font-size: 10px;
+			overflow-wrap: anywhere;
+
+			background-color: var(--bg);
+		}
+	}
+</style>
