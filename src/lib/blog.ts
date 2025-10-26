@@ -31,4 +31,3 @@ export function formatDate(date: Date): string {
 
 	return `${month} ${day}, ${year}`;
 }
-

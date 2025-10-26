@@ -36,7 +36,9 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 						posts.map(post => (
 							<SidebarLink class="post-preview" href={`/blog/posts/${post.id}`}>
 								<h3>{post.data.title}</h3>
-								<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+								<time datetime={post.data.date.toISOString()}>
+									{formatDate(post.data.date)}
+								</time>
 							</SidebarLink>
 						))
 					}
@@ -125,7 +127,8 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 	.post-preview {
 		h3 {
 			margin: 0;
-			font-weight: normal;font-size: inherit;
+			font-size: inherit;
+			font-weight: normal;
 		}
 
 		time {
