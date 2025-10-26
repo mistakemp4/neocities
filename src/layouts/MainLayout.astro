@@ -7,6 +7,7 @@ import SidebarLink from '$/components/SidebarLink.astro';
 import SidebarLinks from '$/components/SidebarLinks.astro';
 import SidebarSection from '$/components/SidebarSection.astro';
 import Sites from '$/components/Sites.astro';
+import WebringTrans from '$/components/WebringTrans.astro';
 
 import Base from './Base.astro';
 ---
@@ -60,8 +61,9 @@ import Base from './Base.astro';
 			</SidebarSection>
 			<SidebarSection title="Links">
 				<Sites />
-				<script is:inline src="https://transring.neocities.org/ring.js"
-				></script>
+			</SidebarSection>
+			<SidebarSection title="Webrings">
+				<WebringTrans />
 			</SidebarSection>
 			<SidebarSection title="Subtitle">
 				<SidebarLinks>
