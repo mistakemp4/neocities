@@ -6,6 +6,7 @@ import Sidebar from "$/components/Sidebar.astro"
 import SidebarLink from "$/components/SidebarLink.astro"
 import SidebarLinks from "$/components/SidebarLinks.astro"
 import SidebarSection from "$/components/SidebarSection.astro"
+import Sites from "$/components/Sites.astro"
 import Base from "./Base.astro"
 ---
 
@@ -56,15 +57,9 @@ import Base from "./Base.astro"
         ac quam. Maecenas urna purus.
       </p>
     </SidebarSection>
-    <SidebarSection title="Subtitle">
-      <SidebarLinks>
-        <SidebarLink href="#">link</SidebarLink>
-        <SidebarLink href="#">link</SidebarLink>
-        <SidebarLink href="#">link</SidebarLink>
-        <SidebarLink href="#">link</SidebarLink>
-        <SidebarLink href="#">link</SidebarLink>
-        <SidebarLink href="#">link</SidebarLink>
-      </SidebarLinks>
+    <SidebarSection title="Links">
+      <Sites />
+    <!-- TODO: marquee/webring -->
     </SidebarSection>
     <SidebarSection title="Subtitle">
       <SidebarLinks>

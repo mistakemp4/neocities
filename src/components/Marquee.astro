@@ -1,0 +1,51 @@
+---
+const html = await Astro.slots.render("default");
+
+interface Props {
+    duration?: string;
+    reverse?: boolean;
+}
+
+const { duration = '10s', reverse = false }: Props = Astro.props;
+---
+
+<div>
+  <ul>
+    <Fragment set:html={html} />
+  </ul>
+  <ul aria-hidden>
+    <Fragment set:html={html} />
+  </ul>
+</div>
+
+<style define:vars={{ duration, direction: reverse ? 'reverse' : 'normal' }}>
+  div {
+    --gap: 16px;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+  }
+
+  ul {
+    animation: var(--duration) linear infinite var(--direction) forwards marquee;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    min-width: 100%;
+    gap: var(--gap);
+  }
+
+  @keyframes marquee {
+    from {
+        translate: 0;
+    }
+
+    to {
+        translate: calc(-100% - var(--gap)) 0;
+    }
+  }
+</style>
