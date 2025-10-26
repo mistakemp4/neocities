@@ -39,8 +39,13 @@ const quotesString = JSON.stringify(quotes);
 </Base>
 
 <style>
+:root {
+    --text-color: hsl(23, 95%, 76%);
+    --bg-color: #632024;
+}
+
 :global(body) {
-    color :white;
+    color :var(--text-color);
     background: black;
 }
 
@@ -95,9 +100,7 @@ const quotesString = JSON.stringify(quotes);
 
     section {
         max-width: 600px;
-        border: 2px dotted lime;
-        background-color: gray;
-        border: 2px solid lightgray;
+        background-color: var(--bg-color);
         padding: 12px;
         margin-block: 16px;
 
@@ -105,6 +108,11 @@ const quotesString = JSON.stringify(quotes);
             max-width: 100%;
             object-fit: contain;
         }
+    }
+
+    button {
+        color: inherit;
+        background-color: var(--bg-color);
     }
 
     .quotes {
