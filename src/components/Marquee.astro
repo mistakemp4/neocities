@@ -43,6 +43,10 @@ const { duration = '10s', reverse = false } = Astro.props;
 		animation: var(--duration) linear infinite var(--direction) forwards marquee;
 	}
 
+	div:hover > ul {
+		animation-play-state: paused;
+	}
+
 	@keyframes marquee {
 		from {
 			translate: 0;
