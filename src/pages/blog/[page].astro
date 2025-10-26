@@ -21,7 +21,7 @@ const { page } = Astro.props;
 			<Article title={data.title}>
 				<time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>
 				<p>{(body?.substring(0, 300) ?? '') + '...'}</p>
-				<a href={`post/${post.id}`}>Read more...</a>
+				<a href={`/blog/post/${post.id}/`}>Read more...</a>
 			</Article>
 		))
 	}
