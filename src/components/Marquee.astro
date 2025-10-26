@@ -2,11 +2,11 @@
 const html = await Astro.slots.render("default");
 
 interface Props {
-    duration?: string;
-    reverse?: boolean;
+  duration?: string;
+  reverse?: boolean;
 }
 
-const { duration = '10s', reverse = false }: Props = Astro.props;
+const { duration = "10s", reverse = false }: Props = Astro.props;
 ---
 
 <div>
@@ -18,34 +18,38 @@ const { duration = '10s', reverse = false }: Props = Astro.props;
   </ul>
 </div>
 
-<style define:vars={{ duration, direction: reverse ? 'reverse' : 'normal' }}>
+<style define:vars={{ duration, direction: reverse ? "reverse" : "normal" }}>
   div {
     --gap: 16px;
-    display: flex;
-    overflow: hidden;
+
     user-select: none;
+    overflow: hidden;
+    display: flex;
     gap: var(--gap);
   }
 
   ul {
-    animation: var(--duration) linear infinite var(--direction) forwards marquee;
-    flex-shrink: 0;
     display: flex;
-    justify-content: space-around;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    min-width: 100%;
+    flex-shrink: 0;
     gap: var(--gap);
+    justify-content: space-around;
+
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+
+    list-style-type: none;
+
+    animation: var(--duration) linear infinite var(--direction) forwards marquee;
   }
 
   @keyframes marquee {
     from {
-        translate: 0;
+      translate: 0;
     }
 
     to {
-        translate: calc(-100% - var(--gap)) 0;
+      translate: calc(-100% - var(--gap)) 0;
     }
   }
 </style>

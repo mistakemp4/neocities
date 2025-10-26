@@ -9,9 +9,9 @@ const sites1 = sites.slice(0, half);
 const sites2 = sites.slice(half);
 
 function calculateDuration(arr: unknown[]): string {
-    const secondsPerEntry = 2;
-    const duration = secondsPerEntry * arr.length;
-    return `${duration}s`;
+  const secondsPerEntry = 2;
+  const duration = secondsPerEntry * arr.length;
+  return `${duration}s`;
 }
 ---
 
@@ -19,9 +19,9 @@ function calculateDuration(arr: unknown[]): string {
   {
     sites1.map(({ data }) => (
       <li>
-      <a href={data.href} rel="noreferrer">
-        <img src={data.src} alt={data.alt} />
-      </a>
+        <a href={data.href} rel="noreferrer">
+          <img src={data.src} alt={data.alt} />
+        </a>
       </li>
     ))
   }
@@ -31,9 +31,9 @@ function calculateDuration(arr: unknown[]): string {
   {
     sites2.map(({ data }) => (
       <li>
-      <a href={data.href} rel="noreferrer">
-        <img src={data.src} alt={data.alt} />
-      </a>
+        <a href={data.href} rel="noreferrer">
+          <img src={data.src} alt={data.alt} />
+        </a>
       </li>
     ))
   }

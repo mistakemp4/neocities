@@ -4,118 +4,127 @@ import top from "$/assets/akechi1.jpg";
 import bottom from "$/assets/akechi2.jpg";
 import { getCollection } from "astro:content";
 
-const quotes = (await getCollection('akechi')).map(entry => entry.data.quote);
+const quotes = (await getCollection("akechi")).map((entry) => entry.data.quote);
 const quotesString = JSON.stringify(quotes);
 ---
 
 <Base>
-    <header>
-        <div class="header-image">
-            <img {...top}>
-            <p>And so, your heart is always free.</p>
-        </div>
-        <div class="header-image">
-            <img {...bottom}>
-            <p>The exact opposite of mine.</p>
-        </div>
-    </header>
+  <header>
+    <div class="header-image">
+      <img {...top} />
+      <p>And so, your heart is always free.</p>
+    </div>
+    <div class="header-image">
+      <img {...bottom} />
+      <p>The exact opposite of mine.</p>
+    </div>
+  </header>
 
-    <div class="gradient"></div>
+  <div class="gradient"></div>
 
-<main>
+  <main>
+    <section
+      class="quotes"
+      x-data={`{ quotes: ${quotesString}, current: Math.floor(Math.random() * ${quotes.length}) }`}
+    >
+      <h2 x-text="quotes[current]"></h2>
+      <button @click=`current = Math.floor(Math.random() * ${quotes.length})`
+        >⟳</button
+      >
+    </section>
 
-<section class="quotes" x-data={`{ quotes: ${quotesString}, current: Math.floor(Math.random() * ${quotes.length}) }`}>
-    <h2 x-text="quotes[current]"></h2>
-    <button @click=`current = Math.floor(Math.random() * ${quotes.length})`>⟳</button>
-</section>
-
-<section>
-    <h2>Hello stinker</h2>
-    <p>Testing something one two</p>
-    <img {...top}>
-</section>
-
-</main>
+    <section>
+      <h2>Hello stinker</h2>
+      <p>Testing something one two</p>
+      <img {...top} />
+    </section>
+  </main>
 </Base>
 
 <style>
-:root {
+  :root {
     --text-color: hsl(23, 95%, 76%);
     --bg-color: #632024;
-}
+  }
 
-:global(body) {
-    color :var(--text-color);
+  :global(body) {
+    color: var(--text-color);
     background: black;
-}
+  }
 
-    header {
-        height: 100lvh;
-        display: flex;
-        flex-direction: column;
-    }
+  header {
+    display: flex;
+    flex-direction: column;
+    height: 100lvh;
+  }
 
-    .header-image {
-        flex: auto;
-        display: grid;
-        position: relative;
-        place-items: end;
-        padding-inline: 8px;
-        
+  .header-image {
+    position: relative;
+
+    display: grid;
+    flex: auto;
+    place-items: end;
+
+    padding-inline: 8px;
+
     p {
-        font-size: calc(32px + 2vw);
-        color: red;
-        text-transform: uppercase;
-        margin: 0;
-        font-weight: bold;
-        text-shadow: 4px 4px 8px black;
-        max-width: 50%;
+      max-width: 50%;
+      margin: 0;
+
+      font-size: calc(32px + 2vw);
+      font-weight: bold;
+      color: red;
+      text-shadow: 4px 4px 8px black;
+      text-transform: uppercase;
     }
 
     img {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        inset: 0;
-        object-fit: cover;
-        object-position: top;
-        z-index: -1;
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: top;
     }
-    
+
     &:first-child p {
-        text-align: right;
-    }
-    
-        &:last-child {
-            justify-items: start;
-            background-image: linear-gradient(to bottom, transparent 80%, black);
-        }
+      text-align: right;
     }
 
-    main {
-        margin-block: 64px;
-        display: flex; flex-direction: column;
-        align-items: center;
+    &:last-child {
+      justify-items: start;
+      background-image: linear-gradient(to bottom, transparent 80%, black);
     }
+  }
 
-    section {
-        max-width: 600px;
-        background-color: var(--bg-color);
-        padding: 12px;
-        margin-block: 16px;
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-block: 64px;
+  }
 
-        img {
-            max-width: 100%;
-            object-fit: contain;
-        }
+  section {
+    max-width: 600px;
+    margin-block: 16px;
+    padding: 12px;
+    background-color: var(--bg-color);
+
+    img {
+      max-width: 100%;
+      object-fit: contain;
     }
+  }
 
-    button {
-        color: inherit;
-        background-color: var(--bg-color);
-    }
+  button {
+    color: inherit;
+    background-color: var(--bg-color);
+  }
 
-    .quotes {
-        width: 100%;
-    }
+  .quotes {
+    width: 100%;
+  }
 </style>
