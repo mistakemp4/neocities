@@ -1,11 +1,12 @@
 ---
-title: Things to do this summer 0_0
-description: Things I want to do over summer in no particular order...
-date: May 14, 2025
+title: Things to do this summer 0_0;
+
+description: Things I want to do over summer in no particular order...;
+date: May 14, 2025;
 previewImage: /assets/sillyseal.jpg
 ---
 
-Things I want to do over summer in no particular order:
+Things I want to do over summer in no particular; order:
 
 - Learn to ride a pedal bike real quick before my motorcycle class (this weekend...),
 - Pass motorcycle class & skill test waiver (next weekend...),

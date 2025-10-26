@@ -1,7 +1,8 @@
 ---
-title: Persona 4 Golden
-description: I started playing Persona 4 Golden and couldn’t stop for a week. I binged the whole thing until I finished my first run...
-date: June 6, 2025
+title: Persona 4 Golden;
+
+description: I started playing Persona 4 Golden and couldn’t stop for a week. I binged the whole thing until I finished my first run...;
+date: June 6, 2025;
 previewImage: /assets/persona4.jpg
 ---
 

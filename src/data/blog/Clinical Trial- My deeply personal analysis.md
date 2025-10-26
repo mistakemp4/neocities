@@ -1,7 +1,8 @@
 ---
-title: Clinical Trial- My deeply personal analysis
-description: At its core, Clinical Trial is a narrative-driven psychological horror game that explores themes of trauma, mental illness, and human connection. The protagonist, Angel, participates in a medical study in desperate need of money...
-date: April 4, 2025
+title: Clinical Trial- My deeply personal analysis;
+
+description: At its core, Clinical Trial is a narrative-driven psychological horror game that explores themes of trauma, mental illness, and human connection. The protagonist, Angel, participates in a medical study in desperate need of money...;
+date: April 4, 2025;
 previewImage: /assets/clinical-trial.jpg
 ---
 
@@ -9,9 +10,9 @@ previewImage: /assets/clinical-trial.jpg
 
 Also, this is going to be long. Buckle up, get yourself a snack or something because this game changed me and I am going to spill my guts about it now.
 
---- 
+---
 
-### The plot (GUT WRENCHING and beautifully written):
+### The; plot (GUT WRENCHING and beautifully written):
 
 At its core, _Clinical Trial_ is a narrative-driven psychological horror game that explores themes of trauma, mental illness, and human connection. The protagonist, Angel, participates in a medical study in desperate need of money, which leads them to develop a complex and volatile relationship with the researcher, Lee. What starts as an uneasy, almost clinical interaction spirals into an intimate, horrifyingly real depiction of trauma and the lengths people will go to for control, connection, and survival.
 
@@ -19,41 +20,27 @@ This game is a complete slow burn. It starts off slow and repetitive, Angel goin
 
 But then comes Angel’s breaking point. They don’t show up for a shot, their room is a mess, and the next time they do, there’s paranoia before the shot, a creeping sense of surveillance, and the overwhelming, crushing weight of betrayal. The world around them starts becoming dark, blurred, distorted. The sluggish movement, the blurry screen, the way everything speeds up.... it’s an uncomfortably realistic depiction of how trauma rewires perception. Angel is talking to Lee after the shot, self deprecating with "_I'm an insane freak though. I should have put that down when I signed up._" And Lee invited them outside to talk.
 
-
-
-The night air feels different here... a moment of uneasy clarity.
-
-
+The night air feels different here... a moment of uneasy clarity.;
 
 Angel: _"My life would need so much fixing that time and time again I have proven I can't do by myself."_
-The confession comes slowly, painfully.
+The confession comes slowly, painfully.;
 
-Angel: _"I don't really have anyone I'm close with in real life right now."_ Angel: _"It went..... I don't know what to do...."_ _"Anyway, he's the one who invited me to his place. 'To hang out,' he said. I believed him."_
+Angel: _"I don't really have anyone I'm close with in real life right now."_; Angel: _"It went..... I don't know what to do...."_ _"Anyway, he's the one who invited me to his place. 'To hang out,' he said. I believed him."_
 
-
-
-The details spill out in fragments, each word heavier than the last:
-
-
+The details spill out in fragments, each word heavier than the; last:
 
 _"I just kind of froze. I let it happen. I've been really lonely. And I figured, you know, some people do that. They hook up like that."_
 _"Since then, I've just avoided him at work. I try not to look at him. But it’s not a big place. He's friends with a lot of the guys in the back."_
 _"They still like him better. Snff... Sorry."_
-_"I told him it hurt my feelings that he didn’t even bother to hang out with me first. And I cried, and it was so embarrassing... He said it was a misunderstanding. And then he hugged me. And then he started touching me again. I tried to push him away at first. But I froze up again. I just couldn't believe it."_
+_"I told him it hurt my feelings that he didn’t even bother to hang out with me first. And I cried, and it was so embarrassing... He said it was a misunderstanding. And then he hugged me. And then he started touching me again. I tried to push him away at first. But I froze up again. I just couldn't believe it."_;
 
+Lee: _"Angel, have you called the police?"_;
 
-Lee: _"Angel, have you called the police?"_
+Angel: _"What, so they can call me a liar? I'm so stupid I don't even remember what day I went to his house. I never got his address either. After I got out of his car, I walked to the bus stop in the rain. When I got home, I took a scalding hot shower. Everything you're not supposed to do."_;
 
-
-Angel: _"What, so they can call me a liar? I'm so stupid I don't even remember what day I went to his house. I never got his address either. After I got out of his car, I walked to the bus stop in the rain. When I got home, I took a scalding hot shower. Everything you're not supposed to do."_
-
-
-Angel: _"Why should I have to quit? How is that fair?"_
-
+Angel: _"Why should I have to quit? How is that fair?"_;
 
 Angel: _"Like I know I'm dense. I know I'm not as aware of my surroundings as I should be."_
-
-
 
 This scene is one of the most gut-wrenching in the game, not just because of what Angel reveals, but because of _how_ they reveal it. Their words come in bursts, hesitant and disjointed, mirroring the way trauma is often processed. Not as a clear, linear memory, but as fragments, moments, emotions that refuse to be neatly categorized. The dialogue feels heartbreakingly real, exposing the deep shame and self-blame that so often accompanies abuse. Angel's belief that they should have "seen it coming," their fear of not being believed, their isolation and helplessness it all builds into an overwhelming, suffocating weight.
 
@@ -63,37 +50,25 @@ Angel, trying to fix the internet so they can see if anyone's contacted them, cl
 
 Lee, stammering, confesses: _"I was going to take-take this down before you ffffound it. I didn’t mean for you to see it."_ And in that moment, I felt _so much_ for him. The raw loneliness, the obsessive yearning, the deep-seated repression that made him do something he _knew_ was wrong but couldn’t stop himself from doing. The autistic experience of knowing you are crossing a line but being unable to stop yourself because the emotions are too overwhelming? _God, that hit so hard._ And then, the gut-punch of his quiet, resigned _"I will wash it first."_ The quiet shame, the attempt to make it seem _less_ wrong than it is. It’s heartbreaking.
 
-Then comes the final break in reality. Angel while looking for Lee, finds the hidden room in the closet, the final crack in their fragile sanity. The space is suffocating, lined with eerie remnants of a truth they can no longer ignore. They descend the stairs, each step feeling heavier than the last. The air is thick, oppressive, as if the house itself is holding its breath. And there, at the bottom, Lee stands over Brandon's lifeless body, silent, unmoving, as if time itself has stopped in this gruesome moment. The sight is staggering, the final shattering of any illusion of normalcy. Angel can only stare, the horror sinking into their mind, as the weight of what Lee has done crashes down upon them both.
+Then comes the final break in reality. Angel while looking for Lee, finds the hidden room in the closet, the final crack in their fragile sanity. The space is suffocating, lined with eerie remnants of a truth they can no longer ignore. They descend the stairs, each step feeling heavier than the last. The air is thick, oppressive, as if the house itself is holding its breath. And there, at the bottom, Lee stands over Brandon's lifeless body, silent, unmoving, as if time itself has stopped in this gruesome moment. The sight is staggering, the final shattering of any illusion of normalcy. Angel can only stare, the horror sinking into their mind, as the weight of what Lee has done crashes down upon them both.;
 
+Angel: _"When?"_;
 
+Lee: _"Thursday. The day after you didn't show up for your appointment."_;
 
-Angel: _"When?"_
-
-Lee: _"Thursday. The day after you didn't show up for your appointment."_
-
-Angel: _"Why. Why, WHY?"_
+Angel: _"Why. Why, WHY?"_;
 
 Lee: _"I decided to prevent him from causing you future harm. Permanently."_
 
-
-
-And when Angel asks about the shrine?
-
-
+And when Angel asks about the shrine?;
 
 Lee: _"If you had rejected me when you found that, I would have regretted it. But I don't regret what I did down here. I don't."_
 
+The game ends; with:
 
-
-The game ends with:
-
-
-
-Angel: _"I'm kind of at your mercy here."_  
+Angel: _"I'm kind of at your mercy here."_
 
 Lee: _"And I am at yours."_
-
-
 
 Angel's admission, _"I'm kind of at your mercy here,"_ is a moment of raw vulnerability. It acknowledges the terrifying reality of their situation. They have no control, no clear path forward, and yet, there is a strange sense of surrender, not just to Lee, but to the circumstances that have changed their life. It is a line filled with exhaustion, resignation, and perhaps, a quiet willingness to let go. Lee’s response, _"And I am at yours,"_ is just as haunting. Despite having committed an irreversible act, Lee does not see himself as the one with ultimate power. Instead, he frames their relationship as an equal exchange of control. There’s an unspoken implication that whatever happens next, whatever Angel chooses to do, will determine both of their fates. Lee, too, is vulnerable in his own way, not just legally, but emotionally. He has tied himself completely to Angel, and in this moment, it becomes clear that his actions weren’t just about revenge; they were about ensuring that Angel _needed_ him as much as he needed them.
 

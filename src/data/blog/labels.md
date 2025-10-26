@@ -1,11 +1,12 @@
 ---
-title: Labels
-description: Labels have always felt more like a cage than a comfort to me. Sure, they can be useful for communication, for quick explanations, for connecting with others who...
-date: April 3, 2025
+title: Labels;
+
+description: Labels have always felt more like a cage than a comfort to me. Sure, they can be useful for communication, for quick explanations, for connecting with others who...;
+date: April 3, 2025;
 previewImage: /assets/labels.png
 ---
 
-Labels have always felt more like a cage than a comfort to me. Sure, they can be useful for communication, for quick explanations, for connecting with others who share similar experiences. But the second I try to fit myself into a label, it feels like I have to cut off parts of myself just to make it work. No single word or phrase can fully capture the nuance of my identity, and every time I try to describe myself within the limits of existing labels, I feel like I have to sacrifice something whether it be an important detail, a contradiction, a feeling that doesn’t quite align with what people expect those words to mean. (￢_￢;)
+Labels have always felt more like a cage than a comfort to me. Sure, they can be useful for communication, for quick explanations, for connecting with others who share similar experiences. But the second I try to fit myself into a label, it feels like I have to cut off parts of myself just to make it work. No single word or phrase can fully capture the nuance of my identity, and every time I try to describe myself within the limits of existing labels, I feel like I have to sacrifice something whether it be an important detail, a contradiction, a feeling that doesn’t quite align with what people expect those words to mean. (￢\_￢;)
 
 I’m an enby-transmasc with a GNC/androgynous/IDGAF-fluid expression. That already sounds like a tangled mess of words, but that’s because no single term really fits. My gender expression is chaotic on purpose. My transition goal? To confuse the masses. I love the ambiguity, the defiance, the way I can exist in a space that challenges what people think they know about gender. But at the same time, when society forces me to pick a side, when legal forms or social expectations demand a box to check, I squish myself into the "M" box because it’s the closest thing that works. But even then, it’s not a perfect fit. It’s not the whole story. My identity is more like a big ball of wibbly-wobbly, personality… stuff. What is that even called? Is there a term that fully encapsulates my relationship with gender? And, more importantly, do I even want one?
 
