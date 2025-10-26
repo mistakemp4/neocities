@@ -1,0 +1,26 @@
+---
+import Section from "$/components/Section.astro"
+import MainLayout from "$/layouts/MainLayout.astro"
+
+const data = `{
+	daysSinceCreation() {
+		const now = Date.now();
+		const date = (new Date('3/15/2025')).getTime();
+
+		const dayInMilliseconds = 1000 * 60 * 60 * 24;
+		const deltaTime = now - date;
+		const deltaDays = Math.round(deltaTime / dayInMilliseconds);
+		return deltaDays.toString();
+	}
+}`;
+---
+
+<MainLayout>
+<Section title="Title">
+	<h3>When and Why?</h3>
+	<div x-data={data}>
+		<p>I officially started making this site on March 15, 2025.</p>
+		<p>(That was <span x-text="daysSinceCreation()"></span> days ago!)</p>
+	</div>
+</Section>
+</MainLayout>
