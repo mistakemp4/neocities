@@ -1,55 +1,55 @@
 ---
-const html = await Astro.slots.render("default");
+const html = await Astro.slots.render('default');
 
 interface Props {
-  duration?: string;
-  reverse?: boolean;
+	duration?: string;
+	reverse?: boolean;
 }
 
-const { duration = "10s", reverse = false }: Props = Astro.props;
+const { duration = '10s', reverse = false }: Props = Astro.props;
 ---
 
 <div>
-  <ul>
-    <Fragment set:html={html} />
-  </ul>
-  <ul aria-hidden>
-    <Fragment set:html={html} />
-  </ul>
+	<ul>
+		<Fragment set:html={html} />
+	</ul>
+	<ul aria-hidden>
+		<Fragment set:html={html} />
+	</ul>
 </div>
 
-<style define:vars={{ duration, direction: reverse ? "reverse" : "normal" }}>
-  div {
-    --gap: 16px;
+<style define:vars={{ duration, direction: reverse ? 'reverse' : 'normal' }}>
+	div {
+		--gap: 16px;
 
-    user-select: none;
-    overflow: hidden;
-    display: flex;
-    gap: var(--gap);
-  }
+		user-select: none;
+		overflow: hidden;
+		display: flex;
+		gap: var(--gap);
+	}
 
-  ul {
-    display: flex;
-    flex-shrink: 0;
-    gap: var(--gap);
-    justify-content: space-around;
+	ul {
+		display: flex;
+		flex-shrink: 0;
+		gap: var(--gap);
+		justify-content: space-around;
 
-    min-width: 100%;
-    margin: 0;
-    padding: 0;
+		min-width: 100%;
+		margin: 0;
+		padding: 0;
 
-    list-style-type: none;
+		list-style-type: none;
 
-    animation: var(--duration) linear infinite var(--direction) forwards marquee;
-  }
+		animation: var(--duration) linear infinite var(--direction) forwards marquee;
+	}
 
-  @keyframes marquee {
-    from {
-      translate: 0;
-    }
+	@keyframes marquee {
+		from {
+			translate: 0;
+		}
 
-    to {
-      translate: calc(-100% - var(--gap)) 0;
-    }
-  }
+		to {
+			translate: calc(-100% - var(--gap)) 0;
+		}
+	}
 </style>

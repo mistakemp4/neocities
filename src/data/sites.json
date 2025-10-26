@@ -1,65 +1,65 @@
 [
-  {
-    "slug": "mocha8686",
-    "href": "https://mocha8686.neocities.org/",
-    "src": "https://mocha8686.neocities.org/button.gif"
-  },
-  {
-    "slug": "dimden.dev",
-    "href": "https://dimden.dev/",
-    "src": "https://dimden.dev/services/images/88x31.gif",
-    "alt": "dimden.dev"
-  },
-  {
-    "slug": "Mechagic",
-    "href": "https://mechagic.party/",
-    "src": "https://file.garden/ZvadqiE050beWbgP/buttons/mechagic_button.webp",
-    "alt": "Mechagic's Fun Button"
-  },
-  {
-    "slug": "kubikill",
-    "href": "https://kubikill.neocities.org/",
-    "src": "https://kubikill.neocities.org/kubikill88x31.gif",
-    "alt": "kubikill's Cyberspace Portal"
-  },
-  {
-    "slug": "chxshire22",
-    "href": "https://chxshire22.com/",
-    "src": "https://chxshire22.com/_assets/images/buttons/chxshirebutton.gif",
-    "alt": "chxshire22 link button"
-  },
-  {
-    "slug": "lilithdev",
-    "href": "https://lilithdev.neocities.org/",
-    "src": "https://lilithdev.neocities.org/buttons/lilithdevbtn.gif"
-  },
-  {
-    "slug": "unicodeangel",
-    "href": "https://unicodeangel.neocities.org/",
-    "src": "https://unicodeangel.neocities.org/imgs/UnicodeAngelButton2.gif"
-  },
-  {
-    "slug": "Cinni Oekaki",
-    "href": "https://oekaki.cinni.net/",
-    "src": "https://cinni.net/images/button/cinni-oekaki-88x31.gif",
-    "alt": "Cinni Oekaki"
-  },
-  {
-    "slug": "Cloverbell",
-    "href": "https://cloverbell.neocities.org/",
-    "src": "https://cloverbell.neocities.org/n_n/cloverbell.gif",
-    "alt": "Cloverbell"
-  },
-  {
-    "slug": "LuvstarKei",
-    "href": "https://luvstarkei.com/",
-    "src": "https://i0.wp.com/luvstarkei.com/wp-content/uploads/2024/11/LuvstarKeiButton-1.png?resize=88%2C31&ssl=1",
-    "alt": "LuvstarKei"
-  },
-  {
-    "slug": "Skull Sprinkles",
-    "href": "https://www.lejlart.com/apple.html",
-    "src": "https://i0.wp.com/luvstarkei.com/wp-content/uploads/2024/11/ad_skullsprinkles.gif?resize=88%2C31&ssl=1",
-    "alt": "Skull Sprinkles"
-  }
+	{
+		"slug": "mocha8686",
+		"href": "https://mocha8686.neocities.org/",
+		"src": "https://mocha8686.neocities.org/button.gif"
+	},
+	{
+		"slug": "dimden.dev",
+		"href": "https://dimden.dev/",
+		"src": "https://dimden.dev/services/images/88x31.gif",
+		"alt": "dimden.dev"
+	},
+	{
+		"slug": "Mechagic",
+		"href": "https://mechagic.party/",
+		"src": "https://file.garden/ZvadqiE050beWbgP/buttons/mechagic_button.webp",
+		"alt": "Mechagic's Fun Button"
+	},
+	{
+		"slug": "kubikill",
+		"href": "https://kubikill.neocities.org/",
+		"src": "https://kubikill.neocities.org/kubikill88x31.gif",
+		"alt": "kubikill's Cyberspace Portal"
+	},
+	{
+		"slug": "chxshire22",
+		"href": "https://chxshire22.com/",
+		"src": "https://chxshire22.com/_assets/images/buttons/chxshirebutton.gif",
+		"alt": "chxshire22 link button"
+	},
+	{
+		"slug": "lilithdev",
+		"href": "https://lilithdev.neocities.org/",
+		"src": "https://lilithdev.neocities.org/buttons/lilithdevbtn.gif"
+	},
+	{
+		"slug": "unicodeangel",
+		"href": "https://unicodeangel.neocities.org/",
+		"src": "https://unicodeangel.neocities.org/imgs/UnicodeAngelButton2.gif"
+	},
+	{
+		"slug": "Cinni Oekaki",
+		"href": "https://oekaki.cinni.net/",
+		"src": "https://cinni.net/images/button/cinni-oekaki-88x31.gif",
+		"alt": "Cinni Oekaki"
+	},
+	{
+		"slug": "Cloverbell",
+		"href": "https://cloverbell.neocities.org/",
+		"src": "https://cloverbell.neocities.org/n_n/cloverbell.gif",
+		"alt": "Cloverbell"
+	},
+	{
+		"slug": "LuvstarKei",
+		"href": "https://luvstarkei.com/",
+		"src": "https://i0.wp.com/luvstarkei.com/wp-content/uploads/2024/11/LuvstarKeiButton-1.png?resize=88%2C31&ssl=1",
+		"alt": "LuvstarKei"
+	},
+	{
+		"slug": "Skull Sprinkles",
+		"href": "https://www.lejlart.com/apple.html",
+		"src": "https://i0.wp.com/luvstarkei.com/wp-content/uploads/2024/11/ad_skullsprinkles.gif?resize=88%2C31&ssl=1",
+		"alt": "Skull Sprinkles"
+	}
 ]

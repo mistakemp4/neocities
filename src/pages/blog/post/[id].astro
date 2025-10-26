@@ -1,19 +1,16 @@
 ---
-import type {
-  GetStaticPaths,
-  InferGetStaticParamsType,
-  InferGetStaticPropsType,
-} from "astro";
-import { getCollection } from "astro:content";
-import { render } from "astro:content";
-import MainLayout from "$/layouts/MainLayout.astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { getCollection } from 'astro:content';
+import { render } from 'astro:content';
 
-export const getStaticPaths = (async (tihg) => {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { id: post.id },
-    props: { post },
-  }));
+import MainLayout from '$/layouts/MainLayout.astro';
+
+export const getStaticPaths = (async () => {
+	const posts = await getCollection('blog');
+	return posts.map(post => ({
+		params: { id: post.id },
+		props: { post },
+	}));
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
@@ -23,6 +20,6 @@ const { Content } = await render(post);
 ---
 
 <MainLayout>
-  <h1>{post.data.title}</h1>
-  <Content />
+	<h1>{post.data.title}</h1>
+	<Content />
 </MainLayout>

@@ -1,35 +1,35 @@
 ---
 interface Props {
-  title: string;
+	title: string;
 }
 
 const { title }: Props = Astro.props;
 ---
 
 <section>
-  <h2>{title}</h2>
-  <slot />
+	<h2>{title}</h2>
+	<slot />
 </section>
 
 <style>
-  section {
-    margin-block-end: 10px;
-    color: var(--sidebar-text-color);
+	section {
+		margin-block-end: 10px;
+		color: var(--sidebar-text-color);
 
-    @container (width <= 800px) {
-      margin-inline-end: 10px;
-    }
-  }
+		@container (width <= 800px) {
+			margin-inline-end: 10px;
+		}
+	}
 
-  h2:first-child {
-    margin-block: 10px;
-    border: 1px solid var(--darker-border-color);
+	h2:first-child {
+		margin-block: 10px;
+		border: 1px solid var(--darker-border-color);
 
-    font-size: inherit;
-    font-weight: bold;
-    color: var(--article-text-color);
-    letter-spacing: 1px;
+		font-size: inherit;
+		font-weight: bold;
+		color: var(--article-text-color);
+		letter-spacing: 1px;
 
-    background-color: var(--nav-bg);
-  }
+		background-color: var(--nav-bg);
+	}
 </style>
