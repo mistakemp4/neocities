@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import Marquee from "./Marquee.astro";
+
+const sites = await getCollection("sites");
+
+const half = Math.floor(sites.length / 2);
+const sites1 = sites.slice(0, half);
+const sites2 = sites.slice(half);
+
+function calculateDuration(arr: unknown[]): string {
+    const secondsPerEntry = 2;
+    const duration = secondsPerEntry * arr.length;
+    return `${duration}s`;
+}
+---
+
+<Marquee duration={calculateDuration(sites1)}>
+  {
+    sites1.map(({ data }) => (
+      <li>
+      <a href={data.href} rel="noreferrer">
+        <img src={data.src} alt={data.alt} />
+      </a>
+      </li>
+    ))
+  }
+</Marquee>
+
+<Marquee reverse duration={calculateDuration(sites2)}>
+  {
+    sites2.map(({ data }) => (
+      <li>
+      <a href={data.href} rel="noreferrer">
+        <img src={data.src} alt={data.alt} />
+      </a>
+      </li>
+    ))
+  }
+</Marquee>

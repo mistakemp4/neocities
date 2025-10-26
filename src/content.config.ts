@@ -17,7 +17,17 @@ const akechi = defineCollection({
     }),
 });
 
+const sites = defineCollection({
+    loader: file('./src/data/sites.json'),
+    schema: z.object({
+        href: z.string(),
+        src: z.string(),
+        alt: z.string().optional().nullable(),
+    }),
+});
+
 export const collections = {
     akechi,
     blog,
+    sites,
 };
