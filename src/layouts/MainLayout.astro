@@ -8,6 +8,7 @@ import SidebarLinks from '$/components/SidebarLinks.astro';
 import SidebarSection from '$/components/SidebarSection.astro';
 import SiteButton from '$/components/SiteButton.astro';
 import Sites from '$/components/Sites.astro';
+import StatusCafe from '$/components/StatusCafe.astro';
 import WebringTrans from '$/components/WebringTrans.astro';
 
 import Base from './Base.astro';
@@ -53,12 +54,8 @@ import Base from './Base.astro';
 		</main>
 
 		<Sidebar>
-			<SidebarSection title="Subtitle">
-				<p>
-					Lorem ipsum dolor sit amet, adipiscing elit. Praesent aliquam, justo
-					convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam
-					ante ac quam. Maecenas urna purus.
-				</p>
+			<SidebarSection title="Status">
+				<StatusCafe />
 			</SidebarSection>
 
 			<SidebarSection title="Links">
