@@ -6,7 +6,6 @@ previewImage: /assets/sillyseal.jpg
 ---
 
 Things I want to do over summer in no particular; order:
-
 - Make website v2 design,
 - Learn frameworks for website v2. Figure out how analytics work, I want some of those too...,
 - Code website v2, upload to nekoweb,
