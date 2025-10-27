@@ -1,3 +1,7 @@
+---
+title: My bad for neglecting my blog
+date: October 27, 2025;
+---
 *Bashes my head against the wall*
 
 Hello internet, ~~my future self~~, <small>(If you aren't me reading this, why are you even here?)</small>
