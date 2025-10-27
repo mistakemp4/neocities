@@ -7,9 +7,6 @@ previewImage: /assets/sillyseal.jpg
 
 Things I want to do over summer in no particular; order:
 
-- Learn to ride a pedal bike real quick before my motorcycle class (this weekend...),
-- Pass motorcycle class & skill test waiver (next weekend...),
-- Get motorcycle license at DMV,
 - Make website v2 design,
 - Learn frameworks for website v2. Figure out how analytics work, I want some of those too...,
 - Code website v2, upload to nekoweb,
