@@ -35,9 +35,35 @@ const quotesString = JSON.stringify(quotes);
 		</section>
 
 		<section>
-			<h2>Hello stinker</h2>
-			<p>Testing something one two</p>
-			<img {...top} />
+			<h2>Goro Akechi</h2>
+			<table>
+				<thead>
+
+			<tr>
+				<th>Japanese Name</th>
+				<th>Also known as</th>
+				<th>Contact</th>
+				<th>Country</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>明智 吾郎</td>
+				<td>
+					<p>Crow</p>
+					<p>Black Mask</p>
+					<p>Second Advent of the Detective Prince</p>
+					<p>The Traitor</p>
+					<p>Man in the Black Mask</p>
+					<p>Mysterious Man</p>
+					<p>Pleasant Boy</p>
+				</td>
+				<td>Maria Anders</td>
+				<td>Germany</td>
+			</tr>
+			</tbody>
+
+			</table>
 		</section>
 	</main>
 </Base>
@@ -109,6 +135,7 @@ const quotesString = JSON.stringify(quotes);
 	}
 
 	section {
+		width: 600px;
 		max-width: 600px;
 		margin-block: 16px;
 		padding: 12px;
@@ -127,5 +154,10 @@ const quotesString = JSON.stringify(quotes);
 
 	.quotes {
 		width: 100%;
+	}
+
+	table {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
 	}
 </style>
