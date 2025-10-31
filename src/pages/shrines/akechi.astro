@@ -36,20 +36,14 @@ const quotesString = JSON.stringify(quotes);
 
 		<section>
 			<h2>Goro Akechi</h2>
-			<table>
-				<thead>
 
-			<tr>
-				<th>Japanese Name</th>
-				<th>Also known as</th>
-				<th>Contact</th>
-				<th>Country</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td>明智 吾郎</td>
-				<td>
+			<div class="table">
+				<h3>Japanese Name</h3>
+				<div>
+					<p>明智 吾郎</p>
+				</div>
+				<h3>Also known as</h3>
+				<div>
 					<p>Crow</p>
 					<p>Black Mask</p>
 					<p>Second Advent of the Detective Prince</p>
@@ -57,13 +51,16 @@ const quotesString = JSON.stringify(quotes);
 					<p>Man in the Black Mask</p>
 					<p>Mysterious Man</p>
 					<p>Pleasant Boy</p>
-				</td>
-				<td>Maria Anders</td>
-				<td>Germany</td>
-			</tr>
-			</tbody>
-
-			</table>
+				</div>
+				<h3>Contact</h3>
+				<div>
+					<p>Maria Anders</p>
+				</div>
+				<h3>Country</h3>
+				<div>
+					<p>Germany</p>
+				</div>
+			</div>
 		</section>
 	</main>
 </Base>
@@ -139,6 +136,7 @@ const quotesString = JSON.stringify(quotes);
 		max-width: 600px;
 		margin-block: 16px;
 		padding: 12px;
+
 		background-color: var(--bg-color);
 
 		img {
@@ -156,8 +154,14 @@ const quotesString = JSON.stringify(quotes);
 		width: 100%;
 	}
 
-	table {
+	.table {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: max-content 1fr;
+
+		& > * {
+			border: 1px solid var(--text-color);
+			margin: 0;
+			padding: 12px;
+		}
 	}
 </style>
