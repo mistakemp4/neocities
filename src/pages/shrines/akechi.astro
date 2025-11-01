@@ -28,7 +28,7 @@ const quotesString = JSON.stringify(quotes);
 			class="quotes"
 			x-data={`{ quotes: ${quotesString}, current: Math.floor(Math.random() * ${quotes.length}) }`}
 		>
-			<h2 x-text="quotes[current]"></h2>
+			<h2 class="quote" x-text="quotes[current]"></h2>
 			<button @click=`current = Math.floor(Math.random() * ${quotes.length})`
 				>⟳</button
 			>
@@ -38,11 +38,11 @@ const quotesString = JSON.stringify(quotes);
 			<h2>Goro Akechi</h2>
 
 			<div class="table">
-				<h3>Japanese Name</h3>
+				<h3><b>Japanese Name</b></h3>
 				<div>
 					<p>明智 吾郎</p>
 				</div>
-				<h3>Also known as</h3>
+				<h3><b>Also known as</b></h3>
 				<div>
 					<p>Crow</p>
 					<p>Black Mask</p>
@@ -52,13 +52,67 @@ const quotesString = JSON.stringify(quotes);
 					<p>Mysterious Man</p>
 					<p>Pleasant Boy</p>
 				</div>
-				<h3>Contact</h3>
+				<h3><b>Occupation</b></h3>
 				<div>
-					<p>Maria Anders</p>
+					<p>High School Student</p>
+					<p>Detective</p>
+					<p>Hitman</p>
 				</div>
-				<h3>Country</h3>
+				<h3><b>Affiliation</b></h3>
 				<div>
-					<p>Germany</p>
+					<p>Tokyo District Special Investigation Department</p>
+					<p>Phantom Thieves of Hearts</p>
+					<p>Antisocial Force (Enforcer)</p>
+				</div>
+				<div>
+				<h3><b>Date of Birth</b></h3>
+				</div>
+				<div>
+					<p>June 2</p>
+				</div>
+				<div>
+				<h3><b>Age</b></h3>
+				</div>
+				<div>
+					<p>17-18</p>
+				</div>
+					<div>
+				<h3><b>Height</b></h3>
+				</div>
+				<div>
+					<p>178 cm (5'10")</p>
+				</div>
+				<div>
+				<h3><b>Weight</b></h3>
+				</div>
+				<div>
+					<p>64 kg (141 lbs)</p>
+				</div>
+				<div>
+				<h3><b>Blood Type</b></h3>
+				</div>
+				<div>
+					<p>AB</p>
+				</div>
+				<div>
+				<h3><b>Crimes</b></h3>
+				</div>
+				<div>
+					<p>Contract killing</p>
+					<p>Terrorism</p>
+					<p>Aiding and abetting sedition</p>
+					<p>Mass murder</p>
+					<p>Incrimination</p>
+					<p>Assault and battery</p>
+					<p>Manipulation</p>
+					<p>Fraud</p>
+					<p>Sabotage</p>
+					<p>Corruption</p>
+					<p>Conspiracy</p>
+					<p>Brainwashing</p>
+					<p>Kidnapping</p>
+					<p>Theft</p>
+				</div>
 				</div>
 			</div>
 		</section>
@@ -67,8 +121,10 @@ const quotesString = JSON.stringify(quotes);
 
 <style>
 	:root {
-		--text-color: hsl(23, 95%, 76%);
-		--bg-color: #632024;
+		--header-color: red;
+		--text-color: #F8F8F8;
+		--bg-color: #111013;
+		--border-color: #9C030B;
 	}
 
 	:global(body) {
@@ -76,8 +132,13 @@ const quotesString = JSON.stringify(quotes);
 		background: black;
 	}
 
+	section{
+		border: 2px solid var(--border-color);
+	}
+
 	header {
 		display: flex;
+		color: var(--header-color);
 		flex-direction: column;
 		height: 100lvh;
 	}
@@ -143,6 +204,7 @@ const quotesString = JSON.stringify(quotes);
 			max-width: 100%;
 			object-fit: contain;
 		}
+		background-image: linear-gradient(to bottom, transparent 80%, rgb(42, 4, 4));
 	}
 
 	button {
@@ -152,6 +214,22 @@ const quotesString = JSON.stringify(quotes);
 
 	.quotes {
 		width: 100%;
+		text-align: center;
+	}
+
+	.quote::before, .quote::after {
+		display: inline-block;
+		font-size: 32px;
+		margin-inline: 8px;
+		vertical-align: middle;
+	}
+
+	.quote::before {
+		content: '“';
+	}
+
+	.quote::after {
+		content: '”';
 	}
 
 	.table {
@@ -159,9 +237,16 @@ const quotesString = JSON.stringify(quotes);
 		grid-template-columns: max-content 1fr;
 
 		& > * {
-			border: 1px solid var(--text-color);
-			margin: 0;
+			border-bottom: 2px solid var(--border-color);
+			margin: -1px;
 			padding: 12px;
 		}
+
+		p {
+			margin: 0;
+		}
 	}
+
+
+
 </style>
