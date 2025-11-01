@@ -65,37 +65,37 @@ const quotesString = JSON.stringify(quotes);
 					<p>Antisocial Force (Enforcer)</p>
 				</div>
 				<div>
-				<h3><b>Date of Birth</b></h3>
+					<h3><b>Date of Birth</b></h3>
 				</div>
 				<div>
 					<p>June 2</p>
 				</div>
 				<div>
-				<h3><b>Age</b></h3>
+					<h3><b>Age</b></h3>
 				</div>
 				<div>
 					<p>17-18</p>
 				</div>
-					<div>
-				<h3><b>Height</b></h3>
+				<div>
+					<h3><b>Height</b></h3>
 				</div>
 				<div>
 					<p>178 cm (5'10")</p>
 				</div>
 				<div>
-				<h3><b>Weight</b></h3>
+					<h3><b>Weight</b></h3>
 				</div>
 				<div>
 					<p>64 kg (141 lbs)</p>
 				</div>
 				<div>
-				<h3><b>Blood Type</b></h3>
+					<h3><b>Blood Type</b></h3>
 				</div>
 				<div>
 					<p>AB</p>
 				</div>
 				<div>
-				<h3><b>Crimes</b></h3>
+					<h3><b>Crimes</b></h3>
 				</div>
 				<div>
 					<p>Contract killing</p>
@@ -113,7 +113,6 @@ const quotesString = JSON.stringify(quotes);
 					<p>Kidnapping</p>
 					<p>Theft</p>
 				</div>
-				</div>
 			</div>
 		</section>
 	</main>
@@ -122,9 +121,9 @@ const quotesString = JSON.stringify(quotes);
 <style>
 	:root {
 		--header-color: red;
-		--text-color: #F8F8F8;
+		--text-color: #f8f8f8;
 		--bg-color: #111013;
-		--border-color: #9C030B;
+		--border-color: #9c030b;
 	}
 
 	:global(body) {
@@ -132,7 +131,7 @@ const quotesString = JSON.stringify(quotes);
 		background: black;
 	}
 
-	section{
+	section {
 		border: 2px solid var(--border-color);
 	}
 
@@ -204,7 +203,11 @@ const quotesString = JSON.stringify(quotes);
 			max-width: 100%;
 			object-fit: contain;
 		}
-		background-image: linear-gradient(to bottom, transparent 80%, rgb(42, 4, 4));
+		background-image: linear-gradient(
+			to bottom,
+			transparent 80%,
+			rgb(42, 4, 4)
+		);
 	}
 
 	button {
@@ -217,7 +220,8 @@ const quotesString = JSON.stringify(quotes);
 		text-align: center;
 	}
 
-	.quote::before, .quote::after {
+	.quote::before,
+	.quote::after {
 		display: inline-block;
 		font-size: 32px;
 		margin-inline: 8px;
@@ -246,7 +250,4 @@ const quotesString = JSON.stringify(quotes);
 			margin: 0;
 		}
 	}
-
-
-
 </style>
