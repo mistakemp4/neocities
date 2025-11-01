@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from 'astro:transitions';
+
 import Footer from '$/components/Footer.astro';
 import Header from '$/components/Header.astro';
 import Navbar from '$/components/Navbar.astro';
@@ -18,6 +20,8 @@ import Base from './Base.astro';
 const posts = (await getSortedBlogPosts()).slice(0, 3);
 ---
 
+<ClientRouter />
+
 <Base>
 	<Header />
 	<Navbar />
@@ -25,7 +29,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 	<div class="layout-container">
 		<Sidebar>
 			<SidebarSection title="Subtitle">
-				<Player></Player>
+				<Player />
 			</SidebarSection>
 			<SidebarSection title="Blog">
 				<SidebarLinks>
