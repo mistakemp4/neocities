@@ -137,9 +137,9 @@ const quotesString = JSON.stringify(quotes);
 
 	header {
 		display: flex;
-		color: var(--header-color);
 		flex-direction: column;
 		height: 100lvh;
+		color: var(--header-color);
 	}
 
 	.header-image {
@@ -198,16 +198,16 @@ const quotesString = JSON.stringify(quotes);
 		padding: 12px;
 
 		background-color: var(--bg-color);
-
-		img {
-			max-width: 100%;
-			object-fit: contain;
-		}
 		background-image: linear-gradient(
 			to bottom,
 			transparent 80%,
 			rgb(42, 4, 4)
 		);
+
+		img {
+			max-width: 100%;
+			object-fit: contain;
+		}
 	}
 
 	button {
@@ -223,8 +223,8 @@ const quotesString = JSON.stringify(quotes);
 	.quote::before,
 	.quote::after {
 		display: inline-block;
-		font-size: 32px;
 		margin-inline: 8px;
+		font-size: 32px;
 		vertical-align: middle;
 	}
 
@@ -241,9 +241,12 @@ const quotesString = JSON.stringify(quotes);
 		grid-template-columns: max-content 1fr;
 
 		& > * {
-			border-bottom: 2px solid var(--border-color);
 			margin: -1px;
 			padding: 12px;
+
+			&:not(:last-child, :nth-last-child(2)) {
+				border-bottom: 2px solid var(--border-color);
+			}
 		}
 
 		p {
