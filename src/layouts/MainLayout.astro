@@ -2,6 +2,7 @@
 import Footer from '$/components/Footer.astro';
 import Header from '$/components/Header.astro';
 import Navbar from '$/components/Navbar.astro';
+import Player from '$/components/Player.astro';
 import Sidebar from '$/components/Sidebar.astro';
 import SidebarLink from '$/components/SidebarLink.astro';
 import SidebarLinks from '$/components/SidebarLinks.astro';
@@ -24,11 +25,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 	<div class="layout-container">
 		<Sidebar>
 			<SidebarSection title="Subtitle">
-				<p>
-					Lorem ipsum dolor sit amet, adipiscing elit. Praesent aliquam, justo
-					convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam
-					ante ac quam. Maecenas urna purus.
-				</p>
+				<Player></Player>
 			</SidebarSection>
 			<SidebarSection title="Blog">
 				<SidebarLinks>
