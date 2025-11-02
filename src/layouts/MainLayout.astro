@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 
+import Blinkers from '$/components/Blinkers.astro';
 import Footer from '$/components/Footer.astro';
 import Header from '$/components/Header.astro';
 import Navbar from '$/components/Navbar.astro';
@@ -16,7 +17,6 @@ import WebringTrans from '$/components/WebringTrans.astro';
 import { formatDate, getSortedBlogPosts } from '$/lib/blog';
 
 import Base from './Base.astro';
-import Blinkers from '$/components/Blinkers.astro';
 
 const posts = (await getSortedBlogPosts()).slice(0, 3);
 ---
@@ -64,10 +64,10 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 						>myanimelist</SidebarLink
 					>
 				</SidebarLinks>
-								</SidebarSection>
-					<SidebarSection title="Blinkies">
-					<Blinkers />
-					</SidebarSection>
+			</SidebarSection>
+			<SidebarSection title="Blinkies">
+				<Blinkers />
+			</SidebarSection>
 		</Sidebar>
 
 		<main>
