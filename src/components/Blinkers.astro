@@ -1,0 +1,39 @@
+---
+import type { ImageMetadata } from 'astro';
+
+const imports = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/assets/blinkers/*',
+);
+const images = (await Promise.all(Object.values(imports).map(fn => fn()))).map(
+	({ default: obj }) => ({ ...obj }),
+);
+---
+
+<ul>
+	{
+		images.map(image => (
+			<li>
+				<img {...image} />
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	li {
+		aspect-ratio: 15 / 2;
+	}
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+</style>
