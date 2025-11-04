@@ -13,7 +13,7 @@ In this spread each card is looked at separately in relationship to position fir
 
 How is my state of mind?
 
-![](/src/assets/reversed%20page%20of%20cups.jpg)
+![]($/assets/reversed%20page%20of%20cups.jpg)
 
  - Reversed Page of Cups
 	 - The reversed page of cups can point to a feeling of inability to fully express yourself. I may be taking life too seriously and not making time for joy, play, or just being present in the moment.
@@ -23,7 +23,7 @@ How is my state of mind?
 
 How are my emotions?
 
-![](/src/assets/Reversed%205%20of%20Wands.webp)
+![]($/assets/Reversed%205%20of%20Wands.webp)
 
 - Reversed 5 of Wands
 	- The reversed 5 of Wands may point to an ongoing conflict being blown out of proportion, or resolution or agreement reached after a conflict.
@@ -33,7 +33,7 @@ How are my emotions?
 
 How is my connection to the universe?
 
-![](/src/assets/Temperance.jpg)
+![]($/assets/Temperance.jpg)
 
 - Temperance
 	- At the heart of the Temperance tarot card lies the message of balance, moderation, and harmony. Whether you are struggling with something specific, or just feeling lost, temperance means now is the perfect time to connect with the divine and welcome the messages you receive.
