@@ -21,7 +21,9 @@ const { Content } = await render(post);
 
 <MainLayout>
 	<h1>{post.data.title}</h1>
-	<Content />
+	<div class="content">
+		<Content />
+	</div>
 	<a class="back" href="/blog/1/">Go back</a>
 </MainLayout>
 
@@ -29,5 +31,10 @@ const { Content } = await render(post);
 	.back::before {
 		content: '<<';
 		margin-inline-end: 4px;
+	}
+
+	.content :global(p:has(img)) {
+		display: grid;
+		place-items: center;
 	}
 </style>
