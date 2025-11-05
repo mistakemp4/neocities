@@ -1,6 +1,6 @@
 ---
 title: "Tarot reading: Mind, body spirit"
-date: November 11, 2025
+date: November 4, 2025
 ---
 
 I thought it might be interesting for me to document when I do my tarot readings on my blog, so that I can look back on them and see connections. I am an amateur at this kind of stuff and I in no way have all the cards memorized yet, but I still enjoy the process of connecting my life to some sort of spirituality. Learning to trust my intuition as an exercise is something I wish came more naturally to me.
