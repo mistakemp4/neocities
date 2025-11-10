@@ -6,7 +6,6 @@ import bottom from '$/assets/akechi2.jpg';
 import Base from '$/layouts/Base.astro';
 import flIcon from '$/assets/fl_icon.jpg';
 
-
 const quotes = (await getCollection('akechi')).map(entry => entry.data.quote);
 const quotesString = JSON.stringify(quotes);
 ---
@@ -121,7 +120,7 @@ const quotesString = JSON.stringify(quotes);
 			<a href="https://www.marheavenj.net/akechi/index.php"><img {...flIcon}></a>
 			<p>Goro Akechi Fanlisting</p>
 		</section>
-
+<a class="back" href="/shrines/">Go back</a>
 
 	</main>
 </Base>
@@ -288,4 +287,11 @@ const quotesString = JSON.stringify(quotes);
 			margin: 0;
 		}
 	}
+	.back::before {
+		content: '<<';
+		margin-inline-end: 4px;
+	}
+.back {
+	color: red;
+}
 </style>
