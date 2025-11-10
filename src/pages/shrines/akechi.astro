@@ -4,6 +4,8 @@ import { getCollection } from 'astro:content';
 import top from '$/assets/akechi1.jpg';
 import bottom from '$/assets/akechi2.jpg';
 import Base from '$/layouts/Base.astro';
+import flIcon from '$/assets/fl_icon.jpg';
+
 
 const quotes = (await getCollection('akechi')).map(entry => entry.data.quote);
 const quotesString = JSON.stringify(quotes);
@@ -116,7 +118,7 @@ const quotesString = JSON.stringify(quotes);
 			</div>
 		</section>
 		<section>
-			<a href="https://www.marheavenj.net/akechi/index.php"><img src="$/assets/fl_icon.jpg" alt="Goro Akechi Fanlisting" /></a>
+			<a href="https://www.marheavenj.net/akechi/index.php"><img src={flIcon} alt="Goro Akechi Fanlisting"></a>
 			<p>Goro Akechi Fanlisting</p>
 		</section>
 
