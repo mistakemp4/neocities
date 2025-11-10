@@ -21,7 +21,7 @@ I thought I would do a past, present, future tarot card reading to help process 
 
 What energy is behind me now?
 
-![]($/assets/reversed%20knight%20of%20swords.jpg")
+![]($/assets/reversed%20knight%20of%20swords.jpg)
 
 - Reversed Knight of Swords
 	- The upright Knight of Swords means fast movement, ambition, and charging ahead into confrontation or drama. When reversed, it often points to a sense of being burnt out, reckless, or acting without foresight.
@@ -41,7 +41,7 @@ What is the energy of my current situation?
 
 What influence is ahead of me?
 
-![]($/assets/strength)
+![]($/assets/strength.jpg)
 
 - Strength
 	- The Strength card is not about brute physical force, but about courage, patience, compassion, and inner fortitude. It depicts a person gently but firmly mastering their inner, wild nature (the lion) through love and calm, rather than domination.
