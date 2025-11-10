@@ -25,7 +25,7 @@ How are my emotions?
 
 ![]($/assets/Reversed%205%20of%20Wands.webp)
 
-- Reversed 5 of Wands
+- Reversed 5 of WandsThe message for today is clear: The power to stop, rest, and recover is entirely in your hands (The Magician). The influence of Strength is telling you that if you take this action now, you will move into a time where you feel more balanced, grounded, and resilient.
 	- The reversed 5 of Wands may point to an ongoing conflict being blown out of proportion, or resolution or agreement reached after a conflict.
 	- In my case, I feel as though the resolution makes more sense, as recently I had a tough discussion with one of my partners, and we decided to break things off for now, just because they were not ready for a relationship or emotional commitment.
 
