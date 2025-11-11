@@ -3,8 +3,8 @@ import { getCollection } from 'astro:content';
 
 import top from '$/assets/akechi1.jpg';
 import bottom from '$/assets/akechi2.jpg';
-import Base from '$/layouts/Base.astro';
 import flIcon from '$/assets/fl_icon.jpg';
+import Base from '$/layouts/Base.astro';
 
 const quotes = (await getCollection('akechi')).map(entry => entry.data.quote);
 const quotesString = JSON.stringify(quotes);
