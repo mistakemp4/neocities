@@ -15,9 +15,11 @@ import Sites from '$/components/Sites.astro';
 import StatusCafe from '$/components/StatusCafe.astro';
 import WebringTrans from '$/components/WebringTrans.astro';
 import Moon from '$/components/Moon.astro';
+import WebringPersona from '$/components/WebringPersona.astro';
 import { formatDate, getSortedBlogPosts } from '$/lib/blog';
 
 import Base from './Base.astro';
+import WebringWxS from '$/components/WebringWxS.astro';
 
 const posts = (await getSortedBlogPosts()).slice(0, 3);
 ---
@@ -86,6 +88,8 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 
 			<SidebarSection title="Webrings">
 				<WebringTrans />
+				<WebringPersona />
+				<WebringWxS />
 			</SidebarSection>
 
 			<SidebarSection title="My Button">
