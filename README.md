@@ -2,18 +2,20 @@
 
 ## Table of Contents
 
-- [Starting the Development Server](#starting-the-development-server)
+- [Starting and Stopping the Development Server](#starting-and-stopping-the-development-server)
 - [Running Linters](#running-linters)
 - [Adding a New Page](#adding-a-new-page)
 - [Updating the Site](#updating-the-site)
     - [Commit Message Format](#commit-message-format)
 - [Inline vs Component](#inline-vs-component)
 
-## Starting the Development Server
+## Starting and Stopping the Development Server
 
 ```bash
 $ npm run dev
 ```
+
+To stop the dev server, go into the terminal and type `q` and hit enter.
 
 ## Running Linters
 
