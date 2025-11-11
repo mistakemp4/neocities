@@ -14,6 +14,7 @@ import SiteButton from '$/components/SiteButton.astro';
 import Sites from '$/components/Sites.astro';
 import StatusCafe from '$/components/StatusCafe.astro';
 import WebringTrans from '$/components/WebringTrans.astro';
+import Moon from '$/components/Moon.astro';
 import { formatDate, getSortedBlogPosts } from '$/lib/blog';
 
 import Base from './Base.astro';
@@ -89,6 +90,9 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 
 			<SidebarSection title="My Button">
 				<SiteButton />
+			</SidebarSection>
+			<SidebarSection title="Moon Phase">
+				<Moon />
 			</SidebarSection>
 		</Sidebar>
 	</div>
