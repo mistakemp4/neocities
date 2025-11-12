@@ -35,7 +35,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 			<SidebarSection title="Music Player">
 				<Player />
 			</SidebarSection>
-			<SidebarSection title="Blog">
+			<SidebarSection title="Recent Blogs">
 				<SidebarLinks>
 					{
 						posts.map(post => (
@@ -49,7 +49,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 					}
 				</SidebarLinks>
 			</SidebarSection>
-			<SidebarSection title="Where 2 find me">
+			<SidebarSection title="My Links">
 				<SidebarLinks>
 					<SidebarLink href="https://en.pronouns.page/@mistakemp4"
 						>pronouns.page</SidebarLink
@@ -82,21 +82,18 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 				<StatusCafe />
 			</SidebarSection>
 
-			<SidebarSection title="Links">
+			<SidebarSection title="Cool Sites">
 				<Sites />
 			</SidebarSection>
 
 			<SidebarSection title="Webrings">
 				<WebringTrans />
-				<WebringPersona />
 				<WebringWxS />
+				<WebringPersona />
 			</SidebarSection>
 
 			<SidebarSection title="My Button">
 				<SiteButton />
-			</SidebarSection>
-			<SidebarSection title="Moon Phase">
-				<Moon />
 			</SidebarSection>
 		</Sidebar>
 	</div>
