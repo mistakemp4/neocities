@@ -1,24 +1,30 @@
-<div class="ring" transition:persist>
-	<script is:inline src="https://flonkie.github.io/personaring/mini.setup.js"
-	></script>
-</div>
+<script is:inline src="https://flonkie.github.io/personaring/mini.setup.js"></script>
 
-<style>
-	.ring {
-		margin-block: 12px;
-
+<style is:global>
 		#persona-pmoring {
-			width: unset;
-		}
+			width: auto;
+			margin-block: 12px;
 
-		.pminicenter {
-			width: unset;
-		}
+			img {
+				display: block;
+				max-width: 100%;
+				height: auto;
+				object-fit: contain;
+			}
 
-		.pminisize {
-			max-width: 100%;
-			height: auto !important;
-			object-fit: contain;
+			.pminimaincard {
+				display: initial;
+				width: auto;
+				height: auto;
+			}
+
+			.pminidirections {
+				justify-content: space-around;
+			}
+
+			.pminisml {
+				width: auto;
+				font-size: 0.5rem;
+			}
 		}
-	}
 </style>
