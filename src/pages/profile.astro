@@ -1,11 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-
 import temp from '$/assets/akechi1.jpg';
+import ProfileItem from '$/components/ProfileItem.astro';
 import Section from '$/components/Section.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
-
-const IMAGE_SIZE = 100;
 
 const games = [
 	{ name: 'Game 1', status: 'Completed', thoughts: 'Great game!', image: temp },
@@ -42,22 +39,12 @@ const games = [
 			<h2>Games I've played</h2>
 			<ul class="media-list">
 				{
-					games.map(game => (
-						<li
-							x-on:mouseenter={`$store.tooltip.set('${game.name}')`}
-							x-on:mouseleave="$store.tooltip.hide()"
-						>
-							<Image
-								src={game.image}
-								alt={game.name}
-								layout="constrained"
-								width={IMAGE_SIZE}
-								height={IMAGE_SIZE}
-							/>
-							<h3>{game.name}</h3>
-							<p>Status: {game.status}</p>
-							<p>Thoughts: {game.thoughts}</p>
-						</li>
+					games.map(({ name, status, thoughts, image }) => (
+						<ProfileItem title={name} {image} alt={name}>
+							<h3>{name}</h3>
+							<p>Status: {status}</p>
+							<p>Thoughts: {thoughts}</p>
+						</ProfileItem>
 					))
 				}
 			</ul>
