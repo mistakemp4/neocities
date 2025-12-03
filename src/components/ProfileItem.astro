@@ -5,11 +5,11 @@ import { Image } from 'astro:assets';
 interface Props {
 	title: string;
 	image: ImageMetadata;
-	alt: string;
+	alt?: string;
 	size?: number;
 }
 
-const { title, image, size = 100, alt } = Astro.props;
+const { title, image, size = 100, alt = title } = Astro.props;
 ---
 
 <li
