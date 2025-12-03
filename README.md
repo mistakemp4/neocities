@@ -19,6 +19,8 @@ To stop the dev server, go into the terminal and type `q` and hit enter.
 
 ## Running Linters
 
+Open a new terminal and run:
+
 ```bash
 $ npm run lint
 ```
