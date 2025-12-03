@@ -4,6 +4,45 @@ import ProfileItem from '$/components/ProfileItem.astro';
 import Section from '$/components/Section.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
 
+const characters = [
+	{ name: 'Akechi 1', image: temp },
+	{ name: 'Akechi 2', image: temp },
+	{ name: 'Akechi 3', image: temp },
+];
+
+const foods = [
+	{ name: 'Food 1', image: temp },
+	{ name: 'Food 2', image: temp },
+	{ name: 'Food 3', image: temp },
+];
+
+const books = [
+	{ name: 'Book 1', image: temp },
+	{ name: 'Book 2', image: temp },
+	{ name: 'Book 3', image: temp },
+];
+
+const anime = [
+	{
+		name: 'Anime 1',
+		status: 'Completed',
+		thoughts: 'Great show!',
+		image: temp,
+	},
+	{
+		name: 'Anime 2',
+		status: 'In Progress',
+		thoughts: 'Enjoying it so far.',
+		image: temp,
+	},
+	{
+		name: 'Anime 3',
+		status: 'Not Started',
+		thoughts: 'Looking forward to watching this.',
+		image: temp,
+	},
+];
+
 const games = [
 	{ name: 'Game 1', status: 'Completed', thoughts: 'Great game!', image: temp },
 	{
@@ -25,22 +64,42 @@ const games = [
 	<div class="container" x-data>
 		<Section title="The mind palace">
 			<h2>My favorite characters</h2>
-			<p>List of favorite characters goes here. Icons with names below them.</p>
+			<ul class="profile-list">
+				{
+					characters.map(({ name, image }) => (
+						<ProfileItem title={name} {image} />
+					))
+				}
+			</ul>
 			<h2>My favorite foods</h2>
-			<p>List of favorite foods goes here.</p>
+			<ul class="profile-list">
+				{foods.map(({ name, image }) => <ProfileItem title={name} {image} />)}
+			</ul>
 			<h2>My favorite numbers</h2>
 			<p>List of favorite numbers goes here.</p>
 		</Section>
 		<Section title="Media log">
 			<h2>Books I've read</h2>
-			<p>List of books go here. Icons with names below them.</p>
+			<ul class="profile-list">
+				{books.map(({ name, image }) => <ProfileItem title={name} {image} />)}
+			</ul>
 			<h2>Anime I've watched</h2>
-			<p>List of anime go here.</p>
+			<ul class="profile-list">
+				{
+					anime.map(({ name, status, thoughts, image }) => (
+						<ProfileItem title={name} {image}>
+							<h3>{name}</h3>
+							<p>Status: {status}</p>
+							<p>Thoughts: {thoughts}</p>
+						</ProfileItem>
+					))
+				}
+			</ul>
 			<h2>Games I've played</h2>
-			<ul class="media-list">
+			<ul class="profile-list">
 				{
 					games.map(({ name, status, thoughts, image }) => (
-						<ProfileItem title={name} {image} alt={name}>
+						<ProfileItem title={name} {image}>
 							<h3>{name}</h3>
 							<p>Status: {status}</p>
 							<p>Thoughts: {thoughts}</p>
@@ -106,7 +165,7 @@ const games = [
 </script>
 
 <style>
-	.media-list {
+	.profile-list {
 		--card-size: 100px;
 
 		display: grid;
