@@ -1,0 +1,92 @@
+---
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+import temp from '$/assets/akechi1.jpg';
+import { getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
+
+const IMAGE_SIZE = 100;
+
+const games = [
+    { name: 'Game 1', status: 'Completed', thoughts: 'Great game!', image: temp },
+    { name: 'Game 2', status: 'In Progress', thoughts: 'Enjoying it so far.', image: temp },
+    { name: 'Game 3', status: 'Not Started', thoughts: 'Looking forward to playing this.', image: temp },
+];
+---
+<MainLayout>
+    <Section title="The mind palace">
+        <h2>My favorite characters</h2>
+        <p>List of favorite characters goes here. Icons with names below them.</p>
+        <h2>My favorite foods</h2>
+        <p>List of favorite foods goes here.</p>
+        <h2>My favorite numbers</h2>
+        <p>List of favorite numbers goes here.</p>
+    </Section>
+    <Section title="Media log">
+        <h2>Books I've read</h2>
+        <p>List of books go here. Icons with names below them.</p>
+        <h2>Anime I've watched</h2>
+        <p>List of anime go here.</p>
+        <h2>Games I've played</h2>
+        <ul class="media-list">
+            {games.map(game => (
+                <li>
+                    <Image src={game.image} alt={game.name} layout="constrained" width={IMAGE_SIZE} height={IMAGE_SIZE} />
+                    <h3>{game.name}</h3>
+                    <p>Status: {game.status}</p>
+                    <p>Thoughts: {game.thoughts}</p>
+                </li>
+            ))}
+        </ul>
+    </Section>
+    <Section title="Web Quizzes">
+       <p>Links to web quizzes I've taken go here.</p> 
+       <a href="https://swiftyshq.neocities.org/fun/quiz/eon"><img src="https://swiftyshq.neocities.org/img/quiz/eon/vee4.png" alt="umbreon" title="timid and introverted, you tend to keep to yourself"></a>
+    </Section>
+    <Section title="Site Graphics">
+         <p>Here is a collection of all the graphics I have made. Feel free to use them with or without credit.</p>
+    </Section>
+    <div class="tooltip" id="tooltip" x-show="$store.tooltip.show" x-text="$store.tooltip.value"></div>
+</MainLayout>
+
+<script>
+    import Alpine from 'alpinejs';
+
+    const tooltip = {
+        show: false,
+        value: '',
+        x: 0,
+        y: 0,
+
+        set(value: string) {
+            this.value = value;
+            this.show = true;
+        },
+
+        move(x: number, y: number) {
+            this.x = x;
+            this.y = y;
+        },
+
+        hide() {
+            this.show = false;
+        }
+    };
+
+    Alpine.store('tooltip', tooltip);
+</script>
+
+<style>
+    .media-list {
+        --card-size: 100px;
+        gap: 1rem;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(var(--card-size), 100%), auto));
+        list-style: none;
+
+        > * {
+            outline: 1px solid red;
+        }
+    }
+</style>
