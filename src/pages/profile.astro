@@ -1,9 +1,10 @@
 ---
-import Section from '$/components/Section.astro';
-import MainLayout from '$/layouts/MainLayout.astro';
-import temp from '$/assets/akechi1.jpg';
 import { getImage } from 'astro:assets';
 import { Image } from 'astro:assets';
+
+import temp from '$/assets/akechi1.jpg';
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
 
 const IMAGE_SIZE = 100;
 
@@ -118,6 +119,7 @@ const games = [
 				/><br /></a
 			>
 		</a>
+		</Section>
 		<Section title="Graphics">
 			<p>
 				Here is a collection of all the graphics I have made. Feel free to use
@@ -131,7 +133,6 @@ const games = [
 			x-text="$store.tooltip.value"
 		>
 		</div>
-	</Section>
 
 	<script>
 		import Alpine from 'alpinejs';
