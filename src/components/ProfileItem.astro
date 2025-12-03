@@ -1,0 +1,21 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+	title: string;
+	image: ImageMetadata;
+	alt: string;
+	size?: number;
+}
+
+const { title, image, size = 100, alt } = Astro.props;
+---
+
+<li
+	x-on:mouseenter={`$store.tooltip.set('${title}')`}
+	x-on:mouseleave="$store.tooltip.hide()"
+>
+	<Image src={image} {alt} width={size} height={size} layout="constrained" />
+	<slot />
+</li>
