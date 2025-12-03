@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 
 const imports = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/blinkers/*',
@@ -13,7 +14,7 @@ const images = (await Promise.all(Object.values(imports).map(fn => fn()))).map(
 	{
 		images.map(image => (
 			<li>
-				<img {...image} />
+				<Image src={image} alt="Blinker" />
 			</li>
 		))
 	}
