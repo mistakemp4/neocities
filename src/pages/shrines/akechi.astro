@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 import top from '$/assets/akechi1.jpg';
@@ -13,11 +14,11 @@ const quotesString = JSON.stringify(quotes);
 <Base>
 	<header>
 		<div class="header-image">
-			<img {...top} />
+			<Image src={top} alt="Akechi and Ren" />
 			<p>And so, your heart is always free.</p>
 		</div>
 		<div class="header-image">
-			<img {...bottom} />
+			<Image src={bottom} alt="Akechi and Ren" />
 			<p>The exact opposite of mine.</p>
 		</div>
 	</header>
@@ -117,9 +118,9 @@ const quotesString = JSON.stringify(quotes);
 			</div>
 		</section>
 		<section>
-			<a href="https://www.marheavenj.net/akechi/index.php"
-				><img {...flIcon} /></a
-			>
+			<a href="https://www.marheavenj.net/akechi/index.php">
+				<Image src={flIcon} alt="Icon" />
+			</a>
 			<p>Goro Akechi Fanlisting</p>
 		</section>
 		<a class="back" href="/shrines/">Go back</a>
