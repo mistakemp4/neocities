@@ -1,11 +1,12 @@
 ---
-import Section from '$/components/Section.astro';
-import MainLayout from '$/layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+
 import akechiblink from '$/assets/blinkers/000-akechiblinkie.gif';
 import tsukasablink from '$/assets/blinkers/020-tenmatsukasagif.gif';
-import { Image } from 'astro:assets';
-import ProfileGames from '$/components/ProfileGames.astro';
 import ProfileCharacters from '$/components/ProfileCharacters.astro';
+import ProfileGames from '$/components/ProfileGames.astro';
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
 ---
 
 <MainLayout>
@@ -15,29 +16,61 @@ import ProfileCharacters from '$/components/ProfileCharacters.astro';
 			<ProfileCharacters />
 			<h2>My favorite foods</h2>
 			<h3>Drinks</h3>
-  				<p>Earl Grey Tea, Oolong Milk Tea with Boba (50% sweet), Dr Pepper, Ice Water (with straw)</p>
+			<p>
+				Earl Grey Tea, Oolong Milk Tea with Boba (50% sweet), Dr Pepper, Ice
+				Water (with straw)
+			</p>
 
-  			<h3>Snacks/Sides</h3>
-  				<p>Enoki Mushrooms, Bell Peppers, Green Beans, Salt & Vinegar Chips</p>
+			<h3>Snacks/Sides</h3>
+			<p>Enoki Mushrooms, Bell Peppers, Green Beans, Salt & Vinegar Chips</p>
 
-  			<h3>Entrees & Main Dishes</h3>
-  				<p>Spicy Tuna Hand Roll, Katsu Chicken, Tomato Soup, Minestrone Soup, Shin Black Ramen (with egg), Steak, Pesto Pasta, Butter Chicken, Asada Burrito, Rare Beef Pho, Chirashi over Rice, Beef & Lamb Gyro, Otoro</p>
+			<h3>Entrees & Main Dishes</h3>
+			<p>
+				Spicy Tuna Hand Roll, Katsu Chicken, Tomato Soup, Minestrone Soup, Shin
+				Black Ramen (with egg), Steak, Pesto Pasta, Butter Chicken, Asada
+				Burrito, Rare Beef Pho, Chirashi over Rice, Beef & Lamb Gyro, Otoro
+			</p>
 
-  			<h3>Desserts</h3>
-  				<p>Tiramisu, Apple Pie, Crème Brûlée, Cookies & Cream Ice Cream, Red Bean Sesame Balls, Red Bean Taiyaki</p>
+			<h3>Desserts</h3>
+			<p>
+				Tiramisu, Apple Pie, Crème Brûlée, Cookies & Cream Ice Cream, Red Bean
+				Sesame Balls, Red Bean Taiyaki
+			</p>
 		</Section>
 		<Section title="Media log">
 			<h2>Books I've read</h2>
-<p><strong>Boys, Beasts & Men</strong> by Sam J. Miller; <strong>Missoula</strong> by Jon Krakauer; <strong>City of Stairs</strong> by Robert Jackson Bennett; <strong>Angels Before Man</strong> by Rafael Nicolás; <strong>The Old Man and the Sea</strong> by Ernest Hemingway; <strong>Dune</strong> by Frank Herbert; <strong>The Hitchhikers Guide to the Galaxy</strong> by Douglas Adams; <strong>Of Mice and Men</strong> by John Steinbeck; <strong>Animal Farm</strong> by George Orwell; <strong>To Kill a Mockingbird</strong> by Harper Lee; <strong>Girl, Interrupted</strong> by Susanna Kaysen; <strong>Fight Club</strong> by Chuck Palahniuk; <strong>Monsters of Men</strong> by Patrick Ness; <strong>The Ask and the Answer</strong> by Patrick Ness; <strong>The Knife of Never Letting Go</strong> by Patrick Ness; <strong>Neuromancer</strong> by William Gibson; <strong>1984</strong> by George Orwell; and many more I am probably forgetting!</p>
-			
-<h2>Anime I've watched</h2>
-			<ul><li>
-			<a href="https://myanimelist.net/animelist/mistake_mp4">View my anime list</a></li></ul>
-			
+			<p>
+				<strong>Boys, Beasts & Men</strong> by Sam J. Miller; <strong
+					>Missoula</strong
+				> by Jon Krakauer; <strong>City of Stairs</strong> by Robert Jackson Bennett;
+				<strong>Angels Before Man</strong> by Rafael Nicolás; <strong
+					>The Old Man and the Sea</strong
+				> by Ernest Hemingway; <strong>Dune</strong> by Frank Herbert; <strong
+					>The Hitchhikers Guide to the Galaxy</strong
+				> by Douglas Adams; <strong>Of Mice and Men</strong> by John Steinbeck; <strong
+					>Animal Farm</strong
+				> by George Orwell; <strong>To Kill a Mockingbird</strong> by Harper Lee;
+				<strong>Girl, Interrupted</strong> by Susanna Kaysen; <strong
+					>Fight Club</strong
+				> by Chuck Palahniuk; <strong>Monsters of Men</strong> by Patrick Ness; <strong
+					>The Ask and the Answer</strong
+				> by Patrick Ness; <strong>The Knife of Never Letting Go</strong> by Patrick
+				Ness; <strong>Neuromancer</strong> by William Gibson; <strong
+					>1984</strong
+				> by George Orwell; and many more I am probably forgetting!
+			</p>
+
+			<h2>Anime I've watched</h2>
+			<ul>
+				<li>
+					<a href="https://myanimelist.net/animelist/mistake_mp4"
+						>View my anime list</a>
+				</li>
+			</ul>
+
 			<h2>Games I've played</h2>
 			<ProfileGames />
 		</Section>
-
 
 		<Section title="Web Quizzes" class="quiz">
 			<a href="https://swiftyshq.neocities.org/fun/quiz/eon">
@@ -116,11 +149,23 @@ import ProfileCharacters from '$/components/ProfileCharacters.astro';
 			<Image src={tsukasablink} alt="Tsukasa Blinker" />
 
 			<p>
-			<img src="https://media1.tenor.com/m/H39-m7ma3q4AAAAC/va-11-hall-a.gif" alt="VA-11 Hall-A GIF" />
-			<img src="https://media1.tenor.com/m/P6vTkRP-_KEAAAAC/va-11-hall-a.gif" alt="VA-11 Hall-A GIF" />
-			<img src="https://media1.tenor.com/m/DyvI7tVc4x8AAAAd/va-11-hall-a.gif" alt="VA-11 Hall-A GIF" />
-			<img src="https://media1.tenor.com/m/Fe7mlaRCrgQAAAAC/va-11-hall-a.gif" alt="VA-11 Hall-A GIF" />
-	</p>
+				<img
+					src="https://media1.tenor.com/m/H39-m7ma3q4AAAAC/va-11-hall-a.gif"
+					alt="VA-11 Hall-A GIF"
+				/>
+				<img
+					src="https://media1.tenor.com/m/P6vTkRP-_KEAAAAC/va-11-hall-a.gif"
+					alt="VA-11 Hall-A GIF"
+				/>
+				<img
+					src="https://media1.tenor.com/m/DyvI7tVc4x8AAAAd/va-11-hall-a.gif"
+					alt="VA-11 Hall-A GIF"
+				/>
+				<img
+					src="https://media1.tenor.com/m/Fe7mlaRCrgQAAAAC/va-11-hall-a.gif"
+					alt="VA-11 Hall-A GIF"
+				/>
+			</p>
 		</Section>
 		<div
 			class="tooltip"
@@ -168,18 +213,18 @@ import ProfileCharacters from '$/components/ProfileCharacters.astro';
 		pointer-events: none;
 
 		position: fixed;
+		z-index: 1000;
 		inset-block-start: 0;
 		inset-inline-start: 0;
 
+		padding: 5px 10px;
 		border: 2px dotted red;
 
 		font-size: 1.15rem;
-		font-color: white;
-
-		z-index: 1000;
-		padding: 5px 10px;
 
 		background: rgb(43, 0, 0);
+
+		font-color: white;
 	}
 
 	.container {
@@ -187,7 +232,7 @@ import ProfileCharacters from '$/components/ProfileCharacters.astro';
 	}
 
 	.quiz {
-		max-height: 200px;
 		overflow: auto;
+		max-height: 200px;
 	}
 </style>

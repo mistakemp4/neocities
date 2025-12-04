@@ -19,7 +19,7 @@ import yu from '$/assets/Yu.jpg';
 
 // --- Persona 3 ---
 import chidori from '$/assets/chidori.jpg';
-import makoto from '$/assets/makoto.jpg'; 
+import makoto from '$/assets/makoto.jpg';
 import yukari from '$/assets/yukari.jpg';
 
 // --- Project Sekai (Colorful Stage) ---
@@ -52,70 +52,66 @@ import ein from '$/assets/ein.jpg';
 import shinji from '$/assets/shinji.jpg';
 import hikaru from '$/assets/hikaru.jpg';
 import kaidou from '$/assets/kaidou.jpg';
-import mami from '$/assets/mami.jpg';    
-import megumin from '$/assets/megumin.jpg'; 
-import nagatoro from '$/assets/nagatoro.jpg'; 
+import mami from '$/assets/mami.jpg';
+import megumin from '$/assets/megumin.jpg';
+import nagatoro from '$/assets/nagatoro.jpg';
 
 const characters = [
- // --- Persona 5 ---
-    { name: 'Goro Akechi', image: akechi },
-    { name: 'Sakura Futaba', image: futaba },
-    { name: 'Okumura Haru', image: haru },
-    { name: 'Protagonist (Amamiya Ren)', image: ren },
-    { name: 'Sakamoto Ryuji', image: ryuji },
-    { name: 'Kitagawa Yusuke', image: yusuke },
+	// --- Persona 5 ---
+	{ name: 'Goro Akechi', image: akechi },
+	{ name: 'Sakura Futaba', image: futaba },
+	{ name: 'Okumura Haru', image: haru },
+	{ name: 'Protagonist (Amamiya Ren)', image: ren },
+	{ name: 'Sakamoto Ryuji', image: ryuji },
+	{ name: 'Kitagawa Yusuke', image: yusuke },
 
-    // --- Persona 4 ---
-    { name: 'Satonaka Chie', image: chie },
-    { name: 'Shirogane Naoto', image: naoto },
-    { name: 'Hanamura Yosuke', image: yosuke },
-    { name: 'Narukami Yu', image: yu },
+	// --- Persona 4 ---
+	{ name: 'Satonaka Chie', image: chie },
+	{ name: 'Shirogane Naoto', image: naoto },
+	{ name: 'Hanamura Yosuke', image: yosuke },
+	{ name: 'Narukami Yu', image: yu },
 
-    // --- Persona 3 ---
-    { name: 'Yoshino Chidori', image: chidori },
-    { name: 'Yuki Makoto (Protagonist)', image: makoto },
-    { name: 'Takeba Yukari', image: yukari },
+	// --- Persona 3 ---
+	{ name: 'Yoshino Chidori', image: chidori },
+	{ name: 'Yuki Makoto (Protagonist)', image: makoto },
+	{ name: 'Takeba Yukari', image: yukari },
 
-    // --- Project Sekai ---
-    { name: 'Otori Emu', image: emu },
-    { name: 'Shinonome Ena', image: ena },
-    { name: 'Hatsune Miku', image: miku },
-    { name: 'Kusanagi Nene', image: nene },
-    { name: 'Kamishiro Rui', image: rui },
-    { name: 'Aoyagi Toya', image: toya },
-    { name: 'Tenma Tsukasa', image: tsukasa },
+	// --- Project Sekai ---
+	{ name: 'Otori Emu', image: emu },
+	{ name: 'Shinonome Ena', image: ena },
+	{ name: 'Hatsune Miku', image: miku },
+	{ name: 'Kusanagi Nene', image: nene },
+	{ name: 'Kamishiro Rui', image: rui },
+	{ name: 'Aoyagi Toya', image: toya },
+	{ name: 'Tenma Tsukasa', image: tsukasa },
 
-    // --- Ouran High School Host Club ---
-    { name: 'Fujioka Haruhi', image: haruhi },
-    { name: 'Suoh Tamaki', image: tamaki },
+	// --- Ouran High School Host Club ---
+	{ name: 'Fujioka Haruhi', image: haruhi },
+	{ name: 'Suoh Tamaki', image: tamaki },
 
-    // --- Miss Kobayashi's Dragon Maid ---
-    { name: 'Kamui Kanna', image: kanna },
-    { name: 'Kobayashi', image: kobayashi },
-    { name: 'Tohru', image: tohru },
+	// --- Miss Kobayashi's Dragon Maid ---
+	{ name: 'Kamui Kanna', image: kanna },
+	{ name: 'Kobayashi', image: kobayashi },
+	{ name: 'Tohru', image: tohru },
 
-    // --- Death Note ---
-    { name: 'L Lawliet', image: l },
-    { name: 'Yagami Light', image: light },
+	// --- Death Note ---
+	{ name: 'L Lawliet', image: l },
+	{ name: 'Yagami Light', image: light },
 
-    // --- Cowboy Bebop ---
-    { name: 'Edward Wong Hau Pepelu Tivrusky IV', image: edward },
-    { name: 'Ein', image: ein },
+	// --- Cowboy Bebop ---
+	{ name: 'Edward Wong Hau Pepelu Tivrusky IV', image: edward },
+	{ name: 'Ein', image: ein },
 
-    // --- Miscellaneous ---
+	// --- Miscellaneous ---
 	{ name: 'Ikari Shinji', image: shinji },
 	{ name: 'Indou Hikaru', image: hikaru },
-    { name: 'Kaidou Shun', image: kaidou },
-    { name: 'Tomoe Mami', image: mami },
-    { name: 'Megumin', image: megumin },
-    { name: 'Nagatoro Hayase', image: nagatoro },
+	{ name: 'Kaidou Shun', image: kaidou },
+	{ name: 'Tomoe Mami', image: mami },
+	{ name: 'Megumin', image: megumin },
+	{ name: 'Nagatoro Hayase', image: nagatoro },
 ];
 ---
 
 <ProfileList>
-	{
-		characters.map(({ name, image }) => (
-			<ProfileItem title={name} {image} />
-		))
-	}
+	{characters.map(({ name, image }) => <ProfileItem title={name} {image} />)}
 </ProfileList>
