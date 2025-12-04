@@ -6,231 +6,172 @@ import tsukasablink from '$/assets/blinkers/020-tenmatsukasagif.gif';
 import ProfileCharacters from '$/components/ProfileCharacters.astro';
 import ProfileGames from '$/components/ProfileGames.astro';
 import Section from '$/components/Section.astro';
+import Tooltip from '$/components/Tooltip.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
 ---
 
 <MainLayout>
-	<div class="container" x-data>
-		<Section title="The mind palace">
-			<h2>My favorite characters</h2>
-			<ProfileCharacters />
-			<h2>My favorite foods</h2>
-			<h3>Drinks</h3>
-			<p>
-				Earl Grey Tea, Oolong Milk Tea with Boba (50% sweet), Dr Pepper, Ice
-				Water (with straw)
-			</p>
+	<Section title="The mind palace">
+		<h2>My favorite characters</h2>
+		<ProfileCharacters />
+		<h2>My favorite foods</h2>
+		<h3>Drinks</h3>
+		<p>
+			Earl Grey Tea, Oolong Milk Tea with Boba (50% sweet), Dr Pepper, Ice
+			Water (with straw)
+		</p>
 
-			<h3>Snacks/Sides</h3>
-			<p>Enoki Mushrooms, Bell Peppers, Green Beans, Salt & Vinegar Chips</p>
+		<h3>Snacks/Sides</h3>
+		<p>Enoki Mushrooms, Bell Peppers, Green Beans, Salt & Vinegar Chips</p>
 
-			<h3>Entrees & Main Dishes</h3>
-			<p>
-				Spicy Tuna Hand Roll, Katsu Chicken, Tomato Soup, Minestrone Soup, Shin
-				Black Ramen (with egg), Steak, Pesto Pasta, Butter Chicken, Asada
-				Burrito, Rare Beef Pho, Chirashi over Rice, Beef & Lamb Gyro, Otoro
-			</p>
+		<h3>Entrees & Main Dishes</h3>
+		<p>
+			Spicy Tuna Hand Roll, Katsu Chicken, Tomato Soup, Minestrone Soup, Shin
+			Black Ramen (with egg), Steak, Pesto Pasta, Butter Chicken, Asada
+			Burrito, Rare Beef Pho, Chirashi over Rice, Beef & Lamb Gyro, Otoro
+		</p>
 
-			<h3>Desserts</h3>
-			<p>
-				Tiramisu, Apple Pie, Crème Brûlée, Cookies & Cream Ice Cream, Red Bean
-				Sesame Balls, Red Bean Taiyaki
-			</p>
-		</Section>
-		<Section title="Media log">
-			<h2>Books I've read</h2>
-			<p>
-				<strong>Boys, Beasts & Men</strong> by Sam J. Miller; <strong
-					>Missoula</strong
-				> by Jon Krakauer; <strong>City of Stairs</strong> by Robert Jackson Bennett;
-				<strong>Angels Before Man</strong> by Rafael Nicolás; <strong
-					>The Old Man and the Sea</strong
-				> by Ernest Hemingway; <strong>Dune</strong> by Frank Herbert; <strong
-					>The Hitchhikers Guide to the Galaxy</strong
-				> by Douglas Adams; <strong>Of Mice and Men</strong> by John Steinbeck; <strong
-					>Animal Farm</strong
-				> by George Orwell; <strong>To Kill a Mockingbird</strong> by Harper Lee;
-				<strong>Girl, Interrupted</strong> by Susanna Kaysen; <strong
-					>Fight Club</strong
-				> by Chuck Palahniuk; <strong>Monsters of Men</strong> by Patrick Ness; <strong
-					>The Ask and the Answer</strong
-				> by Patrick Ness; <strong>The Knife of Never Letting Go</strong> by Patrick
-				Ness; <strong>Neuromancer</strong> by William Gibson; <strong
-					>1984</strong
-				> by George Orwell; and many more I am probably forgetting!
-			</p>
+		<h3>Desserts</h3>
+		<p>
+			Tiramisu, Apple Pie, Crème Brûlée, Cookies & Cream Ice Cream, Red Bean
+			Sesame Balls, Red Bean Taiyaki
+		</p>
+	</Section>
+	<Section title="Media log">
+		<h2>Books I've read</h2>
+		<p>
+			<strong>Boys, Beasts & Men</strong> by Sam J. Miller; <strong
+				>Missoula</strong
+			> by Jon Krakauer; <strong>City of Stairs</strong> by Robert Jackson Bennett;
+			<strong>Angels Before Man</strong> by Rafael Nicolás; <strong
+				>The Old Man and the Sea</strong
+			> by Ernest Hemingway; <strong>Dune</strong> by Frank Herbert; <strong
+				>The Hitchhikers Guide to the Galaxy</strong
+			> by Douglas Adams; <strong>Of Mice and Men</strong> by John Steinbeck; <strong
+				>Animal Farm</strong
+			> by George Orwell; <strong>To Kill a Mockingbird</strong> by Harper Lee;
+			<strong>Girl, Interrupted</strong> by Susanna Kaysen; <strong
+				>Fight Club</strong
+			> by Chuck Palahniuk; <strong>Monsters of Men</strong> by Patrick Ness; <strong
+				>The Ask and the Answer</strong
+			> by Patrick Ness; <strong>The Knife of Never Letting Go</strong> by Patrick
+			Ness; <strong>Neuromancer</strong> by William Gibson; <strong
+				>1984</strong
+			> by George Orwell; and many more I am probably forgetting!
+		</p>
 
-			<h2>Anime I've watched</h2>
-			<ul>
-				<li>
-					<a href="https://myanimelist.net/animelist/mistake_mp4"
-						>View my anime list</a>
-				</li>
-			</ul>
+		<h2>Anime I've watched</h2>
+		<ul>
+			<li>
+				<a href="https://myanimelist.net/animelist/mistake_mp4"
+					>View my anime list</a
+				>
+			</li>
+		</ul>
 
-			<h2>Games I've played</h2>
-			<ProfileGames />
-		</Section>
+		<h2>Games I've played</h2>
+		<ProfileGames />
+	</Section>
 
-		<Section title="Web Quizzes" class="quiz">
-			<a href="https://swiftyshq.neocities.org/fun/quiz/eon">
-				<img
-					src="https://swiftyshq.neocities.org/img/quiz/eon/vee4.png"
-					alt="umbreon"
-					title="timid and introverted, you tend to keep to yourself"
-				/>
-			</a>
-			<a href="https://andou.gay/quiz/donutquiz">
-				<img src="https://andou.gay/quiz/pinkdonut.png" />
-			</a>
-			<a href="http://cupped-expressions.net/cheese/quiz/">
-				<img
-					src="https://files.catbox.moe/9tricg.gif"
-					width="226"
-					height="93"
-					alt="I am american cheese!"
-				/>
-			</a>
-			<a
-				href="https://theotaku.com/quizzes/view/4097/what_dere_type_are_you%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/4097_Dandere.jpg"
-					alt="What Dere Type Are You?"
-				/>
-			</a>
-			<a
-				href="https://theotaku.com/quizzes/view/2570/what_neon_genesis_evangelion_character_are_you%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/2570_Shinji.jpg"
-					alt="What Neon Genesis Evangelion Character Are You?"
-				/>
-			</a>
-			<a
-				href="https://www.theotaku.com/quizzes/view/3913/which_hatsune_miku_nendoroid_model_are_you%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/3913_Candy_Corn_Miku.jpg"
-					alt="Which Hatsune Miku Nendoroid Model Are You?"
-				/>
-			</a>
-			<a
-				href="https://www.theotaku.com/quizzes/view/2957/my_little_pony_personality_test%21"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/2957_Flutterhsy.jpg"
-					alt="My Little Pony Personality Test!"
-				/>
-			</a>
-			<a
-				href="https://www.theotaku.com/quizzes/view/3743/what_anime_hair_color_best_suits_your_personality%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/3743_Red_Hair.jpg"
-					alt="What Anime Hair Color Best Suits Your Personality?"
-				/>
-			</a>
-			<a
-				href="https://theotaku.com/quizzes/view/4017/what_undertale_character_are_you%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/4017_Dr_Alphys.jpg"
-					alt="What Undertale Character Are you?"
-				/>
-			</a>
-		</Section>
-		<Section title="Site Graphics">
-			<p>
-				Here is a collection of all the graphics I have made. Feel free to use
-				them with or without credit.
-			</p>
-			<Image src={akechiblink} alt="Akechi Blinker" />
-			<Image src={tsukasablink} alt="Tsukasa Blinker" />
-
-			<p>
-				<img
-					src="https://media1.tenor.com/m/H39-m7ma3q4AAAAC/va-11-hall-a.gif"
-					alt="VA-11 Hall-A GIF"
-				/>
-				<img
-					src="https://media1.tenor.com/m/P6vTkRP-_KEAAAAC/va-11-hall-a.gif"
-					alt="VA-11 Hall-A GIF"
-				/>
-				<img
-					src="https://media1.tenor.com/m/DyvI7tVc4x8AAAAd/va-11-hall-a.gif"
-					alt="VA-11 Hall-A GIF"
-				/>
-				<img
-					src="https://media1.tenor.com/m/Fe7mlaRCrgQAAAAC/va-11-hall-a.gif"
-					alt="VA-11 Hall-A GIF"
-				/>
-			</p>
-		</Section>
-		<div
-			class="tooltip"
-			id="tooltip"
-			x-show="$store.tooltip.show"
-			x-text="$store.tooltip.value"
-			x-ref="tooltip"
-			x-on:mousemove.passive.document.throttle.33ms="$store.tooltip.move($refs.tooltip, $event.x, $event.y)"
+	<Section title="Web Quizzes" class="quiz">
+		<a href="https://swiftyshq.neocities.org/fun/quiz/eon">
+			<img
+				src="https://swiftyshq.neocities.org/img/quiz/eon/vee4.png"
+				alt="umbreon"
+				title="timid and introverted, you tend to keep to yourself"
+			/>
+		</a>
+		<a href="https://andou.gay/quiz/donutquiz">
+			<img src="https://andou.gay/quiz/pinkdonut.png" />
+		</a>
+		<a href="http://cupped-expressions.net/cheese/quiz/">
+			<img
+				src="https://files.catbox.moe/9tricg.gif"
+				width="226"
+				height="93"
+				alt="I am american cheese!"
+			/>
+		</a>
+		<a
+			href="https://theotaku.com/quizzes/view/4097/what_dere_type_are_you%3F"
 		>
-		</div>
-	</div>
+			<img
+				src="http://www.theotaku.com/guru_results/4097_Dandere.jpg"
+				alt="What Dere Type Are You?"
+			/>
+		</a>
+		<a
+			href="https://theotaku.com/quizzes/view/2570/what_neon_genesis_evangelion_character_are_you%3F"
+		>
+			<img
+				src="http://www.theotaku.com/guru_results/2570_Shinji.jpg"
+				alt="What Neon Genesis Evangelion Character Are You?"
+			/>
+		</a>
+		<a
+			href="https://www.theotaku.com/quizzes/view/3913/which_hatsune_miku_nendoroid_model_are_you%3F"
+		>
+			<img
+				src="http://www.theotaku.com/guru_results/3913_Candy_Corn_Miku.jpg"
+				alt="Which Hatsune Miku Nendoroid Model Are You?"
+			/>
+		</a>
+		<a
+			href="https://www.theotaku.com/quizzes/view/2957/my_little_pony_personality_test%21"
+		>
+			<img
+				src="http://www.theotaku.com/guru_results/2957_Flutterhsy.jpg"
+				alt="My Little Pony Personality Test!"
+			/>
+		</a>
+		<a
+			href="https://www.theotaku.com/quizzes/view/3743/what_anime_hair_color_best_suits_your_personality%3F"
+		>
+			<img
+				src="http://www.theotaku.com/guru_results/3743_Red_Hair.jpg"
+				alt="What Anime Hair Color Best Suits Your Personality?"
+			/>
+		</a>
+		<a
+			href="https://theotaku.com/quizzes/view/4017/what_undertale_character_are_you%3F"
+		>
+			<img
+				src="http://www.theotaku.com/guru_results/4017_Dr_Alphys.jpg"
+				alt="What Undertale Character Are you?"
+			/>
+		</a>
+	</Section>
+	<Section title="Site Graphics">
+		<p>
+			Here is a collection of all the graphics I have made. Feel free to use
+			them with or without credit.
+		</p>
+		<Image src={akechiblink} alt="Akechi Blinker" />
+		<Image src={tsukasablink} alt="Tsukasa Blinker" />
+
+		<p>
+			<img
+				src="https://media1.tenor.com/m/H39-m7ma3q4AAAAC/va-11-hall-a.gif"
+				alt="VA-11 Hall-A GIF"
+			/>
+			<img
+				src="https://media1.tenor.com/m/P6vTkRP-_KEAAAAC/va-11-hall-a.gif"
+				alt="VA-11 Hall-A GIF"
+			/>
+			<img
+				src="https://media1.tenor.com/m/DyvI7tVc4x8AAAAd/va-11-hall-a.gif"
+				alt="VA-11 Hall-A GIF"
+			/>
+			<img
+				src="https://media1.tenor.com/m/Fe7mlaRCrgQAAAAC/va-11-hall-a.gif"
+				alt="VA-11 Hall-A GIF"
+			/>
+		</p>
+	</Section>
+	<Tooltip />
 </MainLayout>
 
-<script>
-	import Alpine from 'alpinejs';
-
-	const tooltip = {
-		show: false,
-		value: '',
-
-		set(value: string) {
-			this.value = value;
-			this.show = true;
-		},
-
-		move(tooltip: HTMLDivElement, x: number, y: number) {
-			const padding = 8;
-			console.log([x, y]);
-			tooltip.style.setProperty(
-				'translate',
-				`${x + padding}px calc(${y - padding}px - 100%)`,
-			);
-		},
-
-		hide() {
-			this.show = false;
-		},
-	};
-
-	Alpine.store('tooltip', tooltip);
-</script>
-
 <style>
-	.tooltip {
-		pointer-events: none;
-
-		position: fixed;
-		z-index: 1000;
-		inset-block-start: 0;
-		inset-inline-start: 0;
-
-		padding: 5px 10px;
-		border: 2px dotted red;
-
-		font-size: 1.15rem;
-
-		background: rgb(43, 0, 0);
-
-		font-color: white;
-	}
-
-	.container {
-		display: contents;
-	}
-
 	.quiz {
 		overflow: auto;
 		max-height: 200px;
