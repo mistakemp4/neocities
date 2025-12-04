@@ -3,60 +3,191 @@ import temp from '$/assets/akechi1.jpg';
 import ProfileItem from '$/components/ProfileItem.astro';
 import Section from '$/components/Section.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
+import akechiblink from '$/assets/blinkers/000-akechiblinkie.gif';
+import tsukasablink from '$/assets/blinkers/020-tenmatsukasagif.gif';
+
+// --- Persona 5 ---
+import akechi from '$/assets/akechi.jpg';
+import futaba from '$/assets/futaba.jpg';
+import haru from '$/assets/haru.jpg';
+import ren from '$/assets/ren.jpg';
+import ryuji from '$/assets/ryuji.jpg';
+import yusuke from '$/assets/yusuke.jpg';
+
+// --- Persona 4 ---
+import chie from '$/assets/chie.jpg';
+import naoto from '$/assets/naoto.jpg';
+import yosuke from '$/assets/yosuke.jpg';
+import yu from '$/assets/Yu.jpg';
+
+// --- Persona 3 ---
+import chidori from '$/assets/chidori.jpg';
+import makoto from '$/assets/makoto.jpg'; 
+import yukari from '$/assets/yukari.jpg';
+
+// --- Project Sekai (Colorful Stage) ---
+import emu from '$/assets/emu.jpg';
+import ena from '$/assets/ena.jpg';
+import miku from '$/assets/miku.jpg';
+import nene from '$/assets/nene.jpg';
+import rui from '$/assets/rui.jpg';
+import toya from '$/assets/toya.jpg';
+import tsukasa from '$/assets/tsukasa.jpg';
+
+// --- Ouran High School Host Club ---
+import haruhi from '$/assets/haruhi.jpg';
+import tamaki from '$/assets/tamaki.jpg';
+
+// --- Miss Kobayashi's Dragon Maid ---
+import kanna from '$/assets/kanna.jpg';
+import kobayashi from '$/assets/kobayashi.jpg';
+import tohru from '$/assets/tohru.jpg';
+
+// --- Death Note ---
+import l from '$/assets/L.jpg';
+import light from '$/assets/light.jpg';
+
+// --- Cowboy Bebop ---
+import edward from '$/assets/edward.jpg';
+import ein from '$/assets/ein.jpg';
+
+// --- Miscellaneous Anime ---
+import shinji from '$/assets/shinji.jpg';
+import hikaru from '$/assets/hikaru.jpg';
+import kaidou from '$/assets/kaidou.jpg';
+import mami from '$/assets/mami.jpg';    
+import megumin from '$/assets/megumin.jpg'; 
+import nagatoro from '$/assets/nagatoro.jpg'; 
+import { Image } from 'astro:assets';
+
+
+// --- Games Images ---
+import pkmnAS from '$/assets/pkmnAS.png';
+import pkmnS from '$/assets/pkmnS.jpg';
+import pkmnUS from '$/assets/pkmnUS.png';
+import pkmnLGE from '$/assets/pkmnLGE.jpg';
+import pkmnSW from '$/assets/pkmnSW.jpg';
+import pkmnBD from '$/assets/pkmnBD.jpg';
+import pkmnLA from '$/assets/pkmnLA.jpg';
+import pkmnB from '$/assets/pkmnB.jpg';
+import pkmnX from '$/assets/pkmnX.jpg';
+import pkmnV from '$/assets/pkmnV.jpg';
 
 const characters = [
-	{ name: 'Akechi 1', image: temp },
-	{ name: 'Akechi 2', image: temp },
-	{ name: 'Akechi 3', image: temp },
-];
+ // --- Persona 5 ---
+    { name: 'Goro Akechi', image: akechi },
+    { name: 'Sakura Futaba', image: futaba },
+    { name: 'Okumura Haru', image: haru },
+    { name: 'Protagonist (Amamiya Ren)', image: ren },
+    { name: 'Sakamoto Ryuji', image: ryuji },
+    { name: 'Kitagawa Yusuke', image: yusuke },
 
-const foods = [
-	{ name: 'Food 1', image: temp },
-	{ name: 'Food 2', image: temp },
-	{ name: 'Food 3', image: temp },
-];
+    // --- Persona 4 ---
+    { name: 'Satonaka Chie', image: chie },
+    { name: 'Shirogane Naoto', image: naoto },
+    { name: 'Hanamura Yosuke', image: yosuke },
+    { name: 'Narukami Yu', image: yu },
 
-const books = [
-	{ name: 'Book 1', image: temp },
-	{ name: 'Book 2', image: temp },
-	{ name: 'Book 3', image: temp },
-];
+    // --- Persona 3 ---
+    { name: 'Yoshino Chidori', image: chidori },
+    { name: 'Yuki Makoto (Protagonist)', image: makoto },
+    { name: 'Takeba Yukari', image: yukari },
 
-const anime = [
-	{
-		name: 'Anime 1',
-		status: 'Completed',
-		thoughts: 'Great show!',
-		image: temp,
-	},
-	{
-		name: 'Anime 2',
-		status: 'In Progress',
-		thoughts: 'Enjoying it so far.',
-		image: temp,
-	},
-	{
-		name: 'Anime 3',
-		status: 'Not Started',
-		thoughts: 'Looking forward to watching this.',
-		image: temp,
-	},
+    // --- Project Sekai ---
+    { name: 'Otori Emu', image: emu },
+    { name: 'Shinonome Ena', image: ena },
+    { name: 'Hatsune Miku', image: miku },
+    { name: 'Kusanagi Nene', image: nene },
+    { name: 'Kamishiro Rui', image: rui },
+    { name: 'Aoyagi Toya', image: toya },
+    { name: 'Tenma Tsukasa', image: tsukasa },
+
+    // --- Ouran High School Host Club ---
+    { name: 'Fujioka Haruhi', image: haruhi },
+    { name: 'Suoh Tamaki', image: tamaki },
+
+    // --- Miss Kobayashi's Dragon Maid ---
+    { name: 'Kamui Kanna', image: kanna },
+    { name: 'Kobayashi', image: kobayashi },
+    { name: 'Tohru', image: tohru },
+
+    // --- Death Note ---
+    { name: 'L Lawliet', image: l },
+    { name: 'Yagami Light', image: light },
+
+    // --- Cowboy Bebop ---
+    { name: 'Edward Wong Hau Pepelu Tivrusky IV', image: edward },
+    { name: 'Ein', image: ein },
+
+    // --- Miscellaneous ---
+	{ name: 'Ikari Shinji', image: shinji },
+	{ name: 'Indou Hikaru', image: hikaru },
+    { name: 'Kaidou Shun', image: kaidou },
+    { name: 'Tomoe Mami', image: mami },
+    { name: 'Megumin', image: megumin },
+    { name: 'Nagatoro Hayase', image: nagatoro },
 ];
 
 const games = [
-	{ name: 'Game 1', status: 'Completed', thoughts: 'Great game!', image: temp },
 	{
-		name: 'Game 2',
-		status: 'In Progress',
-		thoughts: 'Enjoying it so far.',
-		image: temp,
+		name: 'Pokémon Black',
+		status: 'Completed',
+		thoughts: 'I never hated the trash and ice cream monsters like everyone else',
+		image: pkmnB,
 	},
 	{
-		name: 'Game 3',
-		status: 'Not Started',
-		thoughts: 'Looking forward to playing this.',
-		image: temp,
+		name: 'Pokémon X',
+		status: 'Completed',
+		thoughts: 'Loved the character customization, also N is my favorite Pokémon character ever',
+		image: pkmnX,
 	},
+	{ name: 'Pokémon Alpha Sapphire',
+	 status: 'Completed',
+	  thoughts: 'My first real Pokémon game, and I loved it!',
+	   image: pkmnAS },
+	
+	{
+		name: 'Pokémon Sun',
+		status: 'Completed',
+		thoughts: 'I played all 4 games this gen. To avoid redundancy, only sun is listed',
+		image: pkmnS,
+	},
+	{
+		name: 'Pokémon Ultra Sun',
+		status: 'Completed',
+		thoughts: 'First game I ever shiny hunted in',
+		image: pkmnUS,
+	},
+	{
+		name: 'Pokémon: Lets Go, Eevee!',
+		status: 'Completed',
+		thoughts: 'this game was ass',
+		image: pkmnLGE,
+	},
+	{
+		name: 'Pokémon Sword',
+		status: 'Completed',
+		thoughts: 'Series started to go downhill here but I loved the online features',
+		image: pkmnSW,
+	},
+	{
+		name: 'Pokémon Brilliant Diamond',
+		status: 'Completed',
+		thoughts: 'this game was ass',
+		image: pkmnBD,
+	},
+	{
+		name: 'Pokémon Legends: Arceus',
+		status: 'Completed',
+		thoughts: 'PEAK PEAK PEAK PEAK my fav in the entire series',
+		image: pkmnLA,
+	},
+	{
+		name: 'Pokémon Violet',
+		status: 'Completed',
+		thoughts: 'I liked the open world but Area Zero made me quit for like a year before finishing the game',
+		image: pkmnV,
+	}
 ];
 ---
 
@@ -72,34 +203,31 @@ const games = [
 				}
 			</ul>
 			<h2>My favorite foods</h2>
-			<ul class="profile-list">
-				{foods.map(({ name, image }) => <ProfileItem title={name} {image} />)}
-			</ul>
-			<h2>My favorite numbers</h2>
-			<p>List of favorite numbers goes here.</p>
+			<h3>Drinks</h3>
+  				<p>Earl Grey Tea, Oolong Milk Tea with Boba (50% sweet), Dr Pepper, Ice Water (with straw)</p>
+
+  			<h3>Snacks/Sides</h3>
+  				<p>Enoki Mushrooms, Bell Peppers, Green Beans, Salt & Vinegar Chips</p>
+
+  			<h3>Entrees & Main Dishes</h3>
+  				<p>Spicy Tuna Hand Roll, Katsu Chicken, Tomato Soup, Minestrone Soup, Shin Black Ramen (with egg), Steak, Pesto Pasta, Butter Chicken, Asada Burrito, Rare Beef Pho, Chirashi over Rice, Beef & Lamb Gyro, Otoro</p>
+
+  			<h3>Desserts</h3>
+  				<p>Tiramisu, Apple Pie, Crème Brûlée, Cookies & Cream Ice Cream, Red Bean Sesame Balls, Red Bean Taiyaki</p>
 		</Section>
 		<Section title="Media log">
 			<h2>Books I've read</h2>
-			<ul class="profile-list">
-				{books.map(({ name, image }) => <ProfileItem title={name} {image} />)}
-			</ul>
-			<h2>Anime I've watched</h2>
-			<ul class="profile-list">
-				{
-					anime.map(({ name, status, thoughts, image }) => (
-						<ProfileItem title={name} {image}>
-							<h3>{name}</h3>
-							<p>Status: {status}</p>
-							<p>Thoughts: {thoughts}</p>
-						</ProfileItem>
-					))
-				}
-			</ul>
+<p><strong>Boys, Beasts & Men</strong> by Sam J. Miller; <strong>Missoula</strong> by Jon Krakauer; <strong>City of Stairs</strong> by Robert Jackson Bennett; <strong>Angels Before Man</strong> by Rafael Nicolás; <strong>The Old Man and the Sea</strong> by Ernest Hemingway; <strong>Dune</strong> by Frank Herbert; <strong>The Hitchhikers Guide to the Galaxy</strong> by Douglas Adams; <strong>Of Mice and Men</strong> by John Steinbeck; <strong>Animal Farm</strong> by George Orwell; <strong>To Kill a Mockingbird</strong> by Harper Lee; <strong>Girl, Interrupted</strong> by Susanna Kaysen; <strong>Fight Club</strong> by Chuck Palahniuk; <strong>Monsters of Men</strong> by Patrick Ness; <strong>The Ask and the Answer</strong> by Patrick Ness; <strong>The Knife of Never Letting Go</strong> by Patrick Ness; <strong>Neuromancer</strong> by William Gibson; <strong>1984</strong> by George Orwell; and many more I am probably forgetting!</p>
+			
+<h2>Anime I've watched</h2>
+			<ul><li>
+			<a href="https://myanimelist.net/animelist/mistake_mp4">View my anime list</a></li></ul>
+			
 			<h2>Games I've played</h2>
 			<ul class="profile-list">
 				{
 					games.map(({ name, status, thoughts, image }) => (
-						<ProfileItem title={name} {image}>
+						<ProfileItem title={name} {image} size={100}>
 							<h3>{name}</h3>
 							<p>Status: {status}</p>
 							<p>Thoughts: {thoughts}</p>
@@ -108,6 +236,8 @@ const games = [
 				}
 			</ul>
 		</Section>
+
+
 		<Section title="Web Quizzes" class="quiz">
 			<a href="https://swiftyshq.neocities.org/fun/quiz/eon">
 				<img
@@ -181,6 +311,15 @@ const games = [
 				Here is a collection of all the graphics I have made. Feel free to use
 				them with or without credit.
 			</p>
+			<Image src={akechiblink} alt="Akechi Blinker" />
+			<Image src={tsukasablink} alt="Tsukasa Blinker" />
+
+			<p>
+			<img src="https://media1.tenor.com/m/H39-m7ma3q4AAAAC/va-11-hall-a.gif" alt="VA-11 Hall-A GIF" />
+			<img src="https://media1.tenor.com/m/P6vTkRP-_KEAAAAC/va-11-hall-a.gif" alt="VA-11 Hall-A GIF" />
+			<img src="https://media1.tenor.com/m/DyvI7tVc4x8AAAAd/va-11-hall-a.gif" alt="VA-11 Hall-A GIF" />
+			<img src="https://media1.tenor.com/m/Fe7mlaRCrgQAAAAC/va-11-hall-a.gif" alt="VA-11 Hall-A GIF" />
+	</p>
 		</Section>
 		<div
 			class="tooltip"
@@ -225,15 +364,9 @@ const games = [
 
 <style>
 	.profile-list {
-		--card-size: 100px;
-
-		display: grid;
-		grid-template-columns: repeat(
-			auto-fill,
-			minmax(min(var(--card-size), 100%), auto)
-		);
-		gap: 1rem;
+display: flex;flex-wrap:wrap;justify-content:center;		gap: 5px;
 		list-style: none;
+		padding: 0;
 	}
 
 	.tooltip {
@@ -243,14 +376,23 @@ const games = [
 		inset-block-start: 0;
 		inset-inline-start: 0;
 
-		border: 2px solid red;
+		border: 2px dotted red;
 
 		font-size: 1.15rem;
+		font-color: white;
 
-		background: #f00a;
+		z-index: 1000;
+		padding: 5px 10px;
+
+		background: rgb(43, 0, 0);
 	}
 
 	.container {
 		display: contents;
+	}
+
+	.quiz {
+		max-height: 200px;
+		overflow: auto;
 	}
 </style>
