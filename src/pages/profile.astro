@@ -1,207 +1,18 @@
 ---
-import temp from '$/assets/akechi1.jpg';
-import ProfileItem from '$/components/ProfileItem.astro';
 import Section from '$/components/Section.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
 import akechiblink from '$/assets/blinkers/000-akechiblinkie.gif';
 import tsukasablink from '$/assets/blinkers/020-tenmatsukasagif.gif';
-
-// --- Persona 5 ---
-import akechi from '$/assets/akechi.jpg';
-import futaba from '$/assets/futaba.jpg';
-import haru from '$/assets/haru.jpg';
-import ren from '$/assets/ren.jpg';
-import ryuji from '$/assets/ryuji.jpg';
-import yusuke from '$/assets/yusuke.jpg';
-
-// --- Persona 4 ---
-import chie from '$/assets/chie.jpg';
-import naoto from '$/assets/naoto.jpg';
-import yosuke from '$/assets/yosuke.jpg';
-import yu from '$/assets/Yu.jpg';
-
-// --- Persona 3 ---
-import chidori from '$/assets/chidori.jpg';
-import makoto from '$/assets/makoto.jpg'; 
-import yukari from '$/assets/yukari.jpg';
-
-// --- Project Sekai (Colorful Stage) ---
-import emu from '$/assets/emu.jpg';
-import ena from '$/assets/ena.jpg';
-import miku from '$/assets/miku.jpg';
-import nene from '$/assets/nene.jpg';
-import rui from '$/assets/rui.jpg';
-import toya from '$/assets/toya.jpg';
-import tsukasa from '$/assets/tsukasa.jpg';
-
-// --- Ouran High School Host Club ---
-import haruhi from '$/assets/haruhi.jpg';
-import tamaki from '$/assets/tamaki.jpg';
-
-// --- Miss Kobayashi's Dragon Maid ---
-import kanna from '$/assets/kanna.jpg';
-import kobayashi from '$/assets/kobayashi.jpg';
-import tohru from '$/assets/tohru.jpg';
-
-// --- Death Note ---
-import l from '$/assets/L.jpg';
-import light from '$/assets/light.jpg';
-
-// --- Cowboy Bebop ---
-import edward from '$/assets/edward.jpg';
-import ein from '$/assets/ein.jpg';
-
-// --- Miscellaneous Anime ---
-import shinji from '$/assets/shinji.jpg';
-import hikaru from '$/assets/hikaru.jpg';
-import kaidou from '$/assets/kaidou.jpg';
-import mami from '$/assets/mami.jpg';    
-import megumin from '$/assets/megumin.jpg'; 
-import nagatoro from '$/assets/nagatoro.jpg'; 
 import { Image } from 'astro:assets';
-
-
-// --- Games Images ---
-import pkmnAS from '$/assets/pkmnAS.png';
-import pkmnS from '$/assets/pkmnS.jpg';
-import pkmnUS from '$/assets/pkmnUS.png';
-import pkmnLGE from '$/assets/pkmnLGE.jpg';
-import pkmnSW from '$/assets/pkmnSW.jpg';
-import pkmnBD from '$/assets/pkmnBD.jpg';
-import pkmnLA from '$/assets/pkmnLA.jpg';
-import pkmnB from '$/assets/pkmnB.jpg';
-import pkmnX from '$/assets/pkmnX.jpg';
-import pkmnV from '$/assets/pkmnV.jpg';
-
-const characters = [
- // --- Persona 5 ---
-    { name: 'Goro Akechi', image: akechi },
-    { name: 'Sakura Futaba', image: futaba },
-    { name: 'Okumura Haru', image: haru },
-    { name: 'Protagonist (Amamiya Ren)', image: ren },
-    { name: 'Sakamoto Ryuji', image: ryuji },
-    { name: 'Kitagawa Yusuke', image: yusuke },
-
-    // --- Persona 4 ---
-    { name: 'Satonaka Chie', image: chie },
-    { name: 'Shirogane Naoto', image: naoto },
-    { name: 'Hanamura Yosuke', image: yosuke },
-    { name: 'Narukami Yu', image: yu },
-
-    // --- Persona 3 ---
-    { name: 'Yoshino Chidori', image: chidori },
-    { name: 'Yuki Makoto (Protagonist)', image: makoto },
-    { name: 'Takeba Yukari', image: yukari },
-
-    // --- Project Sekai ---
-    { name: 'Otori Emu', image: emu },
-    { name: 'Shinonome Ena', image: ena },
-    { name: 'Hatsune Miku', image: miku },
-    { name: 'Kusanagi Nene', image: nene },
-    { name: 'Kamishiro Rui', image: rui },
-    { name: 'Aoyagi Toya', image: toya },
-    { name: 'Tenma Tsukasa', image: tsukasa },
-
-    // --- Ouran High School Host Club ---
-    { name: 'Fujioka Haruhi', image: haruhi },
-    { name: 'Suoh Tamaki', image: tamaki },
-
-    // --- Miss Kobayashi's Dragon Maid ---
-    { name: 'Kamui Kanna', image: kanna },
-    { name: 'Kobayashi', image: kobayashi },
-    { name: 'Tohru', image: tohru },
-
-    // --- Death Note ---
-    { name: 'L Lawliet', image: l },
-    { name: 'Yagami Light', image: light },
-
-    // --- Cowboy Bebop ---
-    { name: 'Edward Wong Hau Pepelu Tivrusky IV', image: edward },
-    { name: 'Ein', image: ein },
-
-    // --- Miscellaneous ---
-	{ name: 'Ikari Shinji', image: shinji },
-	{ name: 'Indou Hikaru', image: hikaru },
-    { name: 'Kaidou Shun', image: kaidou },
-    { name: 'Tomoe Mami', image: mami },
-    { name: 'Megumin', image: megumin },
-    { name: 'Nagatoro Hayase', image: nagatoro },
-];
-
-const games = [
-	{
-		name: 'Pokémon Black',
-		status: 'Completed',
-		thoughts: 'I never hated the trash and ice cream monsters like everyone else',
-		image: pkmnB,
-	},
-	{
-		name: 'Pokémon X',
-		status: 'Completed',
-		thoughts: 'Loved the character customization, also N is my favorite Pokémon character ever',
-		image: pkmnX,
-	},
-	{ name: 'Pokémon Alpha Sapphire',
-	 status: 'Completed',
-	  thoughts: 'My first real Pokémon game, and I loved it!',
-	   image: pkmnAS },
-	
-	{
-		name: 'Pokémon Sun',
-		status: 'Completed',
-		thoughts: 'I played all 4 games this gen. To avoid redundancy, only sun is listed',
-		image: pkmnS,
-	},
-	{
-		name: 'Pokémon Ultra Sun',
-		status: 'Completed',
-		thoughts: 'First game I ever shiny hunted in',
-		image: pkmnUS,
-	},
-	{
-		name: 'Pokémon: Lets Go, Eevee!',
-		status: 'Completed',
-		thoughts: 'this game was ass',
-		image: pkmnLGE,
-	},
-	{
-		name: 'Pokémon Sword',
-		status: 'Completed',
-		thoughts: 'Series started to go downhill here but I loved the online features',
-		image: pkmnSW,
-	},
-	{
-		name: 'Pokémon Brilliant Diamond',
-		status: 'Completed',
-		thoughts: 'this game was ass',
-		image: pkmnBD,
-	},
-	{
-		name: 'Pokémon Legends: Arceus',
-		status: 'Completed',
-		thoughts: 'PEAK PEAK PEAK PEAK my fav in the entire series',
-		image: pkmnLA,
-	},
-	{
-		name: 'Pokémon Violet',
-		status: 'Completed',
-		thoughts: 'I liked the open world but Area Zero made me quit for like a year before finishing the game',
-		image: pkmnV,
-	}
-];
+import ProfileGames from '$/components/ProfileGames.astro';
+import ProfileCharacters from '$/components/ProfileCharacters.astro';
 ---
 
 <MainLayout>
 	<div class="container" x-data>
 		<Section title="The mind palace">
 			<h2>My favorite characters</h2>
-			<ul class="profile-list">
-				{
-					characters.map(({ name, image }) => (
-						<ProfileItem title={name} {image} />
-					))
-				}
-			</ul>
+			<ProfileCharacters />
 			<h2>My favorite foods</h2>
 			<h3>Drinks</h3>
   				<p>Earl Grey Tea, Oolong Milk Tea with Boba (50% sweet), Dr Pepper, Ice Water (with straw)</p>
@@ -224,17 +35,7 @@ const games = [
 			<a href="https://myanimelist.net/animelist/mistake_mp4">View my anime list</a></li></ul>
 			
 			<h2>Games I've played</h2>
-			<ul class="profile-list">
-				{
-					games.map(({ name, status, thoughts, image }) => (
-						<ProfileItem title={name} {image} size={100}>
-							<h3>{name}</h3>
-							<p>Status: {status}</p>
-							<p>Thoughts: {thoughts}</p>
-						</ProfileItem>
-					))
-				}
-			</ul>
+			<ProfileGames />
 		</Section>
 
 
@@ -363,12 +164,6 @@ const games = [
 </script>
 
 <style>
-	.profile-list {
-display: flex;flex-wrap:wrap;justify-content:center;		gap: 5px;
-		list-style: none;
-		padding: 0;
-	}
-
 	.tooltip {
 		pointer-events: none;
 
