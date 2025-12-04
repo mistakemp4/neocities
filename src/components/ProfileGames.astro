@@ -1,0 +1,90 @@
+---
+/* eslint-disable simple-import-sort/imports */
+import ProfileItem from './ProfileItem.astro';
+import ProfileList from './ProfileList.astro';
+
+import pkmnAS from '$/assets/pkmnAS.png';
+import pkmnB from '$/assets/pkmnB.jpg';
+import pkmnBD from '$/assets/pkmnBD.jpg';
+import pkmnLA from '$/assets/pkmnLA.jpg';
+import pkmnLGE from '$/assets/pkmnLGE.jpg';
+import pkmnS from '$/assets/pkmnS.jpg';
+import pkmnSW from '$/assets/pkmnSW.jpg';
+import pkmnUS from '$/assets/pkmnUS.png';
+import pkmnV from '$/assets/pkmnV.jpg';
+import pkmnX from '$/assets/pkmnX.jpg';
+
+const games = [
+	{
+		name: 'Pokémon Black',
+		status: 'Completed',
+		thoughts: 'I never hated the trash and ice cream monsters like everyone else',
+		image: pkmnB,
+	},
+	{
+		name: 'Pokémon X',
+		status: 'Completed',
+		thoughts: 'Loved the character customization, also N is my favorite Pokémon character ever',
+		image: pkmnX,
+	},
+	{ name: 'Pokémon Alpha Sapphire',
+	 status: 'Completed',
+	  thoughts: 'My first real Pokémon game, and I loved it!',
+	   image: pkmnAS },
+	
+	{
+		name: 'Pokémon Sun',
+		status: 'Completed',
+		thoughts: 'I played all 4 games this gen. To avoid redundancy, only sun is listed',
+		image: pkmnS,
+	},
+	{
+		name: 'Pokémon Ultra Sun',
+		status: 'Completed',
+		thoughts: 'First game I ever shiny hunted in',
+		image: pkmnUS,
+	},
+	{
+		name: 'Pokémon: Lets Go, Eevee!',
+		status: 'Completed',
+		thoughts: 'this game was ass',
+		image: pkmnLGE,
+	},
+	{
+		name: 'Pokémon Sword',
+		status: 'Completed',
+		thoughts: 'Series started to go downhill here but I loved the online features',
+		image: pkmnSW,
+	},
+	{
+		name: 'Pokémon Brilliant Diamond',
+		status: 'Completed',
+		thoughts: 'this game was ass',
+		image: pkmnBD,
+	},
+	{
+		name: 'Pokémon Legends: Arceus',
+		status: 'Completed',
+		thoughts: 'PEAK PEAK PEAK PEAK my fav in the entire series',
+		image: pkmnLA,
+	},
+	{
+		name: 'Pokémon Violet',
+		status: 'Completed',
+		thoughts: 'I liked the open world but Area Zero made me quit for like a year before finishing the game',
+		image: pkmnV,
+	}
+];
+---
+
+<ProfileList>
+	{
+		games.map(({ name, status, thoughts, image }) => (
+			<ProfileItem title={name} {image} size={100}>
+				<h3>{name}</h3>
+				<p>Status: {status}</p>
+				<p>Thoughts: {thoughts}</p>
+			</ProfileItem>
+		))
+	}
+</ProfileList>
