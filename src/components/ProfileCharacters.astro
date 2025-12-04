@@ -1,4 +1,7 @@
 ---
+const imageSize = 65;
+const gap = 5;
+
 /* eslint-disable simple-import-sort/imports */
 import ProfileItem from './ProfileItem.astro';
 import ProfileList from './ProfileList.astro';
@@ -112,6 +115,6 @@ const characters = [
 ];
 ---
 
-<ProfileList>
-	{characters.map(({ name, image }) => <ProfileItem title={name} {image} />)}
+<ProfileList itemSize={imageSize} {gap}>
+	{characters.map(({ name, image }) => <ProfileItem title={name} {image} size={imageSize} />)}
 </ProfileList>

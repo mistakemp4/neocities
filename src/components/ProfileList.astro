@@ -1,13 +1,24 @@
+---
+interface Props {
+itemSize?: number;
+gap?: number;
+}
+
+const { gap = 5, itemSize = 65 } = Astro.props;
+---
+
 <ul>
 	<slot />
 </ul>
 
-<style>
+<style define:vars={{ gap: `${gap}px`, 'item-size': `${itemSize}px` }}>
 	ul {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 5px;
-		justify-content: center;
+		display: grid;
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax(min(100%, var(--item-size)), auto)
+		);
+		gap: var(--gap);
 
 		padding: 0;
 
