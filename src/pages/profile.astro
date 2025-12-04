@@ -172,7 +172,8 @@ import MainLayout from '$/layouts/MainLayout.astro';
 			id="tooltip"
 			x-show="$store.tooltip.show"
 			x-text="$store.tooltip.value"
-			x-on:mousemove.passive.document.throttle.33ms="$store.tooltip.move"
+			x-ref="tooltip"
+			x-on:mousemove.passive.document.throttle.33ms="$store.tooltip.move($refs.tooltip, $event.x, $event.y)"
 		>
 		</div>
 	</div>
@@ -180,8 +181,6 @@ import MainLayout from '$/layouts/MainLayout.astro';
 
 <script>
 	import Alpine from 'alpinejs';
-
-	const tooltipElement = document.getElementById('tooltip') as HTMLDivElement;
 
 	const tooltip = {
 		show: false,
@@ -192,11 +191,12 @@ import MainLayout from '$/layouts/MainLayout.astro';
 			this.show = true;
 		},
 
-		move(e: MouseEvent) {
+		move(tooltip: HTMLDivElement, x: number, y: number) {
 			const padding = 8;
-			tooltipElement.style.setProperty(
+			console.log([x, y]);
+			tooltip.style.setProperty(
 				'translate',
-				`${e.x + padding}px calc(${e.y - padding}px - 100%)`,
+				`${x + padding}px calc(${y - padding}px - 100%)`,
 			);
 		},
 
