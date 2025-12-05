@@ -1,3 +1,29 @@
+---
+const tooltipStore = `
+{
+	show: false,
+	value: '',
+
+	set(value) {
+		this.value = value;
+		this.show = true;
+	},
+
+	move(tooltip, x, y) {
+		const padding = 8;
+		tooltip.style.setProperty(
+			'translate',
+			\`\${x + padding}px calc(\${y - padding}px - 100%)\`,
+		);
+	},
+
+	hide() {
+		this.show = false;
+	},
+}
+`
+---
+
 <div
 	class="tooltip"
 	id="tooltip"
@@ -6,36 +32,9 @@
 	x-text="$store.tooltip.value"
 	x-ref="tooltip"
 	x-on:mousemove.passive.document.throttle.33ms="$store.tooltip.move($refs.tooltip, $event.x, $event.y)"
+	x-init={`Alpine.store('tooltip', ${tooltipStore})`}
 >
-
-<script>
-	import Alpine from 'alpinejs';
-
-	const tooltip = {
-		show: false,
-		value: '',
-
-		set(value: string) {
-			this.value = value;
-			this.show = true;
-		},
-
-		move(tooltip: HTMLDivElement, x: number, y: number) {
-			const padding = 8;
-			console.log([x, y]);
-			tooltip.style.setProperty(
-				'translate',
-				`${x + padding}px calc(${y - padding}px - 100%)`,
-			);
-		},
-
-		hide() {
-			this.show = false;
-		},
-	};
-
-	Alpine.store('tooltip', tooltip);
-</script>
+</div>
 
 <style>
 	.tooltip {
