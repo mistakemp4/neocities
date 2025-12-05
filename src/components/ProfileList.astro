@@ -1,13 +1,15 @@
 ---
-interface Props {
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = {
 itemSize?: number;
 gap?: number;
-}
+} & HTMLAttributes<'ul'>;
 
-const { gap = 5, itemSize = 65 } = Astro.props;
+const { gap = 5, itemSize = 65, ...props } = Astro.props;
 ---
 
-<ul x-data>
+<ul x-data {...props}>
 	<slot />
 </ul>
 
