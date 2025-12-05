@@ -1,8 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 
-import button from '$/assets/button.gif';
-
 import Section from './Section.astro';
 
 const code =
@@ -25,7 +23,7 @@ const data = `{
 ---
 
 <Section class="site-button">
-	<Image src={button} alt="Site button" />
+	<Image src="/button.gif" width={88} height={31} alt="Site button" />
 	<code>{code}</code>
 	<button x-data={data} @click="copyCode" x-text="buttonText">Copy</button>
 </Section>
