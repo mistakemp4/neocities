@@ -21,6 +21,20 @@ export default defineConfig({
 			},
 		},
 	},
+  experimental: {
+    fonts: [{
+		name: 'Persona 4',
+      provider: 'local',
+	  cssVariable: '--font-persona4',
+	  variants: [
+		{
+			src: [ './src/assets/fonts/FOT-SkipStd-B.otf' ],
+		},
+	  ],
+	  fallbacks: [ 'Courier New', 'monospace' ],
+    }],
+  },
 
 	integrations: [alpinejs()],
 });
+
