@@ -378,3 +378,382 @@ a:hover {
 #pause-btn:hover {
   background: #d4c200;
 }
+
+---
+import { Font } from "astro:assets";
+import { Image } from 'astro:assets';
+
+import Base from "$/layouts/Base.astro";
+import souyo from '$/assets/souyo.jpg';
+---
+
+<Base>
+    <Fragment slot="head">
+        <Font cssVariable="--font-persona4" />
+    </Fragment>
+
+<div class="container">
+
+  <div class="column">
+    <div class="box tilted">
+      <h1>Aibous</h1>
+     <Image 
+  src={souyo}
+  alt=""
+  style={{ width: "100%", height: "100%", filter: "grayscale(15%) contrast(120%)" }}
+/>
+
+      <p><b>Ship:</b> Souji/Yu x Yosuke</p>
+      <p><b>Arcana:</b> Fool x Magician</p>
+    </div>
+    
+<div class="box">
+  <h1>Playlist</h1>
+
+  <div id="musicplayer">
+    <div id="song-title">Loading...</div>
+
+    <input 
+      type="range" 
+      id="seekbar" 
+      min="0" 
+      max="100" 
+      value="0"
+    >
+
+    <div style="display:flex; gap:10px; justify-content:center;">
+  <button id="pause-btn">Pause ❚❚</button>
+  <button id="next-btn">Next ▶</button>
+</div>
+
+
+    <audio id="player" autoplay></audio>
+  </div>
+
+</div>
+
+
+  </div>
+
+  <div class="column">
+    <div class="box" style="background:black; color:yellow;">
+      <marquee>WELCOME TO THE TV WORLD // THE TRUTH IS THEY ARE IN LOVE // CUT CONTENT IS REAL</marquee>
+    </div>
+
+    <div class="box tilted-right">
+      <h1>The Canon Files</h1>
+      
+      <div class="quote">
+        "Yeah... Like you... You're special to me, you know?"
+      </div>
+      <p style="font-size:0.8rem; text-align:right;">- Rank 9 Social Link</p>
+      <hr>
+      
+      <div class="quote">
+        "This town I hated so much? Now, I love it. There's still nothing here, but I have family and friends... and you"
+      </div>
+      <p style="font-size:0.8rem; text-align:right;">-  Rank 9 Social Link</p>
+ <hr>
+
+      <div class="quote">
+        "I think out of everyone, I wanted to be acknowledged by you the most..."
+      </div>
+      <p style="font-size:0.8rem; text-align:right;">-  Rank 10 Social Link</p>
+ <hr>
+
+      <p>Whatever happens in the game, the narrative pushes them together as two halves of the same whole. They are partners.</p>
+    </div>
+<div class="box2 tilted">
+  <h1>My Analysis</h1>
+<p>If there’s one relationship in Persona 4  that tap-dances on the edge of queer subtext while winking directly at the camera, it’s Yu Narukami and Yosuke Hanamura. Especially when you take cut content into consideration there is a lot of open space for a queer-coded interpretation of their relationship, and a strong case for a "best bros to lovers" reading of the two. </p>
+<p></p>
+<p>The only sanctioned fistfight in the entire game takes place at Rank 10 of Yosuke’s Social Link and it is absurdly intimate.</p>
+<p></p>
+<p>Yosuke literally begs Yu to hit him, to see him, to break him open, to force him to confront everything he’s been swallowing down like emotional rat poison. And Yu does. Yu meets him there.</p>
+<p></p>
+<p>Fist fighting your friend is kind of hot and also homoerotic, but beneath the humor, this scene is a study in chosen vulnerability. Yosuke does not grant this level of access to anyone else.</p>
+<p></p>
+<p>This isn't just bros being bros. This is however a confession in the language they both understand.</p>
+<p></p>
+<p>To address the Saki of it all, Yosuke's crush on her was real, his grief over her was real. But grief over a girl does not erase the fact that his emotional arc culminates with Yu, not Saki.</p>
+<p></p>
+<p>Yosuke spends the entire Social Link circling around one central insecurity, that being the fear of being unchosen, left behind, or fundamentally unwanted, not Saki.</p>
+<p></p>
+<p>And who heals that wound?  </p>
+<p>Not a romantic interest.  </p>
+<p>Not closure about Saki.</p>
+<p></p>
+<p>Yu.</p>
+<p></p>
+<p>Yu is Yosuke's anchor. The person whose departure terrifies him the most. The person he credits with helping him stop running. He does not want Yu to leave him.</p>
+<p></p>
+<p>Their partnership is written with all the beats of romantic progression, EXCEPT the final confession choice. Someone at Atlus got cold feet and pressed delete on the gay option.</p>
+<p></p>
+<p>We can infer this because:</p>
+<p>There are removed voice lines that imply more flirtation and emotional intimacy.</p>
+<p></p>
+<p>There is a literal, factual cut hug event flag at Rank 8, the exact structural point where Social Links usually branch into romance.</p>
+<p></p>
+<p>You can’t put a hug flag in the files and then act surprised when people ship them!!!</p>
+<p></p>
+<p>The game toyed with Yu and Yosuke's dynamic constantly, and knowingly too.</p>
+<p></p>
+<p>Sleeping in the same camping tents, two inches from touching but pretending this is straight behavior.</p>
+<p></p>
+<p>Yosuke flustered out of his mind inventing entire disaster scenarios about sharing a tent with Yu.</p>
+<p></p>
+<p>Some more literal quotes I find to be quite telling:</p>
+<p>"You seem to be pretty good with your hands... Never mind."</p>
+<p>“I’m cool with playing second banana.”</p>
+<p></p>
+<p>Romantic-subordinate coded language? In my JRPG? It’s more likely than you think.</p>
+<p></p>
+<p>I think the game understands the trope, best friends who bicker, fight, bleed, joke, flirt, and ultimately grow into the most important person in each other's lives. The blueprint pinnacle of a best bros to lovers pipeline.</p>
+<p></p>
+<p>And let's be honest, the cut of Yosuke's romance makes sense on a corporate logical level, especially for 2008. It keeps his grief arc tidy, it avoids branching the protagonists sexuality, and it lets the writers concentrate any explicit LGBT/gender role themes onto Kanji/Naoto instead.</p>
+<p></p>
+<p>Understandable structural choices. I still think none of these choices erase what the game actually already built though. </p>
+<p></p>
+<p>Cut content doesn't erase subtext; it only reveals how much more text there almost was.</p>
+<p></p>
+<p>Everything in the playable story still demonstrates Yosuke's emotional depends on Yu, his fear of losing him, his sensitivity to physical closeness, their flirtatious comedic bits, their intense symbolic fight, their mutual vulnerability, their slow but deliberate trust building, their chosen intentional closeness.</p>
+<p></p>
+<p>SouYo is NOT wishful thinking. It is reading the narrative with a critically queer lens, looking at the form, the repetition, the negative space, and the places where silence says more than direct dialogue ever could.</p>
+<p></p>
+<p>Persona 4 never tells you they're boyfriends. It never has to.</p>
+<p></p>
+</div>
+ <div style="margin-block-start: 2rem;"><a class="box a" href="/shrines/">Go back</a> </div>
+  </div>
+
+
+  
+  <div class="column">
+    <div class="box tilted">
+      <h1>THE LOST AUDIO</h1>
+      <video 
+         src="https://files.catbox.moe/bp53g2.mkv"
+        controls
+        class="video"
+>      </video>
+
+      <p style="font-size:0.8rem; margin-top:10px;"><br> "I like you."<br> "Don't go."</p>
+    </div>
+
+    <div class="box">
+      <h1>Links</h1>
+      <ul>
+        <li><a href="https://archiveofourown.org/tags/Hanamura%20Yosuke*s*Persona%204%20Protagonist/works" rel="noreferrer" target="_blank">AO3 Tag</a></li>
+        <li><a href="https://pin.it/6pknZFT63" rel="noreferrer" target="_blank">Pinterest board</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</Base>
+
+<script>
+const songs = [
+  {
+    name: "Pursuing My True Self",
+    path: "https://files.catbox.moe/gbgoln.mp3"
+  },
+  {
+    name: "Heartbeat, Heartbreak",
+    path: "https://files.catbox.moe/2e0nfm.mp3"
+  },
+  {
+    name: "Your Affection",
+    path: "https://files.catbox.moe/fle8pr.mp3"
+  },
+  {
+    name: "Signs of Love",
+    path: "https://files.catbox.moe/dg8qo0.mp3"
+  }
+];
+
+let index = 0;
+
+const player = document.getElementById("player") as HTMLAudioElement;
+const title = document.getElementById("song-title") as HTMLDivElement;
+const seekbar = document.getElementById("seekbar") as HTMLInputElement;
+const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
+const pauseBtn = document.getElementById("pause-btn") as HTMLButtonElement;
+
+
+function loadSong(i: number) {
+  player.src = songs[i].path;
+  title.textContent = songs[i].name;
+  player.play().catch(() => {}); // prevents autoplay errors
+}
+
+player.addEventListener("timeupdate", () => {
+  if (!isNaN(player.duration)) {
+    seekbar.value = (player.currentTime / player.duration) * 100;
+  }
+});
+
+seekbar.addEventListener("input", () => {
+  player.currentTime = (seekbar.value / 100) * player.duration;
+});
+
+nextBtn.addEventListener("click", () => {
+  index = (index + 1) % songs.length;
+  loadSong(index);
+});
+
+player.addEventListener("ended", () => {
+  index = (index + 1) % songs.length;
+  loadSong(index);
+});
+
+pauseBtn.addEventListener("click", () => {
+  if (player.paused) {
+    player.play();
+    pauseBtn.textContent = "Pause ❚❚";
+  } else {
+    player.pause();
+    pauseBtn.textContent = "Play ▶";
+  }
+});
+
+
+// Load first song on page start
+loadSong(index);
+</script>
+
+
+<style>
+  :root {
+    --p4-yellow: #FFE600;
+    --p4-black: #111111;
+  }
+
+a:link {
+  color: var(--p4-black);
+}
+
+a:visited {
+  color: var(--p4-black);
+}
+
+a:hover {
+  color: #837600;
+  text-decoration: underline;
+}
+
+  body {
+    background-color: var(--p4-yellow);
+    background-image: linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), 
+                      linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    font-family: var(--font-persona4);
+    color: var(--p4-black);
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; 
+    gap: 15px;
+  }
+
+  .box {
+    background: white;
+    border: 3px solid var(--p4-black);
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.8);
+    padding: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+    .box2 {
+    background: white;
+    border: 3px solid var(--p4-black);
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.8);
+    padding: 15px;
+    margin-bottom: 15px;
+    overflow: auto;
+    max-height: 20rem;
+  }
+
+  .tilted { transform: rotate(-2deg); }
+  .tilted-right { transform: rotate(2deg); }
+  
+  h1 {
+    background: var(--p4-black);
+    color: white;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+
+  .quote {
+    border-left: 4px solid var(--p4-yellow);
+    padding-left: 10px;
+    margin: 10px 0;
+    font-style: italic;
+  }
+
+.video {
+  width: 100%;
+  height: auto;
+  border: 3px solid var(--p4-black);
+  margin-bottom: 10px;
+  display: block;
+}
+
+#musicplayer {
+  background: var(--p4-black);
+  border: 3px solid var(--p4-yellow);
+  padding: 10px;
+  text-align: center;
+  color: var(--p4-yellow);
+  font-family: var(--font-persona4);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#song-title {
+  background: var(--p4-yellow);
+  color: var(--p4-black);
+  padding: 5px;
+  font-weight: bold;
+}
+
+#seekbar {
+  width: 100%;
+  accent-color: var(--p4-yellow);
+}
+
+#next-btn {
+  background: var(--p4-yellow);
+  border: 2px solid var(--p4-black);
+  color: var(--p4-black);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+#next-btn:hover {
+  background: #d4c200;
+}
+
+#pause-btn {
+  background: var(--p4-yellow);
+  border: 2px solid var(--p4-black);
+  color: var(--p4-black);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+#pause-btn:hover {
+  background: #d4c200;
+}
