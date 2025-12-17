@@ -131,6 +131,10 @@ import p5r from '$/assets/p5r.jpg';
 import p5s from '$/assets/p5s.jpg';
 import cyber from '$/assets/cyber.jpg';
 import dmmd from '$/assets/dmmd.jpg';
+import dis from '$/assets/dis.jpg';
+import p5t from '$/assets/p5t.jpg';
+import meta from '$/assets/meta.jpg';
+import { discriminatedUnion } from 'astro:schema';
 
 const games = [
 	{
@@ -882,7 +886,7 @@ const games = [
 	},
 	{
 		name: "Persona 5 Strikers",
-		status: 'In Progress',
+		status: 'Completed',
 		thoughts: 'idk if I like it just cause its persona 5 or cause the combat is actually challenging and fun',
 		image: p5s,
 	},
@@ -891,6 +895,24 @@ const games = [
 		status: 'In Progress',
 		thoughts: 'AMAZING world so far its so fun just to drive around night city',
 		image: cyber,
+	},
+	{
+		name: "Disco Elysium",
+		status: 'In Progress',
+		thoughts: 'I picked the insane guy but idk whats happening',
+		image: dis,
+	},
+	{
+		name: "Persona 5 Tactica",
+		status: 'Not Started',
+		thoughts: 'Lets be honest I am only playing it bc its persona 5',
+		image: p5t,
+	},
+	{
+		name: "Metaphor: ReFantazio",
+		status: 'Not started',
+		thoughts: 'Lets be honest I am only playing it bc its made by the persona devs',
+		image: meta,
 	},
 ];
 
