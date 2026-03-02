@@ -6,8 +6,6 @@ date: March 1, 2026
 category:
 ---
 
-# Polyamory in my early 20s was a mistake (probably)
-
 ## Or maybe I am just the problem
 
 Being polyamorous in your early 20s is quite an experience to say the least. I am not sure if it is the unfinished frontal lobe, arent they saying that does not even wrap up until your 30s now??? Or if it is just my own personal build of BPD, hypersexuality, and self destructive decision making. Either way, it has mostly resulted in problems. The kind that follow you into D&D sessions.
