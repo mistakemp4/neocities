@@ -3,18 +3,26 @@
 </aside>
 
 <style>
-	aside {
-		max-width: 150px;
-		margin-block-start: 30px;
+aside {
+	position: sticky;
+	top: 20px;
 
-		&:first-child {
-			margin-inline-start: 50px;
-		}
+	flex-shrink: 0;
+	max-width: 150px;
+	margin-block-start: 30px;
 
-		@container (width <= 800px) {
-			display: flex;
-			max-width: initial;
-			margin-inline: 20px;
-		}
+	&:first-child {
+		margin-inline-start: 50px;
 	}
+}
+
+@media only screen and (max-width: 800px) {
+	aside {
+		position: static;
+		display: block;
+		width: auto;
+		max-width: none;
+		margin: 10px;
+	}
+}
 </style>
