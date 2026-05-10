@@ -27,8 +27,14 @@
 
 <style is:global>
 	.CommentBox {
+		--ff: serif;
+
 		* {
-			font: inherit;
+			font-family: var(--ff);
+		}
+
+		input,textarea {
+			font-family: var(--ff) !important;
 		}
 	}
 </style>
