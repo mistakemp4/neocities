@@ -140,19 +140,31 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 		background-color: var(--button-bg);
 	}
 
-	.layout-container {
-		display: flex;
-		max-width: 900px;
+.layout-container {
+	display: flex;
+	align-items: flex-start;
+	max-width: 900px;
+}
 
-		@media only screen and (max-width: 800px) {
-			flex-wrap: wrap;
-		}
+main {
+	flex: auto;
+	min-width: 0;
+	margin-inline: 20px;
+}
+
+/* mobile */
+@media only screen and (max-width: 800px) {
+	.layout-container {
+		display: block;
+		max-width: none;
+		width: 100%;
 	}
 
 	main {
-		flex: auto;
-		margin-inline: 20px;
+		width: auto;
+		margin: 10px;
 	}
+}
 
 	.post-preview {
 		h3 {
