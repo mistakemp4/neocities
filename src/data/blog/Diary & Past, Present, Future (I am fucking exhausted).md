@@ -21,7 +21,7 @@ I thought I would do a past, present, future tarot card reading to help process 
 
 What energy is behind me now?
 
-![]($/assets/reversed%20knight%20of%20swords.jpg)
+![]($/assets/reversed%20knight%20of%20swords.webp)
 
 - Reversed Knight of Swords
 	- The upright Knight of Swords means fast movement, ambition, and charging ahead into confrontation or drama. When reversed, it often points to a sense of being burnt out, reckless, or acting without foresight.
@@ -31,7 +31,7 @@ What energy is behind me now?
 
 What is the energy of my current situation?
 
-![]($/assets/Magician.jpg)
+![]($/assets/Magician.webp)
 
 - The Magician
 	- The Magician is the ultimate manifester. They have all the tools they need (Wands, Cups, Swords, Pentacles) and the ability to use them to shape their reality.
@@ -41,7 +41,7 @@ What is the energy of my current situation?
 
 What influence is ahead of me?
 
-![]($/assets/strength.jpg)
+![]($/assets/strength.webp)
 
 - Strength
 	- The Strength card is not about brute physical force, but about courage, patience, compassion, and inner fortitude. It depicts a person gently but firmly mastering their inner, wild nature (the lion) through love and calm, rather than domination.

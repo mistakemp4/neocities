@@ -15,7 +15,7 @@ Reboot. Linux Mint logo flashed for a second. Then my monitor went no signal. Th
 
 Eventually, after repeated boots, the system began dropping into initramfs. This all happened ~12 hours before moving back to college, so time and patience were... limited...
 
-## Initramfs claims root filesystem doesn’t exist ![Terminal struggles 1](https://files.catbox.moe/jduec4.jpg)
+## Initramfs claims root filesystem doesn’t exist ![Terminal struggles 1](https://files.catbox.moe/jduec4.webp)
 
 Ok so, it could be a root device name mismatch, kernel arguments incorrect, or system moved to NVMe naming (nvme0n1p2).
 
