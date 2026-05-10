@@ -1,4 +1,7 @@
 ---
+import album from '$/assets/album_cover.webp';
+import disc from '$/assets/disc.webp';
+
 const onclick =
 	"() => {const audio = document.getElementById('audio'); if (audio.paused) audio.play(); else audio.pause();}";
 ---
@@ -6,11 +9,11 @@ const onclick =
 <div class="player" x-data @click={onclick}>
 	<img
 		class="img2"
-		src="https://archive.org/download/persona-5-ost-flac/%E7%9B%AE%E9%BB%92%E5%B0%86%E5%8F%B8%20-%20%E3%80%8E%E3%83%9A%E3%83%AB%E3%82%BD%E3%83%8A5%E3%80%8F%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%8A%E3%83%AB%E3%83%BB%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89%E3%83%88%E3%83%A9%E3%83%83%E3%82%AFDisc%201.jpg"
+		src={album.src}
 	/>
 	<img
 		class="img1"
-		src="https://web.archive.org/web/20220514070535im_/https://cdn.discordapp.com/attachments/822589056256311328/890714753780031488/image0.png"
+		src={disc.src}
 	/>
 </div>
 <audio transition:persist id="audio" src="https://files.catbox.moe/sudbyr.flac"
