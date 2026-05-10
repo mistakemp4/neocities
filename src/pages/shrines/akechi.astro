@@ -1,10 +1,11 @@
 ---
-import { Image } from 'astro:assets';
+import { Font, Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
-import top from '$/assets/akechi1.webp';
-import bottom from '$/assets/akechi2.webp';
+import blackMask from '$/assets/blackMask.webp';
+import corkboardBg from '$/assets/corkboard-bg.webp';
 import flIcon from '$/assets/fl_icon.webp';
+import portrait from '$/assets/portrait.webp';
 import Base from '$/layouts/Base.astro';
 
 const quotes = (await getCollection('akechi')).map(entry => entry.data.quote);
@@ -12,288 +13,600 @@ const quotesString = JSON.stringify(quotes);
 ---
 
 <Base>
-	<header>
-		<div class="header-image">
-			<Image src={top} alt="Akechi and Ren" />
-			<p>And so, your heart is always free.</p>
+	<Fragment slot="head">
+		<Font cssVariable="--font-p5-body" />
+		<Font cssVariable="--font-p5-header" />
+	</Fragment>
+
+	<main class="corkboard">
+		<div class="board-column side-column">
+			<section class="photo-card tilted-left">
+				<Image src={portrait} alt="Goro Akechi portrait" />
+				<p>the detective prince</p>
+			</section>
+
+			<section class="paper-card subject-card">
+				<h2>Subject File</h2>
+
+				<dl class="file-list">
+					<div>
+						<dt>Name</dt>
+						<dd>Goro Akechi</dd>
+					</div>
+					<div>
+						<dt>Aliases</dt>
+						<dd>Crow, Black Mask, Detective Prince</dd>
+					</div>
+					<div>
+						<dt>Arcana</dt>
+						<dd>Justice</dd>
+					</div>
+					<div>
+						<dt>Theme</dt>
+						<dd>Performance, revenge, freedom, recognition</dd>
+					</div>
+					<div>
+						<dt>Core wound</dt>
+						<dd>Being useful instead of being loved</dd>
+					</div>
+				</dl>
+			</section>
+
+			<section class="paper-card links-card">
+				<h2>Links</h2>
+
+				<a href="https://www.marheavenj.net/akechi/index.php">
+					<Image src={flIcon} alt="Goro Akechi Fanlisting icon" />
+				</a>
+
+				<p>Goro Akechi Fanlisting</p>
+			</section>
 		</div>
-		<div class="header-image">
-			<Image src={bottom} alt="Akechi and Ren" />
-			<p>The exact opposite of mine.</p>
+
+		<div class="board-column main-column">
+			<section class="paper-card intro-card taped">
+				<p class="label">case file no. 0602</p>
+				<h1>Goro Akechi</h1>
+				<p>
+					Detective prince, rival, accomplice, loose thread, bad ending with a
+					smile. A character built out of performance, resentment, brilliance,
+					and a desperate need to be seen.
+				</p>
+			</section>
+
+			<section class="note-card quote-card pinned" data-quotes={quotesString}>
+				<p class="label">intercepted line</p>
+
+				<p class="quote-text" data-quote-text></p>
+
+				<button class="stamp-button" type="button" data-new-quote>
+					new note
+				</button>
+			</section>
+
+			<section class="paper-card analysis-card taped">
+				<h2>Character Analysis</h2>
+
+				<h3>Performance as survival</h3>
+				<p>
+					Akechi's public self is his armor. The polite voice, the camera-ready
+					smile, the perfect grades, the detective persona: all of it is a
+					version of himself designed to be valuable enough, so that someone
+					will finally look at him.
+				</p>
+
+				<h3>Rivalry as recognition</h3>
+				<p>
+					His relationship with Joker matters because Joker sees through the
+					mask without looking away. Their rivalry gives Akechi something he
+					cannot get from fame: a witness. Someone who knows what he is and
+					still treats him as a person.
+				</p>
+
+				<h3>Truth over comfort</h3>
+				<p>
+					Third semester Akechi is compelling because he would rather live with
+					an ugly truth than accept a beautiful lie. That choice makes him seem
+					harsh, but in reality he's just painfully honest.
+				</p>
+			</section>
+
+			<a class="back" href="/shrines/">Go back</a>
 		</div>
-	</header>
 
-	<div class="gradient"></div>
+		<div class="board-column side-column">
+			<section class="photo-card tilted-right">
+				<Image src={blackMask} alt="Black Mask Akechi" />
+				<p>the mask slips</p>
+			</section>
 
-	<main>
-		<section
-			class="quotes"
-			x-data={`{ quotes: ${quotesString}, current: Math.floor(Math.random() * ${quotes.length}) }`}
-		>
-			<h2 class="quote" x-text="quotes[current]"></h2>
-			<button @click=`current = Math.floor(Math.random() * ${quotes.length})`
-				>⟳</button
-			>
-		</section>
+			<section class="paper-card masks-card">
+				<h2>The Masks</h2>
 
-		<section>
-			<h2>Goro Akechi</h2>
+				<div class="mini-note">
+					<h3>Detective Prince</h3>
+					<p>Useful, charming, palatable, marketable.</p>
+				</div>
 
-			<div class="table">
-				<h3><b>Japanese Name</b></h3>
-				<div>
-					<p>明智 吾郎</p>
+				<div class="mini-note">
+					<h3>Crow</h3>
+					<p>The heroic costume: justice performed as theater.</p>
 				</div>
-				<h3><b>Also known as</b></h3>
-				<div>
-					<p>Crow</p>
-					<p>Black Mask</p>
-					<p>Second Advent of the Detective Prince</p>
-					<p>The Traitor</p>
-					<p>Man in the Black Mask</p>
-					<p>Mysterious Man</p>
-					<p>Pleasant Boy</p>
+
+				<div class="mini-note">
+					<h3>Black Mask</h3>
+					<p>The wound underneath: furious, honest, theatrical, and doomed.</p>
 				</div>
-				<h3><b>Occupation</b></h3>
-				<div>
-					<p>High School Student</p>
-					<p>Detective</p>
-					<p>Hitman</p>
-				</div>
-				<h3><b>Affiliation</b></h3>
-				<div>
-					<p>Tokyo District Special Investigation Department</p>
-					<p>Phantom Thieves of Hearts</p>
-					<p>Antisocial Force (Enforcer)</p>
-				</div>
-				<div>
-					<h3><b>Date of Birth</b></h3>
-				</div>
-				<div>
-					<p>June 2</p>
-				</div>
-				<div>
-					<h3><b>Age</b></h3>
-				</div>
-				<div>
-					<p>17-18</p>
-				</div>
-				<div>
-					<h3><b>Height</b></h3>
-				</div>
-				<div>
-					<p>178 cm (5'10")</p>
-				</div>
-				<div>
-					<h3><b>Weight</b></h3>
-				</div>
-				<div>
-					<p>64 kg (141 lbs)</p>
-				</div>
-				<div>
-					<h3><b>Blood Type</b></h3>
-				</div>
-				<div>
-					<p>AB</p>
-				</div>
-				<div>
-					<h3><b>Crimes</b></h3>
-				</div>
-				<div>
-					<p>Contract killing</p>
-					<p>Terrorism</p>
-					<p>Aiding and abetting sedition</p>
-					<p>Mass murder</p>
-					<p>Incrimination</p>
-					<p>Assault and battery</p>
-					<p>Manipulation</p>
-					<p>Fraud</p>
-					<p>Sabotage</p>
-					<p>Corruption</p>
-					<p>Conspiracy</p>
-					<p>Brainwashing</p>
-					<p>Kidnapping</p>
-					<p>Theft</p>
-				</div>
-			</div>
-		</section>
-		<section>
-			<a href="https://www.marheavenj.net/akechi/index.php">
-				<Image src={flIcon} alt="Icon" />
-			</a>
-			<p>Goro Akechi Fanlisting</p>
-		</section>
-		<a class="back" href="/shrines/">Go back</a>
+			</section>
+		</div>
 	</main>
 </Base>
 
-<style>
+<script>
+	const quoteCard = document.querySelector('[data-quotes]');
+	const quoteText = quoteCard?.querySelector('[data-quote-text]');
+	const quoteButton = quoteCard?.querySelector('[data-new-quote]');
+
+	if (quoteCard && quoteText && quoteButton) {
+		const quotes = JSON.parse(quoteCard.getAttribute('data-quotes') || '[]');
+
+		const showRandomQuote = () => {
+			if (!quotes.length) {
+				quoteText.textContent = 'No notes found.';
+				return;
+			}
+
+			const randomIndex = Math.floor(Math.random() * quotes.length);
+			quoteText.textContent = quotes[randomIndex];
+		};
+
+		showRandomQuote();
+
+		quoteButton.addEventListener('click', showRandomQuote);
+	}
+</script>
+
+<style define:vars={{ corkboardBg }}>
 	:root {
-		--header-color: red;
-		--text-color: #f8f8f8;
-		--bg-color: #111013;
-		--border-color: #9c030b;
+		--ink: #211714;
+		--paper: #f4e4c1;
+		--paper-dark: #d8bd86;
+		--tape: rgb(255 244 191 / 75%);
+		--shadow: rgb(24 11 4 / 45%);
 	}
 
-	:global(body) {
-		color: var(--text-color);
-		background: black;
+	body {
+		color: var(--ink);
+		font-family: var(--font-p5-body);
+		background-color: #8c5a2f;
+		background-image: url('/src/assets/corkboard-bg.webp');
+		background-repeat: repeat;
+		background-size: 500px auto;
+		background-position: top left;
+		background-attachment: fixed;
 	}
 
-	section {
-		border: 2px solid var(--border-color);
+	a:link,
+	a:visited {
+		color: var(--ink);
 	}
 
-	header {
+	a:hover {
+		color: var(--paper);
+		background: var(--ink);
+		text-decoration: none;
+	}
+
+	.corkboard {
+		display: grid;
+		grid-template-columns: 180px minmax(420px, 620px) 180px;
+		column-gap: 22px;
+		row-gap: 32px;
+		align-items: start;
+
+		width: min(100% - 40px, 1050px);
+		margin: 72px auto;
+
+		font-family: var(--font-p5-body);
+		font-size: 1.15rem;
+	}
+
+	.board-column {
 		display: flex;
 		flex-direction: column;
-		height: 100lvh;
-		color: var(--header-color);
+		gap: 24px;
 	}
 
-	.header-image {
+	.side-column {
+		font-size: 0.86rem;
+	}
+
+	.side-column:first-child {
+		margin-top: 70px;
+	}
+
+	.side-column:last-child {
+		margin-top: 110px;
+	}
+
+	.paper-card,
+	.note-card,
+	.photo-card {
 		position: relative;
-
-		display: grid;
-		flex: auto;
-		place-items: end;
-
-		padding-inline: 8px;
-
-		p {
-			margin: 0;
-
-			font-size: calc(32px + 2vw);
-			font-weight: bold;
-			color: red;
-			text-shadow: 4px 4px 8px black;
-			text-transform: uppercase;
-		}
-
-		img {
-			position: absolute;
-			z-index: -1;
-			inset: 0;
-
-			width: 100%;
-			height: 100%;
-
-			object-fit: cover;
-			object-position: top;
-		}
-
-		&:first-child p {
-			text-align: right;
-		}
-
-		&:last-child {
-			justify-items: start;
-			background-image: linear-gradient(to bottom, transparent 80%, black);
-		}
+		padding: 16px;
+		border: 2px solid var(--ink);
+		background: var(--paper);
+		box-shadow: 6px 6px 0 var(--shadow);
 	}
 
-	main {
-		display: grid;
-		grid-template-columns: 1fr;
-		margin-block: 64px;
-
-		@media (width >= 600px) {
-			grid-template-columns: 1fr 600px 1fr;
-
-			& > * {
-				grid-column: 2;
-			}
-		}
-
-		@media (width >= 1000px) {
-			&::before,
-			&::after {
-				--gradient-cutoff: 50%;
-
-				content: '';
-				grid-row: 2;
-				opacity: 45%;
-			}
-
-			&::before {
-				grid-column: 1;
-				background:
-					linear-gradient(to bottom, transparent var(--gradient-cutoff), black),
-					no-repeat center/contain url('/src/assets/akechiside1.webp');
-			}
-
-			&::after {
-				grid-column: 3;
-				background:
-					linear-gradient(to bottom, transparent var(--gradient-cutoff), black),
-					no-repeat center/contain url('/src/assets/akechiside2.webp');
-			}
-		}
+	.side-column .paper-card,
+	.side-column .note-card,
+	.side-column .photo-card {
+		padding: 11px;
+		box-shadow: 4px 4px 0 var(--shadow);
 	}
 
-	section {
-		margin-block: 16px;
-		padding: 12px;
-		background-color: var(--bg-color);
-		background-image: linear-gradient(
-			to bottom,
-			transparent 80%,
-			rgb(42, 4, 4)
-		);
-
-		img {
-			max-width: 100%;
-			object-fit: contain;
-		}
+	.paper-card {
+		background:
+			linear-gradient(transparent 95%, rgb(33 23 20 / 12%) 95%),
+			var(--paper);
+		background-size: 100% 1.6rem;
 	}
 
-	button {
-		color: inherit;
-		background-color: var(--bg-color);
+	.note-card {
+		background: #fff1a8;
 	}
 
-	.quotes {
+	.photo-card {
+		padding: 14px;
 		text-align: center;
+		background: #f8f1df;
 	}
 
-	.quote::before,
-	.quote::after {
+	.side-column .photo-card {
+		padding: 9px;
+	}
+
+	.photo-card img {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 260px;
+		object-fit: contain;
+		object-position: center;
+		border: 1px solid rgb(33 23 20 / 35%);
+		background: #eee2c9;
+	}
+
+	.side-column .photo-card img {
+		max-height: 165px;
+	}
+
+	.photo-card p {
+		margin: 10px 0 0;
+		font-size: 0.82rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.taped::before,
+	.pinned::before {
+		position: absolute;
+		z-index: 2;
+		top: -12px;
+		left: 50%;
+
+		width: 90px;
+		height: 24px;
+
+		content: '';
+		background: var(--tape);
+		border: 1px solid rgb(90 69 30 / 25%);
+		transform: translateX(-50%) rotate(-3deg);
+	}
+
+	.pinned::before {
+		width: 18px;
+		height: 18px;
+		border-radius: 999px;
+		background: var(--ink);
+		box-shadow: 1px 1px 0 var(--shadow);
+	}
+
+	.tilted-left {
+		transform: rotate(-2deg);
+	}
+
+	.tilted-right {
+		transform: rotate(2deg);
+	}
+
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-p5-header);
+		font-weight: normal;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	h1 {
 		display: inline-block;
-		margin-inline: 8px;
-		font-size: 32px;
-		vertical-align: middle;
+		margin-top: 0;
+		margin-bottom: 1.5rem;
+		padding: 8px 14px;
+
+		background: var(--ink);
+		color: var(--paper);
+
+		font-size: clamp(3.5rem, 8vw, 6.5rem);
+		line-height: 0.8;
 	}
 
-	.quote::before {
+	h2 {
+		display: inline-block;
+		max-width: 100%;
+		margin-top: 0;
+		margin-bottom: 1rem;
+		padding: 4px 9px;
+
+		background: var(--ink);
+		color: var(--paper);
+
+		font-size: 1.7rem;
+		line-height: 0.9;
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
+	}
+
+	h3 {
+		display: inline;
+		padding: 3px 7px;
+
+		background: var(--ink);
+		color: var(--paper);
+
+		font-size: 1.35rem;
+		line-height: 1.15;
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
+	}
+
+	.side-column h2 {
+		font-size: 1rem;
+		line-height: 1;
+		letter-spacing: 0.03em;
+	}
+
+	.side-column h3 {
+		font-size: 0.9rem;
+		line-height: 1.15;
+		letter-spacing: 0.03em;
+	}
+
+	p,
+	dt,
+	dd,
+	li,
+	a,
+	button {
+		font-family: var(--font-p5-body);
+	}
+
+	.label {
+		display: inline-block;
+		margin: 0 0 8px;
+		padding: 3px 8px;
+
+		background: var(--ink);
+		color: var(--paper);
+
+		font-size: 0.95rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+	}
+
+	.quote-text {
+		margin: 0 0 12px;
+		font-size: 1.45rem;
+		font-style: italic;
+		line-height: 1.15;
+	}
+
+	.quote-text::before {
 		content: '“';
 	}
 
-	.quote::after {
+	.quote-text::after {
 		content: '”';
 	}
 
-	.table {
-		display: grid;
-		grid-template-columns: max-content 1fr;
+	.stamp-button {
+		border: 2px solid var(--ink);
+		padding: 6px 10px;
 
-		& > * {
-			margin: -1px;
-			padding: 12px;
+		color: var(--ink);
+		font-size: 1.05rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
 
-			&:not(:last-child, :nth-last-child(2)) {
-				border-bottom: 2px solid var(--border-color);
-			}
-		}
-
-		p {
-			margin: 0;
-		}
+		background: transparent;
+		cursor: pointer;
+		transform: rotate(-2deg);
 	}
+
+	.stamp-button:hover {
+		color: var(--paper);
+		background: var(--ink);
+	}
+
+	.file-list {
+		display: grid;
+		gap: 7px;
+		margin: 0;
+	}
+
+	.file-list div {
+		padding-block-end: 7px;
+		border-bottom: 1px dashed rgb(33 23 20 / 45%);
+	}
+
+	.file-list dt {
+		display: inline-block;
+		margin-bottom: 3px;
+		padding: 2px 6px;
+
+		background: var(--ink);
+		color: var(--paper);
+
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.file-list dd {
+		margin: 0;
+		line-height: 1.25;
+	}
+
+	.side-column .file-list dt {
+		font-size: 0.76rem;
+		letter-spacing: 0.03em;
+	}
+
+	.side-column .file-list dd {
+		font-size: 0.84rem;
+	}
+
+	.analysis-card p {
+		line-height: 1.35;
+	}
+
+	.mini-note {
+		margin-block: 10px;
+		padding: 9px;
+		border: 1px dashed var(--ink);
+		background: rgb(255 255 255 / 35%);
+	}
+
+	.mini-note p {
+		margin-bottom: 0;
+		font-size: 0.84rem;
+		line-height: 1.25;
+	}
+
+	.links-card img {
+		max-width: 68px;
+		height: auto;
+	}
+
+	.links-card p {
+		margin-bottom: 0;
+		font-size: 0.84rem;
+		line-height: 1.25;
+	}
+
+	.back {
+		display: inline-block;
+		width: max-content;
+		padding: 8px 12px;
+		border: 2px solid var(--ink);
+
+		color: var(--ink);
+		font-size: 1.25rem;
+		font-weight: bold;
+		text-decoration: none;
+
+		background: var(--paper);
+		box-shadow: 4px 4px 0 var(--shadow);
+	}
+
+	.back:hover {
+		color: var(--paper);
+		background: var(--ink);
+	}
+
 	.back::before {
 		content: '<<';
 		margin-inline-end: 4px;
 	}
-	.back {
-		color: red;
+
+	@media (width <= 950px) {
+		.corkboard {
+			grid-template-columns: 1fr;
+			width: min(100% - 28px, 640px);
+			margin-block: 40px;
+			row-gap: 36px;
+			font-size: 1.15rem;
+		}
+
+		.board-column {
+			gap: 32px;
+		}
+
+		.side-column {
+			font-size: 1rem;
+		}
+
+		.side-column:first-child,
+		.side-column:last-child {
+			margin-top: 0;
+		}
+
+		.main-column {
+			order: 1;
+		}
+
+		.side-column:first-child {
+			order: 2;
+		}
+
+		.side-column:last-child {
+			order: 3;
+		}
+
+		.side-column .paper-card,
+		.side-column .note-card,
+		.side-column .photo-card {
+			padding: 16px;
+			box-shadow: 6px 6px 0 var(--shadow);
+		}
+
+		.tilted-left,
+		.tilted-right {
+			transform: none;
+		}
+
+		.photo-card img,
+		.side-column .photo-card img {
+			max-height: 360px;
+		}
+
+		h1 {
+			font-size: clamp(3rem, 17vw, 5.5rem);
+		}
+
+		h2,
+		.side-column h2 {
+			font-size: 1.65rem;
+		}
+
+		h3,
+		.side-column h3 {
+			font-size: 1.3rem;
+		}
+
+		.quote-text {
+			font-size: 1.35rem;
+		}
+
+		.side-column .file-list dt,
+		.side-column .file-list dd,
+		.mini-note p,
+		.links-card p {
+			font-size: 1rem;
+		}
 	}
 </style>
