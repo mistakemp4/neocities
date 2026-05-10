@@ -2,7 +2,7 @@
 title: Things to do this summer 0_0
 description: Things I want to do over summer in no particular order...
 date: May 14, 2025
-previewImage: /assets/sillyseal.jpg
+previewImage: /assets/sillyseal.webp
 ---
 
 Things I want to do over summer in no particular; order:

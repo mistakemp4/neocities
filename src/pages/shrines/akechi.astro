@@ -2,9 +2,9 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
-import top from '$/assets/akechi1.jpg';
-import bottom from '$/assets/akechi2.jpg';
-import flIcon from '$/assets/fl_icon.jpg';
+import top from '$/assets/akechi1.webp';
+import bottom from '$/assets/akechi2.webp';
+import flIcon from '$/assets/fl_icon.webp';
 import Base from '$/layouts/Base.astro';
 
 const quotes = (await getCollection('akechi')).map(entry => entry.data.quote);

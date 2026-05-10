@@ -13,7 +13,7 @@ In this spread each card is looked at separately in relationship to position fir
 
 How is my state of mind?
 
-![]($/assets/reversed%20page%20of%20cups.jpg)
+![]($/assets/reversed%20page%20of%20cups.webp)
 
  - Reversed Page of Cups
 	 - The reversed page of cups can point to a feeling of inability to fully express yourself. I may be taking life too seriously and not making time for joy, play, or just being present in the moment.
@@ -33,7 +33,7 @@ How are my emotions?
 
 How is my connection to the universe?
 
-![]($/assets/Temperance.jpg)
+![]($/assets/Temperance.webp)
 
 - Temperance
 	- At the heart of the Temperance tarot card lies the message of balance, moderation, and harmony. Whether you are struggling with something specific, or just feeling lost, temperance means now is the perfect time to connect with the divine and welcome the messages you receive.

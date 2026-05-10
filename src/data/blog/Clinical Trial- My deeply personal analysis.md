@@ -2,7 +2,7 @@
 title: Clinical Trial- My deeply personal analysis
 description: At its core, Clinical Trial is a narrative-driven psychological horror game that explores themes of trauma, mental illness, and human connection. The protagonist, Angel, participates in a medical study in desperate need of money...
 date: April 4, 2025
-previewImage: /assets/clinical-trial.jpg
+previewImage: /assets/clinical-trial.webp
 ---
 
 **MAJOR SPOILER WARNING** If you haven’t played _Clinical Trial_ yet, I strongly encourage you to experience it firsthand before reading this. You can play the game for free [here](https://homieshouse.itch.io/clinical-trial). Please read the game’s trigger warnings in the itch.io page description before playing.
