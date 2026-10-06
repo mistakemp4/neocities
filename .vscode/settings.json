@@ -1,15 +1,9 @@
 {
-    "spellright.language": [
-        "en"
-    ],
-    "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
-    ],
-    "spellright.parserByClass": {
-        "astro": {
-            "parser": "code"
-        }
-    }
+	"spellright.language": ["en"],
+	"spellright.documentTypes": ["markdown", "latex", "plaintext"],
+	"spellright.parserByClass": {
+		"astro": {
+			"parser": "code"
+		}
+	}
 }

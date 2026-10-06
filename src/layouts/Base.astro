@@ -1,9 +1,10 @@
 ---
 interface Props {
 	title?: string;
+	bodyClass?: string;
 }
 
-const { title = 'i love akechi!!' } = Astro.props;
+const { title = 'i love akechi!!', bodyClass } = Astro.props;
 ---
 
 <html lang="en">
@@ -12,10 +13,12 @@ const { title = 'i love akechi!!' } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<!-- site is already dark; stops Dark Reader recolouring it -->
+		<meta name="darkreader-lock" />
 		<title>{title}</title>
 		<slot name="head" />
 	</head>
-	<body>
+	<body class={bodyClass}>
 		<slot />
 	</body>
 </html>

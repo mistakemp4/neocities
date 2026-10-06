@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+
+import akechi from '$/assets/akechi.webp';
+import marvelrivals from '$/assets/marvelrivals.webp';
+import BackLink from '$/components/BackLink.astro';
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+
+const rooms = [
+	{
+		name: 'favs',
+		blurb:
+			'hyperfixations, characters, foods. the "literally me" list lives here now.',
+		image: akechi,
+		href: '/library/favs/',
+	},
+	{
+		name: 'game log',
+		blurb: 'every game ive played + my thoughts on them',
+		image: marvelrivals,
+		href: '/library/games/',
+	},
+	{ name: 'shrines', blurb: 'Goro Akechi & SouYo', href: '/shrines/' },
+	{
+		name: 'web quizzes',
+		blurb: 'im 99% loser and american cheese apparently',
+		href: '/library/quizzes/',
+	},
+	{
+		name: 'site graphics',
+		blurb: 'blinkies & stuff i made, free to use',
+		href: '/library/graphics/',
+	},
+];
+---
+
+<MainLayout>
+	<Section title="the library">
+		<p><BackLink href="/">back home</BackLink></p>
+		<p>welcome to the mind palace's library. pick a room (◕‿◕)</p>
+		<div class="rooms">
+			{
+				rooms.map(room => (
+					<a class="room" href={room.href}>
+						{room.image && <Image src={room.image} alt="" height={70} />}
+						<h3>{room.name}</h3>
+						<p>{room.blurb}</p>
+					</a>
+				))
+			}
+		</div>
+	</Section>
+</MainLayout>
+
+<style>
+	.rooms {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 10px;
+	}
+
+	.room {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 10px;
+		border: 1px solid var(--darker-border-color);
+
+		color: var(--article-text-color);
+		text-align: center;
+		text-decoration: none;
+
+		background-color: var(--nav-bg);
+
+		&:hover {
+			border-color: var(--nav-link-color);
+		}
+
+		h3 {
+			margin: 5px 0;
+			text-transform: uppercase;
+			font-size: 19px;
+		}
+
+		p {
+			margin: 0;
+			font-size: 16px;
+		}
+	}
+</style>

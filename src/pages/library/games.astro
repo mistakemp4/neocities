@@ -1,0 +1,22 @@
+---
+import BackLink from '$/components/BackLink.astro';
+import ProfileGames from '$/components/ProfileGames.astro';
+import Section from '$/components/Section.astro';
+import Tooltip from '$/components/Tooltip.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+---
+
+<MainLayout>
+	<p><BackLink href="/library/">back to the library</BackLink></p>
+	<Section title="Games I've played">
+		<ProfileGames />
+	</Section>
+	<Section title="Anime I've watched">
+		<p>
+			<a href="https://myanimelist.net/animelist/mistake_mp4"
+				>View my anime list</a
+			>
+		</p>
+	</Section>
+	<Tooltip />
+</MainLayout>

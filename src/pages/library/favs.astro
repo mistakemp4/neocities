@@ -1,0 +1,54 @@
+---
+import Article from '$/components/Article.astro';
+import BackLink from '$/components/BackLink.astro';
+import ProfileCharacters from '$/components/ProfileCharacters.astro';
+import Section from '$/components/Section.astro';
+import Tooltip from '$/components/Tooltip.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+---
+
+<MainLayout>
+	<p><BackLink href="/library/">back to the library</BackLink></p>
+	<Article title="Current Hyperfixations">
+		<p>
+			My current main hyperfixation is the Persona series, specifically Persona
+			5 Royal. Other fixations/interests/fandoms of mine include: Persona 4,
+			Persona 3, Neon Genesis Evangelion, seals, D&D, and TTRPGs.
+		</p>
+	</Article>
+
+	<Article title="Characters that are literally me">
+		<p>Dang, these bitches all traumatized!</p>
+		<ul>
+			<li>Goro Akechi (Persona 5)</li>
+			<li>Futaba Sakura (Persona 5)</li>
+			<li>Shinji Ikari (Neon Genesis Evangelion)</li>
+		</ul>
+	</Article>
+
+	<Section title="My favorite characters">
+		<ProfileCharacters />
+	</Section>
+
+	<Section title="My favorite foods">
+		<h3>Drinks</h3>
+		<p>
+			Earl Grey Tea, Oolong Milk Tea with Boba (50% sweet), Dr Pepper, Ice Water
+			(with straw)
+		</p>
+		<h3>Snacks/Sides</h3>
+		<p>Enoki Mushrooms, Bell Peppers, Green Beans, Salt & Vinegar Chips</p>
+		<h3>Entrees & Main Dishes</h3>
+		<p>
+			Spicy Tuna Hand Roll, Katsu Chicken, Tomato Soup, Minestrone Soup, Shin
+			Black Ramen (with egg), Steak, Pesto Pasta, Butter Chicken, Asada Burrito,
+			Rare Beef Pho, Chirashi over Rice, Beef & Lamb Gyro, Otoro
+		</p>
+		<h3>Desserts</h3>
+		<p>
+			Tiramisu, Apple Pie, Crème Brûlée, Cookies & Cream Ice Cream, Red Bean
+			Sesame Balls, Red Bean Taiyaki
+		</p>
+	</Section>
+	<Tooltip />
+</MainLayout>

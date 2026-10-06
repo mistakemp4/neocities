@@ -1,0 +1,16 @@
+---
+interface Props {
+	href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a class="back" href={href}><slot>Go back</slot></a>
+
+<style>
+	.back::before {
+		content: '<<';
+		margin-inline-end: 4px;
+	}
+</style>

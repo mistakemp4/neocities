@@ -1,58 +1,73 @@
 ---
 import Article from '$/components/Article.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
+import { formatDate, getSortedBlogPosts } from '$/lib/blog';
+
+const [latest] = await getSortedBlogPosts();
 ---
 
 <MainLayout>
-	<Article title="About Me">
+	<Article title="hi, i'm mistake">
 		<p>
-			Hello! I'm Mistake, a Persona fan (#1 Akechi defender), & TTRPG enjoyer. 
-			I started T 10/1/21 and got top surgery 6/19/24. My
-			pronouns are He/It, and im a big fat queer. I am genderfaun,
-			polyamorous, and <a href="https://mocha8686.neocities.org/">(partnered).</a>
+			Hello! I'm Mistake, a Persona fan (#1 Akechi defender), & TTRPG enjoyer. I
+			started T 10/1/21 and got top surgery 6/19/24. My pronouns are He/It, and
+			im a big fat queer. I am genderfaun, polyamorous, and <a
+				href="https://mocha8686.neocities.org/">(partnered).</a
+			>
 		</p>
 		<p>
-			I GRADUATE with my degree in Business Analytics in MAY! And have a job as a statistical process engineer lined up to start in June. 
-			I am quite easy to please, so in my free time I play video games (Persona 5 Royal is my favorite), draw
-			dumb fanart, and hang out with my friends. I also love to write,
-			especially worldbuilding and lore for TTRPGs. On occasion I will watch
-			anime, or read queer fiction novels. Honestly this is all I need to be
-			happy in life :3
+			I GRADUATED with my degree in Business Analytics!! (top of my class
+			apparently??) and now I work as a statistical process engineer. Job blog
+			coming eventually... once I figure out how to talk about it without
+			writing a novel. I am quite easy to please, so in my free time I play
+			video games (Persona 5 Royal is my favorite), draw dumb fanart, and hang
+			out with my friends. I also love to write, especially worldbuilding and
+			lore for TTRPGs. On occasion I will watch anime, or read queer fiction
+			novels. Honestly this is all I need to be happy in life :3
 		</p>
+		<p><a href="/library/">more about me in the library →</a></p>
 	</Article>
 
-	<Article title="Current Hyperfixations">
-		<p>
-			My current main hyperfixation is the Persona series, specifically Persona
-			5 Royal. Other fixations/interests/fandoms of mine include: Persona 4, Persona 3,
-			Project Sekai, Neon Genesis Evangelion, seals, D&D, and TTRPGs.
-		</p>
-		<p><h3>currently playing: </h3></p>
-		<p>
-			<ul> 
-				<li> Marvel Rivals, Persona 3 Portable, Bloons TD6, Persona 5 Tactica</li>
-				</ul>
-		<p>
-			<h3>currently reading: </h3></p>
-				<ul><li>Nothing...</li></ul>
-		<p>
-			<h3>currently watching: </h3></p>
-				<ul><li>Steins;Gate 0</li></ul>
-
-
-
+	<Article title="right now">
+		<ul class="now-list">
+			<li>
+				<b>playing</b> THE FINALS, Marvel Rivals, FFXIV, Metaphor: ReFantazio
+			</li>
+			<li><b>watching</b> Steins;Gate 0 (still...)</li>
+			<li><b>reading</b> Nothing...</li>
+		</ul>
+		<p class="updated">last updated October 2026</p>
 	</Article>
 
-	<Article title="Characters that are literally me">
-		<p>Dang, these bitches all traumatized!</p>
-		<p>
-			<ul>
-				<li>Goro Akechi (Persona 5)</li>
-				<li>Yoshiki Tsujinaka (The Summer Hikaru Died)</li>
-				<li>Shinonome Ena (Project SEKAI)</li>
-				<li>Futaba Sakura (Persona 5)</li>
-				<li>Shinji Ikari (Neon Genesis Evangelion)</li>
-			</ul>
-		</p>
-	</Article>
+	{
+		latest && (
+			<Article title="latest blog">
+				<h3>{latest.data.title}</h3>
+				<time datetime={latest.data.date.toISOString()}>
+					{formatDate(latest.data.date)}
+				</time>
+				<p>{(latest.body?.substring(0, 200) ?? '') + '...'}</p>
+				<a href={`/blog/post/${latest.id}/`}>Read more...</a>
+			</Article>
+		)
+	}
 </MainLayout>
+
+<style>
+	.now-list {
+		margin: 0;
+		padding-inline-start: 15px;
+
+		b {
+			margin-inline-end: 6px;
+			font-size: 15px;
+			color: var(--article-heading-color);
+			text-transform: uppercase;
+		}
+	}
+
+	.updated {
+		font-size: 13px;
+		filter: brightness(60%);
+	}
+</style>

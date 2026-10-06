@@ -3,6 +3,7 @@ import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { getCollection } from 'astro:content';
 import { render } from 'astro:content';
 
+import BackLink from '$/components/BackLink.astro';
 import CommentBox from '$/components/CommentBox.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
 
@@ -25,16 +26,11 @@ const { Content } = await render(post);
 	<div class="content">
 		<Content />
 	</div>
-	<a class="back" href="/blog/1/">Go back</a>
+	<BackLink href="/blog/1/" />
 	<CommentBox />
 </MainLayout>
 
 <style>
-	.back::before {
-		content: '<<';
-		margin-inline-end: 4px;
-	}
-
 	.content :global(p:has(img)) {
 		display: grid;
 		place-items: center;
@@ -44,7 +40,7 @@ const { Content } = await render(post);
 		max-width: 200px;
 		max-height: 350px;
 	}
-	<style > .comment-box {
+	.comment-box {
 		margin: 20px 0;
 	}
 </style>

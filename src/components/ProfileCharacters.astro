@@ -116,5 +116,9 @@ const characters = [
 ---
 
 <ProfileList itemSize={imageSize} {gap}>
-	{characters.map(({ name, image }) => <ProfileItem title={name} {image} size={imageSize} />)}
+	{
+		characters.map(({ name, image }) => (
+			<ProfileItem title={name} {image} size={imageSize} />
+		))
+	}
 </ProfileList>
