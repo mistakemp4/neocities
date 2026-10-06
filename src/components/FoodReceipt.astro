@@ -1,0 +1,161 @@
+---
+import { foods } from '$/data/foods';
+
+// whole cents so the math adds up exactly
+const cents = (dollars: number) => Math.round(dollars * 100);
+const money = (c: number) => (c / 100).toFixed(2);
+const subtotal = foods
+	.flatMap(f => f.items)
+	.reduce((sum, f) => sum + cents(f.price), 0);
+const discount = Math.round(subtotal * 0.2);
+const total = subtotal - discount;
+const change = 420;
+const cash = total + change;
+---
+
+<div class="receipt">
+	<p class="center store">CAFÉ LEBLANC</p>
+	<p class="center">
+		Yongen-Jaya, Shibuya, Tokyo<br />curry &amp; coffee · Tel 123-456-789
+	</p>
+	<p class="dash"></p>
+	<p class="center title">RECEIPT</p>
+	<div class="row">
+		<span>Table <b class="big">1047</b></span>
+		<span>Dine In</span>
+	</div>
+	<div class="row">
+		<span>Bill No 301904</span>
+		<b>COMPLETED</b>
+	</div>
+	<p class="dash"></p>
+
+	<div class="row head">
+		<span class="item">Item Name</span><span>Qty</span><span class="price"
+			>Price($)</span
+		>
+	</div>
+	<p class="dash"></p>
+	{
+		foods.map(({ category, items }) => (
+			<>
+				<p class="cat">{category.toUpperCase()}</p>
+				{items.map(f => (
+					<div class="row">
+						<span class="item">{f.name.toUpperCase()}</span>
+						<span>1</span>
+						<span class="price">{money(cents(f.price))}</span>
+					</div>
+				))}
+			</>
+		))
+	}
+	<p class="dash"></p>
+
+	<div class="totals">
+		<div class="row"><span>Sub Total</span><span>{money(subtotal)}</span></div>
+		<div class="row">
+			<span>Gay Discount (20.00%)</span><span>-{money(discount)}</span>
+		</div>
+		<p class="dash"></p>
+		<div class="row grand"><span></span><span>{money(total)}</span></div>
+		<p class="dash double"></p>
+		<div class="row"><span>Cash</span><span>{money(cash)}</span></div>
+		<div class="row"><span>Change</span><span>{money(change)}</span></div>
+	</div>
+
+	<p class="center">Please Come Again</p>
+	<p class="printed">Printed at: mistakemp4.neocities.org</p>
+</div>
+
+<style>
+	.receipt {
+		max-width: 340px;
+		margin: 0 auto;
+		padding: 15px 18px 25px;
+
+		color: #222;
+		line-height: 1.1;
+
+		background: #f2efe6;
+		box-shadow: 0 3px 10px #000a;
+
+		/* torn bottom edge */
+		mask: conic-gradient(
+				from -45deg at bottom,
+				#0000,
+				#000 1deg 89deg,
+				#0000 90deg
+			)
+			50% / 12px 100%;
+
+		p {
+			margin: 3px 0;
+		}
+	}
+
+	.row {
+		display: flex;
+		gap: 8px;
+		justify-content: space-between;
+	}
+
+	.item {
+		flex: 1;
+	}
+
+	.price {
+		min-width: 55px;
+		text-align: right;
+	}
+
+	.head {
+		font-weight: bold;
+	}
+
+	.store {
+		font-size: 26px;
+		font-weight: bold;
+		letter-spacing: 2px;
+	}
+
+	.title {
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	.big {
+		font-size: 22px;
+	}
+
+	.cat {
+		margin-top: 8px;
+		text-decoration: underline;
+	}
+
+	.dash {
+		border-top: 2px dashed #888;
+
+		&.double {
+			border-top-style: double;
+			border-top-width: 4px;
+		}
+	}
+
+	.center {
+		text-align: center;
+	}
+
+	.totals {
+		margin-inline-start: 40%;
+	}
+
+	.grand {
+		font-size: 20px;
+	}
+
+	.printed {
+		margin-top: 15px;
+		font-size: 13px;
+	}
+</style>

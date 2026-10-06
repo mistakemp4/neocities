@@ -1,0 +1,83 @@
+---
+import { characters, groupBy, tiers } from '$/data/characters';
+
+import ProfileItem from './ProfileItem.astro';
+
+const size = 60;
+const byTier = groupBy(characters, c => c.tier);
+---
+
+<div class="tierlist">
+	{
+		tiers.map(tier => (
+			<div class="tier">
+				<div class="tier-label" style={`background: ${tier.color}`}>
+					<b>{tier.id}</b>
+					<span>{tier.label}</span>
+				</div>
+				<ul class="tier-row" x-data>
+					{(byTier.get(tier.id) ?? []).map(c => (
+						<ProfileItem
+							title={`${c.name} (${c.series})`}
+							image={c.image}
+							{size}
+						/>
+					))}
+				</ul>
+			</div>
+		))
+	}
+</div>
+
+<style>
+	.tierlist {
+		border: 1px solid var(--darker-border-color);
+	}
+
+	.tier {
+		display: flex;
+		border-bottom: 1px solid var(--darker-border-color);
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	.tier-label {
+		display: flex;
+		flex: 0 0 80px;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 4px;
+
+		color: white;
+		text-align: center;
+
+		b {
+			font-size: 28px;
+		}
+
+		span {
+			font-size: 13px;
+		}
+	}
+
+	.tier-row {
+		display: flex;
+		flex: 1;
+		flex-wrap: wrap;
+		gap: 3px;
+		margin: 0;
+		padding: 3px;
+
+		list-style: none;
+
+		background-color: var(--nav-bg);
+
+		:global(img) {
+			display: block;
+			object-fit: cover;
+		}
+	}
+</style>
