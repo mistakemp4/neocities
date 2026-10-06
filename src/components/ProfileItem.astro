@@ -15,7 +15,7 @@ const { title, image, size = 100, alt = title, noHover = false } = Astro.props;
 
 <li
 	x-on:mouseenter={!noHover && `$store.tooltip.set('${title}')`}
-	x-on:mouseleave={!noHover && "$store.tooltip.hide()"}
+	x-on:mouseleave={!noHover && '$store.tooltip.hide()'}
 >
 	<Image src={image} {alt} width={size} height={size} layout="constrained" />
 	<slot />

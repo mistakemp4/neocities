@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+
+import akechiblink from '$/assets/blinkers/000-akechiblinkie.gif';
+import tsukasablink from '$/assets/blinkers/020-tenmatsukasagif.gif';
+import BackLink from '$/components/BackLink.astro';
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+---
+
+<MainLayout>
+	<p><BackLink href="/library/">back to the library</BackLink></p>
+	<Section title="Site Graphics">
+		<p>
+			Here is a collection of all the graphics I have made. Feel free to use
+			them with or without credit.
+		</p>
+		<Image src={akechiblink} alt="Akechi Blinker" />
+		<Image src={tsukasablink} alt="Tsukasa Blinker" />
+
+		<p>
+			<img
+				src="https://media1.tenor.com/m/H39-m7ma3q4AAAAC/va-11-hall-a.gif"
+				alt="VA-11 Hall-A GIF"
+			/>
+			<img
+				src="https://media1.tenor.com/m/P6vTkRP-_KEAAAAC/va-11-hall-a.gif"
+				alt="VA-11 Hall-A GIF"
+			/>
+			<img
+				src="https://media1.tenor.com/m/DyvI7tVc4x8AAAAd/va-11-hall-a.gif"
+				alt="VA-11 Hall-A GIF"
+			/>
+			<img
+				src="https://media1.tenor.com/m/Fe7mlaRCrgQAAAAC/va-11-hall-a.gif"
+				alt="VA-11 Hall-A GIF"
+			/>
+		</p>
+	</Section>
+</MainLayout>

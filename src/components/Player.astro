@@ -7,14 +7,8 @@ const onclick =
 ---
 
 <div class="player" x-data @click={onclick}>
-	<img
-		class="img2"
-		src={album.src}
-	/>
-	<img
-		class="img1"
-		src={disc.src}
-	/>
+	<img class="img2" src={album.src} />
+	<img class="img1" src={disc.src} />
 </div>
 <audio transition:persist id="audio" src="https://files.catbox.moe/sudbyr.flac"
 ></audio>

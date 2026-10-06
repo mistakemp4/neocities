@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
 
 import Blinkers from '$/components/Blinkers.astro';
@@ -25,7 +26,8 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 ---
 
 <ClientRouter />
-<Base>
+<Base bodyClass="main-layout">
+	<Font cssVariable="--font-vt323" slot="head" />
 	<Header />
 	<Navbar />
 
@@ -117,6 +119,11 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 		color-scheme: dark;
 	}
 
+	body.main-layout {
+		font-family: var(--font-vt323);
+		font-size: 16px;
+	}
+
 	body {
 		color: var(--article-text-color);
 		background-color: var(--bg);
@@ -140,31 +147,31 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 		background-color: var(--button-bg);
 	}
 
-.layout-container {
-	display: flex;
-	align-items: flex-start;
-	max-width: 900px;
-}
-
-main {
-	flex: auto;
-	min-width: 0;
-	margin-inline: 20px;
-}
-
-/* mobile */
-@media only screen and (max-width: 800px) {
 	.layout-container {
-		display: block;
-		max-width: none;
-		width: 100%;
+		display: flex;
+		align-items: flex-start;
+		max-width: 900px;
 	}
 
 	main {
-		width: auto;
-		margin: 10px;
+		flex: auto;
+		min-width: 0;
+		margin-inline: 20px;
 	}
-}
+
+	/* mobile */
+	@media only screen and (max-width: 800px) {
+		.layout-container {
+			display: block;
+			max-width: none;
+			width: 100%;
+		}
+
+		main {
+			width: auto;
+			margin: 10px;
+		}
+	}
 
 	.post-preview {
 		h3 {
@@ -174,7 +181,7 @@ main {
 		}
 
 		time {
-			font-size: 10px;
+			font-size: 13px;
 			filter: brightness(60%);
 		}
 	}

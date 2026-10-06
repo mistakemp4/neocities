@@ -1,11 +1,15 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 import alpinejs from '@astrojs/alpinejs';
 
 // https://astro.build/config
 export default defineConfig({
 	trailingSlash: 'always',
+	// old links to the profile page land on its replacement
+	redirects: {
+		'/profile/': '/library/',
+	},
 	security: {
 		allowedDomains: [
 			{
@@ -23,6 +27,12 @@ export default defineConfig({
 	},
 	experimental: {
 		fonts: [
+			{
+				name: 'VT323',
+				provider: fontProviders.google(),
+				cssVariable: '--font-vt323',
+				fallbacks: ['Courier New', 'monospace'],
+			},
 			{
 				name: 'Persona 4',
 				provider: 'local',

@@ -2,8 +2,8 @@
 import type { HTMLAttributes } from 'astro/types';
 
 type Props = {
-itemSize?: number;
-gap?: number;
+	itemSize?: number;
+	gap?: number;
 } & HTMLAttributes<'ul'>;
 
 const { gap = 5, itemSize = 65, ...props } = Astro.props;
