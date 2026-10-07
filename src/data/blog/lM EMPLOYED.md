@@ -27,7 +27,7 @@ I can acknowledge that the only reason I managed to find this position is becaus
 
 You may have noticed me setting myself expansive goals, rearing into development head-first, followed by what only can be described as *ZERO* commits to my site's repo.
 
-This is because my job offer came with the news that I would be moving literally all the way to the other side of my country, *from the west to the east coast*. This will be my **first move away from home**, as I've previously just been around a 30 minute drive from my parents, meaning I could just go over whenever I had a problem or just wanted to spend time with my family.
+This is because my job offer came with the news that I would be moving literally all the way to the other side of my country. This will be my **first move away from home**, as I've previously just been around a 30 minute drive from my parents, meaning I could just go over whenever I had a problem or just wanted to spend time with my family.
 
 Any free time I was previously spending coding this site has instead been temporarily allocated to planning my move. Researching local DMV stuff ill have to do, actually transferring my cars title fully to me (instead of being split between me and my parents), researching apartments, figuring out how to get my stuff from here to there, shopping for furniture, getting my referrals for specialty doctor care, scouring the internet for reviews on good non-specialty doctors in the area, and oh so much more...
 
@@ -35,6 +35,6 @@ I know *NOBODY* where I am moving to, and frankly that terrifies me. I know I wi
 
 I am also a bit terrified of being so young through all of this, and I'm sure that won't help much with my social life. Cause wdym I have a bachelors degree, will be living completely on my own (a 48+ hour drive from my own family), and am not even 21 yet. I have already come to terms with the fact that I will be the youngest one at my company, and I just already know I'm gonna have to turn down getting drinks with my coworkers. I know I can still talk to my friends online. But it isn't the same, and with the difference in time-zones I likely wont be able to talk to them much anyways.
 
-Hoping my girl will be able to join me out here on the east coast once she graduates. Thankfully I convinced her early in her college career to take some extra classes in the summertime, so she is graduating a semester early. Should be only 6 months (ish) by myself. We are going to attempt long distance, but I already know I'm really going to miss her. Going from living with her to being a 6 hour plane flight away is a LOT.
+Hoping my girl will be able to join me out here once she graduates. Thankfully I convinced her early in her college career to take some extra classes in the summertime, so she is graduating a semester early. Should be only 6 months (ish) by myself. We are going to attempt long distance, but I already know I'm really going to miss her. Going from living with her to being a 6 hour plane flight away is a LOT.
 
 Wish me luck!
