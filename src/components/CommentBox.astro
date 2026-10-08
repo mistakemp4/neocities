@@ -2,7 +2,7 @@
 	<div id="HCB_comment_box">
 		<a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...
 	</div>
-	<script is:inline type="text/javascript" id="hcb">
+	<script is:inline data-astro-rerun type="text/javascript" id="hcb">
 		if (!window.hcb_user) {
 			hcb_user = {};
 		}
@@ -36,6 +36,136 @@
 		input,
 		textarea {
 			font-family: var(--ff) !important;
+		}
+
+		/* flatten HCB's wrappers so button, status, credit, rss and login share one row */
+		#HCB_comment_box {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 0.5em 1em;
+
+			> *,
+			.hcb-wrapper,
+			.hcb-wrapper-half {
+				flex-basis: 100%;
+			}
+		}
+
+		#HCB_comment_form_box,
+		#hcb_form,
+		#hcb_form > div:has(#hcb_submit) {
+			display: contents;
+		}
+
+		#hcb_submit {
+			order: 1;
+			flex-basis: auto;
+		}
+
+		#comments_list {
+			order: 2;
+			flex: 0 1 auto;
+
+			&:has(.comment) {
+				order: 10;
+				flex-basis: 100%;
+			}
+		}
+
+		#no_comments {
+			margin: 0;
+		}
+
+		#HCB_comment_box > a[href*='rss_clean'] {
+			order: 3;
+			flex-basis: auto;
+			margin-inline-start: auto;
+		}
+
+		#hcb_form div:has(> .admin-link) {
+			order: 4;
+			flex-basis: auto;
+			float: none !important;
+		}
+
+		.admin-link {
+			display: flex;
+		}
+
+		.home-desc {
+			order: 5;
+			flex-basis: 100%;
+			font-size: 0.85em;
+			text-align: end;
+			opacity: 0.6;
+
+			.home-desc {
+				font-size: inherit;
+				opacity: 1;
+			}
+		}
+
+		#hcb_msg:empty {
+			display: none;
+		}
+
+		/* site theme instead of HCB's grays */
+		#HCB_comment_box > h3 {
+			display: none;
+		}
+
+		input[type='text'],
+		textarea {
+			padding: 6px 8px;
+			border: 1px solid var(--darker-border-color) !important;
+			border-radius: 0 !important;
+			color: var(--article-text-color) !important;
+			background: var(--nav-bg) !important;
+			box-shadow: none !important;
+
+			&::placeholder {
+				color: var(--article-heading-color);
+			}
+
+			&:focus {
+				outline: none;
+				border-color: var(--nav-link-color) !important;
+			}
+		}
+
+		#hcb_submit {
+			padding: 6px 14px;
+			border: 1px solid var(--darker-border-color) !important;
+			border-radius: 0 !important;
+			color: var(--article-text-color) !important;
+			background: var(--button-bg) !important;
+			box-shadow: none !important;
+			cursor: pointer;
+
+			&:hover {
+				filter: brightness(120%);
+			}
+		}
+
+		a {
+			color: var(--nav-link-color) !important;
+		}
+
+		.hcb-icon {
+			filter: grayscale(1);
+			opacity: 0.5;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+
+		.hcb-icon {
+			display: block;
+			height: 1.4em;
+			width: auto;
 		}
 	}
 </style>
