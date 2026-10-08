@@ -1,23 +1,24 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
-import { getCollection } from 'astro:content';
 import { render } from 'astro:content';
 
 import BackLink from '$/components/BackLink.astro';
 import CommentBox from '$/components/CommentBox.astro';
+import Section from '$/components/Section.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
+import { blogPageFor, getSortedBlogPosts } from '$/lib/blog';
 
 export const getStaticPaths = (async () => {
-	const posts = await getCollection('blog');
-	return posts.map(post => ({
+	const posts = await getSortedBlogPosts();
+	return posts.map((post, i) => ({
 		params: { id: post.id },
-		props: { post },
+		props: { post, backHref: `/blog/${blogPageFor(i)}/` },
 	}));
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { post } = Astro.props;
+const { post, backHref } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -26,11 +27,17 @@ const { Content } = await render(post);
 	<div class="content">
 		<Content />
 	</div>
-	<BackLink href="/blog/1/" />
-	<CommentBox />
+	<p class="back-row"><BackLink href={backHref} /></p>
+	<Section title="Comments">
+		<CommentBox />
+	</Section>
 </MainLayout>
 
 <style>
+	.back-row {
+		margin-block: 20px;
+	}
+
 	.content :global(p:has(img)) {
 		display: grid;
 		place-items: center;

@@ -3,11 +3,11 @@ import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 
 import Article from '$/components/Article.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
-import { formatDate, getSortedBlogPosts } from '$/lib/blog';
+import { BLOG_PAGE_SIZE, formatDate, getSortedBlogPosts } from '$/lib/blog';
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const posts = await getSortedBlogPosts();
-	return paginate(posts, { pageSize: 3 });
+	return paginate(posts, { pageSize: BLOG_PAGE_SIZE });
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
@@ -26,29 +26,13 @@ const { page } = Astro.props;
 		))
 	}
 
-	<nav>
+	<nav aria-label="blog pages">
 		<div class="container">
-			{
-				page.url.first ?
-					<a href={page.url.first}>⏮</a>
-				:	<a aria-disabled="true">⏮</a>
-			}
-			{
-				page.url.prev ?
-					<a href={page.url.prev}>◄</a>
-				:	<a aria-disabled="true">◄</a>
-			}
-			<span>{page.currentPage}</span>
-			{
-				page.url.next ?
-					<a href={page.url.next}>►</a>
-				:	<a aria-disabled="true">►</a>
-			}
-			{
-				page.url.last ?
-					<a href={page.url.last}>⏭</a>
-				:	<a aria-disabled="true">⏭</a>
-			}
+			<a href={page.url.first} aria-disabled={!page.url.prev}>&lt;&lt; first</a>
+			<a href={page.url.prev} aria-disabled={!page.url.prev}>&lt; prev</a>
+			<span>page {page.currentPage} of {page.lastPage}</span>
+			<a href={page.url.next} aria-disabled={!page.url.next}>next &gt;</a>
+			<a href={page.url.last} aria-disabled={!page.url.next}>last &gt;&gt;</a>
 		</div>
 	</nav>
 </MainLayout>
@@ -72,9 +56,28 @@ const { page } = Astro.props;
 		padding: 8px;
 		border: 1px solid var(--darker-border-color);
 
-		font-size: 21px;
 		color: var(--article-text-color);
 
 		background-color: var(--article-bg);
+	}
+
+	.container {
+		flex-wrap: wrap;
+		gap: 4px 16px;
+		align-items: baseline;
+	}
+
+	a {
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	/* dimmed, unclickable on the first/last page */
+	a[aria-disabled='true'] {
+		pointer-events: none;
+		opacity: 0.3;
 	}
 </style>
