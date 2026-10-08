@@ -534,7 +534,8 @@ const quotesString = JSON.stringify(quotes);
 
 	@media (width <= 950px) {
 		.corkboard {
-			grid-template-columns: 1fr;
+			/* minmax(0) so long content can't widen the column past the screen */
+			grid-template-columns: minmax(0, 1fr);
 			width: min(100% - 28px, 640px);
 			margin-block: 40px;
 			row-gap: 36px;
@@ -584,7 +585,7 @@ const quotesString = JSON.stringify(quotes);
 		}
 
 		h1 {
-			font-size: clamp(3rem, 17vw, 5.5rem);
+			font-size: clamp(3rem, 15vw, 5.5rem);
 		}
 
 		h2,

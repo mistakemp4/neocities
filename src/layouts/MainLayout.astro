@@ -152,6 +152,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 		display: flex;
 		align-items: flex-start;
 		max-width: 900px;
+		margin-inline: auto;
 	}
 
 	main {
@@ -163,12 +164,15 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 	/* mobile */
 	@media only screen and (max-width: 800px) {
 		.layout-container {
-			display: block;
+			flex-direction: column;
+			align-items: stretch;
 			max-width: none;
 			width: 100%;
 		}
 
+		/* content before both sidebars */
 		main {
+			order: -1;
 			width: auto;
 			margin: 10px;
 		}
