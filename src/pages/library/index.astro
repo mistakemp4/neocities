@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 
 import akechi from '$/assets/akechi.webp';
 import marvelrivals from '$/assets/marvelrivals.webp';
-import BackLink from '$/components/BackLink.astro';
 import Section from '$/components/Section.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
 
@@ -36,7 +35,6 @@ const rooms = [
 
 <MainLayout>
 	<Section title="the library">
-		<p><BackLink href="/">back home</BackLink></p>
 		<p>welcome to the mind palace's library. pick a room (◕‿◕)</p>
 		<div class="rooms">
 			{

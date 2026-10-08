@@ -23,11 +23,12 @@ const { Content } = await render(post);
 ---
 
 <MainLayout>
+	<p><BackLink href={backHref}>back to the blog</BackLink></p>
 	<h1>{post.data.title}</h1>
 	<div class="content">
 		<Content />
 	</div>
-	<p class="back-row"><BackLink href={backHref} /></p>
+	<p class="back-row"><BackLink href={backHref}>back to the blog</BackLink></p>
 	<Section title="Comments">
 		<CommentBox />
 	</Section>
