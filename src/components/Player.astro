@@ -4,11 +4,40 @@ import disc from '$/assets/disc.webp';
 
 const onclick =
 	"() => {const audio = document.getElementById('audio'); if (audio.paused) audio.play(); else audio.pause();}";
+
+// audio persists across pages; only set the default volume once
+const init = `
+	const audio = document.getElementById('audio');
+	if (!audio.dataset.volSet) {
+		let saved = null;
+		try { saved = localStorage.getItem('player-volume'); } catch {}
+		audio.volume = saved === null ? 0.3 : Number(saved);
+		audio.dataset.volSet = '1';
+	}
+	vol = audio.volume;
+`;
+const oninput = `
+	document.getElementById('audio').volume = vol;
+	try { localStorage.setItem('player-volume', vol); } catch {}
+`;
 ---
 
-<div class="player" x-data @click={onclick}>
-	<img class="img2" src={album.src} />
-	<img class="img1" src={disc.src} />
+<div x-data="{ vol: 0.3 }" x-init={init}>
+	<div class="player" @click={onclick}>
+		<img class="img2" src={album.src} />
+		<img class="img1" src={disc.src} />
+	</div>
+	<label class="volume">
+		vol
+		<input
+			type="range"
+			min="0"
+			max="1"
+			step="0.05"
+			x-model.number="vol"
+			@input={oninput}
+		/>
+	</label>
 </div>
 <audio transition:persist id="audio" src="https://files.catbox.moe/sudbyr.flac"
 ></audio>
@@ -35,6 +64,19 @@ const onclick =
 		margin-inline-start: -40px;
 
 		animation: spin 4s linear infinite;
+	}
+
+	.volume {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		margin-top: 0.5em;
+	}
+
+	.volume input {
+		flex: 1;
+		min-width: 0;
+		accent-color: var(--accent-red);
 	}
 
 	@keyframes spin {

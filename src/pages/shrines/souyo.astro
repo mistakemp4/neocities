@@ -40,6 +40,11 @@ import souyo from '$/assets/souyo.webp';
       value="0"
     >
 
+    <label id="volume">
+      VOL
+      <input type="range" id="volumebar" min="0" max="1" step="0.05">
+    </label>
+
     <div style="display:flex; gap:10px; justify-content:center;">
   <button id="pause-btn">Pause ❚❚</button>
   <button id="next-btn">Next ▶</button>
@@ -201,6 +206,18 @@ const title = document.getElementById("song-title") as HTMLDivElement;
 const seekbar = document.getElementById("seekbar") as HTMLInputElement;
 const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
 const pauseBtn = document.getElementById("pause-btn") as HTMLButtonElement;
+const volumebar = document.getElementById("volumebar") as HTMLInputElement;
+
+// shares the main site player's saved volume
+let savedVol: string | null = null;
+try { savedVol = localStorage.getItem("player-volume"); } catch {}
+player.volume = savedVol === null ? 0.3 : Number(savedVol);
+volumebar.value = String(player.volume);
+
+volumebar.addEventListener("input", () => {
+  player.volume = Number(volumebar.value);
+  try { localStorage.setItem("player-volume", volumebar.value); } catch {}
+});
 
 
 function loadSong(i: number) {
@@ -351,6 +368,19 @@ a:hover {
 
 #seekbar {
   width: 100%;
+  accent-color: var(--p4-yellow);
+}
+
+#volume {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+#volumebar {
+  flex: 1;
+  min-width: 0;
   accent-color: var(--p4-yellow);
 }
 
