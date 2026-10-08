@@ -8,7 +8,6 @@ import NavbarLink from './NavbarLink.astro';
 		<NavbarLink href="/blog/1/">Blog</NavbarLink>
 		<NavbarLink href="/library/">Library</NavbarLink>
 		<NavbarLink href="/about/">About Site</NavbarLink>
-		<NavbarLink href="/shrines/">Shrines</NavbarLink>
 		<NavbarLink
 			href="https://mistakemp4.atabook.org/"
 			rel="noreferrer"
@@ -22,24 +21,34 @@ import NavbarLink from './NavbarLink.astro';
 		height: auto;
 		margin-bottom: 10px;
 		padding-block: 10px;
-		padding-inline-start: 100px;
+		text-align: center;
 		border: 2px solid var(--darker-border-color);
 		border-inline-start: none;
 		border-inline-end: none;
 
 		background-color: var(--nav-bg);
-
-		@container (width <= 800px) {
-			nav {
-				padding-inline: 0 50px;
-			}
-			li {
-				padding-block-end: 5px;
-			}
-		}
 	}
 
 	ul {
 		display: contents;
+	}
+
+	@media (width <= 800px) {
+		nav {
+			padding-inline: 10px;
+		}
+
+		ul {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 4px 20px;
+			margin: 0;
+			padding: 0;
+		}
+
+		ul :global(li) {
+			padding-inline: 0;
+		}
 	}
 </style>

@@ -214,8 +214,17 @@ try { savedVol = localStorage.getItem("player-volume"); } catch {}
 player.volume = savedVol === null ? 0.3 : Number(savedVol);
 volumebar.value = String(player.volume);
 
+// custom slider fill (webkit has no native progress part)
+function setFill(el: HTMLInputElement) {
+  const pct = ((Number(el.value) - Number(el.min)) / (Number(el.max) - Number(el.min))) * 100;
+  el.style.setProperty("--fill", `${pct}%`);
+}
+setFill(volumebar);
+setFill(seekbar);
+
 volumebar.addEventListener("input", () => {
   player.volume = Number(volumebar.value);
+  setFill(volumebar);
   try { localStorage.setItem("player-volume", volumebar.value); } catch {}
 });
 
@@ -228,12 +237,14 @@ function loadSong(i: number) {
 
 player.addEventListener("timeupdate", () => {
   if (!isNaN(player.duration)) {
-    seekbar.value = (player.currentTime / player.duration) * 100;
+    seekbar.value = String((player.currentTime / player.duration) * 100);
+    setFill(seekbar);
   }
 });
 
 seekbar.addEventListener("input", () => {
-  player.currentTime = (seekbar.value / 100) * player.duration;
+  player.currentTime = (Number(seekbar.value) / 100) * player.duration;
+  setFill(seekbar);
 });
 
 nextBtn.addEventListener("click", () => {
@@ -368,7 +379,6 @@ a:hover {
 
 #seekbar {
   width: 100%;
-  accent-color: var(--p4-yellow);
 }
 
 #volume {
@@ -381,7 +391,62 @@ a:hover {
 #volumebar {
   flex: 1;
   min-width: 0;
-  accent-color: var(--p4-yellow);
+}
+
+/* fully custom sliders so no browser/theme colors leak in */
+#seekbar,
+#volumebar {
+  --fill: 0%;
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+#seekbar::-webkit-slider-runnable-track,
+#volumebar::-webkit-slider-runnable-track {
+  height: 6px;
+  border: 1px solid var(--p4-yellow);
+  background: linear-gradient(to right, var(--p4-yellow) var(--fill), var(--p4-black) var(--fill));
+}
+
+#seekbar::-webkit-slider-thumb,
+#volumebar::-webkit-slider-thumb {
+  width: 10px;
+  height: 16px;
+  margin-top: -6px;
+  border: 2px solid var(--p4-black);
+  background: var(--p4-yellow);
+  appearance: none;
+}
+
+#seekbar::-moz-range-track,
+#volumebar::-moz-range-track {
+  height: 6px;
+  border: 1px solid var(--p4-yellow);
+  background: var(--p4-black);
+}
+
+#seekbar::-moz-range-progress,
+#volumebar::-moz-range-progress {
+  height: 6px;
+  background: var(--p4-yellow);
+}
+
+#seekbar::-moz-range-thumb,
+#volumebar::-moz-range-thumb {
+  width: 10px;
+  height: 16px;
+  border: 2px solid var(--p4-black);
+  border-radius: 0;
+  background: var(--p4-yellow);
+}
+
+#seekbar:focus-visible,
+#volumebar:focus-visible {
+  outline: 1px dashed var(--p4-yellow);
+  outline-offset: 2px;
 }
 
 #next-btn {
@@ -408,5 +473,20 @@ a:hover {
 
 #pause-btn:hover {
   background: #d4c200;
+}
+
+@media (width <= 800px) {
+  body {
+    padding: 12px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+
+  /* less tilt so corners stay on screen */
+  .tilted { transform: rotate(-1deg); }
+  .tilted-right { transform: rotate(1deg); }
 }
 </style>
