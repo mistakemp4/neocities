@@ -1,0 +1,116 @@
+---
+import { formatDate, getSortedBlogPosts } from '$/lib/blog';
+
+const posts = await getSortedBlogPosts();
+---
+
+<ul class="tree">
+	<li>
+		<a href="/">home</a>
+		<ul>
+			<li>
+				<a href="/blog/1/">blog</a>
+				<details>
+					<summary>{posts.length} posts</summary>
+					<ul>
+						{
+							posts.map(post => (
+								<li>
+									<a href={`/blog/post/${post.id}/`}>{post.data.title}</a>{' '}
+									<time datetime={post.data.date.toISOString()}>
+										{formatDate(post.data.date)}
+									</time>
+								</li>
+							))
+						}
+					</ul>
+				</details>
+			</li>
+			<li>
+				<a href="/library/">library</a>
+				<ul>
+					<li><a href="/library/favs/">favs</a></li>
+					<li><a href="/library/games/">game log</a></li>
+					<li>
+						<a href="/shrines/">shrines</a>
+						<ul>
+							<li><a href="/shrines/akechi/">Goro Akechi</a></li>
+							<li><a href="/shrines/souyo/">SouYo</a></li>
+						</ul>
+					</li>
+					<li><a href="/library/quizzes/">web quizzes</a></li>
+					<li><a href="/library/graphics/">site graphics</a></li>
+				</ul>
+			</li>
+			<li><a href="/about/">about site</a></li>
+			<li>
+				<a href="https://mistakemp4.atabook.org/" rel="noreferrer">guestbook</a>
+				(atabook)
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<style>
+	/* text tree: each li draws its own ├── / └── branch */
+	.tree,
+	.tree ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.tree ul {
+		margin-inline-start: 0.5em;
+	}
+
+	.tree ul li {
+		position: relative;
+		padding-inline-start: 1.5em;
+		border-inline-start: 1px solid var(--article-heading-color);
+	}
+
+	.tree ul li:last-child {
+		border-inline-start-color: transparent;
+	}
+
+	.tree ul li::before {
+		position: absolute;
+		top: 0;
+		left: -1px;
+		width: 1.1em;
+		height: 0.7em;
+		content: '';
+		border-inline-start: 1px solid var(--article-heading-color);
+		border-block-end: 1px solid var(--article-heading-color);
+	}
+
+	details {
+		display: inline;
+		margin-inline-start: 0.5em;
+	}
+
+	summary {
+		display: inline;
+		cursor: pointer;
+		color: var(--article-heading-color);
+		list-style: none;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	summary::before {
+		content: '[+] ';
+	}
+
+	details[open] > summary::before {
+		content: '[-] ';
+	}
+
+	time {
+		font-size: 13px;
+		filter: brightness(60%);
+	}
+</style>
