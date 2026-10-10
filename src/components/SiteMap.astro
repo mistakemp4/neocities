@@ -1,54 +1,44 @@
 ---
 import { formatDate, getSortedBlogPosts } from '$/lib/blog';
+import { buildSitemap, type SitemapNode } from '$/lib/sitemap';
 
-const posts = await getSortedBlogPosts();
+interface Props {
+	// set by the component itself for nested levels
+	nodes?: SitemapNode[];
+}
+
+const { nodes } = Astro.props;
+const list = nodes ?? [buildSitemap()];
+const posts = list.some(node => node.posts) ? await getSortedBlogPosts() : [];
 ---
 
-<ul class="tree">
-	<li>
-		<a href="/">home</a>
-		<ul>
+<ul class={nodes ? undefined : 'tree'}>
+	{
+		list.map(node => (
 			<li>
-				<a href="/blog/1/">blog</a>
-				<details>
-					<summary>{posts.length} posts</summary>
-					<ul>
-						{
-							posts.map(post => (
+				<a href={node.href} rel={node.external ? 'noreferrer' : undefined}>
+					{node.label}
+				</a>
+				{node.note && ` (${node.note})`}
+				{node.posts && (
+					<details>
+						<summary>{posts.length} posts</summary>
+						<ul>
+							{posts.map(post => (
 								<li>
 									<a href={`/blog/post/${post.id}/`}>{post.data.title}</a>{' '}
 									<time datetime={post.data.date.toISOString()}>
 										{formatDate(post.data.date)}
 									</time>
 								</li>
-							))
-						}
-					</ul>
-				</details>
-			</li>
-			<li>
-				<a href="/library/">library</a>
-				<ul>
-					<li><a href="/library/favs/">favs</a></li>
-					<li><a href="/library/games/">game log</a></li>
-					<li>
-						<a href="/shrines/">shrines</a>
-						<ul>
-							<li><a href="/shrines/akechi/">Goro Akechi</a></li>
-							<li><a href="/shrines/souyo/">SouYo</a></li>
+							))}
 						</ul>
-					</li>
-					<li><a href="/library/quizzes/">web quizzes</a></li>
-					<li><a href="/library/graphics/">site graphics</a></li>
-				</ul>
+					</details>
+				)}
+				{node.children.length > 0 && <Astro.self nodes={node.children} />}
 			</li>
-			<li><a href="/about/">about site</a></li>
-			<li>
-				<a href="https://mistakemp4.atabook.org/" rel="noreferrer">guestbook</a>
-				(atabook)
-			</li>
-		</ul>
-	</li>
+		))
+	}
 </ul>
 
 <style>
