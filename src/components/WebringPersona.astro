@@ -3,6 +3,17 @@
 	></script>
 </div>
 
+<script>
+	// ring script puts its styles in <head>, which ClientRouter swaps out; carry them over
+	document.addEventListener('astro:before-swap', e => {
+		for (const style of document.head.querySelectorAll('style')) {
+			if (style.textContent?.includes('[data-pmo-id=')) {
+				e.newDocument.head.append(style.cloneNode(true));
+			}
+		}
+	});
+</script>
+
 <style is:global>
 	#persona-pmoring {
 		width: auto;
