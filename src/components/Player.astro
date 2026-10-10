@@ -1,6 +1,6 @@
 ---
-import album from '$/assets/album_cover.webp';
-import disc from '$/assets/disc.webp';
+import album from '$/assets/site/album_cover.webp';
+import disc from '$/assets/site/disc.webp';
 
 const onclick =
 	"() => {const audio = document.getElementById('audio'); if (audio.paused) audio.play(); else audio.pause();}";
@@ -69,8 +69,8 @@ const oninput = `
 
 	.volume {
 		display: flex;
-		align-items: center;
 		gap: 0.5em;
+		align-items: center;
 		margin-top: 0.5em;
 	}
 
@@ -78,13 +78,16 @@ const oninput = `
 	.volume input {
 		--fill: 30%;
 
+		cursor: pointer;
+
 		flex: 1;
+
 		min-width: 0;
 		height: 14px;
 		margin: 0;
-		background: transparent;
-		cursor: pointer;
+
 		appearance: none;
+		background: transparent;
 	}
 
 	.volume input::-webkit-slider-runnable-track {
@@ -102,8 +105,9 @@ const oninput = `
 		height: 14px;
 		margin-top: -6px;
 		border: 1px solid var(--darker-border-color);
-		background: var(--accent-red);
+
 		appearance: none;
+		background: var(--accent-red);
 	}
 
 	.volume input::-moz-range-track {
@@ -122,6 +126,7 @@ const oninput = `
 		height: 14px;
 		border: 1px solid var(--darker-border-color);
 		border-radius: 0;
+
 		background: var(--accent-red);
 	}
 
