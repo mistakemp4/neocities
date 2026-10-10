@@ -2,6 +2,7 @@
 import { Font } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
 
+import BackToTop from '$/components/BackToTop.astro';
 import Blinkers from '$/components/Blinkers.astro';
 import Footer from '$/components/Footer.astro';
 import Header from '$/components/Header.astro';
@@ -100,6 +101,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 	</div>
 
 	<Footer />
+	<BackToTop />
 </Base>
 
 <style is:global>
@@ -161,23 +163,6 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 		margin-inline: 20px;
 	}
 
-	/* mobile */
-	@media only screen and (max-width: 800px) {
-		.layout-container {
-			flex-direction: column;
-			align-items: stretch;
-			max-width: none;
-			width: 100%;
-		}
-
-		/* content before both sidebars */
-		main {
-			order: -1;
-			width: auto;
-			margin: 10px;
-		}
-	}
-
 	.post-preview {
 		h3 {
 			margin: 0;
@@ -188,6 +173,23 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 		time {
 			font-size: 13px;
 			filter: brightness(60%);
+		}
+	}
+
+	/* mobile */
+	@media only screen and (max-width: 800px) {
+		.layout-container {
+			flex-direction: column;
+			align-items: stretch;
+			width: 100%;
+			max-width: none;
+		}
+
+		/* content before both sidebars */
+		main {
+			order: -1;
+			width: auto;
+			margin: 10px;
 		}
 	}
 </style>
