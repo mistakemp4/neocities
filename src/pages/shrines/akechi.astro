@@ -2,10 +2,10 @@
 import { Font, Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
-import blackMask from '$/assets/blackMask.webp';
-import corkboardBg from '$/assets/corkboard-bg.webp';
-import flIcon from '$/assets/fl_icon.webp';
-import portrait from '$/assets/portrait.webp';
+import blackMask from '$/assets/shrines/blackMask.webp';
+import flIcon from '$/assets/shrines/fl_icon.webp';
+import portrait from '$/assets/shrines/portrait.webp';
+import BackToTop from '$/components/BackToTop.astro';
 import Base from '$/layouts/Base.astro';
 
 const quotes = (await getCollection('akechi')).map(entry => entry.data.quote);
@@ -19,6 +19,8 @@ const quotesString = JSON.stringify(quotes);
 	</Fragment>
 
 	<main class="corkboard">
+		<a class="back" href="/shrines/">back to shrines</a>
+
 		<div class="board-column side-column">
 			<section class="photo-card tilted-left">
 				<Image src={portrait} alt="Goro Akechi portrait" />
@@ -110,8 +112,6 @@ const quotesString = JSON.stringify(quotes);
 					harsh, but in reality he's just painfully honest.
 				</p>
 			</section>
-
-			<a class="back" href="/shrines/">Go back</a>
 		</div>
 
 		<div class="board-column side-column">
@@ -140,6 +140,7 @@ const quotesString = JSON.stringify(quotes);
 			</section>
 		</div>
 	</main>
+	<BackToTop />
 </Base>
 
 <script>
@@ -166,24 +167,31 @@ const quotesString = JSON.stringify(quotes);
 	}
 </script>
 
-<style define:vars={{ corkboardBg }}>
+<style>
 	:root {
 		--ink: #211714;
 		--paper: #f4e4c1;
 		--paper-dark: #d8bd86;
 		--tape: rgb(255 244 191 / 75%);
 		--shadow: rgb(24 11 4 / 45%);
+
+		/* back to top button, as a paper note */
+		--top-bg: var(--paper);
+		--top-color: var(--ink);
+		--top-border: var(--ink);
+		--top-shadow: 4px 4px 0 var(--shadow);
 	}
 
 	body {
-		color: var(--ink);
 		font-family: var(--font-p5-body);
+		color: var(--ink);
+
 		background-color: #8c5a2f;
-		background-image: url('/src/assets/corkboard-bg.webp');
+		background-image: url('/src/assets/shrines/corkboard-bg.webp');
 		background-repeat: repeat;
-		background-size: 500px auto;
-		background-position: top left;
 		background-attachment: fixed;
+		background-position: top left;
+		background-size: 500px auto;
 	}
 
 	a:link,
@@ -193,15 +201,15 @@ const quotesString = JSON.stringify(quotes);
 
 	a:hover {
 		color: var(--paper);
-		background: var(--ink);
 		text-decoration: none;
+		background: var(--ink);
 	}
 
 	.corkboard {
 		display: grid;
 		grid-template-columns: 180px minmax(420px, 620px) 180px;
-		column-gap: 22px;
 		row-gap: 32px;
+		column-gap: 22px;
 		align-items: start;
 
 		width: min(100% - 40px, 1050px);
@@ -233,8 +241,10 @@ const quotesString = JSON.stringify(quotes);
 	.note-card,
 	.photo-card {
 		position: relative;
+
 		padding: 16px;
 		border: 2px solid var(--ink);
+
 		background: var(--paper);
 		box-shadow: 6px 6px 0 var(--shadow);
 	}
@@ -268,12 +278,14 @@ const quotesString = JSON.stringify(quotes);
 
 	.photo-card img {
 		display: block;
+
 		width: 100%;
 		height: auto;
 		max-height: 260px;
+		border: 1px solid rgb(33 23 20 / 35%);
+
 		object-fit: contain;
 		object-position: center;
-		border: 1px solid rgb(33 23 20 / 35%);
 		background: #eee2c9;
 	}
 
@@ -283,6 +295,7 @@ const quotesString = JSON.stringify(quotes);
 
 	.photo-card p {
 		margin: 10px 0 0;
+
 		font-size: 0.82rem;
 		font-weight: bold;
 		text-transform: uppercase;
@@ -291,24 +304,26 @@ const quotesString = JSON.stringify(quotes);
 
 	.taped::before,
 	.pinned::before {
+		content: '';
+
 		position: absolute;
 		z-index: 2;
 		top: -12px;
 		left: 50%;
+		transform: translateX(-50%) rotate(-3deg);
 
 		width: 90px;
 		height: 24px;
-
-		content: '';
-		background: var(--tape);
 		border: 1px solid rgb(90 69 30 / 25%);
-		transform: translateX(-50%) rotate(-3deg);
+
+		background: var(--tape);
 	}
 
 	.pinned::before {
 		width: 18px;
 		height: 18px;
 		border-radius: 999px;
+
 		background: var(--ink);
 		box-shadow: 1px 1px 0 var(--shadow);
 	}
@@ -332,44 +347,47 @@ const quotesString = JSON.stringify(quotes);
 
 	h1 {
 		display: inline-block;
+
 		margin-top: 0;
 		margin-bottom: 1.5rem;
 		padding: 8px 14px;
 
-		background: var(--ink);
-		color: var(--paper);
-
 		font-size: clamp(3.5rem, 8vw, 6.5rem);
 		line-height: 0.8;
+		color: var(--paper);
+
+		background: var(--ink);
 	}
 
 	h2 {
 		display: inline-block;
+
 		max-width: 100%;
 		margin-top: 0;
 		margin-bottom: 1rem;
 		padding: 4px 9px;
 
-		background: var(--ink);
-		color: var(--paper);
-
 		font-size: 1.7rem;
 		line-height: 0.9;
-		box-decoration-break: clone;
+		color: var(--paper);
+
+		background: var(--ink);
 		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
 	}
 
 	h3 {
 		display: inline;
-		padding: 3px 7px;
 
-		background: var(--ink);
-		color: var(--paper);
+		padding: 3px 7px;
 
 		font-size: 1.35rem;
 		line-height: 1.15;
-		box-decoration-break: clone;
+		color: var(--paper);
+
+		background: var(--ink);
 		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
 	}
 
 	.side-column h2 {
@@ -395,16 +413,17 @@ const quotesString = JSON.stringify(quotes);
 
 	.label {
 		display: inline-block;
+
 		margin: 0 0 8px;
 		padding: 3px 8px;
 
-		background: var(--ink);
-		color: var(--paper);
-
 		font-size: 0.95rem;
 		font-weight: bold;
+		color: var(--paper);
 		text-transform: uppercase;
 		letter-spacing: 0.14em;
+
+		background: var(--ink);
 	}
 
 	.quote-text {
@@ -423,18 +442,20 @@ const quotesString = JSON.stringify(quotes);
 	}
 
 	.stamp-button {
-		border: 2px solid var(--ink);
-		padding: 6px 10px;
+		cursor: pointer;
 
-		color: var(--ink);
+		transform: rotate(-2deg);
+
+		padding: 6px 10px;
+		border: 2px solid var(--ink);
+
 		font-size: 1.05rem;
 		font-weight: bold;
+		color: var(--ink);
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 
 		background: transparent;
-		cursor: pointer;
-		transform: rotate(-2deg);
 	}
 
 	.stamp-button:hover {
@@ -455,14 +476,15 @@ const quotesString = JSON.stringify(quotes);
 
 	.file-list dt {
 		display: inline-block;
+
 		margin-bottom: 3px;
 		padding: 2px 6px;
 
-		background: var(--ink);
-		color: var(--paper);
-
 		font-weight: bold;
+		color: var(--paper);
 		text-transform: uppercase;
+
+		background: var(--ink);
 	}
 
 	.file-list dd {
@@ -509,13 +531,16 @@ const quotesString = JSON.stringify(quotes);
 
 	.back {
 		display: inline-block;
+		/* own row above the three columns */
+		grid-column: 1 / -1;
+
 		width: max-content;
 		padding: 8px 12px;
 		border: 2px solid var(--ink);
 
-		color: var(--ink);
 		font-size: 1.25rem;
 		font-weight: bold;
+		color: var(--ink);
 		text-decoration: none;
 
 		background: var(--paper);
@@ -536,9 +561,11 @@ const quotesString = JSON.stringify(quotes);
 		.corkboard {
 			/* minmax(0) so long content can't widen the column past the screen */
 			grid-template-columns: minmax(0, 1fr);
+			row-gap: 36px;
+
 			width: min(100% - 28px, 640px);
 			margin-block: 40px;
-			row-gap: 36px;
+
 			font-size: 1.15rem;
 		}
 

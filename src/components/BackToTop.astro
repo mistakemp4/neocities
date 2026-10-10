@@ -1,0 +1,44 @@
+<!-- pages can restyle it with --top-bg, --top-color, --top-border, --top-line and --top-shadow -->
+<button
+	class="back-to-top"
+	type="button"
+	aria-label="back to top"
+	x-data="{ show: false }"
+	x-show="show"
+	x-cloak
+	@scroll.window="show = window.scrollY > 300"
+	@click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+>
+	^ top
+</button>
+
+<style>
+	[x-cloak] {
+		display: none;
+	}
+
+	.back-to-top {
+		cursor: pointer;
+
+		position: fixed;
+		z-index: 10;
+		right: 16px;
+		bottom: 16px;
+
+		padding: 6px 12px;
+		border: var(--top-line, 2px) solid
+			var(--top-border, var(--darker-border-color));
+
+		font: inherit;
+		font-size: 18px;
+		color: var(--top-color, var(--nav-link-color));
+		text-transform: uppercase;
+
+		background-color: var(--top-bg, var(--nav-bg));
+		box-shadow: var(--top-shadow, none);
+
+		&:hover {
+			border-color: var(--top-color, var(--nav-link-color));
+		}
+	}
+</style>
