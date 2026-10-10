@@ -66,7 +66,20 @@ const legend = `{
 ---
 
 <Base title="pokétwo spawn odds" bodyClass="p2-wide">
-	<Font cssVariable="--font-vt323" slot="head" />
+	<Fragment slot="head">
+		<Font cssVariable="--font-vt323" />
+		{/* link preview, for when the page gets shared */}
+		<meta
+			name="description"
+			content="how likely the pokétwo discord bot is to spawn each pokémon, with a lookup tool and my full notebook"
+		/>
+		<meta property="og:title" content="pokétwo spawn odds" />
+		<meta
+			property="og:description"
+			content="how likely the pokétwo discord bot is to spawn each pokémon, with a lookup tool and my full notebook"
+		/>
+		<meta name="theme-color" content="#ff9ecf" />
+	</Fragment>
 	<Header />
 	<Navbar />
 

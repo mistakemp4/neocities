@@ -29,6 +29,7 @@ const posts = (await getSortedBlogPosts()).slice(0, 3);
 <ClientRouter />
 <Base bodyClass="main-layout">
 	<Font cssVariable="--font-vt323" slot="head" />
+	<slot name="head" slot="head" />
 	<Header />
 	<Navbar />
 
