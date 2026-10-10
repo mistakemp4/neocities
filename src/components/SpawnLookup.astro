@@ -1,0 +1,304 @@
+---
+import spin from '$/assets/projects/frieren-spin.gif';
+
+const data = String.raw`{
+	query: '',
+	thinking: true,
+	failed: false,
+	result: null,
+	matches: [],
+	pickedName: null,
+	spriteOk: true,
+	timer: null,
+	db: null,
+
+	async init() {
+		// ?q=pikachu makes a shareable link
+		this.query = new URLSearchParams(location.search).get('q') ?? '';
+		try {
+			const res = await fetch('/data/poketwo-spawns.json');
+			const data = await res.json();
+			// frozen on purpose: alpine skips frozen objects, so the 1322 rows never turn into reactive proxies
+			this.db = Object.freeze({
+				total: data.total,
+				perSpawn: data.perSpawn,
+				pokemon: data.pokemon.map(p => Object.freeze({ ...p, key: this.clean(p.name) })),
+			});
+			this.search();
+		} catch {
+			this.failed = true;
+			this.thinking = false;
+		}
+	},
+
+	clean(text) {
+		return text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().trim();
+	},
+
+	// runs on every keystroke, the real search waits until typing pauses
+	type() {
+		this.pickedName = null;
+		this.thinking = true;
+		clearTimeout(this.timer);
+		this.timer = setTimeout(() => this.search(), 450);
+	},
+
+	pick(name) {
+		this.pickedName = name;
+		this.search();
+	},
+
+	find() {
+		const q = this.clean(this.query).replace(/^#/, '');
+		if (!q) return [];
+		if (/^\d+$/.test(q)) return this.db.pokemon.filter(p => p.dex === Number(q));
+		return this.db.pokemon
+			.filter(p => p.key.includes(q))
+			.sort((a, b) => a.key.indexOf(q) - b.key.indexOf(q) || a.key.length - b.key.length)
+			.slice(0, 12);
+	},
+
+	search() {
+		// still loading, init() searches again once the data is in
+		if (!this.db) return;
+		const found = this.find();
+		const picked = found.find(p => p.name === this.pickedName) ?? found[0];
+		this.matches = found.map(p => p.name);
+		this.result = picked ? this.stats(picked) : null;
+		this.spriteOk = true;
+		this.thinking = false;
+	},
+
+	stats(p) {
+		const { total, perSpawn, pokemon } = this.db;
+		const chance = p.weight / total;
+		const oneIn = Math.round(1 / chance);
+		const commoner = pokemon.filter(other => other.weight > p.weight).length;
+		return {
+			name: p.name,
+			dex: '#' + p.dex,
+			tags: [p.class, p.region, p.types].join(' · '),
+			sprite: '/projects/poketwo/sprites/' + p.dex + '.webp',
+			percent: (chance * 100).toFixed(chance >= 0.001 ? 3 : 5) + '%',
+			oneIn: this.num(oneIn) + ' spawns',
+			messages: '~' + this.num(oneIn * perSpawn),
+			// spawns needed for a coin-flip chance of seeing at least one
+			half: this.num(Math.ceil(Math.log(0.5) / Math.log(1 - chance))) + ' spawns',
+			rarer: Math.round((commoner / pokemon.length) * 100) + '% of pokémon',
+		};
+	},
+
+	num(n) {
+		return n.toLocaleString('en-US');
+	},
+}`;
+---
+
+<div class="lookup" x-data={data}>
+	<input
+		type="search"
+		placeholder="pikachu or 25"
+		aria-label="pokémon name or pokédex number"
+		autocomplete="off"
+		x-model="query"
+		@input="type()"
+	/>
+
+	<div class="thinking" x-show="thinking" role="status">
+		<img src={spin.src} alt="" width="67" height="60" />
+		<span>searching the tall grass<span class="dots"></span></span>
+	</div>
+
+	<p x-show="failed" x-cloak>couldn't load the spawn data, try refreshing</p>
+	<p x-show="!thinking && !failed && query.trim() && !result" x-cloak>
+		no catchable pokémon matches that
+	</p>
+
+	<template x-if="result && !thinking">
+		<div class="result">
+			<img
+				class="sprite"
+				:src="result.sprite"
+				alt=""
+				width="120"
+				height="120"
+				x-show="spriteOk"
+				@error="spriteOk = false"
+			/>
+			<div>
+				<h3>
+					<span x-text="result.name"></span>
+					<small x-text="result.dex"></small>
+				</h3>
+				<p class="tags" x-text="result.tags"></p>
+				<dl>
+					<dt>chance per spawn</dt>
+					<dd x-text="result.percent"></dd>
+					<dt>about 1 in</dt>
+					<dd x-text="result.oneIn"></dd>
+					<dt>messages for one</dt>
+					<dd x-text="result.messages"></dd>
+					<dt>50/50 odds after</dt>
+					<dd x-text="result.half"></dd>
+					<dt>rarer than</dt>
+					<dd x-text="result.rarer"></dd>
+				</dl>
+			</div>
+		</div>
+	</template>
+
+	<template x-if="matches.length > 1 && !thinking">
+		<ul class="matches">
+			<template x-for="name in matches" :key="name">
+				<li>
+					<button
+						type="button"
+						:class="{ picked: result && name === result.name }"
+						@click="pick(name)"
+						x-text="name"></button>
+				</li>
+			</template>
+		</ul>
+	</template>
+</div>
+
+<style>
+	[x-cloak] {
+		display: none;
+	}
+
+	.lookup {
+		input {
+			box-sizing: border-box;
+			width: 100%;
+			padding: 8px 12px;
+			border: var(--p2-line, 2px) solid var(--p2-border);
+			border-radius: var(--p2-pill, 999px);
+
+			font: inherit;
+			font-size: 18px;
+			color: var(--p2-text);
+
+			background-color: var(--p2-surface, white);
+
+			&:focus {
+				border-color: var(--p2-heading);
+				outline: none;
+			}
+		}
+	}
+
+	.thinking {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+
+		margin-top: 12px;
+
+		color: var(--p2-heading);
+
+		img {
+			border-radius: var(--p2-radius-sm, 12px);
+		}
+	}
+
+	.dots::after {
+		content: '';
+		animation: dots 1.2s steps(1) infinite;
+	}
+
+	@keyframes dots {
+		0% {
+			content: '';
+		}
+
+		25% {
+			content: '.';
+		}
+
+		50% {
+			content: '..';
+		}
+
+		75% {
+			content: '...';
+		}
+	}
+
+	.result {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		align-items: center;
+
+		margin-top: 12px;
+		padding: 12px;
+		border: var(--p2-line, 2px) var(--p2-result-style, dashed) var(--p2-border);
+		border-radius: var(--p2-radius, 16px);
+
+		background-color: var(--p2-surface, white);
+
+		.sprite {
+			image-rendering: pixelated;
+		}
+
+		h3 {
+			margin: 0;
+			font-size: 24px;
+			color: var(--p2-heading);
+
+			small {
+				font-size: 15px;
+				color: var(--p2-muted);
+			}
+		}
+
+		.tags {
+			margin: 2px 0 8px;
+			color: var(--p2-muted);
+		}
+
+		dl {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			gap: 2px 14px;
+			margin: 0;
+		}
+
+		dd {
+			margin: 0;
+			font-weight: bold;
+			color: var(--p2-blue);
+		}
+	}
+
+	.matches {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+
+		margin: 12px 0 0;
+		padding: 0;
+
+		list-style: none;
+
+		button {
+			cursor: pointer;
+
+			padding: 3px 10px;
+			border: var(--p2-line, 2px) solid var(--p2-border);
+			border-radius: var(--p2-pill, 999px);
+
+			font: inherit;
+			color: var(--p2-text);
+
+			background-color: var(--p2-surface, white);
+
+			&:hover,
+			&.picked {
+				border-color: var(--p2-heading);
+				color: var(--p2-heading);
+			}
+		}
+	}
+</style>

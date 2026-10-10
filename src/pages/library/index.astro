@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 
-import akechi from '$/assets/akechi.webp';
-import marvelrivals from '$/assets/marvelrivals.webp';
+import akechi from '$/assets/characters/akechi.webp';
+import marvelrivals from '$/assets/games/marvelrivals.webp';
 import Section from '$/components/Section.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
 
@@ -29,6 +29,11 @@ const rooms = [
 		name: 'site graphics',
 		blurb: 'blinkies & stuff i made, free to use',
 		href: '/library/graphics/',
+	},
+	{
+		name: 'projects',
+		blurb: 'little tools & data stuff i made',
+		href: '/library/projects/',
 	},
 ];
 ---
@@ -61,6 +66,7 @@ const rooms = [
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+
 		padding: 10px;
 		border: 1px solid var(--darker-border-color);
 
@@ -76,8 +82,8 @@ const rooms = [
 
 		h3 {
 			margin: 5px 0;
-			text-transform: uppercase;
 			font-size: 19px;
+			text-transform: uppercase;
 		}
 
 		p {
