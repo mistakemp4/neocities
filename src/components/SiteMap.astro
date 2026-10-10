@@ -75,14 +75,16 @@ const posts = await getSortedBlogPosts();
 	}
 
 	.tree ul li::before {
+		content: '';
+
 		position: absolute;
 		top: 0;
 		left: -1px;
+
 		width: 1.1em;
 		height: 0.7em;
-		content: '';
-		border-inline-start: 1px solid var(--article-heading-color);
 		border-block-end: 1px solid var(--article-heading-color);
+		border-inline-start: 1px solid var(--article-heading-color);
 	}
 
 	details {
@@ -91,8 +93,8 @@ const posts = await getSortedBlogPosts();
 	}
 
 	summary {
-		display: inline;
 		cursor: pointer;
+		display: inline;
 		color: var(--article-heading-color);
 		list-style: none;
 	}

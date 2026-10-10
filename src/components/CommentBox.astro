@@ -43,8 +43,8 @@
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
-			align-items: center;
 			gap: 0.5em 1em;
+			align-items: center;
 
 			> *,
 			.hcb-wrapper,
@@ -60,17 +60,17 @@
 		}
 
 		#hcb_submit {
-			order: 1;
 			flex-basis: auto;
+			order: 1;
 		}
 
 		#comments_list {
-			order: 2;
 			flex: 0 1 auto;
+			order: 2;
 
 			&:has(.comment) {
-				order: 10;
 				flex-basis: 100%;
+				order: 10;
 			}
 		}
 
@@ -79,15 +79,15 @@
 		}
 
 		#HCB_comment_box > a[href*='rss_clean'] {
-			order: 3;
 			flex-basis: auto;
+			order: 3;
 			margin-inline-start: auto;
 		}
 
 		#hcb_form div:has(> .admin-link) {
-			order: 4;
-			flex-basis: auto;
 			float: none !important;
+			flex-basis: auto;
+			order: 4;
 		}
 
 		.admin-link {
@@ -95,10 +95,12 @@
 		}
 
 		.home-desc {
-			order: 5;
 			flex-basis: 100%;
+			order: 5;
+
 			font-size: 0.85em;
 			text-align: end;
+
 			opacity: 0.6;
 
 			.home-desc {
@@ -121,7 +123,9 @@
 			padding: 6px 8px;
 			border: 1px solid var(--darker-border-color) !important;
 			border-radius: 0 !important;
+
 			color: var(--article-text-color) !important;
+
 			background: var(--nav-bg) !important;
 			box-shadow: none !important;
 
@@ -130,19 +134,22 @@
 			}
 
 			&:focus {
-				outline: none;
 				border-color: var(--nav-link-color) !important;
+				outline: none;
 			}
 		}
 
 		#hcb_submit {
+			cursor: pointer;
+
 			padding: 6px 14px;
 			border: 1px solid var(--darker-border-color) !important;
 			border-radius: 0 !important;
+
 			color: var(--article-text-color) !important;
+
 			background: var(--button-bg) !important;
 			box-shadow: none !important;
-			cursor: pointer;
 
 			&:hover {
 				filter: brightness(120%);
@@ -154,8 +161,8 @@
 		}
 
 		.hcb-icon {
-			filter: grayscale(1);
 			opacity: 0.5;
+			filter: grayscale(1);
 
 			&:hover {
 				opacity: 1;
@@ -164,8 +171,8 @@
 
 		.hcb-icon {
 			display: block;
-			height: 1.4em;
 			width: auto;
+			height: 1.4em;
 		}
 	}
 </style>
