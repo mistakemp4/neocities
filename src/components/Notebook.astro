@@ -1,0 +1,178 @@
+---
+import type { ComponentProps } from 'astro/types';
+import { Code } from 'astro:components';
+
+import type { Cell } from '$/lib/notebook';
+
+interface Props {
+	// from readNotebook() in lib/notebook.ts
+	cells: Cell[];
+	// shiki theme for the code cells
+	theme?: ComponentProps<typeof Code>['theme'];
+}
+
+const { cells, theme = 'rose-pine-dawn' } = Astro.props;
+---
+
+<div class="notebook">
+	{
+		cells.map(cell =>
+			cell.type === 'markdown' ?
+				<>
+					{/* a new topic starts at every h2 */}
+					{cell.html.startsWith('<h2') && <hr class="topic" />}
+					<div class="prose" set:html={cell.html} />
+				</>
+			:	<div class="cell">
+					<Code code={cell.source} lang="python" theme={theme} />
+					{cell.outputs.map(out =>
+						out.kind === 'image' ?
+							<img
+								src={out.src}
+								width={out.width}
+								height={out.height}
+								alt=""
+								loading="lazy"
+							/>
+						: out.kind === 'html' ? <div class="table" set:html={out.html} />
+						: <pre class="output">{out.text}</pre>,
+					)}
+				</div>,
+		)
+	}
+</div>
+
+<style>
+	.topic {
+		overflow: visible;
+
+		height: 0;
+		margin: 34px 0 26px;
+		border: none;
+		border-top: 2px dotted var(--p2-border);
+
+		text-align: center;
+	}
+
+	.topic::after {
+		content: var(--p2-divider, '⊹ ˚ ♡ ˚ ⊹');
+
+		position: relative;
+		top: -0.8em;
+
+		padding: 0 12px;
+
+		color: var(--p2-heading);
+
+		background-color: var(--p2-card);
+	}
+
+	/* notebook html is injected, so these need :global to reach it */
+	.prose :global(h1),
+	.prose :global(h2),
+	.prose :global(h3) {
+		margin: 0 0 8px;
+		color: var(--p2-heading);
+	}
+
+	/* room above a heading when a link jumps to it */
+	.prose :global(h2) {
+		scroll-margin-top: 16px;
+	}
+
+	.prose :global(h3) {
+		margin-top: 18px;
+		color: var(--p2-blue);
+	}
+
+	.prose :global(p),
+	.prose :global(ul) {
+		margin: 0 0 10px;
+	}
+
+	.prose :global(code) {
+		padding: 1px 5px;
+		border-radius: 6px;
+
+		font-family: var(--p2-mono, monospace);
+		font-size: inherit;
+
+		background-color: var(--p2-code);
+	}
+
+	.prose :global(pre) {
+		overflow-x: auto;
+
+		padding: 10px;
+		border-radius: var(--p2-radius-sm, 12px);
+
+		font-family: var(--p2-mono, monospace);
+		font-size: var(--p2-mono-size, 13px);
+
+		background-color: var(--p2-code);
+	}
+
+	/* browsers give code its own monospace font, so it has to be told to follow the pre */
+	.prose :global(pre code),
+	.cell :global(pre.astro-code code) {
+		padding: 0;
+		font-family: inherit;
+		font-size: inherit;
+		background: none;
+	}
+
+	.cell {
+		margin: 12px 0 18px;
+	}
+
+	.cell :global(pre.astro-code),
+	.output {
+		overflow-x: auto;
+
+		margin: 0 0 8px;
+		padding: 10px 12px;
+		border-radius: var(--p2-radius-sm, 12px);
+
+		font-family: var(--p2-mono, monospace);
+		font-size: var(--p2-mono-size, 13px);
+		line-height: var(--p2-mono-leading, 1.45);
+	}
+
+	.output {
+		border: 1px solid var(--p2-border);
+		color: var(--p2-text);
+		background-color: var(--p2-surface, white);
+	}
+
+	.cell img {
+		display: block;
+
+		max-width: 100%;
+		height: auto;
+		margin: 0 auto 8px;
+		border-radius: var(--p2-radius, 16px);
+	}
+
+	.table {
+		overflow-x: auto;
+		margin-bottom: 8px;
+	}
+
+	.table :global(table) {
+		border-collapse: collapse;
+		font-size: var(--p2-mono-size, 13px);
+		background-color: var(--p2-surface, white);
+	}
+
+	.table :global(th),
+	.table :global(td) {
+		padding: 3px 9px;
+		border: 1px solid var(--p2-border);
+		text-align: right;
+	}
+
+	.table :global(th) {
+		color: var(--p2-heading);
+		background-color: var(--p2-code);
+	}
+</style>

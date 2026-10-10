@@ -1,0 +1,237 @@
+---
+import { Font } from 'astro:assets';
+
+import BackLink from '$/components/BackLink.astro';
+import BackToTop from '$/components/BackToTop.astro';
+import Footer from '$/components/Footer.astro';
+import Header from '$/components/Header.astro';
+import Navbar from '$/components/Navbar.astro';
+import Notebook from '$/components/Notebook.astro';
+import Sidebar from '$/components/Sidebar.astro';
+import SidebarLink from '$/components/SidebarLink.astro';
+import SidebarLinks from '$/components/SidebarLinks.astro';
+import SidebarSection from '$/components/SidebarSection.astro';
+import SpawnLookup from '$/components/SpawnLookup.astro';
+import notebook from '$/data/poketwo-notebook.json';
+import Base from '$/layouts/Base.astro';
+import { readNotebook } from '$/lib/notebook';
+
+const { title, cells, sections } = readNotebook(notebook);
+
+// the legend lists the tool first, then every section of the notebook
+const entries = [{ id: 'tool', text: 'Look one up' }, ...sections];
+
+// alpine state for the legend: lights up the entry for the section being read
+const legend = `{
+	current: 'tool',
+	locked: false,
+	timer: null,
+
+	// a section is current once its heading has passed this line
+	line() {
+		const reading = innerHeight * 0.3;
+		// the last few headings can never scroll up that far, so for the final stretch
+		// the line slides down and reaches the bottom of the screen at the end of the page
+		const left = document.documentElement.scrollHeight - innerHeight - scrollY;
+		return Math.max(reading, innerHeight - left);
+	},
+
+	track() {
+		if (this.locked) return;
+		const line = this.line();
+		let found = 'tool';
+		for (const el of document.querySelectorAll('[data-section]')) {
+			if (el.getBoundingClientRect().top <= line) found = el.id;
+		}
+		this.light(found);
+	},
+
+	// a clicked entry stays lit, even when its section is too short to reach the line
+	jump(id) {
+		this.light(id);
+		this.locked = true;
+		clearTimeout(this.timer);
+		this.timer = setTimeout(() => (this.locked = false), 500);
+	},
+
+	light(id) {
+		if (id === this.current) return;
+		this.current = id;
+		// keep the lit entry on screen when the legend itself has to scroll
+		this.$nextTick(() =>
+			this.$root.querySelector('aside a.here')?.scrollIntoView({ block: 'nearest' }),
+		);
+	},
+}`;
+---
+
+<Base title="pokétwo spawn odds" bodyClass="p2-wide">
+	<Font cssVariable="--font-vt323" slot="head" />
+	<Header />
+	<Navbar />
+
+	<div class="layout" x-data={legend} @scroll.window="track()">
+		<Sidebar>
+			<SidebarSection title="Contents">
+				<SidebarLinks>
+					{
+						entries.map(section => (
+							<SidebarLink
+								href={`#${section.id}`}
+								{...{
+									// alpine attributes, spread in because their names aren't valid prop names
+									'x-bind:class': `current === '${section.id}' && 'here'`,
+									'x-on:click': `jump('${section.id}')`,
+								}}
+							>
+								<Fragment set:html={section.text} />
+							</SidebarLink>
+						))
+					}
+				</SidebarLinks>
+			</SidebarSection>
+		</Sidebar>
+
+		<main>
+			<p>
+				<BackLink href="/library/projects/">back to projects</BackLink>
+			</p>
+
+			<section id="tool" class="card" data-section>
+				<h2>Pokétwo spawn odds</h2>
+				<p>
+					i dug through the public data behind the pokétwo discord bot to see
+					how it picks what to spawn. it's a weighted random draw, so every
+					pokémon has its own odds. type a name or pokédex number
+				</p>
+				<SpawnLookup />
+				<p class="note">
+					based on pokétwo's public data. the live bot uses a private copy, so
+					real odds may be a little different. messages assume 1 spawn per 24
+					counted messages in a server. sprites are from PokeAPI.
+				</p>
+			</section>
+
+			<section class="card">
+				<h2>{title}</h2>
+				<Notebook cells={cells} theme="vesper" />
+			</section>
+		</main>
+	</div>
+
+	<Footer />
+	<BackToTop />
+</Base>
+
+<style is:global>
+	/* same values as MainLayout, which can't be used here because it always adds the sidebars */
+	body.p2-wide {
+		--bg: black;
+		--header-bg: #0e0e0e;
+		--nav-bg: #0d0d0d;
+		--article-bg: #121210;
+		--border-color: #1f1f1f;
+		--sidebar-text-color: #a09697;
+		--article-text-color: #adb0b0;
+		--article-heading-color: #7d7d7d;
+		--nav-link-color: #b09b83;
+		--darker-border-color: #393939;
+
+		/* pink and blue from the charts as the accents */
+		--p2-card: var(--article-bg);
+		--p2-border: var(--darker-border-color);
+		--p2-heading: #ff9ecf;
+		--p2-text: var(--article-text-color);
+		--p2-muted: var(--sidebar-text-color);
+		--p2-blue: #8fd0ff;
+		--p2-code: var(--nav-bg);
+		--p2-surface: var(--bg);
+		--p2-radius: 0;
+		--p2-radius-sm: 0;
+		--p2-pill: 0;
+		--p2-line: 1px;
+		--p2-result-style: solid;
+		--p2-mono: var(--font-vt323);
+		--p2-mono-size: 17px;
+		--p2-mono-leading: 1.2;
+
+		font-family: var(--font-vt323);
+		font-size: 17px;
+		color: var(--article-text-color);
+
+		color-scheme: dark;
+		background-color: var(--bg);
+	}
+
+	body.p2-wide a {
+		color: var(--nav-link-color);
+	}
+</style>
+
+<style>
+	.layout {
+		display: flex;
+		gap: 20px;
+		align-items: flex-start;
+
+		box-sizing: border-box;
+		max-width: 1090px;
+		margin-inline: auto;
+		padding-inline: 12px;
+	}
+
+	/* the legend is the site's own sidebar, it just needs to scroll when it's taller than the screen */
+	.layout :global(aside) {
+		overflow-y: auto;
+		max-height: calc(100vh - 40px);
+		margin-block-start: 0;
+	}
+
+	.layout :global(aside a) {
+		display: block;
+		padding: 1px 4px;
+	}
+
+	.layout :global(aside a.here) {
+		color: var(--p2-heading);
+	}
+
+	main {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.card {
+		margin-bottom: 15px;
+		padding: 10px 14px;
+		border: 1px solid var(--darker-border-color);
+		background-color: var(--article-bg);
+
+		> h2 {
+			margin: 6px 0 10px;
+			padding-inline: 6px;
+			border: 1px solid var(--darker-border-color);
+
+			font-size: 21px;
+			color: var(--p2-heading);
+			text-transform: uppercase;
+			letter-spacing: 1px;
+
+			background-color: var(--nav-bg);
+		}
+	}
+
+	.note {
+		margin: 12px 0 0;
+		font-size: 14px;
+		color: var(--sidebar-text-color);
+	}
+
+	/* phones: legend sits on top as a normal list */
+	@media (width <= 800px) {
+		.layout {
+			flex-direction: column;
+			align-items: stretch;
+		}
+	}
+</style>
