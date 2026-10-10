@@ -5,6 +5,15 @@ import MainLayout from '$/layouts/MainLayout.astro';
 ---
 
 <MainLayout>
+	<Fragment slot="head">
+		{/* link preview, for when the page gets shared */}
+		<meta name="description" content="little tools and data stuff i made" />
+		<meta property="og:title" content="projects" />
+		<meta
+			property="og:description"
+			content="little tools and data stuff i made"
+		/>
+	</Fragment>
 	<p><BackLink href="/library/">back to the library</BackLink></p>
 	<Section title="Projects">
 		<p>
