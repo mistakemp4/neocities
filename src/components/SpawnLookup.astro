@@ -9,6 +9,7 @@ const data = String.raw`{
 	matches: [],
 	pickedName: null,
 	spriteOk: true,
+	shiny: false,
 	timer: null,
 	db: null,
 
@@ -70,22 +71,53 @@ const data = String.raw`{
 	},
 
 	stats(p) {
-		const { total, perSpawn, pokemon } = this.db;
-		const chance = p.weight / total;
-		const oneIn = Math.round(1 / chance);
-		const commoner = pokemon.filter(other => other.weight > p.weight).length;
+		const chance = p.weight / this.db.total;
 		return {
 			name: p.name,
 			dex: '#' + p.dex,
 			tags: [p.class, p.region, p.types].join(' · '),
 			sprite: '/projects/poketwo/sprites/' + p.dex + '.webp',
-			percent: (chance * 100).toFixed(chance >= 0.001 ? 3 : 5) + '%',
-			oneIn: this.num(oneIn) + ' spawns',
-			messages: '~' + this.num(oneIn * perSpawn),
-			// spawns needed for a coin-flip chance of seeing at least one
-			half: this.num(Math.ceil(Math.log(0.5) / Math.log(1 - chance))) + ' spawns',
-			rarer: Math.round((commoner / pokemon.length) * 100) + '% of pokémon',
+			shinySprite: '/projects/poketwo/sprites/shiny/' + p.dex + '.webp',
+			normal: this.odds(chance),
+			// pokétwo rolls shiny when you catch: 1/4096, times 1.2 with a shiny charm (determine_shiny in cogs/mongo.py)
+			shiny: this.odds(chance / 4096),
 		};
+	},
+
+	// the same rows for the normal and the shiny view, so they can be compared
+	odds(chance) {
+		const { total, pokemon } = this.db;
+		const oneIn = Math.round(1 / chance);
+		// one list of everything that can show up: each pokémon as normal and as shiny
+		const commoner = pokemon.filter(other => other.weight / total > chance).length;
+		const commonerShiny = pokemon.filter(other => other.weight / total / 4096 > chance).length;
+		const percent = chance * 100;
+		// enough decimals to always show two real digits
+		const decimals = percent >= 0.1 ? 3 : Math.max(5, 1 - Math.floor(Math.log10(percent)));
+		return {
+			percent: percent.toFixed(decimals) + '%',
+			oneIn: this.num(oneIn) + ' spawns',
+			messages: '~' + this.num(oneIn * this.db.perSpawn),
+			// spawns needed for a coin-flip chance of seeing at least one
+			half: this.num(Math.ceil(Math.log(0.5) / Math.log1p(-chance))) + ' spawns',
+			rank: '#' + this.num(commoner + commonerShiny + 1) + ' of ' + this.num(pokemon.length * 2),
+		};
+	},
+
+	get shown() {
+		return this.shiny ? this.result.shiny : this.result.normal;
+	},
+
+	clear() {
+		this.query = '';
+		this.pickedName = null;
+		this.search();
+		this.$refs.box.focus();
+	},
+
+	toggleShiny() {
+		this.shiny = !this.shiny;
+		this.spriteOk = true;
 	},
 
 	num(n) {
@@ -95,14 +127,38 @@ const data = String.raw`{
 ---
 
 <div class="lookup" x-data={data}>
-	<input
-		type="search"
-		placeholder="pikachu or 25"
-		aria-label="pokémon name or pokédex number"
-		autocomplete="off"
-		x-model="query"
-		@input="type()"
-	/>
+	<div class="field">
+		<input
+			type="search"
+			placeholder="pikachu or 25"
+			aria-label="pokémon name or pokédex number"
+			autocomplete="off"
+			x-ref="box"
+			x-model="query"
+			@input="type()"
+		/>
+		<button
+			type="button"
+			class="clear"
+			aria-label="clear search"
+			x-show="query"
+			x-cloak
+			@click="clear()"
+		>
+			<svg
+				viewBox="0 0 5 5"
+				width="10"
+				height="10"
+				shape-rendering="crispEdges"
+				aria-hidden="true"
+			>
+				<path
+					fill="currentColor"
+					d="M0 0h1v1H0zM4 0h1v1H4zM1 1h1v1H1zM3 1h1v1H3zM2 2h1v1H2zM1 3h1v1H1zM3 3h1v1H3zM0 4h1v1H0zM4 4h1v1H4z"
+				></path>
+			</svg>
+		</button>
+	</div>
 
 	<div class="thinking" x-show="thinking" role="status">
 		<img src={spin.src} alt="" width="67" height="60" />
@@ -116,33 +172,69 @@ const data = String.raw`{
 
 	<template x-if="result && !thinking">
 		<div class="result">
-			<img
-				class="sprite"
-				:src="result.sprite"
-				alt=""
-				width="120"
-				height="120"
-				x-show="spriteOk"
-				@error="spriteOk = false"
-			/>
-			<div>
+			<div class="look">
+				<img
+					class="sprite"
+					:src="shiny ? result.shinySprite : result.sprite"
+					alt=""
+					width="120"
+					height="120"
+					x-show="spriteOk"
+					@error="spriteOk = false"
+				/>
+				<button
+					type="button"
+					class="shiny"
+					:class="{ on: shiny }"
+					:aria-pressed="shiny"
+					@click="toggleShiny()"
+				>
+					<svg
+						viewBox="0 0 7 7"
+						width="14"
+						height="14"
+						shape-rendering="crispEdges"
+						aria-hidden="true"
+					>
+						<path
+							fill="currentColor"
+							d="M3 0h1v2h1v1h2v1H5v1H4v2H3V5H2V4H0V3h2V2h1z"></path>
+					</svg>
+					shiny
+				</button>
+			</div>
+			<div class="info">
 				<h3>
 					<span x-text="result.name"></span>
 					<small x-text="result.dex"></small>
 				</h3>
 				<p class="tags" x-text="result.tags"></p>
-				<dl>
-					<dt>chance per spawn</dt>
-					<dd x-text="result.percent"></dd>
-					<dt>about 1 in</dt>
-					<dd x-text="result.oneIn"></dd>
-					<dt>messages for one</dt>
-					<dd x-text="result.messages"></dd>
-					<dt>50/50 odds after</dt>
-					<dd x-text="result.half"></dd>
-					<dt>rarer than</dt>
-					<dd x-text="result.rarer"></dd>
-				</dl>
+				<div class="stats">
+					<dl>
+						<dt>chance per spawn</dt>
+						<dd>
+							<span x-text="shown.percent"></span><span x-show="shiny" x-cloak
+								>*</span
+							>
+						</dd>
+						<dt>about 1 in</dt>
+						<dd x-text="shown.oneIn"></dd>
+						<dt>messages for one</dt>
+						<dd x-text="shown.messages"></dd>
+						<dt>50/50 odds after</dt>
+						<dd x-text="shown.half"></dd>
+						<dt
+							title="1 is the most common. the list has every pokémon twice, normal and shiny"
+						>
+							rarity rank
+						</dt>
+						<dd x-text="shown.rank"></dd>
+					</dl>
+					<p class="note" x-show="shiny" x-cloak>
+						* for a shiny one. every catch has a 1 in 4,096 chance to be shiny,
+						1 in 3,413 with a shiny charm
+					</p>
+				</div>
 			</div>
 		</div>
 	</template>
@@ -168,10 +260,14 @@ const data = String.raw`{
 	}
 
 	.lookup {
+		.field {
+			position: relative;
+		}
+
 		input {
 			box-sizing: border-box;
 			width: 100%;
-			padding: 8px 12px;
+			padding: 8px 36px 8px 12px;
 			border: var(--p2-line, 2px) solid var(--p2-border);
 			border-radius: var(--p2-pill, 999px);
 
@@ -181,9 +277,39 @@ const data = String.raw`{
 
 			background-color: var(--p2-surface, white);
 
+			/* the browser's own x is smooth, ours is pixels */
+			&::-webkit-search-cancel-button {
+				appearance: none;
+			}
+
 			&:focus {
 				border-color: var(--p2-heading);
 				outline: none;
+			}
+		}
+
+		.clear {
+			cursor: pointer;
+
+			position: absolute;
+			top: 0;
+			right: 0;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			width: 36px;
+			height: 100%;
+			padding: 0;
+			border: 0;
+
+			color: var(--p2-muted);
+
+			background: none;
+
+			&:hover {
+				color: var(--p2-heading);
 			}
 		}
 	}
@@ -238,8 +364,38 @@ const data = String.raw`{
 
 		background-color: var(--p2-surface, white);
 
+		.look {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+			align-items: center;
+		}
+
 		.sprite {
 			image-rendering: pixelated;
+		}
+
+		.shiny {
+			cursor: pointer;
+
+			display: flex;
+			gap: 6px;
+			align-items: center;
+
+			padding: 3px 10px;
+			border: var(--p2-line, 2px) solid var(--p2-border);
+			border-radius: var(--p2-pill, 999px);
+
+			font: inherit;
+			color: var(--p2-text);
+
+			background-color: var(--p2-surface, white);
+
+			&:hover,
+			&.on {
+				border-color: var(--p2-heading);
+				color: var(--p2-heading);
+			}
 		}
 
 		h3 {
@@ -269,6 +425,32 @@ const data = String.raw`{
 			margin: 0;
 			font-weight: bold;
 			color: var(--p2-blue);
+		}
+
+		.info {
+			flex: 1;
+			min-width: 240px;
+		}
+
+		/* the note sits in the empty space beside the rows, so the box keeps its height */
+		.stats {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px 28px;
+			align-items: flex-start;
+		}
+
+		.note {
+			flex: 1;
+
+			min-width: 18ch;
+			max-width: 34ch;
+			margin: 0;
+
+			font-size: 14px;
+			font-style: italic;
+			line-height: 1.15;
+			color: var(--p2-muted);
 		}
 	}
 
