@@ -57,10 +57,17 @@ const legend = `{
 	light(id) {
 		if (id === this.current) return;
 		this.current = id;
-		// keep the lit entry on screen when the legend itself has to scroll
-		this.$nextTick(() =>
-			this.$root.querySelector('aside a.here')?.scrollIntoView({ block: 'nearest' }),
-		);
+		// keep the lit entry in view when the legend itself has to scroll.
+		// not scrollIntoView: that scrolls the page too, and on phones it pulled it back up to the legend
+		this.$nextTick(() => {
+			const aside = this.$root.querySelector('aside');
+			const link = aside?.querySelector('a.here');
+			if (!link) return;
+			const box = aside.getBoundingClientRect();
+			const at = link.getBoundingClientRect();
+			if (at.top < box.top) aside.scrollTop -= box.top - at.top;
+			else if (at.bottom > box.bottom) aside.scrollTop += at.bottom - box.bottom;
+		});
 	},
 }`;
 ---
@@ -245,6 +252,12 @@ const legend = `{
 		.layout {
 			flex-direction: column;
 			align-items: stretch;
+		}
+
+		/* no box to scroll inside here, it would trap the finger on short screens */
+		.layout :global(aside) {
+			overflow-y: visible;
+			max-height: none;
 		}
 	}
 </style>
