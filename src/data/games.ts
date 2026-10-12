@@ -1,10 +1,5 @@
----
-const imageSize = 100;
-const gap = 8;
-
 /* eslint-disable simple-import-sort/imports */
-import ProfileItem from './ProfileItem.astro';
-import ProfileList from './ProfileList.astro';
+import type { ImageMetadata } from 'astro';
 
 import pkmnAS from '$/assets/games/pkmnAS.webp';
 import pkmnB from '$/assets/games/pkmnB.webp';
@@ -136,10 +131,43 @@ import p5t from '$/assets/games/p5t.webp';
 import meta from '$/assets/games/meta.webp';
 import p3p from '$/assets/games/p3p.webp';
 import marvelrivals from '$/assets/games/marvelrivals.webp';
+import finals from '$/assets/games/finals.webp';
+import satisfactory from '$/assets/games/satisfactory.webp';
+import unbeatablefull from '$/assets/games/unbeatablefull.webp';
+import n3 from '$/assets/games/n3.webp';
+import cookieclicker from '$/assets/games/cookieclicker.webp';
+import leafblower from '$/assets/games/leafblower.webp';
+import beatsaber from '$/assets/games/beatsaber.webp';
+import djmax from '$/assets/games/djmax.webp';
+import p4au from '$/assets/games/p4au.webp';
+import ffxiv from '$/assets/games/ffxiv.webp';
 
-const games = [
+export const categories = [
+	'Pokémon',
+	'Nintendo',
+	'Persona & Atlus',
+	'Rhythm',
+	'Story & visual novels',
+	'Adventure & RPG',
+	'With friends',
+	'Sims & sandbox',
+	'Roguelikes & cards',
+] as const;
+
+export type Category = (typeof categories)[number];
+
+export interface Game {
+	name: string;
+	category: Category;
+	status: string;
+	thoughts: string;
+	image: ImageMetadata;
+}
+
+export const games: Game[] = [
 	{
 		name: 'Pokémon Black',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts:
 			'I never hated the trash and ice cream monsters like everyone else',
@@ -147,12 +175,14 @@ const games = [
 	},
 	{
 		name: 'Pokémon X',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts: 'Loved the character customization',
 		image: pkmnX,
 	},
 	{
 		name: 'Pokémon Alpha Sapphire',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts: 'My first real Pokémon game, and I loved it!',
 		image: pkmnAS,
@@ -160,6 +190,7 @@ const games = [
 
 	{
 		name: 'Pokémon Sun',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts:
 			'I played all 4 games this gen. To avoid redundancy, only sun is listed',
@@ -167,18 +198,21 @@ const games = [
 	},
 	{
 		name: 'Pokémon Ultra Sun',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts: 'First game I ever shiny hunted in',
 		image: pkmnUS,
 	},
 	{
 		name: 'Pokémon: Lets Go, Eevee!',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts: 'this game was ass',
 		image: pkmnLGE,
 	},
 	{
 		name: 'Pokémon Sword',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts:
 			'Series started to go downhill here but I loved the online features',
@@ -186,18 +220,21 @@ const games = [
 	},
 	{
 		name: 'Pokémon Brilliant Diamond',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts: 'this game was ass',
 		image: pkmnBD,
 	},
 	{
 		name: 'Pokémon Legends: Arceus',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts: 'PEAK PEAK PEAK PEAK my fav in the entire series',
 		image: pkmnLA,
 	},
 	{
 		name: 'Pokémon Violet',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts:
 			'I liked the open world but Area Zero made me quit for like a year before finishing the game',
@@ -205,36 +242,42 @@ const games = [
 	},
 	{
 		name: 'Pokémon Mystery Dungeon: Gates to Infinity',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts: 'Cool game my first dungeon crawler',
 		image: pkmnMDGTI,
 	},
 	{
 		name: 'Pokémon Detective Pikachu',
+		category: 'Pokémon',
 		status: 'Completed',
 		thoughts: 'Good game but I liked the movie more',
 		image: pkmnDTP,
 	},
 	{
 		name: 'Kirby: Triple Deluxe',
+		category: 'Nintendo',
 		status: 'Completed',
 		thoughts: 'Fun platformer with great level design',
 		image: kirbyTD,
 	},
 	{
 		name: 'Animal Crossing: New Leaf',
+		category: 'Nintendo',
 		status: 'N/A (Sandbox)',
 		thoughts: 'Relaxing and charming, still stands to this day',
 		image: ACNL,
 	},
 	{
 		name: 'Animal Crossing: New Horizons',
+		category: 'Nintendo',
 		status: 'N/A (Sandbox)',
 		thoughts: 'Helped me get through the pandemic, still play it occasionally',
 		image: ACNH,
 	},
 	{
 		name: 'Super Smash Bros. 3DS',
+		category: 'Nintendo',
 		status: 'N/A (Online)',
 		thoughts:
 			'Brings back memories of bringing my 3DS to school to play at lunch',
@@ -242,90 +285,105 @@ const games = [
 	},
 	{
 		name: 'New Super Mario Bros. Wii',
+		category: 'Nintendo',
 		status: 'Completed',
 		thoughts: 'Classic Mario',
 		image: NSMBW,
 	},
 	{
 		name: 'Mario 3D Land',
+		category: 'Nintendo',
 		status: 'Completed',
 		thoughts: 'Its Mario 3D Land what else is there to say',
 		image: M3DL,
 	},
 	{
 		name: 'Super Mario Odyssey',
+		category: 'Nintendo',
 		status: 'Completed',
 		thoughts: 'It was alright',
 		image: SMO,
 	},
 	{
 		name: 'Mario Kart Wii',
+		category: 'Nintendo',
 		status: 'N/A (Online)',
 		thoughts: 'Best Mario Kart game imo',
 		image: MKW,
 	},
 	{
 		name: 'Mario Kart 8 Wii U',
+		category: 'Nintendo',
 		status: 'N/A (Online)',
 		thoughts: 'Great game but the Wii U online was trash',
 		image: MK8W,
 	},
 	{
 		name: 'Mario Kart 8 Deluxe',
+		category: 'Nintendo',
 		status: 'N/A (Online)',
 		thoughts: 'Still play this online occasionally',
 		image: MK8D,
 	},
 	{
 		name: 'Nintendogs',
+		category: 'Nintendo',
 		status: 'N/A (Sandbox)',
 		thoughts: 'My dogs are probably dead now',
 		image: nintendogs,
 	},
 	{
 		name: 'Kid Icarus: Uprising',
+		category: 'Nintendo',
 		status: 'Completed',
 		thoughts: 'Still coping with yearning for a remake',
 		image: KIU,
 	},
 	{
 		name: 'Tomodachi Life',
+		category: 'Nintendo',
 		status: 'N/A (Sandbox)',
 		thoughts: 'I have over 300 hours in this game dont judge me',
 		image: tomodachilifeds,
 	},
 	{
 		name: 'Splatoon',
+		category: 'Nintendo',
 		status: 'Completed',
 		thoughts: 'Great game but the online was trash',
 		image: splat,
 	},
 	{
 		name: 'Splatoon 2',
+		category: 'Nintendo',
 		status: 'Completed',
 		thoughts: 'Another covid game that helped me get through lockdowns',
 		image: splat2,
 	},
 	{
 		name: 'Splatoon 3',
+		category: 'Nintendo',
 		status: 'Completed',
 		thoughts: 'Great game. Peak of the series so far',
 		image: splat3,
 	},
 	{
 		name: 'Snipperclips',
+		category: 'Nintendo',
 		status: 'Completed',
 		thoughts: 'Fun co-op puzzle game to play with friends',
 		image: snipperclips,
 	},
 	{
 		name: 'The Legend of Zelda: Breath of the Wild',
+		category: 'Nintendo',
 		status: 'Dropped',
 		thoughts: 'I couldnt get into it sadly',
 		image: TLOZBOTW,
 	},
 	{
 		name: 'Minecraft',
+		category: 'Sims & sandbox',
 		status: 'N/A (Sandbox)',
 		thoughts:
 			'Classic game that I still play, I have soooo many hours in this game',
@@ -333,90 +391,105 @@ const games = [
 	},
 	{
 		name: 'Undertale',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'THE game to get me into gaming',
 		image: undertale,
 	},
 	{
 		name: 'Portal',
+		category: 'Adventure & RPG',
 		status: 'Completed',
 		thoughts: 'A mind-bending puzzle game that redefined the genre',
 		image: portal,
 	},
 	{
 		name: 'Portal 2',
+		category: 'Adventure & RPG',
 		status: 'Completed',
 		thoughts: 'Co-op mode made this game an unforgettable experience',
 		image: portal2,
 	},
 	{
 		name: 'Doki Doki Literature Club',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'A psychological horror game that defined my developmental years',
 		image: ddlc,
 	},
 	{
 		name: 'Bendy and the Ink Machine',
+		category: 'Adventure & RPG',
 		status: 'Dropped',
 		thoughts: 'kinda mid',
 		image: batim,
 	},
 	{
 		name: 'Spore',
+		category: 'Sims & sandbox',
 		status: 'Completed',
 		thoughts: 'I loved making the ugliest monsters possible',
 		image: spore,
 	},
 	{
 		name: 'Ori and the Blind Forest',
+		category: 'Adventure & RPG',
 		status: 'Completed',
 		thoughts: 'Beautiful art and music, challenging gameplay',
 		image: ori,
 	},
 	{
 		name: 'The Binding of Isaac',
+		category: 'Roguelikes & cards',
 		status: 'Dropped',
 		thoughts: 'Im actually too bad to play',
 		image: tboi,
 	},
 	{
 		name: 'Nekopara Vol. 0',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'Like nya or something',
 		image: n0,
 	},
 	{
 		name: 'Nekopara Extra',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'More nya',
 		image: nextra,
 	},
 	{
 		name: 'Nekopara Vol. 1',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'Catgirl yuri',
 		image: n1,
 	},
 	{
 		name: 'Nekopara Vol. 2',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'Lots of porn!',
 		image: n2,
 	},
 	{
 		name: "Don't Starve",
+		category: 'Sims & sandbox',
 		status: 'Dropped',
 		thoughts: 'I only played for like 30 mins',
 		image: ds,
 	},
 	{
 		name: "Don't Starve Together",
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'Actually pretty fun I liked playing with my gf',
 		image: dst,
 	},
 	{
 		name: 'New World: Aeternum',
+		category: 'With friends',
 		status: 'Dropped',
 		thoughts:
 			'Reminds me of horrible people, I also hate mmos and only played it for them',
@@ -424,30 +497,35 @@ const games = [
 	},
 	{
 		name: 'Cateau',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'A short but sweet visual novel experience',
 		image: cateau,
 	},
 	{
 		name: 'Calico',
+		category: 'Sims & sandbox',
 		status: 'Completed',
 		thoughts: 'Cute cafe sim I played during covid just wish it was longer',
 		image: calico,
 	},
 	{
 		name: 'Bean Battles',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'This was actually so shit why did I play this for an hour',
 		image: beanbattles,
 	},
 	{
 		name: 'Quaver',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts: 'A rhythm game, mid',
 		image: quaver,
 	},
 	{
 		name: 'Osu!',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts:
 			'A rhythm game that I enjoyed playing at one point, I hate it now',
@@ -455,66 +533,78 @@ const games = [
 	},
 	{
 		name: 'Cytus II',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts: 'A rhythm game with a great story to go with',
 		image: cytus2,
 	},
 	{
 		name: 'Project Sekai: Colorful Stage!',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts: 'Yeaaaaah baybeeee this shits where its at',
 		image: pjsk,
 	},
 	{
 		name: 'Muse Dash',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
-		thoughts: '100% achievements on steam',
+		thoughts:
+			'100% achievements on steam, also hype for Muse Dash 2 coming soon',
 		image: musedash,
 	},
 	{
 		name: 'Hatsune Miku: Project DIVA MegaMix',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts: 'its DIVA how can you go wrong',
 		image: megamix,
 	},
 	{
 		name: 'WACCA',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts: 'Fun rhythm game, the only shit I really play at the arcade',
 		image: wacca,
 	},
 	{
 		name: 'Groove Coaster',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts: 'Buttons are always broken at my arcade :(',
 		image: gc,
 	},
 	{
 		name: "Taiko no Tatsujin Drum n' Fun",
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts: 'drum go brrrrrrr',
 		image: taiko,
 	},
 	{
 		name: 'Musynx',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts: 'idk kinda mid',
 		image: musynx,
 	},
 	{
 		name: 'UNBEATABLE [white label]',
+		category: 'Rhythm',
 		status: 'N/A (Online)',
 		thoughts: 'Super fun & underrated',
 		image: unbeatable,
 	},
 	{
 		name: 'Melatonin',
+		category: 'Rhythm',
 		status: 'Completed',
 		thoughts: 'A rhythm game with a chill vibe',
 		image: melatonin,
 	},
 	{
 		name: 'Among Us',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts:
 			'I actually hated this game even during lockdown and was ostracized for it',
@@ -522,54 +612,63 @@ const games = [
 	},
 	{
 		name: 'The Sims 3',
+		category: 'Sims & sandbox',
 		status: 'N/A (Sandbox)',
 		thoughts: 'its the sims',
 		image: sims3,
 	},
 	{
 		name: 'The Sims 4',
+		category: 'Sims & sandbox',
 		status: 'N/A (Sandbox)',
 		thoughts: 'Only playable because of anadius and you guys killed him',
 		image: sims4,
 	},
 	{
 		name: 'Squirrel with a Gun',
+		category: 'Adventure & RPG',
 		status: 'Dropped',
 		thoughts: 'This game was actually so dumb',
 		image: squirrelwithagun,
 	},
 	{
 		name: 'Content Warning',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'Bad memories cause of the ppl I played it with',
 		image: contentwarning,
 	},
 	{
 		name: 'Lethal Company',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'Again bad memories cause of the ppl I played it with',
 		image: lethalcomp,
 	},
 	{
 		name: 'ENA Dream BBQ',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'Oh indie animation how dear you are to me',
 		image: enadreambbq,
 	},
 	{
 		name: 'DOOM Eternal',
+		category: 'Adventure & RPG',
 		status: 'Dropped',
 		thoughts: 'I got bored of shooting demons after a while',
 		image: doome,
 	},
 	{
 		name: 'Journey',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'A beautiful game honestly',
 		image: journey,
 	},
 	{
 		name: 'Garfield Kart - Furious Racing',
+		category: 'With friends',
 		status: 'Dropped',
 		thoughts:
 			'I bought like 15 copies of this game on sale and gifted them to anyone I knew',
@@ -577,60 +676,70 @@ const games = [
 	},
 	{
 		name: 'Plants vs. Zombies',
+		category: 'Sims & sandbox',
 		status: 'Completed',
 		thoughts: 'Classic tower defense game',
 		image: pvz,
 	},
 	{
 		name: 'Plants vs. Zombies 2',
+		category: 'Sims & sandbox',
 		status: 'Completed',
 		thoughts: 'Sequel but it was not better idk why i finished it',
 		image: pvz2,
 	},
 	{
 		name: 'Plants vs. Zombies: Garden Warfare',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'I loved this shit as a little kid',
 		image: pvzgw,
 	},
 	{
 		name: 'Plants vs. Zombies: Garden Warfare 2',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'Did not play this nearly as much as the original',
 		image: pvzgw2,
 	},
 	{
 		name: 'Hollow Knight',
+		category: 'Adventure & RPG',
 		status: 'Dropped',
 		thoughts: 'I am not good enough to play this game',
 		image: hollowknight,
 	},
 	{
 		name: 'Overcooked 2',
-		status: 'In progress',
-		thoughts: 'Fun to play with gfie but im usually too high to be useful',
+		category: 'With friends',
+		status: 'Dropped',
+		thoughts: 'Only fun with ppl, might play it again eventually',
 		image: overcooked2,
 	},
 	{
 		name: 'Peglin',
+		category: 'Roguelikes & cards',
 		status: 'Completed',
 		thoughts: 'Fun roguelike but once I finished it one time I was done',
 		image: peglin,
 	},
 	{
 		name: 'BBQ Simulator: The Squad',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'fucking brainrot',
 		image: bbqsimthesquad,
 	},
 	{
 		name: 'ATLYSS',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'idk I liked playing with gfie but im not too huge on mmos',
 		image: ATLYSS,
 	},
 	{
 		name: 'OMORI',
+		category: 'Story & visual novels',
 		status: 'Dropped',
 		thoughts:
 			'I got really bored with the grindy combat system :( watched a playthrough tho',
@@ -638,24 +747,28 @@ const games = [
 	},
 	{
 		name: 'The Elder Scrolls V: Skyrim',
-		status: 'In progress',
+		category: 'Adventure & RPG',
+		status: 'Dropped',
 		thoughts: 'Really fun but I dont have the time',
 		image: skyrim,
 	},
 	{
 		name: 'Cities: Skylines',
+		category: 'Sims & sandbox',
 		status: 'N/A (Sandbox)',
 		thoughts: 'I like the meteor function',
 		image: citiesskylines,
 	},
 	{
 		name: 'Dave the Diver',
-		status: 'In progress',
+		category: 'Sims & sandbox',
+		status: 'Dropped',
 		thoughts: 'Sushi!!!!!!!!!!!!!!!!',
 		image: davethediver,
 	},
 	{
 		name: 'Persona5: The Phantom X',
+		category: 'Persona & Atlus',
 		status: 'N/A (Gacha)',
 		thoughts:
 			'ACTUAL DOGSHIT after playing it i wanted the subway slammer to take me out',
@@ -663,54 +776,63 @@ const games = [
 	},
 	{
 		name: 'Honkai: Star Rail',
+		category: 'Adventure & RPG',
 		status: 'N/A (Gacha)',
 		thoughts: 'Spent like $400 on pretty boys then dropped it',
 		image: hsr,
 	},
 	{
 		name: 'Genshin Impact',
+		category: 'Adventure & RPG',
 		status: 'N/A (Gacha)',
 		thoughts: 'Spent like $150 on lolis then dropped it',
 		image: genshin,
 	},
 	{
 		name: 'Warhammer: Vermintide 2',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'Fun co-op game ngl I like it when my friends make me play it',
 		image: vermintide2,
 	},
 	{
 		name: 'Wildfrost',
+		category: 'Roguelikes & cards',
 		status: 'Completed',
 		thoughts: 'So much more fun when modded',
 		image: wildfrost,
 	},
 	{
 		name: 'Danganronpa: Trigger Happy Havoc',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'I only hated byakuya because he reminded me of myself',
 		image: thh,
 	},
 	{
 		name: 'Danganronpa 2: Goodbye Despair',
+		category: 'Story & visual novels',
 		status: 'Dropped',
 		thoughts: 'Why did they make byakuya fat and then kill him',
 		image: gbd,
 	},
 	{
 		name: 'Horizon Zero Dawn',
+		category: 'Adventure & RPG',
 		status: 'Dropped',
 		thoughts: 'Amazing world and story, idk I just got bored after 10 hours',
 		image: horizonzerodawn,
 	},
 	{
 		name: 'Stray',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'Cute game with an amazing atmosphere',
 		image: stray,
 	},
 	{
 		name: 'Psychonauts 2',
+		category: 'Adventure & RPG',
 		status: 'Dropped',
 		thoughts:
 			'I got stuck on a boss after 12 hours and ragequit to never return',
@@ -718,60 +840,70 @@ const games = [
 	},
 	{
 		name: 'Halo Infinite',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'Fun game but I only ever played w friends',
 		image: haloinfinite,
 	},
 	{
 		name: 'Plague Inc: Evolved',
+		category: 'Sims & sandbox',
 		status: 'Completed',
 		thoughts: 'Fun game to play when high',
 		image: plaugeinc,
 	},
 	{
 		name: 'Webfishing',
+		category: 'With friends',
 		status: 'N/A (Sandbox)',
 		thoughts: 'was cool for the 10 seconds people cared about it',
 		image: webfishing,
 	},
 	{
 		name: 'Slime Rancher',
+		category: 'Sims & sandbox',
 		status: 'Completed',
 		thoughts: '100% achievements on steam',
 		image: sr,
 	},
 	{
 		name: 'Slime Rancher 2',
-		status: 'In progress',
+		category: 'Sims & sandbox',
+		status: 'Dropped',
 		thoughts: 'Dude I actually need to play this game',
 		image: sr2,
 	},
 	{
 		name: 'Rainbow Six Siege',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'I only played this cause my friends made me I actually hate it',
 		image: r6,
 	},
 	{
 		name: 'Transformice',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'im a furry what can I say',
 		image: tfm,
 	},
 	{
 		name: 'Unrailed!',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'Ragebait simulator',
 		image: unrailed,
 	},
 	{
 		name: 'Vampire Survivors',
+		category: 'Roguelikes & cards',
 		status: 'N/A (Infinite)',
 		thoughts: 'I have way too many hours in this game for how simple it is',
 		image: vs,
 	},
 	{
 		name: 'Slay the Spire',
+		category: 'Roguelikes & cards',
 		status: 'Dropped',
 		thoughts:
 			'Im so bad at this game ive never even beaten it once despite my 12 hr playtime',
@@ -779,12 +911,14 @@ const games = [
 	},
 	{
 		name: 'A Hat in Time',
+		category: 'Adventure & RPG',
 		status: 'Completed',
 		thoughts: 'GREAT GAME!!!!!!!!',
 		image: ahatintime,
 	},
 	{
 		name: 'Stardew Valley',
+		category: 'Sims & sandbox',
 		status: 'N/A (Sandbox)',
 		thoughts:
 			'Reminds me of this one ex friend of mine which always gives me the ick',
@@ -792,18 +926,21 @@ const games = [
 	},
 	{
 		name: "Papa's Freezeria Deluxe",
+		category: 'Sims & sandbox',
 		status: 'Completed',
 		thoughts: 'THE shit when i was 10, still fun while high now',
 		image: papasfreezeria,
 	},
 	{
 		name: 'Wobbledogs',
+		category: 'Sims & sandbox',
 		status: 'Completed',
 		thoughts: '100% achievements on steam (somehow)',
 		image: Wobbledogs,
 	},
 	{
 		name: 'Sea of Thieves',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts:
 			'I love playing this with my dad & thats the only reason I have hours',
@@ -811,6 +948,7 @@ const games = [
 	},
 	{
 		name: 'Cult of the Lamb',
+		category: 'Roguelikes & cards',
 		status: 'Completed',
 		thoughts:
 			'Amazing game, super fun gameplay loops, perfect for my short attention span',
@@ -818,6 +956,7 @@ const games = [
 	},
 	{
 		name: 'Balatro',
+		category: 'Roguelikes & cards',
 		status: 'N/A (Infinite)',
 		thoughts:
 			'LETS GO GAMBLING! (I seriously should not have 50 hours in this game)',
@@ -825,54 +964,63 @@ const games = [
 	},
 	{
 		name: 'Deep Rock Galactic',
+		category: 'With friends',
 		status: 'N/A (Online)',
 		thoughts: 'AMAZING GAME super super fun tons of time wasted in it',
 		image: drg,
 	},
 	{
 		name: 'VRChat',
+		category: 'With friends',
 		status: 'N/A (Online)',
-		thoughts: 'Never again. Too much time talking to furries.',
+		thoughts: 'I go through phases with this one',
 		image: vrc,
 	},
 	{
 		name: 'Terraria',
+		category: 'Sims & sandbox',
 		status: 'Completed',
 		thoughts: 'unfortunately reminds me of some awful people. good game tho',
 		image: terraria,
 	},
 	{
 		name: 'Bloons TD 6',
+		category: 'Sims & sandbox',
 		status: 'N/A (Online)',
 		thoughts: 'my only form of entertainment through top surgery recovery',
 		image: btd6,
 	},
 	{
 		name: 'Night In The Woods',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'breathtaking visual novel that is very relatable',
 		image: nitw,
 	},
 	{
 		name: 'Needy Streamer Overload',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'deals with a lot of tough shit but unfortunately relatable',
 		image: nso,
 	},
 	{
 		name: 'Persona 3 Reload',
+		category: 'Persona & Atlus',
 		status: 'Completed',
 		thoughts: 'Such a good game, such a good plot, i love persona so much',
 		image: p3r,
 	},
 	{
 		name: 'VA-11 Hall-A: Cyberpunk Bartender Action',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'very fun visual novel i liked getting patrons really drunk',
 		image: va11,
 	},
 	{
 		name: 'Persona 4 Golden',
+		category: 'Persona & Atlus',
 		status: 'Completed',
 		thoughts:
 			'yosuke gay route being removed is evil but amazing game nonetheless',
@@ -880,24 +1028,28 @@ const games = [
 	},
 	{
 		name: "Baldur's Gate 3",
+		category: 'Adventure & RPG',
 		status: 'Completed',
 		thoughts: 'An absolute masterpiece and a delight to play',
 		image: bg3,
 	},
 	{
 		name: 'Persona 5 Royal',
+		category: 'Persona & Atlus',
 		status: 'Completed',
 		thoughts: 'My current favorite game of all time i fucking love this game',
 		image: p5r,
 	},
 	{
 		name: 'DRAMAtical Murder',
+		category: 'Story & visual novels',
 		status: 'Completed',
 		thoughts: 'A surprising amount of social commentary for gay porn',
 		image: dmmd,
 	},
 	{
 		name: 'Persona 5 Strikers',
+		category: 'Persona & Atlus',
 		status: 'Completed',
 		thoughts:
 			'idk if I like it just cause its persona 5 or cause the combat is actually challenging and fun',
@@ -905,60 +1057,115 @@ const games = [
 	},
 	{
 		name: 'Cyberpunk 2077',
+		category: 'Adventure & RPG',
 		status: 'Completed',
 		thoughts: 'AMAZING world its so fun just to drive around night city',
 		image: cyber,
 	},
 	{
 		name: 'Disco Elysium',
-		status: 'In Progress',
+		category: 'Story & visual novels',
+		status: 'Dropped',
 		thoughts: 'I picked the insane guy but idk whats happening',
 		image: dis,
 	},
 	{
 		name: 'Persona 5 Tactica',
-		status: 'Not Started',
+		category: 'Persona & Atlus',
+		status: 'Dropped',
 		thoughts: 'Lets be honest I am only playing it bc its persona 5',
 		image: p5t,
 	},
 	{
 		name: 'Metaphor: ReFantazio',
-		status: 'Not started',
-		thoughts:
-			'Lets be honest I am only playing it bc its made by the persona devs',
+		category: 'Persona & Atlus',
+		status: 'In progress',
+		thoughts: 'Its fantasy persona and thats exactly what I wanted',
 		image: meta,
 	},
 	{
 		name: 'Persona 3 Portable',
-		status: 'In progress',
-		thoughts: 'Kotone makes it fun to replay persona 3',
+		category: 'Persona & Atlus',
+		status: 'On hold',
+		thoughts: 'Got bored of playing the same game for a 3rd time',
 		image: p3p,
 	},
 	{
 		name: 'Marvel Rivals',
+		category: 'With friends',
 		status: 'N/A (Online)',
-		thoughts:
-			'Only started playing bc of a friend, but it is actually pretty fun',
+		thoughts: '247 hours later I think I can admit I like this game',
 		image: marvelrivals,
 	},
-];
----
-
-<ProfileList class="list" itemSize={imageSize} {gap}>
 	{
-		games.map(({ name, status, thoughts, image }) => (
-			<ProfileItem title={name} {image} size={imageSize} noHover>
-				<h3>{name}</h3>
-				<p>Status: {status}</p>
-				<p>Thoughts: {thoughts}</p>
-			</ProfileItem>
-		))
-	}
-</ProfileList>
-
-<style>
-	.list {
-		overflow-y: auto;
-		max-height: 250px;
-	}
-</style>
+		name: 'THE FINALS',
+		category: 'With friends',
+		status: 'N/A (Online)',
+		thoughts: 'Blowing up the whole building to win never gets old',
+		image: finals,
+	},
+	{
+		name: 'Satisfactory',
+		category: 'Sims & sandbox',
+		status: 'N/A (Sandbox)',
+		thoughts: '48 hours of spaghetti conveyor belts and no regrets',
+		image: satisfactory,
+	},
+	{
+		name: 'UNBEATABLE',
+		category: 'Rhythm',
+		status: 'Completed',
+		thoughts: 'Was broken and kinda disappointing unfortunately',
+		image: unbeatablefull,
+	},
+	{
+		name: 'Nekopara Vol. 3',
+		category: 'Story & visual novels',
+		status: 'In progress',
+		thoughts: 'More catgirls, you know why I am here',
+		image: n3,
+	},
+	{
+		name: 'Cookie Clicker',
+		category: 'Sims & sandbox',
+		status: 'N/A (Infinite)',
+		thoughts: '48 hours of clicking a cookie. I have no excuse',
+		image: cookieclicker,
+	},
+	{
+		name: 'Leaf Blower Revolution',
+		category: 'Sims & sandbox',
+		status: 'N/A (Infinite)',
+		thoughts: '98 hours in an idle game about blowing leaves, dont ask',
+		image: leafblower,
+	},
+	{
+		name: 'Beat Saber',
+		category: 'Rhythm',
+		status: 'N/A (Online)',
+		thoughts: 'my arms hurt',
+		image: beatsaber,
+	},
+	{
+		name: 'DJMAX RESPECT V',
+		category: 'Rhythm',
+		status: 'N/A (Online)',
+		thoughts: 'Just started, getting humbled',
+		image: djmax,
+	},
+	{
+		name: 'Persona 4 Arena Ultimax',
+		category: 'Persona & Atlus',
+		status: 'N/A (Online)',
+		thoughts:
+			'Trying to learn it with my gf, only because the art looks nice. I hate fighting games',
+		image: p4au,
+	},
+	{
+		name: 'Final Fantasy XIV',
+		category: 'Adventure & RPG',
+		status: 'In progress',
+		thoughts: 'In Endwalker rn. Thancred is my fav, he can do no wrong',
+		image: ffxiv,
+	},
+];

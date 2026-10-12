@@ -1,0 +1,395 @@
+---
+import { channels, networks } from '$/lib/games';
+
+const list = channels.map(({ name, thoughts, src, tag, category }) => ({
+	name,
+	thoughts,
+	src,
+	tag,
+	category,
+}));
+const start = Math.max(
+	channels.findIndex(game => game.playing),
+	0,
+);
+
+const data = `{
+	list: ${JSON.stringify(list)},
+	ch: ${start},
+	open: null,
+	snow: false,
+
+	tune(to) {
+		this.ch = (to + this.list.length) % this.list.length;
+		// a blink of static between channels
+		this.snow = true;
+		setTimeout(() => (this.snow = false), 180);
+	},
+
+	surf() {
+		this.tune(Math.floor(Math.random() * this.list.length));
+	},
+
+	number(ch) {
+		return String(ch + 1).padStart(3, '0');
+	},
+}`;
+
+let number = 0;
+---
+
+<div class="games-tv" x-data={data}>
+	<div
+		class="tv"
+		x-on:keydown.up.prevent="tune(ch + 1)"
+		x-on:keydown.down.prevent="tune(ch - 1)"
+	>
+		<div class="screen" x-bind:class="{ snow }">
+			<img class="glow" x-bind:src="list[ch].src" alt="" />
+			<img
+				class="cover"
+				x-bind:src="list[ch].src"
+				alt=""
+				width="225"
+				height="225"
+			/>
+			<span class="osd left" x-text="list[ch].tag"></span>
+			<span class="osd right" x-text="'CH ' + number(ch)"></span>
+			<p class="subs" aria-live="polite">
+				<strong x-text="list[ch].name"></strong>
+				<span x-text="list[ch].thoughts"></span>
+			</p>
+			<div class="lines"></div>
+		</div>
+		<div class="knobs">
+			<button type="button" aria-label="next channel" x-on:click="tune(ch + 1)"
+				>ch +</button
+			>
+			<button
+				type="button"
+				aria-label="previous channel"
+				x-on:click="tune(ch - 1)">ch -</button
+			>
+			<button type="button" aria-label="random channel" x-on:click="surf()"
+				>surf</button
+			>
+			<i></i>
+		</div>
+	</div>
+
+	<h3>tv guide <small x-text="'now on: ' + list[ch].category"></small></h3>
+	<div class="networks">
+		{
+			networks.map(network => (
+				<button
+					type="button"
+					x-on:click={`open = open === ${JSON.stringify(network.name)} ? null : ${JSON.stringify(network.name)}`}
+					x-bind:class={`{ on: open === ${JSON.stringify(network.name)}, here: list[ch].category === ${JSON.stringify(network.name)} }`}
+					x-bind:aria-expanded={`open === ${JSON.stringify(network.name)}`}
+				>
+					{network.name} <small>{network.games.length}</small>
+				</button>
+			))
+		}
+	</div>
+	{
+		networks.map(network => (
+			<ol x-show={`open === ${JSON.stringify(network.name)}`} x-cloak>
+				{network.games.map(game => {
+					const at = number++;
+					return (
+						<li>
+							<button
+								type="button"
+								style={`--c: ${game.color}`}
+								x-on:click={`tune(${at})`}
+								x-bind:class={`{ on: ch === ${at} }`}
+							>
+								<b>{String(at + 1).padStart(3, '0')}</b>
+								<span>{game.name}</span>
+							</button>
+						</li>
+					);
+				})}
+			</ol>
+		))
+	}
+</div>
+
+<style>
+	[x-cloak] {
+		display: none;
+	}
+
+	button {
+		cursor: pointer;
+		padding: 0;
+		border: 0;
+		font: inherit;
+	}
+
+	.tv {
+		display: grid;
+		grid-template-columns: 1fr 74px;
+		gap: 12px;
+
+		padding: 14px;
+		border: 2px solid #4a4038;
+		border-radius: 14px;
+
+		background: linear-gradient(#3a322c, #1e1a17);
+		box-shadow: inset 0 2px 0 rgb(255 255 255 / 10%);
+	}
+
+	.screen {
+		position: relative;
+
+		overflow: hidden;
+
+		height: 330px;
+		border: 3px solid #000;
+		border-radius: 26px / 20px;
+
+		background-color: #000;
+		box-shadow: inset 0 0 40px #000;
+
+		&.snow {
+			filter: contrast(3) brightness(1.6) saturate(0);
+		}
+
+		img {
+			display: block;
+		}
+	}
+
+	.glow {
+		position: absolute;
+		inset: -20px;
+
+		width: calc(100% + 40px);
+		height: calc(100% + 40px);
+
+		opacity: 0.45;
+		object-fit: cover;
+		filter: blur(16px);
+	}
+
+	.cover {
+		position: absolute;
+		top: 44%;
+		left: 50%;
+		translate: -50% -50%;
+
+		width: 190px;
+		height: auto;
+	}
+
+	.osd {
+		position: absolute;
+		top: 12px;
+
+		font-size: 22px;
+		color: #5dff6a;
+		text-shadow: 0 0 6px #1eaa2a;
+		text-transform: uppercase;
+
+		&.left {
+			left: 18px;
+		}
+
+		&.right {
+			right: 18px;
+		}
+	}
+
+	.subs {
+		position: absolute;
+		inset: auto 0 12px;
+
+		margin: 0;
+		padding: 0 18px;
+
+		font-size: 18px;
+		line-height: 1.1;
+		color: #ffe94a;
+		text-align: center;
+		text-shadow:
+			1px 1px 0 #000,
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000;
+
+		strong {
+			display: block;
+			color: #fff;
+		}
+	}
+
+	/* scanlines */
+	.lines {
+		pointer-events: none;
+		position: absolute;
+		inset: 0;
+		background: repeating-linear-gradient(
+			to bottom,
+			transparent 0 2px,
+			rgb(0 0 0 / 28%) 2px 4px
+		);
+	}
+
+	.knobs {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		button {
+			padding: 6px 0;
+			border: 1px solid #000;
+			border-radius: 4px;
+
+			color: #d8d2c4;
+			text-transform: uppercase;
+
+			background: linear-gradient(#55493f, #2b2520);
+
+			&:active {
+				translate: 0 1px;
+			}
+		}
+
+		/* speaker grille */
+		i {
+			flex: 1;
+			margin-top: 6px;
+			border-radius: 4px;
+			background: repeating-linear-gradient(
+				to bottom,
+				#15120f 0 3px,
+				#2b2520 3px 6px
+			);
+		}
+	}
+
+	h3 {
+		margin: 16px 0 6px;
+		font-size: 18px;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+
+		small {
+			margin-left: 8px;
+
+			font-weight: normal;
+			color: var(--sidebar-text-color);
+			text-transform: none;
+			letter-spacing: 0;
+		}
+	}
+
+	.networks {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 5px;
+
+		button {
+			padding: 1px 8px;
+			border: 1px solid var(--darker-border-color);
+			color: var(--article-text-color);
+			background-color: var(--bg);
+
+			small {
+				color: var(--sidebar-text-color);
+			}
+
+			&.here {
+				border-color: #5dff6a;
+				color: #5dff6a;
+			}
+
+			&:hover,
+			&.on {
+				border-color: var(--nav-link-color);
+				color: var(--bg);
+				background-color: var(--nav-link-color);
+
+				small {
+					color: var(--bg);
+				}
+			}
+		}
+	}
+
+	ol {
+		columns: 2;
+		column-gap: 12px;
+
+		margin: 8px 0 0;
+		padding: 6px 8px;
+		border: 1px solid var(--darker-border-color);
+
+		list-style: none;
+
+		background-color: var(--nav-bg);
+	}
+
+	li button {
+		display: flex;
+		gap: 8px;
+
+		width: 100%;
+
+		color: var(--article-text-color);
+		text-align: left;
+
+		background: none;
+
+		b {
+			font-weight: normal;
+			color: var(--c);
+		}
+
+		span {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		&:hover,
+		&.on {
+			color: var(--bg);
+			background-color: var(--c);
+
+			b {
+				color: var(--bg);
+			}
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.screen.snow {
+			filter: none;
+		}
+	}
+
+	@media (width <= 500px) {
+		.tv {
+			grid-template-columns: 1fr;
+		}
+
+		.knobs {
+			flex-direction: row;
+
+			button {
+				flex: 1;
+			}
+
+			i {
+				display: none;
+			}
+		}
+
+		ol {
+			columns: 1;
+		}
+	}
+</style>
