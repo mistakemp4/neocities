@@ -1,15 +1,14 @@
 ---
 import BackLink from '$/components/BackLink.astro';
-import ProfileGames from '$/components/ProfileGames.astro';
+import GamesTV from '$/components/GamesTV.astro';
 import Section from '$/components/Section.astro';
-import Tooltip from '$/components/Tooltip.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
 ---
 
 <MainLayout>
 	<p><BackLink href="/library/">back to the library</BackLink></p>
 	<Section title="Games I've played">
-		<ProfileGames />
+		<GamesTV />
 	</Section>
 	<Section title="Anime I've watched">
 		<p>
@@ -18,5 +17,4 @@ import MainLayout from '$/layouts/MainLayout.astro';
 			>
 		</p>
 	</Section>
-	<Tooltip />
 </MainLayout>
