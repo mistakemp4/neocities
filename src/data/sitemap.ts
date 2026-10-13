@@ -21,6 +21,11 @@ export const sitemapEntries: SitemapEntry[] = [
 	{ href: '/shrines/akechi/', label: 'Goro Akechi' },
 	{ href: '/shrines/souyo/', label: 'SouYo' },
 	{ href: '/library/quizzes/', label: 'web quizzes' },
+	{
+		href: '/library/p5-quiz/',
+		label: 'persona 5 quiz',
+		parent: '/library/quizzes/',
+	},
 	{ href: '/library/graphics/', label: 'site graphics' },
 	{ href: '/library/projects/' },
 	{ href: '/library/projects/poketwo/', label: 'Pokétwo spawn odds' },
