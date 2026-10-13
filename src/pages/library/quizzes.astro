@@ -2,117 +2,209 @@
 import BackLink from '$/components/BackLink.astro';
 import Section from '$/components/Section.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
+
+interface Badge {
+	href: string;
+	src: string;
+	alt: string;
+	title?: string;
+	// the image's real size, sets how much of its row it gets
+	w: number;
+	h: number;
+}
+
+const otaku = 'http://www.theotaku.com/guru_results';
+const garden = 'https://file.garden/amcw3JUqZzagxqhs/quizzes';
+
+// every row fills the box and its badges share one height, so pair badges
+// whose shapes add up nicely. results from my own quizzes go first.
+const rows: Badge[][] = [
+	[
+		{
+			href: '/library/p5-quiz/',
+			src: 'https://files.catbox.moe/tm2xt2.png',
+			alt: 'i got Futaba! which persona 5 character are you?',
+			w: 300,
+			h: 120,
+		},
+		{
+			href: 'https://andou.gay/quiz/donutquiz',
+			src: 'https://andou.gay/quiz/pinkdonut.png',
+			alt: 'pink sprinkle donut',
+			w: 360,
+			h: 125,
+		},
+	],
+	[
+		{
+			href: 'https://swiftyshq.neocities.org/fun/quiz/eon',
+			src: 'https://swiftyshq.neocities.org/img/quiz/eon/vee4.png',
+			alt: 'umbreon',
+			title: 'timid and introverted, you tend to keep to yourself',
+			w: 350,
+			h: 100,
+		},
+		{
+			href: 'http://www.nerdtests.com/ft_loser.php?im',
+			src: 'http://www.nerdtests.com/images/ft/lsr.php?val=3760',
+			alt: 'I am 99% loser. What about you? Click here to find out!',
+			w: 100,
+			h: 120,
+		},
+	],
+	[
+		{
+			href: 'http://cupped-expressions.net/cheese/quiz/',
+			src: 'https://files.catbox.moe/9tricg.gif',
+			alt: 'I am american cheese!',
+			w: 226,
+			h: 93,
+		},
+		{
+			href: 'https://clownfred.zone/clownquiz',
+			src: 'https://clownfred.zone/!Media/CQ/PierrotCard1.png',
+			alt: 'I am a Pierrot Mime! Click here to take the clown quiz!',
+			w: 250,
+			h: 160,
+		},
+	],
+	[
+		{
+			href: 'https://theotaku.com/quizzes/view/4097/what_dere_type_are_you%3F',
+			src: `${otaku}/4097_Dandere.jpg`,
+			alt: 'What Dere Type Are You?',
+			w: 400,
+			h: 200,
+		},
+		{
+			href: 'https://theotaku.com/quizzes/view/2570/what_neon_genesis_evangelion_character_are_you%3F',
+			src: `${otaku}/2570_Shinji.jpg`,
+			alt: 'What Neon Genesis Evangelion Character Are You?',
+			w: 400,
+			h: 200,
+		},
+	],
+	[
+		{
+			href: 'https://www.theotaku.com/quizzes/view/3913/which_hatsune_miku_nendoroid_model_are_you%3F',
+			src: `${otaku}/3913_Candy_Corn_Miku.jpg`,
+			alt: 'Which Hatsune Miku Nendoroid Model Are You?',
+			w: 400,
+			h: 200,
+		},
+		{
+			href: 'https://www.theotaku.com/quizzes/view/2957/my_little_pony_personality_test%21',
+			src: `${otaku}/2957_Flutterhsy.jpg`,
+			alt: 'My Little Pony Personality Test!',
+			w: 400,
+			h: 200,
+		},
+	],
+	[
+		{
+			href: 'https://www.theotaku.com/quizzes/view/3743/what_anime_hair_color_best_suits_your_personality%3F',
+			src: `${otaku}/3743_Red_Hair.jpg`,
+			alt: 'What Anime Hair Color Best Suits Your Personality?',
+			w: 400,
+			h: 200,
+		},
+		{
+			href: 'https://theotaku.com/quizzes/view/4017/what_undertale_character_are_you%3F',
+			src: `${otaku}/4017_Dr_Alphys.jpg`,
+			alt: 'What Undertale Character Are you?',
+			w: 400,
+			h: 200,
+		},
+	],
+	[
+		{
+			href: 'https://mayonakapromise.neocities.org/?z=/fun/haircolor',
+			src: `${garden}/Hair%20color/white.png`,
+			alt: 'white hair',
+			w: 505,
+			h: 300,
+		},
+		{
+			href: 'https://mayonakapromise.neocities.org/?z=/fun/deretype',
+			src: `${garden}/dandere.png`,
+			alt: 'dandere',
+			w: 400,
+			h: 200,
+		},
+	],
+];
 ---
 
 <MainLayout>
 	<p><BackLink href="/library/">back to the library</BackLink></p>
+	<Section title="My Quizzes">
+		{
+			/* quizzes i made go here, one <p> link each. keep this box above the results */
+		}
+		<p>
+			<a href="/library/p5-quiz/">Which Persona 5 character are you?</a>
+		</p>
+	</Section>
 	<Section title="Web Quizzes">
-		<div class="quiz-scroll">
-			<a href="https://swiftyshq.neocities.org/fun/quiz/eon">
-				<img
-					src="https://swiftyshq.neocities.org/img/quiz/eon/vee4.png"
-					alt="umbreon"
-					title="timid and introverted, you tend to keep to yourself"
-				/>
-			</a>
-			<a href="https://andou.gay/quiz/donutquiz">
-				<img src="https://andou.gay/quiz/pinkdonut.png" />
-			</a>
-			<a href="http://cupped-expressions.net/cheese/quiz/">
-				<img
-					src="https://files.catbox.moe/9tricg.gif"
-					width="226"
-					height="93"
-					alt="I am american cheese!"
-				/>
-			</a>
-			<a href="http://www.nerdtests.com/ft_loser.php?im">
-				<img
-					src="http://www.nerdtests.com/images/ft/lsr.php?val=3760"
-					alt="I am 99% loser. What about you? Click here to find out!"
-				/>
-			</a>
-			<a href="https://clownfred.zone/clownquiz"
-				><img
-					src="https://clownfred.zone/!Media/CQ/PierrotCard1.png"
-					alt="I 	am a Pierrot Mime! Click here to take the clown quiz!"
-				/></a
-			>
-
-			<a
-				href="https://theotaku.com/quizzes/view/4097/what_dere_type_are_you%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/4097_Dandere.jpg"
-					alt="What Dere Type Are You?"
-				/>
-			</a>
-			<a
-				href="https://theotaku.com/quizzes/view/2570/what_neon_genesis_evangelion_character_are_you%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/2570_Shinji.jpg"
-					alt="What Neon Genesis Evangelion Character Are You?"
-				/>
-			</a>
-			<a
-				href="https://www.theotaku.com/quizzes/view/3913/which_hatsune_miku_nendoroid_model_are_you%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/3913_Candy_Corn_Miku.jpg"
-					alt="Which Hatsune Miku Nendoroid Model Are You?"
-				/>
-			</a>
-			<a
-				href="https://www.theotaku.com/quizzes/view/2957/my_little_pony_personality_test%21"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/2957_Flutterhsy.jpg"
-					alt="My Little Pony Personality Test!"
-				/>
-			</a>
-			<a
-				href="https://www.theotaku.com/quizzes/view/3743/what_anime_hair_color_best_suits_your_personality%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/3743_Red_Hair.jpg"
-					alt="What Anime Hair Color Best Suits Your Personality?"
-				/>
-			</a>
-			<a
-				href="https://theotaku.com/quizzes/view/4017/what_undertale_character_are_you%3F"
-			>
-				<img
-					src="http://www.theotaku.com/guru_results/4017_Dr_Alphys.jpg"
-					alt="What Undertale Character Are you?"
-				/>
-			</a>
-			<a href="https://mayonakapromise.neocities.org/?z=/fun/haircolor">
-				<img
-					src="https://file.garden/amcw3JUqZzagxqhs/quizzes/Hair%20color/white.png"
-					alt="white hair"
-				/>
-			</a>
-			<a href="https://mayonakapromise.neocities.org/?z=/fun/deretype">
-				<img
-					src="https://file.garden/amcw3JUqZzagxqhs/quizzes/dandere.png"
-					alt="dandere"
-				/>
-			</a>
+		<div class="results">
+			{
+				rows.map(row => (
+					<div class="row">
+						{row.map(badge => (
+							<a href={badge.href} style={`--shape: ${badge.w / badge.h}`}>
+								<img
+									src={badge.src}
+									alt={badge.alt}
+									title={badge.title}
+									width={badge.w}
+									height={badge.h}
+									loading="lazy"
+								/>
+							</a>
+						))}
+					</div>
+				))
+			}
 		</div>
 	</Section>
 </MainLayout>
 
 <style>
-	.quiz-scroll {
-		display: flex;
-		flex-wrap: wrap;
+	.results {
+		display: grid;
 		gap: 8px;
-		align-items: center;
 	}
 
-	.quiz-scroll img {
-		max-width: 100%;
+	.row {
+		display: flex;
+		gap: 8px;
+	}
+
+	/* width in proportion to the badge's shape = same height for the whole row */
+	.row a {
+		flex: var(--shape) 1 0;
+		min-width: 0;
+	}
+
+	.row img {
+		display: block;
+		width: 100%;
 		height: auto;
+	}
+
+	@media (width <= 500px) {
+		.row {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.row a {
+			flex: none;
+		}
+
+		.row img {
+			width: auto;
+			max-width: 100%;
+		}
 	}
 </style>

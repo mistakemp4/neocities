@@ -1,0 +1,26 @@
+---
+import BackLink from '$/components/BackLink.astro';
+import P5Quiz from '$/components/P5Quiz.astro';
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+
+const description =
+	'12 questions to find out which phantom thief you are. take your result badge home with you.';
+---
+
+<MainLayout>
+	<Fragment slot="head">
+		<meta name="description" content={description} />
+		<meta property="og:title" content="which persona 5 character are you?" />
+		<meta property="og:description" content={description} />
+		<meta name="theme-color" content="#e60012" />
+	</Fragment>
+	<p><BackLink href="/library/quizzes/">back to the quizzes</BackLink></p>
+	<Section title="Which Persona 5 character are you?">
+		<p>
+			12 questions, answer honestly, no looking up who is who. you get a badge
+			at the end to put on your site.
+		</p>
+		<P5Quiz />
+	</Section>
+</MainLayout>

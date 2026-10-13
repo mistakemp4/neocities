@@ -1,0 +1,276 @@
+---
+import { quiz } from '$/lib/p5quiz';
+
+const data = `{
+	questions: ${JSON.stringify(quiz.questions)},
+	results: ${JSON.stringify(quiz.results)},
+	picked: ${JSON.stringify(quiz.questions.map(() => null))},
+	result: null,
+	copied: false,
+
+	get answered() {
+		return this.picked.filter(pick => pick !== null).length;
+	},
+
+	score() {
+		const points = {};
+		// later questions come first, so they win a tie
+		const order = [];
+		for (let q = this.questions.length - 1; q >= 0; q--) {
+			for (const id of this.questions[q].answers[this.picked[q]].for) {
+				points[id] = (points[id] ?? 0) + 1;
+				if (!order.includes(id)) order.push(id);
+			}
+		}
+		const best = Math.max(...Object.values(points));
+		const winner = order.find(id => points[id] === best);
+		this.result = this.results.find(result => result.id === winner);
+		this.copied = false;
+		this.$nextTick(() => this.$refs.result.scrollIntoView({ block: 'center' }));
+	},
+
+	retake() {
+		this.picked = this.picked.map(() => null);
+		this.result = null;
+		this.$el.closest('.p5-quiz').scrollIntoView();
+	},
+
+	async copy() {
+		await navigator.clipboard.writeText(this.result.embed);
+		this.copied = true;
+	},
+}`;
+---
+
+<div class="p5-quiz" x-data={data}>
+	<ol class="questions">
+		{
+			quiz.questions.map((question, q) => (
+				<li>
+					<fieldset>
+						<legend>
+							<b>{q + 1}</b>
+							<span>{question.text}</span>
+						</legend>
+						<div class="answers">
+							{question.answers.map((answer, a) => (
+								<label>
+									<input
+										type="radio"
+										name={`q${q}`}
+										value={a}
+										x-model.number={`picked[${q}]`}
+									/>
+									<span>{answer.text}</span>
+								</label>
+							))}
+						</div>
+					</fieldset>
+				</li>
+			))
+		}
+	</ol>
+
+	<p class="go">
+		<button
+			type="button"
+			x-on:click="score()"
+			x-bind:disabled="answered < questions.length">show me my true self</button
+		>
+		<small x-text="answered + ' / ' + questions.length + ' answered'"></small>
+	</p>
+
+	<template x-if="result">
+		<div class="result" x-ref="result" x-bind:style="'--c: ' + result.color">
+			<img x-bind:src="result.badge" alt="" width="300" height="120" />
+			<h3>you are <span x-text="result.name"></span></h3>
+			<p
+				class="who"
+				x-text="result.codename + ' / ' + result.arcana + ' arcana'"
+			>
+			</p>
+			<p x-text="result.blurb"></p>
+			<label for="p5-embed">put it on your site:</label>
+			<textarea
+				id="p5-embed"
+				readonly
+				rows="4"
+				x-text="result.embed"
+				x-on:focus="$el.select()"></textarea>
+			<p class="actions">
+				<button
+					type="button"
+					x-on:click="copy()"
+					x-text="copied ? 'copied!' : 'copy code'"></button>
+				<button type="button" x-on:click="retake()">retake</button>
+			</p>
+		</div>
+	</template>
+</div>
+
+<style>
+	.p5-quiz {
+		--red: #e60012;
+	}
+
+	button {
+		cursor: pointer;
+
+		transform: skewX(-8deg);
+
+		padding: 4px 14px;
+		border: 2px solid #fff;
+
+		font: inherit;
+		font-size: 18px;
+		color: #fff;
+		text-transform: uppercase;
+
+		background-color: var(--red);
+
+		&:hover:not(:disabled) {
+			color: #000;
+			background-color: #fff;
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			border-color: var(--darker-border-color);
+			color: var(--sidebar-text-color);
+			background-color: var(--nav-bg);
+		}
+	}
+
+	.questions {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	fieldset {
+		margin: 0 0 18px;
+		padding: 0;
+		border: 0;
+	}
+
+	legend {
+		display: flex;
+		gap: 8px;
+		align-items: center;
+
+		margin-bottom: 6px;
+		padding: 0;
+
+		font-size: 18px;
+		color: #fff;
+
+		b {
+			transform: skewX(-8deg);
+			padding: 0 8px;
+			font-weight: normal;
+			background-color: var(--red);
+		}
+	}
+
+	.answers {
+		display: grid;
+		gap: 3px;
+	}
+
+	label:has(input) {
+		cursor: pointer;
+
+		display: flex;
+		gap: 8px;
+		align-items: baseline;
+
+		padding: 2px 8px;
+		border: 1px solid var(--darker-border-color);
+
+		background-color: var(--nav-bg);
+
+		&:hover {
+			border-color: var(--red);
+		}
+
+		&:has(:checked) {
+			border-color: #fff;
+			color: #fff;
+			background-color: var(--red);
+		}
+
+		&:has(:focus-visible) {
+			outline: 2px solid #fff;
+		}
+	}
+
+	input[type='radio'] {
+		accent-color: #000;
+	}
+
+	.go {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		align-items: center;
+
+		small {
+			color: var(--sidebar-text-color);
+		}
+	}
+
+	.result {
+		margin-top: 18px;
+		padding: 12px;
+		border: 2px solid var(--c);
+		background-color: var(--nav-bg);
+
+		img {
+			display: block;
+			max-width: 100%;
+			height: auto;
+		}
+
+		h3 {
+			margin: 10px 0 0;
+			font-size: 24px;
+			color: #fff;
+			text-transform: uppercase;
+
+			span {
+				color: var(--c);
+			}
+		}
+
+		.who {
+			margin: 0 0 8px;
+			color: var(--sidebar-text-color);
+		}
+
+		label {
+			display: block;
+			margin-top: 12px;
+		}
+
+		textarea {
+			resize: vertical;
+
+			box-sizing: border-box;
+			width: 100%;
+			border: 1px solid var(--darker-border-color);
+
+			font: inherit;
+			font-size: 14px;
+			color: var(--article-text-color);
+
+			background-color: var(--bg);
+		}
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-bottom: 0;
+	}
+</style>
