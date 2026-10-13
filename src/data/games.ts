@@ -141,6 +141,30 @@ import beatsaber from '$/assets/games/beatsaber.webp';
 import djmax from '$/assets/games/djmax.webp';
 import p4au from '$/assets/games/p4au.webp';
 import ffxiv from '$/assets/games/ffxiv.webp';
+import cain from '$/assets/games/cain.webp';
+import dnd35e from '$/assets/games/dnd35e.webp';
+import dnd5e from '$/assets/games/dnd5e.webp';
+import dnd55e from '$/assets/games/dnd55e.webp';
+import pkmntcg from '$/assets/games/pkmntcg.webp';
+import mtg from '$/assets/games/mtg.webp';
+import catan from '$/assets/games/catan.webp';
+import tickettoride from '$/assets/games/tickettoride.webp';
+import pandemic from '$/assets/games/pandemic.webp';
+import forbiddendesert from '$/assets/games/forbiddendesert.webp';
+import wingspan from '$/assets/games/wingspan.webp';
+import finspan from '$/assets/games/finspan.webp';
+import azul from '$/assets/games/azul.webp';
+import huesandcues from '$/assets/games/huesandcues.webp';
+import betrayal from '$/assets/games/betrayal.webp';
+import yahtzee from '$/assets/games/yahtzee.webp';
+import clue from '$/assets/games/clue.webp';
+import monopoly from '$/assets/games/monopoly.webp';
+import villainous from '$/assets/games/villainous.webp';
+import dixit from '$/assets/games/dixit.webp';
+import codenames from '$/assets/games/codenames.webp';
+import munchkin from '$/assets/games/munchkin.webp';
+import gloomhaven from '$/assets/games/gloomhaven.webp';
+import cah from '$/assets/games/cah.webp';
 
 export const categories = [
 	'Pokémon',
@@ -152,6 +176,8 @@ export const categories = [
 	'With friends',
 	'Sims & sandbox',
 	'Roguelikes & cards',
+	'TTRPGs',
+	'Board & card games',
 ] as const;
 
 export type Category = (typeof categories)[number];
@@ -1167,5 +1193,181 @@ export const games: Game[] = [
 		status: 'In progress',
 		thoughts: 'In Endwalker rn. Thancred is my fav, he can do no wrong',
 		image: ffxiv,
+	},
+	{
+		name: 'CAIN',
+		category: 'TTRPGs',
+		status: 'N/A (TTRPG)',
+		thoughts: 'God I want to play this again so bad, tanking was SO fun',
+		image: cain,
+	},
+	{
+		name: 'D&D 3.5e',
+		category: 'TTRPGs',
+		status: 'N/A (TTRPG)',
+		thoughts: 'The first D&D I ever played, with my parents lol',
+		image: dnd35e,
+	},
+	{
+		name: 'D&D 5e',
+		category: 'TTRPGs',
+		status: 'N/A (TTRPG)',
+		thoughts: 'Bought this with my christmas money after playing 3.5e',
+		image: dnd5e,
+	},
+	{
+		name: 'D&D 5.5e',
+		category: 'TTRPGs',
+		status: 'In progress',
+		thoughts: 'Currently in a campaign with this one, cant go wrong',
+		image: dnd55e,
+	},
+	{
+		name: 'Pokémon TCG',
+		category: 'Board & card games',
+		status: 'N/A (Card game)',
+		thoughts:
+			'Played the real cards a ton as a kid, now its all Pocket and I love it',
+		image: pkmntcg,
+	},
+	{
+		name: 'Magic: The Gathering',
+		category: 'Board & card games',
+		status: 'N/A (Card game)',
+		thoughts: 'Played once with my gf, won, and Im never touching it again',
+		image: mtg,
+	},
+	{
+		name: 'Catan',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'Loved it then, love it now',
+		image: catan,
+	},
+	{
+		name: 'Ticket to Ride',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'idk I didnt like it much',
+		image: tickettoride,
+	},
+	{
+		name: 'Pandemic',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'Way too hard for me',
+		image: pandemic,
+	},
+	{
+		name: 'Forbidden Desert',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'Same guy who made Pandemic and its also too hard',
+		image: forbiddendesert,
+	},
+	{
+		name: 'Wingspan',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'Good game ngl',
+		image: wingspan,
+	},
+	{
+		name: 'Finspan',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'fih!!! I love fih game',
+		image: finspan,
+	},
+	{
+		name: 'Azul',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'Way too complicated for a game about tiles',
+		image: azul,
+	},
+	{
+		name: 'Hues and Cues',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts:
+			'Guess the color someone is thinking of out of 480. Surprisingly I actually really liked this one',
+		image: huesandcues,
+	},
+	{
+		name: 'Betrayal at House on the Hill',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts:
+			'Explore a haunted house until one of you turns on everyone else, theres like 50 different haunts',
+		image: betrayal,
+	},
+	{
+		name: 'Yahtzee',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'Classic. dice go brrrrrrr',
+		image: yahtzee,
+	},
+	{
+		name: 'Clue',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'Its Clue what else is there to say',
+		image: clue,
+	},
+	{
+		name: 'Monopoly',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'Classic, has anyone ever actually finished a game of this',
+		image: monopoly,
+	},
+	{
+		name: 'Disney Villainous',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts:
+			'You play a Disney villain and everyone has a different way to win, plus you get to ruin each others plans',
+		image: villainous,
+	},
+	{
+		name: 'Dixit',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts:
+			'Played this all the time as a kid, loved staring at all the pretty pictures',
+		image: dixit,
+	},
+	{
+		name: 'Codenames',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts: 'I can never tell what the right cards are....',
+		image: codenames,
+	},
+	{
+		name: 'Munchkin',
+		category: 'Board & card games',
+		status: 'N/A (Card game)',
+		thoughts:
+			'Kick open the door, fight the monster, backstab your friends. First to level 10 wins',
+		image: munchkin,
+	},
+	{
+		name: 'Gloomhaven',
+		category: 'Board & card games',
+		status: 'N/A (Board game)',
+		thoughts:
+			'The box is like 20 pounds. Dungeon crawler with 95 scenarios and cards instead of dice',
+		image: gloomhaven,
+	},
+	{
+		name: 'Cards Against Humanity',
+		category: 'Board & card games',
+		status: 'N/A (Card game)',
+		thoughts:
+			'Fill in the blank with the worst card you have. Was at every party ever',
+		image: cah,
 	},
 ];
