@@ -25,6 +25,7 @@ const show = `$store.tooltip.set(${JSON.stringify(title)}, ${JSON.stringify(deta
 ---
 
 <li
+	data-tooltip={!noHover}
 	x-on:mouseenter={!noHover && show}
 	x-on:mouseleave={!noHover && '$store.tooltip.hide()'}
 >
