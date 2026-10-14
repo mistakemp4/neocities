@@ -2,19 +2,21 @@
 const tooltipStore = `
 {
 	show: false,
-	value: '',
+	title: '',
+	detail: '',
 
-	set(value) {
-		this.value = value;
+	set(title, detail = '') {
+		this.title = title;
+		this.detail = detail;
 		this.show = true;
 	},
 
 	move(tooltip, x, y) {
-		const padding = 8;
-		tooltip.style.setProperty(
-			'translate',
-			\`\${x + padding}px calc(\${y - padding}px - 100%)\`,
-		);
+		const padding = 10;
+		// above and right of the mouse, pulled back in at the window's edges
+		const left = Math.min(x + padding, innerWidth - tooltip.offsetWidth - 4);
+		const top = Math.max(y - padding - tooltip.offsetHeight, 4);
+		tooltip.style.setProperty('translate', \`\${Math.max(left, 4)}px \${top}px\`);
 	},
 
 	hide() {
@@ -29,14 +31,21 @@ const tooltipStore = `
 	id="tooltip"
 	x-data
 	x-show="$store.tooltip.show"
-	x-text="$store.tooltip.value"
+	x-cloak
 	x-ref="tooltip"
 	x-on:mousemove.passive.document.throttle.33ms="$store.tooltip.move($refs.tooltip, $event.x, $event.y)"
 	x-init={`Alpine.store('tooltip', ${tooltipStore})`}
 >
+	<b x-text="$store.tooltip.title"></b>
+	<span x-show="$store.tooltip.detail" x-text="$store.tooltip.detail"></span>
 </div>
 
 <style>
+	[x-cloak] {
+		display: none;
+	}
+
+	/* follows the mouse: name on top, series under it */
 	.tooltip {
 		pointer-events: none;
 
@@ -45,13 +54,26 @@ const tooltipStore = `
 		inset-block-start: 0;
 		inset-inline-start: 0;
 
-		padding: 5px 10px;
-		border: 2px dotted red;
+		max-width: 260px;
+		padding: 3px 10px 4px;
+		border: 1px solid var(--nav-link-color);
 
-		font-size: 1.15rem;
+		line-height: 1.1;
 
-		background: rgb(43, 0, 0);
+		background-color: var(--bg);
+		box-shadow: 3px 3px 0 var(--accent-red);
 
-		font-color: white;
+		b {
+			display: block;
+			font-size: 19px;
+			font-weight: normal;
+			color: #fff;
+		}
+
+		span {
+			display: block;
+			font-size: 15px;
+			color: var(--nav-link-color);
+		}
 	}
 </style>

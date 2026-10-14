@@ -4,17 +4,28 @@ import { Image } from 'astro:assets';
 
 interface Props {
 	title: string;
+	// second line of the tooltip
+	detail?: string;
 	image: ImageMetadata;
 	size?: number;
 	alt?: string;
 	noHover?: boolean;
 }
 
-const { title, image, size = 100, alt = title, noHover = false } = Astro.props;
+const {
+	title,
+	detail = '',
+	image,
+	size = 100,
+	alt = detail ? `${title} (${detail})` : title,
+	noHover = false,
+} = Astro.props;
+// JSON.stringify, so an apostrophe in a name can't break the script
+const show = `$store.tooltip.set(${JSON.stringify(title)}, ${JSON.stringify(detail)})`;
 ---
 
 <li
-	x-on:mouseenter={!noHover && `$store.tooltip.set('${title}')`}
+	x-on:mouseenter={!noHover && show}
 	x-on:mouseleave={!noHover && '$store.tooltip.hide()'}
 >
 	<Image src={image} {alt} width={size} height={size} layout="constrained" />

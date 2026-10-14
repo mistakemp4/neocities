@@ -37,7 +37,7 @@ export interface Character {
 
 // array order = order within each tier
 export const characters: Character[] = [
-	{ name: 'Goro Akechi', series: 'Persona 5', image: akechi, tier: 'S' },
+	{ name: 'Akechi Goro', series: 'Persona 5', image: akechi, tier: 'S' },
 	{ name: 'Sakura Futaba', series: 'Persona 5', image: futaba, tier: 'S' },
 	{ name: 'Hanamura Yosuke', series: 'Persona 4', image: yosuke, tier: 'S' },
 	{
@@ -57,9 +57,19 @@ export const characters: Character[] = [
 	{ name: 'Narukami Yu', series: 'Persona 4', image: yu, tier: 'A' },
 	{ name: 'Kitagawa Yusuke', series: 'Persona 5', image: yusuke, tier: 'A' },
 	{ name: 'Shirogane Naoto', series: 'Persona 4', image: naoto, tier: 'A' },
-	{ name: 'Nagatoro Hayase', series: 'Misc', image: nagatoro, tier: 'A' },
+	{
+		name: 'Nagatoro Hayase',
+		series: "Don't Toy with Me, Miss Nagatoro",
+		image: nagatoro,
+		tier: 'A',
+	},
 
-	{ name: 'Tomoe Mami', series: 'Misc', image: mami, tier: 'B' },
+	{
+		name: 'Tomoe Mami',
+		series: 'Puella Magi Madoka Magica',
+		image: mami,
+		tier: 'B',
+	},
 	{ name: 'Okumura Haru', series: 'Persona 5', image: haru, tier: 'B' },
 	{ name: 'Sakamoto Ryuji', series: 'Persona 5', image: ryuji, tier: 'B' },
 	{ name: 'Yoshino Chidori', series: 'Persona 3', image: chidori, tier: 'B' },
@@ -94,8 +104,18 @@ export const characters: Character[] = [
 	},
 	{ name: 'Edward', series: 'Cowboy Bebop', image: edward, tier: 'C' },
 	{ name: 'Ein', series: 'Cowboy Bebop', image: ein, tier: 'C' },
-	{ name: 'Kaidou Shun', series: 'Misc', image: kaidou, tier: 'C' },
-	{ name: 'Megumin', series: 'Misc', image: megumin, tier: 'C' },
+	{
+		name: 'Kaidou Shun',
+		series: 'The Disastrous Life of Saiki K.',
+		image: kaidou,
+		tier: 'C',
+	},
+	{
+		name: 'Megumin',
+		series: "KonoSuba: God's Blessing on This Wonderful World!",
+		image: megumin,
+		tier: 'C',
+	},
 	{ name: 'Yagami Light', series: 'Death Note', image: light, tier: 'C' },
 ];
 
