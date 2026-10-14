@@ -11,7 +11,9 @@ const tooltipStore = `
 		this.show = true;
 	},
 
-	move(tooltip, x, y) {
+	move(tooltip, { target, x, y }) {
+		// safety net: a missed mouseleave can't leave the tooltip stuck
+		if (!target.closest?.('[data-tooltip]')) return this.hide();
 		const padding = 10;
 		// above and right of the mouse, pulled back in at the window's edges
 		const left = Math.min(x + padding, innerWidth - tooltip.offsetWidth - 4);
@@ -33,7 +35,7 @@ const tooltipStore = `
 	x-show="$store.tooltip.show"
 	x-cloak
 	x-ref="tooltip"
-	x-on:mousemove.passive.document.throttle.33ms="$store.tooltip.move($refs.tooltip, $event.x, $event.y)"
+	x-on:mousemove.passive.document.throttle.33ms="$store.tooltip.move($refs.tooltip, $event)"
 	x-init={`Alpine.store('tooltip', ${tooltipStore})`}
 >
 	<b x-text="$store.tooltip.title"></b>
