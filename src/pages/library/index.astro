@@ -1,38 +1,51 @@
 ---
 import { Image } from 'astro:assets';
 
-import akechi from '$/assets/characters/akechi.webp';
-import marvelrivals from '$/assets/games/marvelrivals.webp';
+import favs from '$/assets/site/rooms/favs.svg';
+import graphics from '$/assets/site/rooms/graphics.svg';
+import media from '$/assets/site/rooms/media.svg';
+import projects from '$/assets/site/rooms/projects.svg';
+import quizzes from '$/assets/site/rooms/quizzes.svg';
+import shrines from '$/assets/site/rooms/shrines.svg';
 import Section from '$/components/Section.astro';
 import MainLayout from '$/layouts/MainLayout.astro';
 
+// pixel icons, drawn by scripts/room_icons.py
 const rooms = [
 	{
 		name: 'favs',
 		blurb: 'hyperfixations, characters, foods',
-		image: akechi,
+		image: favs,
 		href: '/library/favs/',
 	},
 	{
-		name: 'game log',
-		blurb: 'every game ive played + my thoughts on them',
-		image: marvelrivals,
-		href: '/library/games/',
+		name: 'media log',
+		blurb: 'every game ive played and anime ive watched',
+		image: media,
+		href: '/library/media/',
 	},
-	{ name: 'shrines', blurb: 'Goro Akechi & SouYo', href: '/shrines/' },
+	{
+		name: 'shrines',
+		blurb: 'Goro Akechi & SouYo',
+		image: shrines,
+		href: '/shrines/',
+	},
 	{
 		name: 'web quizzes',
 		blurb: 'im 99% loser and american cheese apparently',
+		image: quizzes,
 		href: '/library/quizzes/',
 	},
 	{
 		name: 'site graphics',
 		blurb: 'blinkies & stuff i made, free to use',
+		image: graphics,
 		href: '/library/graphics/',
 	},
 	{
 		name: 'projects',
 		blurb: 'little tools & data stuff i made',
+		image: projects,
 		href: '/library/projects/',
 	},
 ];
@@ -45,7 +58,7 @@ const rooms = [
 			{
 				rooms.map(room => (
 					<a class="room" href={room.href}>
-						{room.image && <Image src={room.image} alt="" height={70} />}
+						<Image src={room.image} alt="" height={70} />
 						<h3>{room.name}</h3>
 						<p>{room.blurb}</p>
 					</a>

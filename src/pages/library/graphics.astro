@@ -3,6 +3,12 @@ import { Image } from 'astro:assets';
 
 import akechiblink from '$/assets/blinkers/000-akechiblinkie.gif';
 import tsukasablink from '$/assets/blinkers/020-tenmatsukasagif.gif';
+import favsIcon from '$/assets/site/rooms/favs.svg';
+import graphicsIcon from '$/assets/site/rooms/graphics.svg';
+import mediaIcon from '$/assets/site/rooms/media.svg';
+import projectsIcon from '$/assets/site/rooms/projects.svg';
+import quizzesIcon from '$/assets/site/rooms/quizzes.svg';
+import shrinesIcon from '$/assets/site/rooms/shrines.svg';
 import babyharpsealstamp from '$/assets/stamps/stampbabyharpseal.png';
 import babysealstamp from '$/assets/stamps/stampbabyseal.gif';
 import babysealstamp2 from '$/assets/stamps/stampbabyseal2.gif';
@@ -21,6 +27,15 @@ import MainLayout from '$/layouts/MainLayout.astro';
 		</p>
 		<Image src={akechiblink} alt="Akechi Blinker" />
 		<Image src={tsukasablink} alt="Tsukasa Blinker" />
+
+		<p class="icons">
+			<Image src={favsIcon} alt="pixel heart" height={72} />
+			<Image src={mediaIcon} alt="pixel tv" height={72} />
+			<Image src={shrinesIcon} alt="pixel pentacle" height={72} />
+			<Image src={quizzesIcon} alt="pixel quiz sheet" height={72} />
+			<Image src={graphicsIcon} alt="pixel painting" height={72} />
+			<Image src={projectsIcon} alt="pixel chart window" height={72} />
+		</p>
 
 		<p>
 			<Image src={nikostamp} alt="Niko Stamp" />
@@ -49,3 +64,11 @@ import MainLayout from '$/layouts/MainLayout.astro';
 		</p>
 	</Section>
 </MainLayout>
+
+<style>
+	.icons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+</style>
