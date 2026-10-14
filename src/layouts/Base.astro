@@ -23,6 +23,59 @@ const { title = 'i love akechi!!', bodyClass } = Astro.props;
 	</body>
 </html>
 
+<script>
+	// links to other sites open in a new tab. set on click, so links added
+	// later by alpine or the webring widgets are covered too
+	document.addEventListener(
+		'click',
+		event => {
+			if (!(event.target instanceof Element)) return;
+			const link = event.target.closest('a[href]');
+			if (!(link instanceof HTMLAnchorElement)) return;
+			// mailto: and friends have no host
+			if (!link.host || link.host === location.host) return;
+			link.target = '_blank';
+			link.relList.add('noopener');
+		},
+		true,
+	);
+</script>
+
+<style is:global>
+	/* the site's colours. defined here so every page has them, also the ones
+	   that don't use MainLayout */
+	:root {
+		--bg: black;
+		--header-bg: #0e0e0e;
+		--nav-bg: #0d0d0d;
+		--article-bg: #121210;
+		--button-bg: #534b4c;
+		--border-color: #1f1f1f;
+		--sidebar-text-color: #a09697;
+		--article-text-color: #adb0b0;
+		--article-heading-color: #7d7d7d;
+		--nav-link-color: #b09b83;
+		--darker-border-color: #393939;
+		--accent-red: #e60012;
+
+		/* the warm set from the games tv and the room icons
+		   (scripts/room_icons.py has its own copy, svg files can't read these) */
+		--brown: #4a4038;
+		--brown-dark: #2b2520;
+		--brown-black: #15120f;
+		--yellow: #c9a227;
+		--blue-grey: #8fa3b0;
+	}
+
+	/* thin scrollbars everywhere. a page can set --scroll-thumb / --scroll-track
+	   to match its own colours */
+	* {
+		scrollbar-color: var(--scroll-thumb, var(--button-bg))
+			var(--scroll-track, transparent);
+		scrollbar-width: thin;
+	}
+</style>
+
 <style>
 	body {
 		margin: 0;

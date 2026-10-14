@@ -109,10 +109,6 @@ const data = `{
 </div>
 
 <style>
-	.p5-quiz {
-		--red: #e60012;
-	}
-
 	button {
 		cursor: pointer;
 
@@ -126,7 +122,7 @@ const data = `{
 		color: #fff;
 		text-transform: uppercase;
 
-		background-color: var(--red);
+		background-color: var(--accent-red);
 
 		&:hover:not(:disabled) {
 			color: #000;
@@ -168,7 +164,7 @@ const data = `{
 			transform: skewX(-8deg);
 			padding: 0 8px;
 			font-weight: normal;
-			background-color: var(--red);
+			background-color: var(--accent-red);
 		}
 	}
 
@@ -190,13 +186,13 @@ const data = `{
 		background-color: var(--nav-bg);
 
 		&:hover {
-			border-color: var(--red);
+			border-color: var(--accent-red);
 		}
 
 		&:has(:checked) {
 			border-color: #fff;
 			color: #fff;
-			background-color: var(--red);
+			background-color: var(--accent-red);
 		}
 
 		&:has(:focus-visible) {

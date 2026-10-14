@@ -47,5 +47,24 @@ const data = `{
 
 			background-color: var(--bg);
 		}
+
+		/* the copy button, same look as the tv guide buttons */
+		button {
+			cursor: pointer;
+
+			padding: 1px 10px;
+			border: 1px solid var(--darker-border-color);
+
+			font: inherit;
+			color: var(--article-text-color);
+
+			background-color: var(--bg);
+
+			&:hover {
+				border-color: var(--nav-link-color);
+				color: var(--bg);
+				background-color: var(--nav-link-color);
+			}
+		}
 	}
 </style>
