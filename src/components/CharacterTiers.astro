@@ -18,7 +18,8 @@ const byTier = groupBy(characters, c => c.tier);
 				<ul class="tier-row" x-data>
 					{(byTier.get(tier.id) ?? []).map(c => (
 						<ProfileItem
-							title={`${c.name} (${c.series})`}
+							title={c.name}
+							detail={c.series}
 							image={c.image}
 							{size}
 						/>
