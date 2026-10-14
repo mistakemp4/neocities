@@ -1,0 +1,295 @@
+---
+import { anime, statuses } from '$/lib/anime';
+import { colors } from '$/lib/colors';
+
+import ColorList from './ColorList.astro';
+
+const mal = 'https://myanimelist.net/animelist/mistake_mp4';
+const palette = Object.values(colors);
+// one tab at a time: each show gets a colour from its link, moved along one if
+// the row above already has it, so neighbours never match
+const last: Record<string, number> = {};
+const list = anime.map(item => {
+	// a small hash of the link (kept small so the maths stays exact)
+	let pick =
+		[...item.url].reduce(
+			(sum, char) => (sum * 31 + char.charCodeAt(0)) % 9973,
+			7,
+		) % palette.length;
+	if (pick === last[item.status]) pick = (pick + 1) % palette.length;
+	last[item.status] = pick;
+	return {
+		title: item.title,
+		url: item.url,
+		image: item.image,
+		status: item.status,
+		score: item.score,
+		color: palette[pick],
+		meta: [item.type, item.year, item.episodes && `${item.episodes} eps`]
+			.filter(Boolean)
+			.join(' / '),
+		genres: item.genres.slice(0, 4).join(', '),
+		mean: item.mean,
+	};
+});
+
+// only the statuses that have something in them
+const tabs = statuses.filter(status =>
+	list.some(item => item.status === status.id),
+);
+const start = tabs.find(tab => tab.id === 'completed') ?? tabs[0];
+
+const data = `{
+	all: ${JSON.stringify(list)},
+	show: ${JSON.stringify(start?.id)},
+	at: 0,
+
+	get list() {
+		return this.all.filter(item => item.status === this.show);
+	},
+
+	get now() {
+		return this.list[this.at] ?? this.list[0];
+	},
+
+	pick(status) {
+		this.show = status;
+		this.at = 0;
+		this.$refs.list.scrollTop = 0;
+	},
+
+	move(by) {
+		this.at = Math.min(Math.max(this.at + by, 0), this.list.length - 1);
+		// keep the picked row in view without moving the page
+		this.$nextTick(() => {
+			const row = this.$refs.list.querySelector('.on');
+			const box = this.$refs.list;
+			if (row.offsetTop < box.scrollTop) box.scrollTop = row.offsetTop;
+			const bottom = row.offsetTop + row.offsetHeight;
+			if (bottom > box.scrollTop + box.clientHeight)
+				box.scrollTop = bottom - box.clientHeight;
+		});
+	},
+}`;
+---
+
+{
+	list.length === 0 ?
+		<p>
+			the list didn't load this time. it lives on
+			<a href={mal}>MyAnimeList</a>.
+		</p>
+	:	<div class="book" x-data={data}>
+			<div class="tabs">
+				{tabs.map(tab => (
+					<button
+						type="button"
+						x-on:click={`pick('${tab.id}')`}
+						x-bind:class={`{ on: show === '${tab.id}' }`}
+					>
+						{tab.label}
+					</button>
+				))}
+				<span class="count" x-text="(at + 1) + ' / ' + list.length" />
+			</div>
+			<div class="panes">
+				<ColorList
+					x-ref="list"
+					tabindex="0"
+					aria-label="anime, arrow keys move through the list"
+					x-on:keydown.down.prevent="move(1)"
+					x-on:keydown.up.prevent="move(-1)"
+				>
+					<template x-for="(item, index) in list" x-bind:key="item.url">
+						<li>
+							<button
+								type="button"
+								tabindex="-1"
+								x-on:click="at = index; $refs.list.focus()"
+								x-bind:class="{ on: at === index }"
+								x-bind:style="'--c: ' + item.color"
+							>
+								<b x-text="item.score || '-'" />
+								<span x-text="item.title" />
+							</button>
+						</li>
+					</template>
+				</ColorList>
+				<div class="card" x-cloak>
+					<img x-bind:src="now.image" x-bind:alt="now.title" />
+					<div class="info">
+						<h3 x-text="now.title" />
+						<p class="rank">
+							<span>rank</span>
+							<b x-text="now.score || '?'" />
+						</p>
+						<p x-text="now.meta" />
+						<p class="genres" x-text="now.genres" />
+						<p x-show="now.mean" x-text="'everyone else says ' + now.mean" />
+						<p>
+							<a x-bind:href="now.url">see it on MAL &gt;&gt;</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<p class="source">
+				list and covers from <a href={mal}>MyAnimeList</a>, updated whenever i
+				update the site
+			</p>
+		</div>
+}
+
+<style>
+	[x-cloak] {
+		display: none;
+	}
+
+	button {
+		cursor: pointer;
+		border: 0;
+		font: inherit;
+	}
+
+	.tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+		margin-bottom: 8px;
+
+		button {
+			transform: skewX(-10deg);
+
+			padding: 1px 10px;
+
+			color: #fff;
+			text-transform: uppercase;
+
+			background-color: var(--brown-dark);
+
+			&.on {
+				color: #000;
+				background-color: #fff;
+			}
+		}
+	}
+
+	.count {
+		margin-left: auto;
+		color: var(--sidebar-text-color);
+	}
+
+	.panes {
+		display: grid;
+		grid-template-columns: 1fr 210px;
+		gap: 10px;
+	}
+
+	/* no height of its own, so the row is as tall as the card and the list fills it */
+	ol {
+		/* rows measure their position from the list, for move() */
+		position: relative;
+
+		overflow-y: auto;
+
+		box-sizing: border-box;
+		height: 0;
+		min-height: 100%;
+	}
+
+	/* scores line up in one column */
+	ol :global(b) {
+		flex: 0 0 22px;
+		text-align: center;
+	}
+
+	ol :global(button) {
+		padding: 0 6px;
+	}
+
+	/* shown when the list is driven by keyboard: a tan edge instead of the browser's white box */
+	ol:focus-visible {
+		border-color: var(--nav-link-color);
+		outline: none;
+	}
+
+	.card {
+		transform: rotate(1deg);
+		padding: 8px;
+		background-color: #000;
+
+		img {
+			display: block;
+			aspect-ratio: 2 / 3;
+			width: 100%;
+			object-fit: cover;
+		}
+
+		/* title and genres always take two lines, so the card keeps one height */
+		h3,
+		.genres {
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+		}
+
+		h3 {
+			min-height: 2.1em;
+			margin: 6px 0 2px;
+
+			font-size: 18px;
+			line-height: 1.05;
+			color: #fff;
+		}
+
+		.genres {
+			min-height: 2.3em;
+		}
+
+		p {
+			margin: 0;
+			font-size: 15px;
+			line-height: 1.15;
+		}
+	}
+
+	.rank {
+		display: flex;
+		gap: 6px;
+		align-items: baseline;
+
+		span {
+			transform: skewX(-10deg);
+
+			padding: 0 6px;
+
+			color: #fff;
+			text-transform: uppercase;
+
+			background-color: var(--accent-red);
+		}
+
+		b {
+			font-size: 30px;
+			font-weight: normal;
+			color: #fff;
+		}
+	}
+
+	.source {
+		margin: 8px 0 0;
+		font-size: 14px;
+		color: var(--sidebar-text-color);
+	}
+
+	@media (width <= 500px) {
+		.panes {
+			grid-template-columns: 1fr;
+		}
+
+		ol {
+			height: 220px;
+			min-height: 0;
+		}
+	}
+</style>

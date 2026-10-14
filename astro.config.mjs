@@ -9,6 +9,8 @@ export default defineConfig({
 	// old links to the profile page land on its replacement
 	redirects: {
 		'/profile/': '/library/',
+		// the game log grew an anime list and got renamed
+		'/library/games/': '/library/media/',
 	},
 	security: {
 		allowedDomains: [
