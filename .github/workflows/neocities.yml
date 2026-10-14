@@ -22,6 +22,9 @@ jobs:
           cache: 'npm'
 
       - name: npm install and build
+        env:
+          # read at build time for the anime list, never reaches visitors
+          MAL_CLIENT_ID: ${{ secrets.MAL_CLIENT_ID }}
         run: |
           npm ci
           npm run build

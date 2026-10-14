@@ -1,0 +1,63 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'ol'>;
+
+const { class: className, ...rest } = Astro.props;
+---
+
+{
+	/* a boxed list of rows, each a <li><button style="--c: colour"><b>number</b><span>name</span></button></li>.
+	   the number wears the row's colour, and the whole row fills with it when hovered or given class "on" */
+}
+<ol class:list={['color-list', className]} {...rest}><slot /></ol>
+
+<style is:global>
+	.color-list {
+		margin: 0;
+		padding: 6px 8px;
+		border: 1px solid var(--darker-border-color);
+
+		list-style: none;
+
+		background-color: var(--nav-bg);
+	}
+
+	.color-list button {
+		cursor: pointer;
+
+		display: flex;
+		gap: 8px;
+
+		width: 100%;
+		padding: 0;
+		border: 0;
+
+		font: inherit;
+		color: var(--article-text-color);
+		text-align: left;
+
+		background: none;
+
+		b {
+			font-weight: normal;
+			color: var(--c);
+		}
+
+		span {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		&:hover,
+		&.on {
+			color: var(--bg);
+			background-color: var(--c);
+
+			b {
+				color: var(--bg);
+			}
+		}
+	}
+</style>

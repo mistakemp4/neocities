@@ -7,6 +7,7 @@
 - [Adding a New Page](#adding-a-new-page)
 - [Updating the Site](#updating-the-site)
     - [Commit Message Format](#commit-message-format)
+- [Anime List](#anime-list)
 - [Inline vs Component](#inline-vs-component)
 
 ## Starting and Stopping the Development Server
@@ -125,6 +126,17 @@ Commit messages with `fix:`, `chore:`, etc. are part of the [Conventional Commit
 - `refactor:` code reorganization, not a `fix` or a `feast`
 - `style:` changes that don't affect the code at all (whitespace, linting, missing semi-colons, etc)
     - `chore:` is also used to signify linting (and other miscellaneous tasks), though is no longer recommended by Angular due to overuse
+
+## Anime List
+
+The anime list on the games page comes from the MyAnimeList API every time the site is built (`src/lib/anime.ts`).
+
+- The key is `MAL_CLIENT_ID`. On GitHub it is a repository secret; on your computer put it in a `.env` file in this folder (never commit it):
+```
+MAL_CLIENT_ID=your_client_id
+```
+- Without the key the site still builds on your computer, the list is just empty.
+- The list only changes when the site is rebuilt, so push to `main` after updating MyAnimeList.
 
 ## Inline vs Component
 

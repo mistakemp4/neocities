@@ -1,12 +1,14 @@
 import { categories, games } from '$/data/games';
 
+import { colors } from './colors';
+
 const groups = [
-	{ id: 'playing', label: 'playing now', color: '#e8484a' },
-	{ id: 'hold', label: 'on hold', color: '#c9a227' },
-	{ id: 'completed', label: 'completed', color: '#b09b83' },
-	{ id: 'endless', label: 'no ending', color: '#8fa3b0' },
-	{ id: 'dropped', label: 'dropped', color: '#807878' },
-	{ id: 'backlog', label: 'not started', color: '#d8d2c4' },
+	{ id: 'playing', label: 'playing now', color: colors.red },
+	{ id: 'hold', label: 'on hold', color: colors.yellow },
+	{ id: 'completed', label: 'completed', color: colors.tan },
+	{ id: 'endless', label: 'no ending', color: colors.blue },
+	{ id: 'dropped', label: 'dropped', color: colors.grey },
+	{ id: 'backlog', label: 'not started', color: colors.pale },
 ];
 
 // the statuses are typed by hand, so match them loosely

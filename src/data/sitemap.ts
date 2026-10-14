@@ -16,7 +16,7 @@ export const sitemapEntries: SitemapEntry[] = [
 	{ href: '/blog/1/', label: 'blog', extra: true, posts: true },
 	{ href: '/library/' },
 	{ href: '/library/favs/' },
-	{ href: '/library/games/', label: 'game log' },
+	{ href: '/library/media/', label: 'media log' },
 	{ href: '/shrines/', parent: '/library/' },
 	{ href: '/shrines/akechi/', label: 'Goro Akechi' },
 	{ href: '/shrines/souyo/', label: 'SouYo' },

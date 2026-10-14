@@ -1,4 +1,5 @@
 ---
+import AnimeList from '$/components/AnimeList.astro';
 import BackLink from '$/components/BackLink.astro';
 import GamesTV from '$/components/GamesTV.astro';
 import Section from '$/components/Section.astro';
@@ -11,10 +12,6 @@ import MainLayout from '$/layouts/MainLayout.astro';
 		<GamesTV />
 	</Section>
 	<Section title="Anime I've watched">
-		<p>
-			<a href="https://myanimelist.net/animelist/mistake_mp4"
-				>View my anime list</a
-			>
-		</p>
+		<AnimeList />
 	</Section>
 </MainLayout>
