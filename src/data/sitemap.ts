@@ -14,6 +14,7 @@ export interface SitemapEntry {
 export const sitemapEntries: SitemapEntry[] = [
 	{ href: '/', label: 'home' },
 	{ href: '/blog/1/', label: 'blog', extra: true, posts: true },
+	{ href: '/blog/archive/', label: 'all posts', parent: '/blog/1/' },
 	{ href: '/library/' },
 	{ href: '/library/favs/' },
 	{ href: '/library/media/', label: 'media log' },
