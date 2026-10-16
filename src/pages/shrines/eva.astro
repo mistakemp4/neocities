@@ -1,0 +1,325 @@
+---
+import { Font, getImage } from 'astro:assets';
+
+import BackToTop from '$/components/BackToTop.astro';
+import ShrineMusic from '$/components/ShrineMusic.astro';
+import { evaChapters, evaWhy } from '$/data/eva';
+import Base from '$/layouts/Base.astro';
+import { evaClipUrl, evaSongUrl, evaStills } from '$/lib/eva';
+
+// Background per chapter: from, to, dark text
+const shades: [string, string, boolean][] = [
+	['black', '#0d0206', false],
+	['#0d0206', '#1f050d', false],
+	['#1f050d', '#330710', false],
+	['#330710', '#3d0b18', false],
+	['#3d0b18', '#3b2a45', false],
+	['#3b2a45', '#6a5d78', false],
+	['#ebe5ee', '#f4f1ef', true],
+	['#f4f1ef', '#d6ecf8', true],
+	['#d6ecf8', '#a8d8f3', true],
+];
+
+const posters = Object.fromEntries(
+	await Promise.all(
+		Object.entries(evaStills).map(async ([id, still]) => [
+			id,
+			(await getImage({ src: still, width: 640 })).src,
+		]),
+	),
+);
+---
+
+<Base title="instrumentality of his soul">
+	<Fragment slot="head">
+		<Font cssVariable="--font-shippori" />
+	</Fragment>
+
+	<div class="page">
+		<a class="back" href="/shrines/">&lt;&lt; back to shrines</a>
+
+		<header class="hero">
+			<p>Therefore, now,<br />we will take<br />the boy named</p>
+			<h1><button class="enter" type="button">Ikari Shinji</button></h1>
+			<p>and tell the story of the<br />instrumentality<br />of his soul</p>
+			<p class="hint">「 click his name 」</p>
+		</header>
+
+		<section class="why">
+			<h2>「 Why this episode? 」</h2>
+			{evaWhy.map(text => <p set:html={text} />)}
+		</section>
+
+		{
+			evaChapters.map((chapter, i) => (
+				<section
+					class:list={['chapter', { light: shades[i][2] }]}
+					style={{ '--from': shades[i][0], '--to': shades[i][1] }}
+				>
+					<h2>「 {chapter.title} 」</h2>
+					<div class="grid">
+						{chapter.clips.map(clip => (
+							<article>
+								<div class="still" x-data="{ playing: false }">
+									<video
+										src={evaClipUrl(clip.id)}
+										poster={posters[clip.id]}
+										controls
+										preload="none"
+										playsinline
+										@play="playing = true"
+										@pause="playing = false"
+									/>
+									<span class="play" x-show="!playing">
+										▶ {clip.label}
+									</span>
+								</div>
+								<blockquote>{clip.quote}</blockquote>
+								<details>
+									<summary>full lines</summary>
+									{clip.lines.map(line => (
+										<p>{line}</p>
+									))}
+								</details>
+							</article>
+						))}
+					</div>
+				</section>
+			))
+		}
+
+		<footer>
+			<p>To my father, thank you.</p>
+			<p>To my mother, farewell.</p>
+			<p>And to all the children...</p>
+			<p class="congrats">Congratulations!</p>
+		</footer>
+	</div>
+
+	<ShrineMusic src={evaSongUrl} label="fly me to the moon" startOn=".enter" />
+	<BackToTop />
+</Base>
+
+<script>
+	const enter = document.querySelector<HTMLButtonElement>('.enter');
+	const root = document.documentElement;
+
+	if (enter) {
+		root.classList.add('gated');
+		window.scrollTo(0, 0);
+		enter.addEventListener('click', () => {
+			root.classList.remove('gated');
+			const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+			document
+				.querySelector('.why')
+				?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
+		});
+	}
+</script>
+
+<style>
+	:root {
+		--top-bg: rgb(0 0 0 / 40%);
+		--top-color: white;
+		--top-border: rgb(255 255 255 / 40%);
+		--top-blur: blur(6px);
+	}
+
+	body {
+		margin: 0;
+		font-family: var(--font-shippori);
+		background: black;
+	}
+
+	.page {
+		color: #eee;
+	}
+
+	.page > * {
+		margin: 0;
+		padding-inline: max(16px, (100% - 900px) / 2);
+	}
+
+	.back {
+		display: block;
+		padding-top: 16px;
+		color: #aaa;
+	}
+
+	.hero {
+		display: grid;
+		align-content: center;
+
+		min-height: 100svh;
+
+		font-size: clamp(1.1rem, 4vw, 1.6rem);
+		text-align: center;
+
+		h1 {
+			margin: 8px 0;
+			font-size: clamp(3rem, 12vw, 6rem);
+			font-weight: 800;
+		}
+	}
+
+	:global(html.gated) {
+		overflow: hidden;
+	}
+
+	.enter {
+		cursor: pointer;
+
+		padding: 0 8px;
+		border: none;
+
+		font: inherit;
+		color: #e0102a;
+
+		background: none;
+
+		transition:
+			color 0.3s,
+			text-shadow 0.3s;
+
+		&:hover,
+		&:focus-visible {
+			color: #ff2a44;
+			text-shadow: 0 0 24px rgb(224 16 42 / 60%);
+			outline: none;
+		}
+	}
+
+	.hint {
+		margin-top: 48px;
+		font-size: 1rem;
+		color: #888;
+		animation: pulse 2.4s ease-in-out infinite;
+	}
+
+	.why {
+		font-size: 1.1rem;
+		line-height: 1.7;
+
+		h2,
+		p {
+			max-width: 620px;
+			margin-inline: auto;
+		}
+
+		h2 {
+			font-size: clamp(1.5rem, 5vw, 2.2rem);
+			font-weight: 800;
+			text-align: center;
+		}
+	}
+
+	.chapter {
+		padding-block: 64px;
+		background: linear-gradient(var(--from), var(--to));
+
+		h2 {
+			margin-bottom: 32px;
+			font-size: clamp(1.8rem, 7vw, 3rem);
+			font-weight: 800;
+			text-align: center;
+		}
+	}
+
+	.light {
+		color: #2b2630;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 40px 32px;
+	}
+
+	.still {
+		position: relative;
+
+		video {
+			display: block;
+
+			aspect-ratio: 4 / 3;
+			width: 100%;
+			height: auto;
+
+			background: black;
+		}
+	}
+
+	.play {
+		pointer-events: none;
+
+		position: absolute;
+		top: 8px;
+		left: 8px;
+
+		padding: 2px 8px;
+
+		font-size: 0.9rem;
+		color: white;
+
+		background: rgb(0 0 0 / 70%);
+	}
+
+	blockquote {
+		margin: 16px 0 8px;
+		font-size: 1.3rem;
+		font-weight: 800;
+	}
+
+	details {
+		opacity: 0.8;
+
+		summary {
+			cursor: pointer;
+		}
+
+		p {
+			margin: 4px 0;
+		}
+	}
+
+	footer {
+		padding-block: 64px 120px;
+
+		font-size: 1.3rem;
+		color: #10324a;
+		text-align: center;
+
+		background: linear-gradient(#a8d8f3, #7cc4ef);
+
+		p {
+			margin: 4px 0;
+		}
+	}
+
+	.congrats {
+		margin-top: 24px;
+		font-size: clamp(2.5rem, 10vw, 4.5rem);
+		font-weight: 800;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hint {
+			animation: none;
+		}
+	}
+
+	/* 624px is where the grid fits two columns */
+	@media (width >= 624px) {
+		.grid > :last-child:nth-child(odd) {
+			grid-column: 1 / -1;
+			justify-self: center;
+			width: calc((100% - 32px) / 2);
+		}
+	}
+
+	@keyframes pulse {
+		50% {
+			opacity: 0.25;
+		}
+	}
+</style>
