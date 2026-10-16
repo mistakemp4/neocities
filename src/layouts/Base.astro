@@ -16,6 +16,12 @@ const { title = 'i love akechi!!', bodyClass } = Astro.props;
 		<!-- site is already dark; stops Dark Reader recolouring it -->
 		<meta name="darkreader-lock" />
 		<title>{title}</title>
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="mistake's blog"
+			href="/rss.xml"
+		/>
 		<slot name="head" />
 	</head>
 	<body class={bodyClass}>

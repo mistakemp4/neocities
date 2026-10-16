@@ -5,6 +5,7 @@ import alpinejs from '@astrojs/alpinejs';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://mistakemp4.neocities.org',
 	trailingSlash: 'always',
 	// old links to the profile page land on its replacement
 	redirects: {

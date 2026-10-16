@@ -34,6 +34,10 @@ const { page } = Astro.props;
 			<a href={page.url.next} aria-disabled={!page.url.next}>next &gt;</a>
 			<a href={page.url.last} aria-disabled={!page.url.next}>last &gt;&gt;</a>
 		</div>
+		<div class="container">
+			<a href="/blog/archive/">all posts</a>
+			<a href="/rss.xml">rss feed</a>
+		</div>
 	</nav>
 </MainLayout>
 

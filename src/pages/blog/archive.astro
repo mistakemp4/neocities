@@ -1,0 +1,52 @@
+---
+import BackLink from '$/components/BackLink.astro';
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+import { formatDate, getSortedBlogPosts } from '$/lib/blog';
+
+const posts = await getSortedBlogPosts();
+const years = Map.groupBy(posts, post => post.data.date.getFullYear());
+---
+
+<MainLayout>
+	<p><BackLink href="/blog/1/">back to the blog</BackLink></p>
+	<Section title="Blog archive">
+		<p>every post, newest first. <a href="/rss.xml">rss feed</a></p>
+		{
+			[...years].map(([year, yearPosts]) => (
+				<>
+					<h2>{year}</h2>
+					<ul>
+						{yearPosts.map(({ id, data }) => (
+							<li>
+								<time datetime={data.date.toISOString()}>
+									{formatDate(data.date)}
+								</time>
+								<a href={`/blog/post/${id}/`}>{data.title}</a>
+							</li>
+						))}
+					</ul>
+				</>
+			))
+		}
+	</Section>
+</MainLayout>
+
+<style>
+	ul {
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 12px;
+		margin-block: 4px;
+	}
+
+	time {
+		min-width: 150px;
+		font-weight: bold;
+	}
+</style>
