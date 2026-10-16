@@ -37,6 +37,13 @@ export default defineConfig({
 				fallbacks: ['Courier New', 'monospace'],
 			},
 			{
+				name: 'Shippori Mincho B1',
+				provider: fontProviders.google(),
+				cssVariable: '--font-shippori',
+				weights: [500, 800],
+				fallbacks: ['Georgia', 'serif'],
+			},
+			{
 				name: 'Persona 4',
 				provider: 'local',
 				cssVariable: '--font-persona4',

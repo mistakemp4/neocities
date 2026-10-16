@@ -1,0 +1,179 @@
+---
+interface Props {
+	src: string;
+	label: string;
+	volume?: number;
+	// Only clicks on this start it, otherwise any click
+	startOn?: string;
+}
+
+const { src, label, volume = 0.2, startOn } = Astro.props;
+---
+
+<button
+	class="shrine-music"
+	type="button"
+	aria-pressed="true"
+	data-src={src}
+	data-volume={volume}
+	data-start-on={startOn}
+>
+	♪ {label}
+</button>
+
+<script>
+	const button = document.querySelector<HTMLButtonElement>('.shrine-music');
+
+	if (button) {
+		const audio = new Audio();
+		const target = Number(button.dataset.volume);
+		let ctx: AudioContext | undefined;
+		let gain: GainNode | undefined;
+		let pauseTimer: ReturnType<typeof setTimeout> | undefined;
+		let enabled = true;
+
+		try {
+			enabled = localStorage.getItem('shrine-music') !== 'off';
+		} catch {
+			// Storage blocked, stays on
+		}
+
+		const render = () => button.setAttribute('aria-pressed', String(enabled));
+		render();
+
+		const videoPlaying = () =>
+			[...document.querySelectorAll('video')].some(
+				video => !video.paused && !video.ended,
+			);
+
+		// Web Audio, since iOS ignores audio.volume
+		function setup() {
+			if (ctx) return;
+			audio.crossOrigin = 'anonymous';
+			audio.loop = true;
+			audio.src = button!.dataset.src!;
+			ctx = new AudioContext();
+			gain = ctx.createGain();
+			gain.gain.value = 0;
+			ctx
+				.createMediaElementSource(audio)
+				.connect(gain)
+				.connect(ctx.destination);
+		}
+
+		function fadeTo(value: number, seconds: number) {
+			const now = ctx!.currentTime;
+			gain!.gain.cancelScheduledValues(now);
+			gain!.gain.setValueAtTime(gain!.gain.value, now);
+			gain!.gain.linearRampToValueAtTime(value, now + seconds);
+		}
+
+		const reveal = () => button.classList.add('shown');
+
+		function fadeIn() {
+			reveal();
+			if (!enabled || videoPlaying()) return;
+			setup();
+			clearTimeout(pauseTimer);
+			void ctx!.resume();
+			audio.play().catch(() => {});
+			fadeTo(target, 4);
+		}
+
+		function fadeOut(seconds: number) {
+			if (!ctx) return;
+			fadeTo(0, seconds);
+			clearTimeout(pauseTimer);
+			pauseTimer = setTimeout(() => audio.pause(), seconds * 1000);
+		}
+
+		// Browsers only allow sound after a click, so start on the first one
+		function firstClick(event: Event) {
+			if (!(event.target instanceof Element)) return;
+			const startOn = button!.dataset.startOn;
+			if (startOn && !event.target.closest(startOn)) return;
+			if (event.target.closest('video, .shrine-music')) return;
+			document.removeEventListener('click', firstClick);
+			fadeIn();
+		}
+		document.addEventListener('click', firstClick);
+
+		// play and pause don't bubble, so listen while capturing
+		document.addEventListener(
+			'play',
+			event => {
+				if (event.target instanceof HTMLVideoElement) fadeOut(0.5);
+			},
+			true,
+		);
+		for (const type of ['pause', 'ended']) {
+			document.addEventListener(
+				type,
+				event => {
+					if (event.target instanceof HTMLVideoElement) fadeIn();
+				},
+				true,
+			);
+		}
+
+		button.addEventListener('click', () => {
+			enabled = !enabled;
+			render();
+			try {
+				localStorage.setItem('shrine-music', enabled ? 'on' : 'off');
+			} catch {
+				// Storage blocked, not remembered
+			}
+			document.removeEventListener('click', firstClick);
+			if (enabled) fadeIn();
+			else fadeOut(1);
+		});
+	}
+</script>
+
+<style>
+	.shrine-music {
+		cursor: pointer;
+
+		position: fixed;
+		z-index: 10;
+		bottom: 16px;
+		left: 16px;
+		translate: 0 8px;
+
+		padding: 6px 12px;
+		border: var(--top-line, 2px) solid
+			var(--top-border, var(--darker-border-color));
+
+		font: inherit;
+		font-size: 16px;
+		color: var(--top-color, var(--nav-link-color));
+
+		visibility: hidden;
+		opacity: 0;
+		background-color: var(--top-bg, var(--nav-bg));
+		backdrop-filter: var(--top-blur, none);
+
+		transition:
+			opacity 0.8s,
+			translate 0.8s,
+			visibility 0.8s;
+
+		&.shown {
+			translate: 0 0;
+			visibility: visible;
+			opacity: 1;
+		}
+
+		&[aria-pressed='false'].shown {
+			text-decoration: line-through;
+			opacity: 0.6;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.shrine-music {
+			translate: none;
+		}
+	}
+</style>

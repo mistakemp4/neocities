@@ -21,6 +21,7 @@ export const sitemapEntries: SitemapEntry[] = [
 	{ href: '/shrines/', parent: '/library/' },
 	{ href: '/shrines/akechi/', label: 'Goro Akechi' },
 	{ href: '/shrines/souyo/', label: 'SouYo' },
+	{ href: '/shrines/eva/', label: 'the instrumentality of his soul' },
 	{ href: '/library/quizzes/', label: 'web quizzes' },
 	{
 		href: '/library/p5-quiz/',
