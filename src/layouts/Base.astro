@@ -71,6 +71,9 @@ const { title = 'i love akechi!!', bodyClass } = Astro.props;
 		--brown-black: #15120f;
 		--yellow: #c9a227;
 		--blue-grey: #8fa3b0;
+
+		/* VT323 has no japanese, DotGothic16 fills in where a layout loads it */
+		--font-pixel: var(--font-vt323), var(--font-dotgothic, monospace);
 	}
 
 	/* thin scrollbars everywhere. a page can set --scroll-thumb / --scroll-track
