@@ -5,7 +5,7 @@ title: "Steam Frame first impressions (from a Linux user)"
 date: October 23, 2026
 ---
 
-I hadn't played VR since my Rift S broke. Which, honestly, was not a huge loss. The Rift S was such a shit product. So when the Steam Frame was announced I was hyped (ai am a valve shill.)
+I hadn't played VR since my Rift S broke. Which, honestly, was not a huge loss. The Rift S was such a shit product. So when the Steam Frame was announced I was hyped (i am a valve shill.)
 
 Then came the reservation roulette. I was fully manifesting. And somehow I actually got on the reservation list and not the waitlist?? Meanwhile I'm watching youtubers sitting on the waitlist like oops I bought mine already?
 
