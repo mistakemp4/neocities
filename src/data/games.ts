@@ -132,6 +132,7 @@ import meta from '$/assets/games/meta.webp';
 import p3p from '$/assets/games/p3p.webp';
 import marvelrivals from '$/assets/games/marvelrivals.webp';
 import finals from '$/assets/games/finals.webp';
+import deadlock from '$/assets/games/deadlock.webp';
 import satisfactory from '$/assets/games/satisfactory.webp';
 import unbeatablefull from '$/assets/games/unbeatablefull.webp';
 import n3 from '$/assets/games/n3.webp';
@@ -1129,6 +1130,13 @@ export const games: Game[] = [
 		status: 'N/A (Online)',
 		thoughts: 'Blowing up the whole building to win never gets old',
 		image: finals,
+	},
+	{
+		name: 'Deadlock',
+		category: 'With friends',
+		status: 'N/A (Online)',
+		thoughts: 'I hate MOBAS',
+		image: deadlock,
 	},
 	{
 		name: 'Satisfactory',
