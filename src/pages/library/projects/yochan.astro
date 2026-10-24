@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+
+import gyu from '$/assets/projects/yochan/gyu-and-seal.png';
+import hunger from '$/assets/projects/yochan/hunger.png';
+import react from '$/assets/projects/yochan/react.png';
+import BackLink from '$/components/BackLink.astro';
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+
+const blurb =
+	'a discord bot that acts like yo-chan, the ringed seal from the okhotsk tokkari center';
+---
+
+<MainLayout>
+	<Fragment slot="head">
+		{/* link preview, for when the page gets shared */}
+		<meta name="description" content={blurb} />
+		<meta property="og:title" content="yo-chan bot" />
+		<meta property="og:description" content={blurb} />
+	</Fragment>
+	<p><BackLink href="/library/projects/">back to projects</BackLink></p>
+	<Section title="Yo-chan bot">
+		<p>
+			yo-chan is a ringed seal at the okhotsk tokkari center in japan, and she's
+			the best girl. so i made her into a discord bot for my friends' server.
+			she gyus back, replies to seal posts with yo-chan pics, reacts to sea
+			emoji and gets hungry if nobody feeds her fish
+		</p>
+		<p>
+			<a href="https://github.com/mistakemp4/yochan-bot">source on github</a> - python
+			+ discord.py, runs on a home server
+		</p>
+	</Section>
+
+	<Section title="gyu">
+		<div class="split">
+			<Image
+				src={gyu}
+				alt="yo-chan replying to a gyu with a gyu, then replying to a seal sticker with a yo-chan video"
+				width={230}
+			/>
+			<ul>
+				<li>
+					say <b>gyu</b> and she gyus back. more u's make a longer gyu, with random
+					kaomoji and the odd sassy line
+				</li>
+				<li>react 🇬 🇾 🇺 in that order on any message and she gyus at it</li>
+				<li>
+					post a seal sticker, picture or gif and she replies with a random
+					yo-chan gif, photo or sticker. just typing "seal" doesn't count
+				</li>
+			</ul>
+		</div>
+	</Section>
+
+	<Section title="hunger">
+		<Image
+			src={hunger}
+			alt="/hunger showing 69% content, then yo-chan eating a fish and going to 94%"
+			width={480}
+		/>
+		<ul>
+			<li>she starts at 70% full and drains to empty over 12 hours</li>
+			<li>
+				send fish (🐟 🐠 🐡 🍣 🦐 🦑) or react with one on her message and she
+				eats it, 25% each. over 95% she refuses
+			</li>
+			<li>
+				when she's hungry about a third of her gyus turn into complaints, and
+				she begs once in the last channel she talked in
+			</li>
+			<li><b>/hunger</b> shows her meter</li>
+		</ul>
+	</Section>
+
+	<Section title="reactions">
+		<div class="split">
+			<Image
+				src={react}
+				alt="yo-chan reacting with sparkles to a message full of seal emoji"
+				width={240}
+			/>
+			<p>
+				send 🦭 🐟 💧 🌊 🫧 and friends and half the time she reacts to your
+				message
+			</p>
+		</div>
+	</Section>
+</MainLayout>
+
+<style>
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	.split {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		align-items: flex-start;
+
+		> :last-child {
+			flex: 1 1 220px;
+		}
+	}
+</style>

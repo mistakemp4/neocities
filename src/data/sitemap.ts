@@ -19,8 +19,8 @@ export const sitemapEntries: SitemapEntry[] = [
 	{ href: '/library/favs/' },
 	{ href: '/library/media/', label: 'media log' },
 	{ href: '/shrines/', parent: '/library/' },
-	{ href: '/shrines/akechi/', label: 'Goro Akechi' },
-	{ href: '/shrines/souyo/', label: 'SouYo' },
+	{ href: '/shrines/akechi/', label: 'the detective prince' },
+	{ href: '/shrines/souyo/', label: 'the best ship in inaba' },
 	{ href: '/shrines/eva/', label: 'the instrumentality of his soul' },
 	{ href: '/library/quizzes/', label: 'web quizzes' },
 	{
@@ -31,6 +31,7 @@ export const sitemapEntries: SitemapEntry[] = [
 	{ href: '/library/graphics/', label: 'site graphics' },
 	{ href: '/library/projects/' },
 	{ href: '/library/projects/poketwo/', label: 'Pokétwo spawn odds' },
+	{ href: '/library/projects/yochan/', label: 'Yo-chan bot' },
 	{ href: '/about/', label: 'about site' },
 	{
 		href: 'https://mistakemp4.atabook.org/',

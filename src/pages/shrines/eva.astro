@@ -115,6 +115,42 @@ const posters = Object.fromEntries(
 				?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
 		});
 	}
+
+	// one volume for every clip, kept between visits
+	const clips = [
+		...document.querySelectorAll<HTMLVideoElement>('.chapter video'),
+	];
+
+	function applyVolume(volume: number, muted: boolean) {
+		for (const clip of clips) {
+			// skip same values so volumechange doesn't loop
+			if (clip.volume !== volume) clip.volume = volume;
+			if (clip.muted !== muted) clip.muted = muted;
+		}
+	}
+
+	try {
+		const saved = JSON.parse(localStorage.getItem('eva-volume') ?? 'null');
+		if (typeof saved?.volume === 'number') {
+			applyVolume(Math.min(1, Math.max(0, saved.volume)), saved.muted === true);
+		}
+	} catch {
+		// storage can be blocked or junk, default volume is fine then
+	}
+
+	for (const clip of clips) {
+		clip.addEventListener('volumechange', () => {
+			applyVolume(clip.volume, clip.muted);
+			try {
+				localStorage.setItem(
+					'eva-volume',
+					JSON.stringify({ volume: clip.volume, muted: clip.muted }),
+				);
+			} catch {
+				// storage can be blocked, nothing to save then
+			}
+		});
+	}
 </script>
 
 <style>
