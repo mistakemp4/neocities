@@ -1,0 +1,177 @@
+---
+// Long project write-ups: site header, a contents legend that follows the
+// reader, and the page's sections as cards. Sections need class="card",
+// data-section and an id matching one in `sections`.
+import { Font } from 'astro:assets';
+
+import BackToTop from '$/components/BackToTop.astro';
+import Footer from '$/components/Footer.astro';
+import Header from '$/components/Header.astro';
+import Navbar from '$/components/Navbar.astro';
+import Sidebar from '$/components/Sidebar.astro';
+import SidebarLink from '$/components/SidebarLink.astro';
+import SidebarLinks from '$/components/SidebarLinks.astro';
+import SidebarSection from '$/components/SidebarSection.astro';
+import Base from '$/layouts/Base.astro';
+import { legendState } from '$/lib/legend';
+
+interface Props {
+	title: string;
+	// link preview text
+	description: string;
+	// legend entries, in page order. text can hold html
+	sections: { id: string; text: string }[];
+	// card headings + the lit legend entry
+	accent?: string;
+	// extra body class, for page-only global styles
+	bodyClass?: string;
+}
+
+const {
+	title,
+	description,
+	sections,
+	accent = '#ff9ecf',
+	bodyClass,
+} = Astro.props;
+---
+
+<Base
+	title={title}
+	bodyClass={['writeup', bodyClass].filter(Boolean).join(' ')}
+>
+	<Fragment slot="head">
+		<Font cssVariable="--font-vt323" />
+		<Font cssVariable="--font-dotgothic" />
+		{/* link preview, for when the page gets shared */}
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta name="theme-color" content={accent} />
+		<slot name="head" />
+	</Fragment>
+	<Header />
+	<Navbar />
+
+	<div
+		class="layout"
+		style={{ '--wu-accent': accent }}
+		x-data={legendState(sections[0].id)}
+		@scroll.window="track()"
+	>
+		<Sidebar>
+			<SidebarSection title="Contents">
+				<SidebarLinks>
+					{
+						sections.map(section => (
+							<SidebarLink
+								href={`#${section.id}`}
+								{...{
+									// alpine attributes, spread in because their names aren't valid prop names
+									'x-bind:class': `current === '${section.id}' && 'here'`,
+									'x-on:click': `jump('${section.id}')`,
+								}}
+							>
+								<Fragment set:html={section.text} />
+							</SidebarLink>
+						))
+					}
+				</SidebarLinks>
+			</SidebarSection>
+		</Sidebar>
+
+		<main>
+			<slot />
+		</main>
+	</div>
+
+	<Footer />
+	<BackToTop />
+</Base>
+
+<style is:global>
+	body.writeup {
+		font-family: var(--font-pixel);
+		font-size: 17px;
+		color: var(--article-text-color);
+
+		color-scheme: dark;
+		background-color: var(--bg);
+	}
+
+	body.writeup a {
+		color: var(--nav-link-color);
+	}
+</style>
+
+<style>
+	.layout {
+		display: flex;
+		gap: 20px;
+		align-items: flex-start;
+
+		box-sizing: border-box;
+		max-width: 1090px;
+		margin-inline: auto;
+		padding-inline: 12px;
+	}
+
+	/* the legend is the site's own sidebar, it just needs to scroll when it's taller than the screen */
+	.layout :global(aside) {
+		overflow-y: auto;
+		max-height: calc(100vh - 40px);
+		margin-block-start: 0;
+	}
+
+	.layout :global(aside a) {
+		display: block;
+		padding: 1px 4px;
+	}
+
+	.layout :global(aside a.here) {
+		color: var(--wu-accent);
+	}
+
+	main {
+		flex: 1;
+		min-width: 0;
+	}
+
+	/* cards come from the page's slot, so they need :global */
+	main :global(.card) {
+		scroll-margin-top: 16px;
+
+		margin-bottom: 15px;
+		padding: 10px 14px;
+		border: 1px solid var(--darker-border-color);
+
+		background-color: var(--article-bg);
+	}
+
+	main :global(.card > h2) {
+		margin: 6px 0 10px;
+		padding-inline: 6px;
+		border: 1px solid var(--darker-border-color);
+
+		font-size: 21px;
+		color: var(--wu-accent);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+
+		background-color: var(--nav-bg);
+	}
+
+	/* phones: legend sits on top as a normal list */
+	@media (width <= 800px) {
+		.layout {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		/* no box to scroll inside here, it would trap the finger on short screens */
+		.layout :global(aside) {
+			overflow-y: visible;
+			max-height: none;
+		}
+	}
+</style>

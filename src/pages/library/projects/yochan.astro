@@ -1,26 +1,216 @@
 ---
 import { Image } from 'astro:assets';
+import { Code } from 'astro:components';
 
 import gyu from '$/assets/projects/yochan/gyu-and-seal.png';
 import hunger from '$/assets/projects/yochan/hunger.png';
 import react from '$/assets/projects/yochan/react.png';
 import BackLink from '$/components/BackLink.astro';
-import Section from '$/components/Section.astro';
-import MainLayout from '$/layouts/MainLayout.astro';
+import WriteupLayout from '$/layouts/WriteupLayout.astro';
 
 const blurb =
-	'a discord bot that acts like yo-chan, the ringed seal from the okhotsk tokkari center';
+	'a discord bot that acts like yo-chan, the ringed seal from the okhotsk tokkari center. what she does, how she works and why';
+
+const sections = [
+	{ id: 'intro', text: 'Yo-chan bot' },
+	{ id: 'setup', text: 'One file & a config' },
+	{ id: 'gyu', text: 'Gyu' },
+	{ id: 'spelling', text: 'Spelling GYU' },
+	{ id: 'seals', text: 'Spotting seals' },
+	{ id: 'media', text: 'Sending media' },
+	{ id: 'hunger', text: 'Hunger' },
+	{ id: 'begging', text: 'Begging' },
+	{ id: 'cooldowns', text: 'Cooldowns' },
+	{ id: 'hosting', text: 'Hosting' },
+];
+
+// excerpts from bot.py, trimmed to the interesting part
+const code = {
+	setup: `CONFIG = tomllib.loads((ROOT / "config.toml").read_text(encoding="utf-8"))
+
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
+tree = app_commands.CommandTree(client)`,
+
+	regex: `GYU_RE = re.compile(r"(?<![a-z])gy(u+)(?![a-z])", re.IGNORECASE)`,
+
+	gyu: `def gyu_word(n_u: int) -> str:
+    style = random.choice(["lower", "upper", "title", "fade", "grow"])
+    if style == "upper":
+        return "GY" + "U" * n_u
+    if style == "title":
+        return "Gy" + "u" * n_u
+    if style == "fade":
+        k = random.randint(1, n_u)
+        return "GY" + "U" * k + "u" * (n_u - k)
+    if style == "grow":
+        k = random.randint(0, n_u - 1)
+        return "gy" + "u" * k + "U" * (n_u - k)
+    return "gy" + "u" * n_u
+
+
+def gyu_line(n_u: int) -> str:
+    if GYU["lines"] and random.random() < GYU["line_chance"]:
+        return random.choice(GYU["lines"])
+    n_u = max(1, min(n_u, 12))
+    line = gyu_word(n_u) + random.choice(GYU["punctuation"])
+    if random.random() < GYU["kaomoji_chance"]:
+        line += " " + random.choice(GYU["kaomoji"])
+    if random.random() < GYU["action_chance"]:
+        line = random.choice(GYU["actions"]) + " " + line
+    if random.random() < GYU["emoji_chance"]:
+        line += " " + random.choice(GYU["emoji"])
+    return line`,
+
+	spells: `def spells_gyu(seq: list[str]) -> bool:
+    it = iter(seq)
+    return all(letter in it for letter in GYU_LETTERS)`,
+
+	seq: `# message id -> letters in add order, None once answered
+reaction_seq: OrderedDict[int, list[str] | None] = OrderedDict()
+
+seq = reaction_seq.get(payload.message_id, [])
+if seq is None:
+    return
+if letter not in seq:
+    seq.append(letter)
+reaction_seq[payload.message_id] = seq
+reaction_seq.move_to_end(payload.message_id)
+while len(reaction_seq) > 1000:
+    reaction_seq.popitem(last=False)
+if letter != GYU_LETTERS[-1] or not spells_gyu(seq):
+    return
+reaction_seq[payload.message_id] = None`,
+
+	seal: `async def is_seal(message: discord.Message) -> bool:
+    if any(has_keyword(a.filename) for a in message.attachments):
+        return True
+    if any(has_keyword(url) for url in URL_RE.findall(message.content)):
+        return True
+    for item in message.stickers:
+        if has_keyword(item.name):
+            return True
+        try:
+            sticker = await item.fetch()
+        except discord.HTTPException:
+            continue
+        extra = [getattr(sticker, "description", "") or "", getattr(sticker, "emoji", "") or ""]
+        extra += getattr(sticker, "tags", [])
+        if any(has_keyword(x) for x in extra):
+            return True
+    return False`,
+
+	fetch: `async def fetch_media(url: str) -> discord.File | None:
+    # direct media links get uploaded, Discord's unfurler flakes on some
+    name = unquote(Path(urlsplit(url).path).name)
+    if Path(name).suffix.lower() not in MEDIA_EXTS:
+        return None
+    timeout = aiohttp.ClientTimeout(total=15)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(url) as resp:
+                if resp.status != 200 or (resp.content_length or 0) > MAX_UPLOAD:
+                    return None
+                buf = BytesIO()
+                async for chunk in resp.content.iter_chunked(64 * 1024):
+                    if buf.tell() + len(chunk) > MAX_UPLOAD:
+                        return None
+                    buf.write(chunk)
+    except (aiohttp.ClientError, TimeoutError):
+        return None
+    buf.seek(0)
+    return discord.File(buf, filename=name)`,
+
+	fullness: `# hunger level -> lowest fullness % for it
+LEVELS = [("full", 80), ("content", 50), ("peckish", 25), ("hungry", 10), ("starving", 0)]
+
+
+def fullness(b: dict) -> float:
+    drained = (time.time() - b["at"]) / 3600 * 100 / HUNGER["hours_to_empty"]
+    return max(0.0, b["fullness"] - drained)
+
+
+def level(full: float) -> str:
+    return next(name for name, floor in LEVELS if full >= floor)
+
+
+def meter(full: float) -> str:
+    filled = round(full / 10)
+    return f"{'▰' * filled}{'▱' * (10 - filled)} {int(full)}%"`,
+
+	feed: `def feed(guild_id: int, fish: int) -> str:
+    b = belly(guild_id)
+    before = fullness(b)
+    if before >= 95:
+        return random.choice(HUNGER["refuse"])
+    after = min(100.0, before + fish * HUNGER["per_fish"])
+    b["fullness"], b["at"] = after, time.time()
+    # beg again only if she's still hungry after eating
+    b["begged"] = level(after) if level(after) in HUNGRY else None
+    save_state()
+    lines = HUNGER["eat_starving"] if level(before) in HUNGRY else HUNGER["eat"]
+    return f"{random.choice(lines)}\\n{meter(after)}"
+
+
+def save_state() -> None:
+    tmp = STATE_FILE.with_suffix(".tmp")
+    tmp.write_text(json.dumps(state, indent=2))
+    tmp.replace(STATE_FILE)`,
+
+	beg: `@tasks.loop(minutes=HUNGER["beg_check_minutes"])
+async def beg():
+    for guild_id, b in state.items():
+        lvl = level(fullness(b))
+        if lvl not in HUNGRY or b["begged"] == lvl or not b["channel"]:
+            continue
+        b["begged"] = lvl
+        save_state()
+        channel = client.get_channel(b["channel"])
+        if channel is None:
+            continue
+        try:
+            await channel.send(random.choice(HUNGER[lvl]))
+        except discord.HTTPException:
+            pass`,
+
+	ready: `def ready(kind: str, channel_id: int) -> bool:
+    now = time.monotonic()
+    key = (kind, channel_id)
+    if now - last_sent.get(key, float("-inf")) < CONFIG[kind]["cooldown"]:
+        return False
+    last_sent[key] = now
+    return True`,
+
+	sync: `if not synced:
+    # per-guild sync shows up instantly, global can lag
+    for guild in client.guilds:
+        tree.copy_global_to(guild=guild)
+        await tree.sync(guild=guild)
+    synced = True`,
+
+	service: `[Service]
+WorkingDirectory=%h/yochan-bot
+EnvironmentFile=%h/yochan-bot/.env
+ExecStart=%h/yochan-bot/.venv/bin/python -u bot.py
+Restart=always
+RestartSec=10
+NoNewPrivileges=true`,
+};
 ---
 
-<MainLayout>
-	<Fragment slot="head">
-		{/* link preview, for when the page gets shared */}
-		<meta name="description" content={blurb} />
-		<meta property="og:title" content="yo-chan bot" />
-		<meta property="og:description" content={blurb} />
-	</Fragment>
-	<p><BackLink href="/library/projects/">back to projects</BackLink></p>
-	<Section title="Yo-chan bot">
+<WriteupLayout
+	title="yo-chan bot"
+	description={blurb}
+	sections={sections}
+	accent="#8fd0ff"
+>
+	<p>
+		<BackLink href="/library/projects/">back to projects</BackLink>
+	</p>
+
+	<section id="intro" class="card" data-section>
+		<h2>Yo-chan bot</h2>
 		<p>
 			yo-chan is a ringed seal at the okhotsk tokkari center in japan, and she's
 			the best girl. so i made her into a discord bot for my friends' server.
@@ -28,53 +218,152 @@ const blurb =
 			emoji and gets hungry if nobody feeds her fish
 		</p>
 		<p>
-			<a href="https://github.com/mistakemp4/yochan-bot">source on github</a> - python
-			+ discord.py, runs on a home server
+			this is how she works and why she's coded the way she is. the code bits
+			are cut out of the real thing, the whole bot is <a
+				href="https://github.com/mistakemp4/yochan-bot">on github</a
+			>
 		</p>
-	</Section>
+	</section>
 
-	<Section title="gyu">
+	<section id="setup" class="card" data-section>
+		<h2>One file & a config</h2>
+		<p>
+			she's one python file using <code>discord.py</code>. everything she can
+			say (gyu lines, kaomoji, hunger complaints, the gif links) is in a config
+			file, so i can give her new lines without touching any python
+		</p>
+		<Code code={code.setup} lang="python" theme="vesper" />
+		<p>
+			<code>message_content</code> has to be turned on in the discord developer portal
+			too, or she can't read messages
+		</p>
+	</section>
+
+	<section id="gyu" class="card" data-section>
+		<h2>Gyu</h2>
 		<div class="split">
 			<Image
 				src={gyu}
 				alt="yo-chan replying to a gyu with a gyu, then replying to a seal sticker with a yo-chan video"
 				width={230}
 			/>
-			<ul>
-				<li>
-					say <b>gyu</b> and she gyus back. more u's make a longer gyu, with random
-					kaomoji and the odd sassy line
-				</li>
-				<li>react 🇬 🇾 🇺 in that order on any message and she gyus at it</li>
-				<li>
-					post a seal sticker, picture or gif and she replies with a random
-					yo-chan gif, photo or sticker. just typing "seal" doesn't count
-				</li>
-			</ul>
+			<div>
+				<p>
+					say <b>gyu</b> and she gyus back. she finds it with a regex
+				</p>
+				<Code code={code.regex} lang="python" theme="vesper" />
+				<p>
+					the <code>(?&lt;![a-z])</code> and <code>(?![a-z])</code> bits mean it
+					only matches gyu as its own word, so "gyudon" doesn't count. <code
+						>(u+)</code
+					> grabs all the u's, so a longer gyu gets a longer gyu back
+				</p>
+			</div>
 		</div>
-	</Section>
+		<Code code={code.gyu} lang="python" theme="vesper" />
+		<p>
+			every reply is built from random parts: a casing style (gyuuu, GYUUU,
+			GYUuu...), punctuation, and sometimes a kaomoji, an action like *wiggles*
+			and an emoji. the u's are capped at 12. about 1 in 8 times she says a full
+			sassy line instead
+		</p>
+	</section>
 
-	<Section title="hunger">
+	<section id="spelling" class="card" data-section>
+		<h2>Spelling GYU</h2>
+		<p>
+			react 🇬 🇾 🇺 in that order on any message and she gyus at it. she uses <code
+				>on_raw_reaction_add</code
+			> instead of <code>on_reaction_add</code>, because the normal one only
+			activates on messages the bot has cached
+		</p>
+		<Code code={code.spells} lang="python" theme="vesper" />
+		<p>
+			this checks the letters were added in order, even with other ones in
+			between
+		</p>
+		<Code code={code.seq} lang="python" theme="vesper" />
+		<p>
+			she remembers the order letters were added on each message, up to the 1000
+			newest. once she's answered a message it's set to <code>None</code>, so
+			re-adding the U doesn't get a second gyu
+		</p>
+	</section>
+
+	<section id="seals" class="card" data-section>
+		<h2>Spotting seals</h2>
+		<p>
+			post a seal sticker, picture or gif and she replies with yo-chan. there's
+			no image recognition, she checks file names, links and sticker info for
+			keywords like seal, azarashi, tokkari, アザラシ and 🦭
+		</p>
+		<Code code={code.seal} lang="python" theme="vesper" />
+		<p>
+			sticker names are often useless, so she gets the full sticker to check its
+			description, emoji and tags too. plain text "seal" doesn't count on
+			purpose, or she'd talk in every conversation about seals
+		</p>
+	</section>
+
+	<section id="media" class="card" data-section>
+		<h2>Sending media</h2>
+		<p>
+			she picks at random from three pools: files in her
+			<code>media/</code> folder, links (tenor gifs and pinnipedia wiki pics) and
+			server sticker ids
+		</p>
+		<Code code={code.fetch} lang="python" theme="vesper" />
+		<p>
+			i couldn't get discord to show previews for direct image links, so she
+			downloads those and uploads them as a file instead, up to 10 MB (the
+			upload limit). tenor links stay links since discord embeds those fine
+		</p>
+	</section>
+
+	<section id="hunger" class="card" data-section>
+		<h2>Hunger</h2>
 		<Image
 			src={hunger}
 			alt="/hunger showing 69% content, then yo-chan eating a fish and going to 94%"
 			width={480}
 		/>
-		<ul>
-			<li>she starts at 70% full and drains to empty over 12 hours</li>
-			<li>
-				send fish (🐟 🐠 🐡 🍣 🦐 🦑) or react with one on her message and she
-				eats it, 25% each. over 95% she refuses
-			</li>
-			<li>
-				when she's hungry about a third of her gyus turn into complaints, and
-				she begs once in the last channel she talked in
-			</li>
-			<li><b>/hunger</b> shows her meter</li>
-		</ul>
-	</Section>
+		<p>
+			she starts at 70% full and drains to empty over 12 hours. she only saves
+			how full she was and when, and works out how hungry she is now whenever
+			someone asks
+		</p>
+		<Code code={code.fullness} lang="python" theme="vesper" />
+		<p>
+			that way nothing has to update every minute, and if she restarts she's
+			still just as hungry. each server has its own yo-chan stomach
+		</p>
+		<p>
+			send fish (🐟 🐠 🐡 🍣 🦐 🦑) or react with one on her message and she
+			eats it. 25% per fish, max 4 per message, and over 95% she refuses
+		</p>
+		<Code code={code.feed} lang="python" theme="vesper" />
+		<p>
+			the state is written to a temp file first and then swapped in, so if the
+			server dies mid-save the old file is still fine
+		</p>
+	</section>
 
-	<Section title="reactions">
+	<section id="begging" class="card" data-section>
+		<h2>Begging</h2>
+		<p>
+			when she's hungry or starving, about a third of her gyus turn into
+			complaints. she also begs on her own: every 5 minutes she checks each
+			server, and complains once when she drops to hungry and again at starving
+		</p>
+		<Code code={code.beg} lang="python" theme="vesper" />
+		<p>
+			<code>begged</code> remembers which level she already begged at, so it's one
+			complaint per level. she begs in the last channel she talked in
+		</p>
+	</section>
+
+	<section id="cooldowns" class="card" data-section>
+		<h2>Cooldowns</h2>
 		<div class="split">
 			<Image
 				src={react}
@@ -82,17 +371,67 @@ const blurb =
 				width={240}
 			/>
 			<p>
-				send 🦭 🐟 💧 🌊 🫧 and friends and half the time she reacts to your
-				message
+				send 🦭 🐟 💧 🌊 🫧 and friends and half the time she reacts. replies
+				have a 1 second cooldown per channel, so gyu spam doesn't get gyu spam
+				back
 			</p>
 		</div>
-	</Section>
-</MainLayout>
+		<Code code={code.ready} lang="python" theme="vesper" />
+		<Code code={code.sync} lang="python" theme="vesper" />
+		<p>
+			<b>/hunger</b> is a slash command. those get registered per server, since global
+			commands can take a while to show up
+		</p>
+	</section>
+
+	<section id="hosting" class="card" data-section>
+		<h2>Hosting</h2>
+		<p>
+			she runs on our home server as a systemd user service, so she starts on
+			boot and comes back by herself if she crashes
+		</p>
+		<Code code={code.service} lang="ini" theme="vesper" />
+		<p>
+			updating her is one script that copies the code over and restarts her. it
+			skips her saved hunger so a deploy doesn't reset her stomach
+		</p>
+	</section>
+</WriteupLayout>
 
 <style>
+	.card {
+		line-height: 1.25;
+	}
+
+	code {
+		padding: 1px 5px;
+		font-family: inherit;
+		background-color: var(--nav-bg);
+	}
+
+	.card :global(pre.astro-code) {
+		overflow-x: auto;
+
+		margin: 0 0 10px;
+		padding: 10px;
+		border: 1px solid var(--darker-border-color);
+
+		font-family: var(--font-pixel);
+		font-size: 17px;
+		line-height: 1.2;
+	}
+
+	/* browsers give code its own monospace font, so it has to be told to follow the pre */
+	.card :global(pre.astro-code code) {
+		padding: 0;
+		font-family: inherit;
+		background: none;
+	}
+
 	img {
 		max-width: 100%;
 		height: auto;
+		margin-bottom: 10px;
 	}
 
 	.split {
@@ -102,7 +441,8 @@ const blurb =
 		align-items: flex-start;
 
 		> :last-child {
-			flex: 1 1 220px;
+			flex: 1 1 260px;
+			min-width: 0;
 		}
 	}
 </style>
