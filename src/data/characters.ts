@@ -11,11 +11,13 @@ import haruhi from '$/assets/characters/haruhi.webp';
 import kaidou from '$/assets/characters/kaidou.webp';
 import kanna from '$/assets/characters/kanna.webp';
 import kobayashi from '$/assets/characters/kobayashi.webp';
+import kurimanju from '$/assets/characters/kurimanju.webp';
 import l from '$/assets/characters/L.webp';
 import light from '$/assets/characters/light.webp';
 import makoto from '$/assets/characters/makoto.webp';
 import mami from '$/assets/characters/mami.webp';
 import megumin from '$/assets/characters/megumin.webp';
+import miku from '$/assets/characters/miku.webp';
 import nagatoro from '$/assets/characters/nagatoro.webp';
 import naoto from '$/assets/characters/naoto.webp';
 import ren from '$/assets/characters/ren.webp';
@@ -23,6 +25,7 @@ import ryuji from '$/assets/characters/ryuji.webp';
 import shinji from '$/assets/characters/shinji.webp';
 import tamaki from '$/assets/characters/tamaki.webp';
 import tohru from '$/assets/characters/tohru.webp';
+import usagi from '$/assets/characters/usagi.webp';
 import yosuke from '$/assets/characters/yosuke.webp';
 import yu from '$/assets/characters/Yu.webp';
 import yukari from '$/assets/characters/yukari.webp';
@@ -117,6 +120,9 @@ export const characters: Character[] = [
 		tier: 'C',
 	},
 	{ name: 'Yagami Light', series: 'Death Note', image: light, tier: 'C' },
+	{ name: 'Hatsune Miku', series: 'Vocaloid', image: miku, tier: 'C' },
+	{ name: 'Kurimanju', series: 'Chiikawa', image: kurimanju, tier: 'C' },
+	{ name: 'Usagi', series: 'Chiikawa', image: usagi, tier: 'C' },
 ];
 
 export const tiers = [
