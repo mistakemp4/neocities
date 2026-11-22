@@ -1,0 +1,106 @@
+[
+	{
+		"id": "niko",
+		"name": "Niko",
+		"page": "Niko",
+		"color": "#8f9aa6",
+		"tag": "cement gremlin",
+		"hp": 40,
+		"moves": [
+			["Eat Cement", 20],
+			["Tax Evasion", 60]
+		],
+		"blurb": "ugly, smelly & convinced you are the coolest one here. you live off cement & spite, and you are wanted for tax evasion in 3 states. somehow everyone still knows your name"
+	},
+	{
+		"id": "ponsuke",
+		"name": "Ponsuke",
+		"page": "Ponsuke",
+		"color": "#f06a7e",
+		"tag": "everyone's favorite",
+		"hp": 70,
+		"moves": [
+			["Tongue Out", 10],
+			["Watermelon", 50]
+		],
+		"blurb": "the one everybody loves. you smile with your tongue out, you love watermelon unprompted & you make strangers cry in a good way. the cleric of the friend group"
+	},
+	{
+		"id": "agu",
+		"name": "Agu",
+		"page": "Agu",
+		"color": "#d9a21f",
+		"tag": "party king",
+		"hp": 90,
+		"moves": [
+			["Cheers", 30],
+			["Royal Decree", 70]
+		],
+		"blurb": "you are the party. always holding a drink, always the last to leave & nobody can confirm which photos of you are actually you. king behavior"
+	},
+	{
+		"id": "hiyori",
+		"name": "Hiyori",
+		"page": "Hiyori",
+		"color": "#8a5ce6",
+		"tag": "partner in crime",
+		"hp": 60,
+		"moves": [
+			["Jailbreak", 40],
+			["Drink Agu's Beer", 40]
+		],
+		"blurb": "the accomplice. you have broken out of everywhere anyone ever put you & you drank their drink on the way out. sneaky, wicked & weirdly jolly about it"
+	},
+	{
+		"id": "yochan",
+		"name": "Yo-chan",
+		"page": "Yo-chan",
+		"color": "#f29a0e",
+		"tag": "the sun",
+		"hp": 80,
+		"moves": [
+			["Gyu", 30],
+			["Excellent Jump", 60]
+		],
+		"blurb": "grumpy, round & an excellent jumper. you squint at anyone who talks to you before you have eaten, you are in bed by 9 & you would die for your family. gyu"
+	},
+	{
+		"id": "damnseal",
+		"name": "Damn seal",
+		"page": "Damn_seal",
+		"color": "#ff3b1f",
+		"tag": "crashes the web",
+		"hp": 404,
+		"moves": [
+			["Screenshake", 50],
+			["Crash The Web", 999]
+		],
+		"blurb": "a visual-technological nightmare. you flash, you shake & you crash the web. you have broken at least one computer & you would do it again"
+	},
+	{
+		"id": "bobo",
+		"name": "Bobo the Clown",
+		"page": "Bobo_the_Clown",
+		"color": "#2f97e6",
+		"tag": "full recovery",
+		"hp": 1,
+		"moves": [
+			["Balloon (Untied)", 0],
+			["Full Recovery", 100]
+		],
+		"blurb": "the clown. you cannot tie a balloon, everything goes wrong & everybody is laughing. but you get back up every single time, and honestly that is the strongest thing here"
+	},
+	{
+		"id": "snacksuke",
+		"name": "Snacksuke",
+		"page": "Snacksuke",
+		"color": "#b67a45",
+		"tag": "since 1859",
+		"hp": 1859,
+		"moves": [
+			["Pitch Deck", 40],
+			["ZebraSTRIPEZ", 80]
+		],
+		"blurb": "born in 1859 & doing great. rich, busy & always pitching a new snack. you have a 5 year plan & a business card for every occasion. not to be confused with ponsuke"
+	}
+]

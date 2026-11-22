@@ -1,0 +1,616 @@
+---
+import { wiki } from '$/data/sealquiz';
+import { quiz } from '$/lib/sealquiz';
+
+const data = `{
+	questions: ${JSON.stringify(quiz.questions.map(question => ({ answers: question.answers.map(answer => ({ for: answer.for })) })))},
+	results: ${JSON.stringify(quiz.results)},
+	picked: ${JSON.stringify(quiz.questions.map(() => null))},
+	result: null,
+	copied: false,
+
+	get answered() {
+		return this.picked.filter(pick => pick !== null).length;
+	},
+
+	score() {
+		const points = {};
+		// later questions come first, so they win a tie
+		const order = [];
+		for (let q = this.questions.length - 1; q >= 0; q--) {
+			for (const id of this.questions[q].answers[this.picked[q]].for) {
+				points[id] = (points[id] ?? 0) + 1;
+				if (!order.includes(id)) order.push(id);
+			}
+		}
+		const best = Math.max(...Object.values(points));
+		const winner = order.find(id => points[id] === best);
+		this.result = this.results.find(result => result.id === winner);
+		this.copied = false;
+		this.$nextTick(() => this.$refs.result.scrollIntoView({ block: 'center' }));
+	},
+
+	retake() {
+		this.picked = this.picked.map(() => null);
+		this.result = null;
+		this.$el.closest('.seal-quiz').scrollIntoView();
+	},
+
+	async copy() {
+		await navigator.clipboard.writeText(this.result.embed);
+		this.copied = true;
+	},
+}`;
+---
+
+<div class="seal-quiz" x-data={data}>
+	<ol class="questions">
+		{
+			quiz.questions.map((question, q) => (
+				<li>
+					<fieldset>
+						<legend>
+							<b>{q + 1}</b>
+							<span>{question.text}</span>
+						</legend>
+						<div class="answers">
+							{question.answers.map((answer, a) => (
+								<label class={answer.fx && `fx-${answer.fx}`}>
+									<input
+										type="radio"
+										name={`seal-q${q}`}
+										value={a}
+										x-model.number={`picked[${q}]`}
+									/>
+									{answer.glitched ?
+										<>
+											<span class="text" aria-hidden="true">
+												{answer.glitched}
+											</span>
+											<span class="sr-only">{answer.text}</span>
+										</>
+									: answer.fx === 'stairs' ?
+										<span class="text">
+											{answer.text.split(' ').map((word, i) => (
+												<span style={`--i: ${i}`}>{word}</span>
+											))}
+										</span>
+									:	<span class="text">
+											{answer.text}
+											{answer.fx === 'cite' && <sup>[citation needed]</sup>}
+										</span>
+									}
+								</label>
+							))}
+						</div>
+					</fieldset>
+				</li>
+			))
+		}
+	</ol>
+
+	<p class="go">
+		<button
+			type="button"
+			x-on:click="score()"
+			x-bind:disabled="answered < questions.length">reveal my seal</button
+		>
+		<small x-text="answered + ' / ' + questions.length + ' answered'"></small>
+	</p>
+
+	<template x-if="result">
+		<div class="result" x-ref="result" x-bind:style="'--c: ' + result.color">
+			<div class="card">
+				<img
+					x-bind:src="result.badge"
+					x-bind:alt="'trading card: ' + result.name"
+					width="200"
+					height="280"
+				/>
+			</div>
+			<div class="about">
+				<h3>you are <span x-text="result.name"></span></h3>
+				<p class="tag" x-text="result.tag"></p>
+				<p x-text="result.blurb"></p>
+				<p>
+					<a
+						x-bind:href={`'${wiki}' + result.page`}
+						rel="noreferrer"
+						x-text="'meet ' + result.name + ' on the wiki'"></a>
+				</p>
+				<label for="seal-embed">put it on your site:</label>
+				<textarea
+					id="seal-embed"
+					readonly
+					rows="4"
+					x-text="result.embed"
+					x-on:focus="$el.select()"></textarea>
+				<p class="actions">
+					<button
+						type="button"
+						x-on:click="copy()"
+						x-text="copied ? 'copied!' : 'copy code'"></button>
+					<button type="button" x-on:click="retake()">retake</button>
+				</p>
+			</div>
+		</div>
+	</template>
+</div>
+
+<style>
+	.seal-quiz {
+		/* the link blue from the wiki's dark mode */
+		--c-accent: #7ea9ff;
+	}
+
+	.sr-only {
+		position: absolute;
+
+		overflow: hidden;
+
+		width: 1px;
+		height: 1px;
+
+		white-space: nowrap;
+
+		clip-path: inset(50%);
+	}
+
+	.questions {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	fieldset {
+		margin: 0 0 18px;
+		padding: 0;
+		border: 0;
+	}
+
+	legend {
+		display: flex;
+		gap: 8px;
+		align-items: center;
+
+		margin-bottom: 6px;
+		padding: 0;
+
+		font-size: 18px;
+		color: #fff;
+
+		b {
+			padding: 0 8px;
+			font-weight: normal;
+		}
+	}
+
+	.answers {
+		display: grid;
+		gap: 3px;
+	}
+
+	label:has(input) {
+		cursor: pointer;
+
+		position: relative;
+
+		display: flex;
+		gap: 8px;
+		align-items: baseline;
+
+		padding: 2px 8px;
+
+		&:hover {
+			z-index: 1;
+		}
+
+		&:has(:focus-visible) {
+			outline: 2px solid #fff;
+		}
+	}
+
+	input[type='radio'] {
+		flex: none;
+		accent-color: #000;
+	}
+
+	.text {
+		display: inline-block;
+	}
+
+	button {
+		cursor: pointer;
+
+		padding: 4px 14px;
+		border: 1px solid var(--darker-border-color);
+
+		font: inherit;
+		font-size: 18px;
+		color: #000;
+
+		background-color: var(--c-accent);
+
+		&:hover:not(:disabled) {
+			background-color: #fff;
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			color: var(--sidebar-text-color);
+			background-color: var(--nav-bg);
+		}
+	}
+
+	.go {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		align-items: center;
+
+		small {
+			color: var(--sidebar-text-color);
+		}
+	}
+
+	.result {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		align-items: flex-start;
+
+		margin-top: 18px;
+		padding: 12px;
+		border: 1px solid var(--c);
+
+		background-color: var(--nav-bg);
+
+		h3 {
+			margin: 0;
+			font-size: 24px;
+			color: #fff;
+
+			span {
+				color: var(--c);
+			}
+		}
+
+		.tag {
+			margin: 0 0 8px;
+			color: var(--c);
+		}
+
+		label {
+			display: block;
+		}
+
+		textarea {
+			resize: vertical;
+
+			box-sizing: border-box;
+			width: 100%;
+			border: 1px solid var(--darker-border-color);
+
+			font: inherit;
+			font-size: 14px;
+			color: var(--article-text-color);
+
+			background-color: var(--bg);
+		}
+	}
+
+	.card {
+		flex: none;
+		max-width: 100%;
+
+		img {
+			display: block;
+			max-width: 100%;
+			height: auto;
+		}
+	}
+
+	.about {
+		flex: 1 1 240px;
+		min-width: 0;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-bottom: 0;
+	}
+
+	/* wiki look: heading rules & plain rows */
+	.seal-quiz {
+		legend {
+			width: 100%;
+			padding-bottom: 2px;
+			border-bottom: 1px solid var(--darker-border-color);
+			font-family: Georgia, serif;
+
+			b {
+				padding: 0;
+
+				&::after {
+					content: '.';
+				}
+			}
+		}
+
+		label:has(input) {
+			border-left: 3px solid transparent;
+
+			&:hover .text {
+				text-decoration: underline;
+			}
+
+			&:has(:checked) {
+				border-left-color: var(--c-accent);
+				color: #fff;
+				background-color: #ffffff0d;
+			}
+		}
+
+		button {
+			border-color: #a2a9b1;
+			color: #202122;
+			background-color: #f8f9fa;
+
+			&:hover:not(:disabled) {
+				background-color: #fff;
+			}
+
+			&:disabled {
+				color: var(--sidebar-text-color);
+				background-color: var(--nav-bg);
+			}
+		}
+	}
+
+	/* the answer jokes */
+	.fx-zalgo .text {
+		/* the font has to stack the marks */
+		font-family: 'DejaVu Sans', Arial, sans-serif;
+		line-height: 1;
+		color: #ff5a3c;
+		animation: jitter 0.25s steps(2) infinite;
+	}
+
+	.fx-shake:hover .text,
+	.fx-shake:has(:checked) .text {
+		animation: shake 0.2s linear infinite;
+	}
+
+	.fx-jump:hover .text {
+		animation: jump 0.5s ease-out 1;
+	}
+
+	/* room for the last step */
+	label.fx-stairs {
+		padding-bottom: 16px;
+	}
+
+	.fx-stairs .text span {
+		transform: translateY(calc(var(--i) * 3px));
+		display: inline-block;
+		margin-right: 0.3em;
+	}
+
+	label.fx-escape {
+		overflow: hidden;
+	}
+
+	.fx-escape:hover .text {
+		animation: escape 0.9s ease-in 1;
+	}
+
+	.fx-fade .text {
+		transition: opacity 1.5s;
+	}
+
+	.fx-fade:hover .text {
+		opacity: 0.1;
+	}
+
+	.fx-blur .text {
+		filter: blur(2px);
+		transition: filter 0.3s;
+	}
+
+	.fx-blur:hover .text,
+	.fx-blur:has(:checked) .text {
+		filter: none;
+	}
+
+	.fx-mold .text {
+		color: #9cbf5f;
+	}
+
+	.fx-error .text {
+		font-family: 'Courier New', monospace;
+		color: #ff5a3c;
+
+		&::before {
+			content: 'ERR: ';
+		}
+	}
+
+	.fx-melon .text {
+		color: transparent;
+		background: linear-gradient(#ff4d6d 0 62%, #fff 62% 72%, #3bb273 72%);
+		background-clip: text;
+	}
+
+	.fx-cement .text {
+		color: #8d9196;
+		letter-spacing: 0.08em;
+	}
+
+	.fx-bounce .text {
+		animation: bounce 0.6s ease-in-out infinite;
+	}
+
+	.fx-wobble .text {
+		animation: wobble 0.9s ease-in-out infinite;
+	}
+
+	.fx-glitch .text {
+		text-shadow:
+			2px 0 #ff2a6d,
+			-2px 0 #05d9e8;
+		animation: glitch 1.2s steps(1) infinite;
+	}
+
+	.fx-corporate .text {
+		font-family: Arial, sans-serif;
+		font-style: italic;
+
+		&::after {
+			content: '™';
+			font-size: 0.7em;
+			vertical-align: super;
+		}
+	}
+
+	.fx-stripes .text {
+		padding: 0 4px;
+		background: repeating-linear-gradient(
+			90deg,
+			transparent 0 7px,
+			#000c 7px 10px
+		);
+		transition: background-position 0.6s;
+	}
+
+	.fx-stripes:hover .text {
+		background-position: 200px 0;
+	}
+
+	.fx-tilt .text {
+		transform: rotate(-3deg);
+		transition: transform 0.2s;
+	}
+
+	.fx-tilt:hover .text {
+		transform: rotate(4deg);
+	}
+
+	.fx-royal .text {
+		font-family: Georgia, serif;
+		font-variant: small-caps;
+		color: var(--yellow);
+	}
+
+	.fx-stamp .text {
+		transform: rotate(-2deg);
+		padding: 0 6px;
+		border: 1px dashed currentcolor;
+	}
+
+	.fx-wanted .text {
+		font-family: Georgia, serif;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+	}
+
+	.fx-fall .text {
+		transform-origin: left bottom;
+		transition: transform 0.4s cubic-bezier(0.5, 1.8, 0.6, 1);
+	}
+
+	.fx-fall:hover .text {
+		transform: rotate(7deg) translateY(4px);
+	}
+
+	.fx-sun .text {
+		color: var(--yellow);
+	}
+
+	.fx-cite sup {
+		font-size: 0.65em;
+		color: #7ea9ff;
+	}
+
+	.fx-whisper .text {
+		font-size: 0.8em;
+		opacity: 0.6;
+	}
+
+	label:has(:checked) .text {
+		color: inherit;
+		opacity: 1;
+	}
+
+	@keyframes wobble {
+		0%,
+		100% {
+			transform: rotate(-4deg);
+		}
+
+		50% {
+			transform: rotate(4deg);
+		}
+	}
+
+	@keyframes jitter {
+		50% {
+			transform: translate(1px, -1px);
+		}
+	}
+
+	@keyframes shake {
+		25% {
+			transform: translate(-2px, 1px);
+		}
+
+		75% {
+			transform: translate(2px, -1px);
+		}
+	}
+
+	@keyframes jump {
+		40% {
+			transform: translateY(-12px);
+		}
+	}
+
+	@keyframes escape {
+		45% {
+			transform: translateX(120%);
+		}
+
+		46% {
+			transform: translateX(-120%);
+		}
+	}
+
+	@keyframes bounce {
+		50% {
+			transform: translateY(-3px);
+		}
+	}
+
+	@keyframes glitch {
+		0%,
+		90% {
+			transform: none;
+		}
+
+		92% {
+			transform: translateX(3px) skewX(20deg);
+		}
+
+		96% {
+			transform: translateX(-2px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.seal-quiz * {
+			transition: none !important;
+			animation: none !important;
+		}
+	}
+</style>

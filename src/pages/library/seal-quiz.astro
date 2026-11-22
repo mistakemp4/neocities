@@ -1,0 +1,30 @@
+---
+import BackLink from '$/components/BackLink.astro';
+import SealQuiz from '$/components/SealQuiz.astro';
+import Section from '$/components/Section.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+
+const description =
+	'9 questions to find out which seal you are. take your trading card home with you.';
+---
+
+<MainLayout>
+	<Fragment slot="head">
+		<meta name="description" content={description} />
+		<meta property="og:title" content="which seal are you?" />
+		<meta property="og:description" content={description} />
+		{/* same as the quiz's --ice, a meta tag can't read css variables */}
+		<meta name="theme-color" content="#9fd8ff" />
+	</Fragment>
+	<p><BackLink href="/library/quizzes/">back to the quizzes</BackLink></p>
+	<Section title="Which seal are you?">
+		<p>
+			9 questions. some answers count for more than one seal. you get a trading
+			card at the end to put on your site. every seal is real & has a page on
+			<a href="https://camp2.rectangle.zone/" rel="noreferrer"
+				>the wiki camp 2</a
+			>.
+		</p>
+		<SealQuiz />
+	</Section>
+</MainLayout>
