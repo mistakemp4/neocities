@@ -1,23 +1,8 @@
 import { questions, quizUrl, results } from '$/data/sealquiz';
-import { random, shuffled } from '$/lib/shuffle';
+import { shuffled } from '$/lib/shuffle';
 
 const ids = results.map(result => result.id);
 const counts = new Map<string, number>();
-
-// combining marks stacked on every letter. seeded, so builds match
-function zalgo(text: string) {
-	const next = random(1859);
-	return [...text]
-		.map(char => {
-			if (char === ' ') return char;
-			const marks = 6 + Math.floor(next() * 10);
-			let out = char;
-			for (let i = 0; i < marks; i++)
-				out += String.fromCodePoint(0x300 + Math.floor(next() * 0x70));
-			return out;
-		})
-		.join('');
-}
 
 export const quiz = {
 	questions: questions.map((question, index) => {
@@ -35,10 +20,7 @@ export const quiz = {
 			for (const id of answer.for) counts.set(id, (counts.get(id) ?? 0) + 1);
 		return {
 			text: question.text,
-			answers: shuffled(question.answers, index + 1).map(answer => ({
-				...answer,
-				glitched: answer.fx === 'zalgo' ? zalgo(answer.text) : undefined,
-			})),
+			answers: shuffled(question.answers, index + 1),
 		};
 	}),
 	results: results.map(result => {

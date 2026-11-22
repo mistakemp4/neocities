@@ -7,41 +7,10 @@ export const wiki = 'https://camp2.rectangle.zone/wiki/';
 
 export type SealId = (typeof results)[number]['id'];
 
-// a little visual joke on one answer, styled in SealQuiz.astro
-export type Fx =
-	| 'zalgo'
-	| 'shake'
-	| 'jump'
-	| 'round'
-	| 'stairs'
-	| 'escape'
-	| 'fade'
-	| 'blur'
-	| 'mold'
-	| 'error'
-	| 'melon'
-	| 'cement'
-	| 'bounce'
-	| 'wobble'
-	| 'glitch'
-	| 'corporate'
-	| 'stripes'
-	| 'tilt'
-	| 'velvet'
-	| 'royal'
-	| 'stamp'
-	| 'wanted'
-	| 'fall'
-	| 'sun'
-	| 'cite'
-	| 'block'
-	| 'whisper';
-
 export interface Answer {
 	text: string;
 	// one answer can count for more than one seal
 	for: SealId[];
-	fx?: Fx;
 }
 
 export interface Question {
@@ -51,29 +20,53 @@ export interface Question {
 
 export const questions: Question[] = [
 	{
+		text: 'it is 4am. you:',
+		answers: [
+			{ text: 'stare at the wall. smelling bad', for: ['niko'] },
+			{
+				text: 'stick your tongue out at nobody in particular',
+				for: ['ponsuke'],
+			},
+			{ text: 'crack open a cold one', for: ['agu'] },
+			{ text: 'break out of the aquarium', for: ['hiyori'] },
+			{ text: 'jump. just jump', for: ['yochan'] },
+			{ text: 'crash your own computer. on purpose', for: ['damnseal'] },
+			{ text: 'blow up a balloon. you cannot tie it', for: ['bobo'] },
+			{ text: 'invent a new snack', for: ['snacksuke'] },
+		],
+	},
+	{
+		text: 'pick something to eat',
+		answers: [
+			{ text: 'cement', for: ['niko'] },
+			{ text: 'watermelon', for: ['ponsuke'] },
+			{ text: 'beer (it counts)', for: ['agu'] },
+			{ text: "agu's beer", for: ['hiyori'] },
+			{
+				text: 'fish. and if it is late everyone will hear about it',
+				for: ['yochan'],
+			},
+			{ text: 'your ram', for: ['damnseal'] },
+			{ text: 'one peanut. you will throw up a little', for: ['bobo'] },
+			{ text: "a snack you invented (it's bad)", for: ['snacksuke'] },
+		],
+	},
+	{
 		text: 'your d&d character is',
 		answers: [
-			{
-				text: 'a warlock who made a pact with cement',
-				for: ['niko', 'damnseal'],
-			},
+			{ text: 'a warlock who made a pact with cement', for: ['niko'] },
 			{
 				text: 'the cleric. someone has to heal these people',
-				for: ['ponsuke', 'yochan'],
+				for: ['ponsuke'],
 			},
-			{ text: 'a bard who only plays drinking songs', for: ['agu', 'bobo'] },
-			{ text: 'a rogue (obviously)', for: ['hiyori'], fx: 'whisper' },
-			{
-				text: 'a barbarian. jump first, ask later',
-				for: ['yochan', 'hiyori'],
-				fx: 'jump',
-			},
+			{ text: 'a bard who only plays drinking songs', for: ['agu'] },
+			{ text: 'a rogue (obviously)', for: ['hiyori'] },
+			{ text: 'a barbarian. jump first, ask later', for: ['yochan'] },
 			{
 				text: 'a wild magic sorcerer who keeps exploding the party',
-				for: ['damnseal', 'agu'],
-				fx: 'shake',
+				for: ['damnseal'],
 			},
-			{ text: 'the npc everyone keeps killing', for: ['bobo'], fx: 'fade' },
+			{ text: 'the npc everyone keeps killing', for: ['bobo'] },
 			{
 				text: 'an artificer selling potions to the party at a markup',
 				for: ['snacksuke'],
@@ -81,153 +74,93 @@ export const questions: Question[] = [
 		],
 	},
 	{
-		text: 'you wake up in the velvet room. you:',
+		text: 'your house is',
 		answers: [
-			{ text: 'lick the velvet', for: ['niko', 'ponsuke'], fx: 'velvet' },
-			{ text: "compliment igor's nose. sincerely", for: ['ponsuke', 'bobo'] },
-			{ text: 'ask where the open bar is', for: ['agu'] },
+			{ text: 'a pile of gravel', for: ['niko'] },
+			{ text: 'cozy & full of plushies', for: ['ponsuke'] },
+			{ text: 'always throwing a party', for: ['agu'] },
+			{ text: "someone else's", for: ['hiyori'] },
+			{ text: 'one big round bed', for: ['yochan'] },
+			{ text: 'a server room on fire', for: ['damnseal'] },
+			{ text: 'a clown car', for: ['bobo'] },
 			{
-				text: 'pocket the tarot cards on the way out',
-				for: ['hiyori', 'snacksuke'],
-			},
-			{ text: 'squint at igor until he leaves', for: ['yochan'] },
-			{
-				text: 'fuse 400 personas until the game crashes',
-				for: ['damnseal', 'niko'],
-				fx: 'glitch',
-			},
-			{
-				text: "ask about the room's resale value",
+				text: 'a mansion with a vending machine in every room',
 				for: ['snacksuke'],
-				fx: 'corporate',
 			},
 		],
 	},
 	{
-		text: 'your minecraft house is',
+		text: 'your friends describe you as',
 		answers: [
+			{ text: 'just...so... UGLY !! please leave', for: ['niko'] },
+			{ text: 'the one everyone misses', for: ['ponsuke'] },
+			{ text: 'a bad influence', for: ['agu'] },
 			{
-				text: 'gray concrete. just gray concrete',
-				for: ['niko'],
-				fx: 'cement',
+				text: 'someone they keep mixing up with someone else',
+				for: ['hiyori'],
 			},
-			{ text: 'a giant watermelon', for: ['ponsuke', 'yochan'], fx: 'melon' },
+			{ text: 'a disaster, but an excellent jumper', for: ['yochan'] },
+			{ text: 'a visual-technological nightmare', for: ['damnseal'] },
 			{
-				text: 'a castle with a throne & a bar',
-				for: ['agu', 'snacksuke'],
-				fx: 'block',
+				text: 'nobody describes me. everybody fucking hates me',
+				for: ['bobo'],
 			},
-			{ text: "someone else's house", for: ['hiyori'] },
-			{
-				text: "a crater. it's round",
-				for: ['yochan', 'niko', 'damnseal'],
-				fx: 'round',
-			},
-			{ text: 'tnt (it was a house)', for: ['damnseal', 'bobo'], fx: 'zalgo' },
-			{ text: 'a villager trading empire', for: ['snacksuke'] },
+			{ text: 'rich', for: ['snacksuke'] },
 		],
 	},
 	{
-		text: 'not to be confused with',
+		text: 'a stranger says hi. you say:',
 		answers: [
-			{ text: 'a wet rock', for: ['niko', 'yochan'] },
-			{ text: 'a marshmallow', for: ['ponsuke', 'yochan'], fx: 'round' },
-			{ text: 'a former king of portugal', for: ['agu'], fx: 'royal' },
-			{ text: 'the getaway driver', for: ['hiyori', 'agu'], fx: 'escape' },
-			{ text: 'an error message', for: ['damnseal'], fx: 'error' },
-			{ text: 'nicolai poliakoff, a clown', for: ['bobo'], fx: 'wobble' },
-			{ text: 'a snack brand', for: ['snacksuke', 'ponsuke'], fx: 'corporate' },
-		],
-	},
-	{
-		text: 'how were you discovered',
-		answers: [
-			{ text: 'by smell', for: ['niko'], fx: 'mold' },
-			{ text: 'on a postcard', for: ['ponsuke'], fx: 'stamp' },
-			{ text: 'at the afterparty', for: ['agu', 'hiyori'], fx: 'tilt' },
-			{ text: 'on a wanted poster', for: ['hiyori', 'niko'], fx: 'wanted' },
-			{ text: 'mid-jump', for: ['yochan'], fx: 'jump' },
-			{ text: 'in the crash logs', for: ['damnseal'], fx: 'error' },
-			{
-				text: 'at the bottom of the stairs',
-				for: ['bobo', 'damnseal'],
-				fx: 'stairs',
-			},
-			{ text: 'in the 1859 census', for: ['snacksuke'] },
-		],
-	},
-	{
-		text: 'notable achievements',
-		answers: [
-			{ text: 'outlived the cement', for: ['niko'], fx: 'cement' },
-			{ text: 'made a stranger cry (good)', for: ['ponsuke', 'bobo'] },
-			{ text: '3 consecutive afterparties', for: ['agu'], fx: 'tilt' },
-			{ text: 'escaped. twice', for: ['hiyori'], fx: 'escape' },
-			{ text: 'jumped very high, once', for: ['yochan', 'bobo'], fx: 'jump' },
-			{ text: 'brought down a website', for: ['damnseal'], fx: 'fall' },
-			{
-				text: 'became a public company',
-				for: ['snacksuke', 'agu'],
-				fx: 'corporate',
-			},
-		],
-	},
-	{
-		text: 'someone is mad at you. you:',
-		answers: [
-			{ text: 'commit tax evasion about it', for: ['niko', 'snacksuke'] },
-			{
-				text: 'smile until it goes away',
-				for: ['ponsuke', 'bobo'],
-				fx: 'fade',
-			},
-			{ text: 'buy them a drink', for: ['agu', 'ponsuke'] },
-			{ text: 'climb out the bathroom window', for: ['hiyori'], fx: 'escape' },
-			{
-				text: 'squint at them like a leopard about to pounce',
-				for: ['yochan'],
-				fx: 'whisper',
-			},
-			{ text: 'crash their browser', for: ['damnseal'], fx: 'shake' },
-			{
-				text: 'schedule a meeting about it',
-				for: ['snacksuke'],
-				fx: 'corporate',
-			},
+			{ text: 'oh.. hi... please leave', for: ['niko'] },
+			{ text: 'hiii!! :D', for: ['ponsuke'] },
+			{ text: 'cheers', for: ['agu'] },
+			{ text: 'nice bag. can i hold it', for: ['hiyori'] },
+			{ text: 'gyu', for: ['yochan'] },
+			{ text: 'ARE YOU SURE YOU WANT TO CONTINUE?', for: ['damnseal'] },
+			{ text: 'honk honk </3', for: ['bobo'] },
+			{ text: 'would you like a free sample', for: ['snacksuke'] },
 		],
 	},
 	{
 		text: 'pick a word',
 		answers: [
-			{ text: 'CEMENT', for: ['niko'], fx: 'cement' },
-			{ text: 'WATERMELON', for: ['ponsuke'], fx: 'melon' },
-			{ text: 'CHEERS', for: ['agu'], fx: 'tilt' },
-			{ text: 'JAILBREAK', for: ['hiyori'], fx: 'stripes' },
-			{ text: 'GYU', for: ['yochan'], fx: 'bounce' },
-			{ text: '404', for: ['damnseal'], fx: 'glitch' },
-			{ text: 'HONK', for: ['bobo'], fx: 'wobble' },
-			{ text: 'SYNERGY', for: ['snacksuke'], fx: 'corporate' },
+			{ text: 'CEMENT', for: ['niko'] },
+			{ text: 'WATERMELON', for: ['ponsuke'] },
+			{ text: 'BEER', for: ['agu'] },
+			{ text: 'JAILBREAK', for: ['hiyori'] },
+			{ text: 'GYU', for: ['yochan'] },
+			{ text: 'SCREENSHAKE', for: ['damnseal'] },
+			{ text: 'PEANUT', for: ['bobo'] },
+			{ text: 'PROFIT', for: ['snacksuke'] },
+		],
+	},
+	{
+		text: 'someone is mad at you. you:',
+		answers: [
+			{ text: 'commit tax evasion about it', for: ['niko'] },
+			{ text: 'smile until it goes away', for: ['ponsuke'] },
+			{ text: 'drink about it', for: ['agu'] },
+			{ text: 'break out', for: ['hiyori'] },
+			{
+				text: 'squint at them like a leopard about to pounce',
+				for: ['yochan'],
+			},
+			{ text: 'shake the whole page until they leave', for: ['damnseal'] },
+			{ text: 'trip, fall over, get back up', for: ['bobo'] },
+			{ text: 'offer them a coupon', for: ['snacksuke'] },
 		],
 	},
 	{
 		text: 'pick an ending',
 		answers: [
-			{ text: 'aged like mold', for: ['niko', 'bobo'], fx: 'mold' },
-			{ text: 'he lived. he served. fly high', for: ['ponsuke'] },
-			{ text: 'whereabouts unknown', for: ['agu', 'hiyori'], fx: 'blur' },
-			{ text: 'escaped. again', for: ['hiyori'], fx: 'escape' },
-			{
-				text: 'became the sun, had the moon, got turned into a discord bot',
-				for: ['yochan'],
-				fx: 'sun',
-			},
-			{
-				text: 'took the whole internet down with me',
-				for: ['damnseal'],
-				fx: 'fall',
-			},
-			{ text: 'full recovery', for: ['bobo'], fx: 'jump' },
-			{ text: 'still alive since 1859', for: ['snacksuke'], fx: 'cite' },
+			{ text: 'aged like mold', for: ['niko'] },
+			{ text: 'loved by everyone, forever', for: ['ponsuke'] },
+			{ text: 'whereabouts unknown', for: ['agu'] },
+			{ text: 'drank the beer & left', for: ['hiyori'] },
+			{ text: 'became the sun', for: ['yochan'] },
+			{ text: 'the internet crashed', for: ['damnseal'] },
+			{ text: 'full recovery', for: ['bobo'] },
+			{ text: 'still alive since 1859', for: ['snacksuke'] },
 		],
 	},
 ];
