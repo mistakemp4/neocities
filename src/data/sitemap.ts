@@ -28,10 +28,16 @@ export const sitemapEntries: SitemapEntry[] = [
 		label: 'persona 5 quiz',
 		parent: '/library/quizzes/',
 	},
+	{
+		href: '/library/seal-quiz/',
+		label: 'seal quiz',
+		parent: '/library/quizzes/',
+	},
 	{ href: '/library/graphics/', label: 'site graphics' },
 	{ href: '/library/projects/' },
 	{ href: '/library/projects/poketwo/', label: 'Pokétwo spawn odds' },
 	{ href: '/library/projects/yochan/', label: 'Yo-chan bot' },
+	{ href: '/library/links/' },
 	{ href: '/about/', label: 'about site' },
 	{
 		href: 'https://mistakemp4.atabook.org/',

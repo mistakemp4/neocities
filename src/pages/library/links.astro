@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+
+import BackLink from '$/components/BackLink.astro';
+import Section from '$/components/Section.astro';
+import { coolPages, coolSites, resources } from '$/data/links';
+import MainLayout from '$/layouts/MainLayout.astro';
+
+const sites = await getCollection('sites');
+const friends = sites.filter(({ data }) => data.friend);
+const others = sites.filter(({ data }) => !data.friend);
+
+const groups = [
+	{ title: 'Neighbors', blurb: 'we link to each other', sites: friends },
+	{
+		title: 'Cool Sites',
+		blurb: 'sites i like',
+		sites: others,
+		links: coolSites,
+	},
+	{ title: 'Cool Pages', links: coolPages },
+	{ title: 'Resources', links: resources },
+];
+---
+
+<MainLayout>
+	<Fragment slot="head">
+		<meta name="description" content="friends, cool sites & pages i like" />
+		<meta property="og:title" content="links" />
+		<meta
+			property="og:description"
+			content="friends, cool sites & pages i like"
+		/>
+	</Fragment>
+	<p><BackLink href="/library/">back to the library</BackLink></p>
+	{
+		groups.map(group => (
+			<Section title={group.title}>
+				{group.blurb && <p>{group.blurb}</p>}
+				{group.sites && (
+					<ul class="buttons">
+						{group.sites.map(({ data }) => (
+							<li>
+								<a href={data.href} rel="noreferrer">
+									<img src={data.src} alt={data.alt} width="88" height="31" />
+								</a>
+							</li>
+						))}
+					</ul>
+				)}
+				{group.links?.map(link => (
+					<p>
+						<a href={link.href} rel="noreferrer" set:text={link.name} /> -{' '}
+						{link.note}
+					</p>
+				))}
+			</Section>
+		))
+	}
+</MainLayout>
+
+<style>
+	.buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		justify-content: center;
+
+		margin: 0;
+		padding: 0;
+
+		list-style-type: none;
+
+		img {
+			display: block;
+		}
+	}
+</style>

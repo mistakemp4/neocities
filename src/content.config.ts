@@ -25,6 +25,8 @@ const sites = defineCollection({
 		href: z.string(),
 		src: z.string(),
 		alt: z.string().optional().nullable(),
+		// links back to me
+		friend: z.boolean().optional(),
 	}),
 });
 

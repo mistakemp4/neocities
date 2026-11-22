@@ -3,39 +3,29 @@ import { getCollection } from 'astro:content';
 
 import Marquee from './Marquee.astro';
 
-const sites = await getCollection('sites');
+const friends = await getCollection('sites', ({ data }) => data.friend);
 
-const half = Math.floor(sites.length / 2);
-const sites1 = sites.slice(0, half);
-const sites2 = sites.slice(half);
-
-function calculateDuration(arr: unknown[]): string {
-	const secondsPerEntry = 2;
-	const duration = secondsPerEntry * arr.length;
-	return `${duration}s`;
-}
+const secondsPerEntry = 3;
 ---
 
-<Marquee duration={calculateDuration(sites1)}>
+<Marquee duration={`${secondsPerEntry * friends.length}s`}>
 	{
-		sites1.map(({ data }) => (
+		friends.map(({ data }) => (
 			<li>
 				<a href={data.href} rel="noreferrer">
-					<img src={data.src} alt={data.alt} />
+					<img src={data.src} alt={data.alt} width="88" height="31" />
 				</a>
 			</li>
 		))
 	}
 </Marquee>
 
-<Marquee reverse duration={calculateDuration(sites2)}>
-	{
-		sites2.map(({ data }) => (
-			<li>
-				<a href={data.href} rel="noreferrer">
-					<img src={data.src} alt={data.alt} />
-				</a>
-			</li>
-		))
+<a class="more" href="/library/links/">more links</a>
+
+<style>
+	.more {
+		display: block;
+		margin-top: 8px;
+		text-align: center;
 	}
-</Marquee>
+</style>

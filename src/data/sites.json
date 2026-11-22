@@ -2,7 +2,9 @@
 	{
 		"slug": "mocha8686",
 		"href": "https://mocha8686.neocities.org/",
-		"src": "https://files.catbox.moe/dot4f9.gif"
+		"src": "https://files.catbox.moe/dot4f9.gif",
+		"alt": "mocha8686's site",
+		"friend": true
 	},
 	{
 		"slug": "dimden.dev",
@@ -32,17 +34,20 @@
 		"slug": "chxshire22",
 		"href": "https://chxshire22.com/",
 		"src": "https://chxshire22.com/_assets/images/buttons/chxshirebutton.gif",
-		"alt": "chxshire22 link button"
+		"alt": "chxshire22 link button",
+		"friend": true
 	},
 	{
 		"slug": "lilithdev",
 		"href": "https://lilithdev.neocities.org/",
-		"src": "https://lilithdev.neocities.org/buttons/lilithdevbtn.gif"
+		"src": "https://lilithdev.neocities.org/buttons/lilithdevbtn.gif",
+		"alt": "lilithdev"
 	},
 	{
 		"slug": "unicodeangel",
 		"href": "https://unicodeangel.neocities.org/",
-		"src": "https://unicodeangel.neocities.org/imgs/UnicodeAngelButton2.gif"
+		"src": "https://unicodeangel.neocities.org/imgs/UnicodeAngelButton2.gif",
+		"alt": "UnicodeAngel"
 	},
 	{
 		"slug": "advelos",
@@ -66,6 +71,31 @@
 		"slug": "Phagi",
 		"href": "https://phagi.neocities.org",
 		"src": "https://i.postimg.cc/0yWRkQTF/landofthemaneaters.gif",
-		"alt": "Phagi's Land of the Maneaters"
+		"alt": "Phagi's Land of the Maneaters",
+		"friend": true
+	},
+	{
+		"slug": "Adilene",
+		"href": "https://adilene.net/",
+		"src": "https://adilene.net/images/sitebutton.gif",
+		"alt": "Adilene"
+	},
+	{
+		"slug": "Cinni Oekaki",
+		"href": "https://oekaki.cinni.net/",
+		"src": "https://cinni.net/images/button/cinni-oekaki-88x31.gif",
+		"alt": "Cinni Oekaki"
+	},
+	{
+		"slug": "Cloverbell",
+		"href": "https://cloverbell.neocities.org/",
+		"src": "https://cloverbell.neocities.org/n_n/cloverbell.gif",
+		"alt": "Cloverbell"
+	},
+	{
+		"slug": "Skull Sprinkles",
+		"href": "https://www.lejlart.com/apple.html",
+		"src": "https://i0.wp.com/luvstarkei.com/wp-content/uploads/2024/11/ad_skullsprinkles.gif?resize=88%2C31&ssl=1",
+		"alt": "Skull Sprinkles"
 	}
 ]
