@@ -1,0 +1,36 @@
+---
+import BackLink from '$/components/BackLink.astro';
+import Section from '$/components/Section.astro';
+import TarotDraw from '$/components/TarotDraw.astro';
+import MainLayout from '$/layouts/MainLayout.astro';
+
+const description =
+	'pull a tarot card for the day. everyone gets the same card.';
+---
+
+<MainLayout>
+	<Fragment slot="head">
+		<meta name="description" content={description} />
+		<meta property="og:title" content="daily tarot" />
+		<meta property="og:description" content={description} />
+	</Fragment>
+	<p><BackLink href="/library/">back to the library</BackLink></p>
+	<Section title="Daily Tarot">
+		<p>one card a day... come back tomorrow for a new one!</p>
+		<TarotDraw />
+		<p class="credit">
+			cards are the 1909 rider-waite-smith deck by pamela colman smith
+		</p>
+	</Section>
+</MainLayout>
+
+<style>
+	.credit {
+		margin-top: 20px;
+
+		font-size: 14px;
+		font-style: italic;
+		color: var(--sidebar-text-color);
+		text-align: center;
+	}
+</style>

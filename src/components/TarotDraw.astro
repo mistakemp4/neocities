@@ -1,0 +1,188 @@
+---
+import { deck } from '$/data/tarot';
+
+const data = `{
+	deck: ${JSON.stringify(deck)},
+	card: null,
+	reversed: false,
+	flipped: false,
+	thin: false,
+	today: '',
+	left: '',
+
+	init() {
+		const now = new Date();
+		this.today = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-');
+		// fnv-1a, so everyone gets the same card on the same day
+		let hash = 2166136261;
+		for (const char of 'tarot ' + this.today) {
+			hash = Math.imul(hash ^ char.charCodeAt(0), 16777619) >>> 0;
+		}
+		this.card = this.deck[hash % this.deck.length];
+		this.reversed = Math.floor(hash / this.deck.length) % 2 === 1;
+		this.flipped = localStorage.getItem('tarot-flipped') === this.today;
+		this.tick();
+		setInterval(() => this.tick(), 30000);
+	},
+
+	// squish flat, swap to the face, stretch back
+	flip() {
+		this.thin = true;
+		const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		setTimeout(() => {
+			this.flipped = true;
+			this.thin = false;
+			localStorage.setItem('tarot-flipped', this.today);
+		}, still ? 0 : 180);
+	},
+
+	tick() {
+		const now = new Date();
+		const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+		const minutes = Math.ceil((midnight - now) / 60000);
+		this.left = Math.floor(minutes / 60) + 'h ' + (minutes % 60) + 'm';
+	},
+}`;
+---
+
+<div class="tarot" x-data={data}>
+	<button
+		type="button"
+		class="card"
+		x-bind:class="{ flipped, thin }"
+		x-bind:disabled="flipped || thin"
+		x-on:click="flip()"
+		aria-label="flip your card"
+	>
+		<span class="inner">
+			<img class="back" src="/tarot/back.png" alt="" width="110" height="191" />
+			<template x-if="card">
+				<img
+					class="face"
+					x-bind:class="{ reversed }"
+					x-bind:src="'/tarot/' + card.file + '.png'"
+					x-bind:alt="card.name"
+					width="110"
+					height="191"
+				/>
+			</template>
+		</span>
+	</button>
+
+	<p class="hint" x-show="!flipped">click the card to flip it</p>
+
+	<div class="reading" x-show="flipped" x-cloak>
+		<h3>
+			<span x-text="card?.name"></span>
+			<small x-show="reversed">(reversed)</small>
+		</h3>
+		<p x-text="reversed ? card?.reversed : card?.upright"></p>
+		<p class="next">next card in <span x-text="left"></span></p>
+	</div>
+</div>
+
+<style>
+	[x-cloak] {
+		display: none;
+	}
+
+	.tarot {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.card {
+		cursor: pointer;
+
+		aspect-ratio: 110 / 191;
+		width: 440px;
+		max-width: 100%;
+		padding: 0;
+		border: none;
+
+		background: none;
+
+		&:disabled {
+			cursor: default;
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--nav-link-color);
+			outline-offset: 4px;
+		}
+	}
+
+	.inner {
+		position: relative;
+
+		display: block;
+
+		width: 100%;
+		height: 100%;
+
+		transition: transform 0.18s ease-in;
+
+		.thin & {
+			transform: scaleX(0);
+		}
+	}
+
+	.back,
+	.face {
+		position: absolute;
+		inset: 0;
+
+		width: 100%;
+		height: 100%;
+
+		image-rendering: pixelated;
+	}
+
+	.face,
+	.flipped .back {
+		visibility: hidden;
+	}
+
+	.flipped .face {
+		visibility: visible;
+	}
+
+	.face.reversed {
+		transform: rotate(180deg);
+	}
+
+	.card:not(:disabled):hover .inner {
+		transform: translateY(-6px);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.inner {
+			transition: none;
+		}
+	}
+
+	.hint,
+	.next {
+		color: var(--sidebar-text-color);
+	}
+
+	.reading {
+		max-width: 440px;
+
+		h3 {
+			margin: 15px 0 5px;
+			color: var(--nav-link-color);
+			text-transform: uppercase;
+		}
+
+		small {
+			color: var(--accent-red);
+		}
+
+		p {
+			margin: 5px 0;
+		}
+	}
+</style>

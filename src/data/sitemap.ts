@@ -33,6 +33,7 @@ export const sitemapEntries: SitemapEntry[] = [
 		label: 'seal quiz',
 		parent: '/library/quizzes/',
 	},
+	{ href: '/library/tarot/', label: 'daily tarot' },
 	{ href: '/library/graphics/', label: 'site graphics' },
 	{ href: '/library/projects/' },
 	{ href: '/library/projects/poketwo/', label: 'Pokétwo spawn odds' },
