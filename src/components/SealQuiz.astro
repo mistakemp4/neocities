@@ -1,5 +1,4 @@
 ---
-import { wiki } from '$/data/sealquiz';
 import { quiz } from '$/lib/sealquiz';
 
 const data = `{
@@ -95,12 +94,6 @@ const data = `{
 				<h3>you are <span x-text="result.name"></span></h3>
 				<p class="tag" x-text="result.tag"></p>
 				<p x-text="result.blurb"></p>
-				<p>
-					<a
-						x-bind:href={`'${wiki}' + result.page`}
-						rel="noreferrer"
-						x-text="'meet ' + result.name + ' on the wiki'"></a>
-				</p>
 				<label for="seal-embed">put it on your site:</label>
 				<textarea
 					id="seal-embed"

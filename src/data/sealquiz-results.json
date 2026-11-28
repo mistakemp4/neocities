@@ -2,72 +2,90 @@
 	{
 		"id": "niko",
 		"name": "Niko",
-		"page": "Niko",
 		"color": "#8f9aa6",
-		"tag": "cement gremlin",
+		"tag": "forced to eat cement",
 		"hp": 40,
 		"moves": [
-			["Eat Cement", 20],
-			["Tax Evasion", 60]
+			["Wail", 20],
+			["Eat Cement", 60]
 		],
-		"blurb": "ugly, smelly & convinced you are the coolest one here. you live off cement & spite, and you are wanted for tax evasion in 3 states. somehow everyone still knows your name"
+		"blurb": "a baikal seal who looks like he is about to cry at all times. your keepers call you a naughty, spoiled child, you wail until someone pays attention & you get in the middle of other seals' kisses. the internet says you were forced to eat cement when you were 6"
 	},
 	{
 		"id": "ponsuke",
 		"name": "Ponsuke",
-		"page": "Ponsuke",
 		"color": "#f06a7e",
-		"tag": "everyone's favorite",
+		"tag": "tongue out forever",
 		"hp": 70,
 		"moves": [
 			["Tongue Out", 10],
-			["Watermelon", 50]
+			["Post-Meal Nap", 50]
 		],
-		"blurb": "the one everybody loves. you smile with your tongue out, you love watermelon unprompted & you make strangers cry in a good way. the cleric of the friend group"
+		"blurb": "round, smiley & happy with the smallest things. a good meal, your tongue out & a nap is a perfect day. you are picky & you grunt at anyone who bothers you, but everyone loves you anyway. forever"
 	},
 	{
 		"id": "agu",
 		"name": "Agu",
-		"page": "Agu",
 		"color": "#d9a21f",
-		"tag": "party king",
-		"hp": 90,
+		"tag": "grandpa",
+		"hp": 38,
 		"moves": [
-			["Cheers", 30],
-			["Royal Decree", 70]
+			["Bai Bai", 30],
+			["Trick Before Asked", 70]
 		],
-		"blurb": "you are the party. always holding a drink, always the last to leave & nobody can confirm which photos of you are actually you. king behavior"
+		"blurb": "38 years old & still the most talented one in the room. you know every trick, you do them before anyone asks & you chirp for fish the second you see someone. calm, gentle & has never had any luck with the ladies"
 	},
 	{
 		"id": "hiyori",
 		"name": "Hiyori",
-		"page": "Hiyori",
 		"color": "#8a5ce6",
-		"tag": "partner in crime",
+		"tag": "clear day",
 		"hp": 60,
 		"moves": [
-			["Jailbreak", 40],
-			["Drink Agu's Beer", 40]
+			["Nii", 20],
+			["Hikoki", 50]
 		],
-		"blurb": "the accomplice. you have broken out of everywhere anyone ever put you & you drank their drink on the way out. sneaky, wicked & weirdly jolly about it"
+		"blurb": "friendly, calm & a little sleepy until you hit the water, then nobody can catch you. you love a hat, you know every trick & you almost had a thought once. people mix you up with agu. kyoro never does"
 	},
 	{
 		"id": "yochan",
 		"name": "Yo-chan",
-		"page": "Yo-chan",
 		"color": "#f29a0e",
 		"tag": "the sun",
 		"hp": 80,
 		"moves": [
 			["Gyu", 30],
-			["Excellent Jump", 60]
+			["Flipper Slap", 60]
 		],
-		"blurb": "grumpy, round & an excellent jumper. you squint at anyone who talks to you before you have eaten, you are in bed by 9 & you would die for your family. gyu"
+		"blurb": "round, sassy & famous for one squish. you snort at anyone who annoys you & slap your belly about it, especially when your kid is being loud. chill when left alone. a mom first"
+	},
+	{
+		"id": "katsunori",
+		"name": "Katsunori",
+		"color": "#7a5a44",
+		"tag": "the ogre",
+		"hp": 90,
+		"moves": [
+			["Agree", 30],
+			["Bath Tantrum", 70]
+		],
+		"blurb": "wrinkly, serious & patient, with the face of a stressed out dad. you agree with everything anyone says, you are loyal to your wife & you throw a fit in the shower. people scream when you come over. you are not scary"
+	},
+	{
+		"id": "tsuki",
+		"name": "Tsuki",
+		"color": "#7f8fe0",
+		"tag": "the moon",
+		"hp": 25,
+		"moves": [
+			["Moo", 20],
+			["Wake Everyone Up", 60]
+		],
+		"blurb": "the baby of the family & the loudest seal in the building. you moo & whine until someone looks at you, you wake the old seals up from their naps & you play fight anyone who will let you. princess"
 	},
 	{
 		"id": "damnseal",
 		"name": "Damn seal",
-		"page": "Damn_seal",
 		"color": "#ff3b1f",
 		"tag": "crashes the web",
 		"hp": 404,
@@ -76,31 +94,5 @@
 			["Crash The Web", 999]
 		],
 		"blurb": "a visual-technological nightmare. you flash, you shake & you crash the web. you have broken at least one computer & you would do it again"
-	},
-	{
-		"id": "bobo",
-		"name": "Bobo the Clown",
-		"page": "Bobo_the_Clown",
-		"color": "#2f97e6",
-		"tag": "full recovery",
-		"hp": 1,
-		"moves": [
-			["Balloon (Untied)", 0],
-			["Full Recovery", 100]
-		],
-		"blurb": "the clown. you cannot tie a balloon, everything goes wrong & everybody is laughing. but you get back up every single time, and honestly that is the strongest thing here"
-	},
-	{
-		"id": "snacksuke",
-		"name": "Snacksuke",
-		"page": "Snacksuke",
-		"color": "#b67a45",
-		"tag": "since 1859",
-		"hp": 1859,
-		"moves": [
-			["Pitch Deck", 40],
-			["ZebraSTRIPEZ", 80]
-		],
-		"blurb": "born in 1859 & doing great. rich, busy & always pitching a new snack. you have a 5 year plan & a business card for every occasion. not to be confused with ponsuke"
 	}
 ]
